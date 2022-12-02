@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/first_page.dart';
 import 'package:osj_flutter/second_page.dart';
 
@@ -21,19 +22,20 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: pages[selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.looks_one), label: '세탁실 1'),
-            BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: '세탁실 2'),
-          ],
-          currentIndex: selectedIndex,
-          selectedItemColor: Colors.black,
-          onTap: indexChange,
-          type: BottomNavigationBarType.fixed,
-        ),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(3.0.r),
+        child: pages[selectedIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.looks_one), label: '세탁실 1'),
+          BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: '세탁실 2'),
+        ],
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.black,
+        onTap: indexChange,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }
