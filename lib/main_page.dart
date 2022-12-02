@@ -11,9 +11,9 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
-  final List<Widget> pages = [FirstPage(), SecondPage()];
+  final List<Widget> pages = [const FirstPage(), const SecondPage()];
 
-  void IndexChange(int index) {
+  void indexChange(int index) {
     setState(() {
       selectedIndex = index;
     });
@@ -22,16 +22,17 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: pages[selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.looks_one),label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: ''),
-          ],
-          currentIndex: selectedIndex,
-          selectedItemColor: Colors.lightBlue,
-          onTap: IndexChange,
-          type: BottomNavigationBarType.fixed,
-        ));
+      body: pages[selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.looks_one), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: ''),
+        ],
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.lightBlue,
+        onTap: indexChange,
+        type: BottomNavigationBarType.fixed,
+      ),
+    );
   }
 }
