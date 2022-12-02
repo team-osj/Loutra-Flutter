@@ -17,11 +17,11 @@ class _FirstPageState extends State<FirstPage> {
         crossAxisCount: 2,
         crossAxisSpacing: 5,
         mainAxisSpacing: 5,
-        childAspectRatio: 10.0.w / 3.7.w,
+        childAspectRatio: 148.0.w /70.4.h,
         children: List.generate(16, (index) {
           return Container(
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.black)),
+                border: Border.all(color: Colors.black, width: 1.5)),
           );
         }),
       ),
