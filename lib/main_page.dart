@@ -21,17 +21,19 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.looks_one), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: ''),
-        ],
-        currentIndex: selectedIndex,
-        selectedItemColor: Colors.lightBlue,
-        onTap: indexChange,
-        type: BottomNavigationBarType.fixed,
+    return SafeArea(
+      child: Scaffold(
+        body: pages[selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.looks_one), label: '세탁실 1'),
+            BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: '세탁실 2'),
+          ],
+          currentIndex: selectedIndex,
+          selectedItemColor: Colors.black,
+          onTap: indexChange,
+          type: BottomNavigationBarType.fixed,
+        ),
       ),
     );
   }
