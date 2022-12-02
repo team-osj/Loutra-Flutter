@@ -13,11 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainPage(),
-      initialRoute: '/first',
-      routes: {
-        '/first': (context)=> FirstPage(),
-        '/second': (context)=> SecondPage(),
-      },
     );
   }
 }
