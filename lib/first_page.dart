@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:osj_flutter/model/model.dart';
+import 'package:osj_flutter/view_model/get_status.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -10,116 +11,27 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  Future<Osj>? future;
+
+  @override
+  void initState() {
+    super.initState();
+    future = getStatus();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.dry_cleaning,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.dry_cleaning,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.dry_cleaning,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Icon(
-              Icons.local_laundry_service_outlined,
-              size: 50.0.r,
-            ),
-            Icon(
-              Icons.dry_cleaning,
-              size: 50.0.r,
-            ),
-          ],
-        ),
-      ],
+    return Center(
+      child: FutureBuilder(
+          future: future,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text('성공');
+            } else if (snapshot.hasError) {
+              return Text('에ㅔ러');
+            }
+            else return CircularProgressIndicator();
+          }),
     );
   }
 }
