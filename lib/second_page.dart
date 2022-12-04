@@ -11,135 +11,133 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
-  Future<OsjList>? future;
+  Stream<OsjList>? stream;
 
   @override
   void initState() {
     super.initState();
-    future = getStatus();
+    stream = getStatus();
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder<OsjList>(
-        future: future,
+      child: StreamBuilder<OsjList>(
+        stream: stream,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.dry_cleaning,
-                      size: 50.0.r,
-                    ),
-                    Icon(
-                      Icons.dry_cleaning,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-
-                    ),
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                    Icon(
-                      Icons.local_laundry_service_outlined,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.dry_cleaning,
-                      size: 50.0.r,
-                    ),
-                    Icon(
-                      Icons.dry_cleaning,
-                      size: 50.0.r,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.dry_cleaning,
-                      size: 50.0.r,
-                    ),
-                    SizedBox(
-                      width: 50.0.w,
-                      height: 50.0.h,
-                    ),
-                  ],
-                ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          } else
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
+          }
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.dry_cleaning,
+                    size: 50.0.r,
+                  ),
+                  Icon(
+                    Icons.dry_cleaning,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+
+                  ),
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.dry_cleaning,
+                    size: 50.0.r,
+                  ),
+                  Icon(
+                    Icons.dry_cleaning,
+                    size: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.dry_cleaning,
+                    size: 50.0.r,
+                  ),
+                  SizedBox(
+                    width: 50.0.w,
+                    height: 50.0.h,
+                  ),
+                ],
+              ),
+            ],
+          );
         },
       ),
     );
