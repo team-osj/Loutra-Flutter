@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:osj_flutter/model/model.dart';
+import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
 
 class FirstPage extends StatefulWidget {
@@ -11,7 +10,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  Future<Osj>? future;
+  Future<OsjList>? future;
 
   @override
   void initState() {
@@ -22,16 +21,17 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder(
-          future: future,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Text('성공');
-            } else if (snapshot.hasError) {
-              return Text('에ㅔ러');
-            }
-            else return CircularProgressIndicator();
-          }),
+      child: FutureBuilder<OsjList>(
+        future: future,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Text('성공');
+          } else if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          } else
+            return CircularProgressIndicator();
+        },
+      ),
     );
   }
 }
