@@ -25,7 +25,7 @@ class _SecondPageState extends State<SecondPage> {
       child: StreamBuilder<OsjList>(
         stream: stream,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
           return Column(

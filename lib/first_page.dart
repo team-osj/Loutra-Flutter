@@ -25,7 +25,7 @@ class _FirstPageState extends State<FirstPage> {
       child: StreamBuilder<OsjList>(
         stream: stream,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
           return Column(
