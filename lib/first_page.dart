@@ -44,6 +44,9 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.dry_cleaning,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![8].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
@@ -60,6 +63,9 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![9].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
@@ -76,6 +82,9 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![10].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
@@ -92,6 +101,9 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![11].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
@@ -101,23 +113,16 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![4].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
-                  ),
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
+                    color: snapshot.data!.tests![12].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
@@ -127,10 +132,35 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![5].state == 0
+                        ? Colors.red
+                        : Colors.green,
+                  ),
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                    color: snapshot.data!.tests![13].state == 0
+                        ? Colors.red
+                        : Colors.green,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.local_laundry_service_outlined,
+                    size: 50.0.r,
+                    color: snapshot.data!.tests![6].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                   Icon(
                     Icons.dry_cleaning,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![14].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
@@ -140,10 +170,16 @@ class _FirstPageState extends State<FirstPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![7].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                   Icon(
                     Icons.dry_cleaning,
                     size: 50.0.r,
+                    color: snapshot.data!.tests![15].state == 0
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ],
               ),
