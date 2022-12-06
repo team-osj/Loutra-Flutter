@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.6.0
   http: ^0.13.5
-  web_socket_channel: ^2.2.0
+  cloud_firestore: ^4.1.0
 
 dev_dependencies:
   flutter_test:
