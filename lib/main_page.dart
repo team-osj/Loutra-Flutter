@@ -59,6 +59,12 @@ class _MainPageState extends State<MainPage>
                 ],
                 controller: controller,
               ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  future = getStatus();
+                },
+                child: Icon(Icons.refresh),
+              ),
             ),
           );
         } else if (snapshot.hasError) {
