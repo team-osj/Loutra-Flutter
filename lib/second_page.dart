@@ -19,100 +19,115 @@ class SecondPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Icon(
-                    Icons.dry_cleaning,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 50.0.r,
                   ),
-                  Icon(
-                    Icons.dry_cleaning,
-                    size: 50.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
-                  ),
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 50.0.r,
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
                   ),
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
-                  ),
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
                   ),
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
-                  ),
-                  Icon(
-                    Icons.local_laundry_service_outlined,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Icon(
-                    Icons.dry_cleaning,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
                   ),
-                  Icon(
-                    Icons.dry_cleaning,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Icon(
-                    Icons.dry_cleaning,
-                    size: 50.0.r,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 50.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 50.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 50.0.r,
                   ),
                   SizedBox(
                     width: 50.0.w,
