@@ -20,8 +20,8 @@ class _MainPageState extends State<MainPage>
   @override
   void initState() {
     super.initState();
-    future = getStatus();
     controller = TabController(length: 2, vsync: this);
+    future = getStatus();
   }
 
   @override
@@ -61,8 +61,7 @@ class _MainPageState extends State<MainPage>
               ),
             ),
           );
-        }
-        else if (snapshot.hasError) {
+        } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else
           return Center(child: CircularProgressIndicator());

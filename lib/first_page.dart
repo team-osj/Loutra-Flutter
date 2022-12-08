@@ -169,10 +169,11 @@ class FirstPage extends StatelessWidget {
               ),
             ],
           );
-        } else if (snapshot.hasError)
+        } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
-        else
+        } else {
           return Center(child: CircularProgressIndicator());
+        }
       },
     );
   }

@@ -124,10 +124,11 @@ class SecondPage extends StatelessWidget {
           );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
-        } else
+        } else {
           return const Center(
             child: CircularProgressIndicator(),
           );
+        }
       },
     );
   }
