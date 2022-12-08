@@ -1,33 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/model/list_model.dart';
-import 'package:osj_flutter/view_model/get_status.dart';
 
-class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+class SecondPage extends StatelessWidget {
+  SecondPage({Key? key, required this.future}) : super(key: key);
 
-  @override
-  State<SecondPage> createState() => _SecondPageState();
-}
-
-class _SecondPageState extends State<SecondPage> {
-  Stream<OsjList>? stream;
-
-  @override
-  void initState() {
-    super.initState();
-    stream = getStatus();
-  }
+  Future<OsjList>? future;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: StreamBuilder<OsjList>(
-        stream: stream,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }
+    return FutureBuilder(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -76,7 +61,6 @@ class _SecondPageState extends State<SecondPage> {
                   Icon(
                     Icons.local_laundry_service_outlined,
                     size: 50.0.r,
-
                   ),
                   Icon(
                     Icons.local_laundry_service_outlined,
@@ -138,8 +122,13 @@ class _SecondPageState extends State<SecondPage> {
               ),
             ],
           );
-        },
-      ),
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        } else
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+      },
     );
   }
 }

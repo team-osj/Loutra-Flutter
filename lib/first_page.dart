@@ -1,33 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/model/list_model.dart';
-import 'package:osj_flutter/view_model/get_status.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
-
-  @override
-  State<FirstPage> createState() => _FirstPageState();
-}
-
-class _FirstPageState extends State<FirstPage> {
-  Stream<OsjList>? stream;
-
-  @override
-  void initState() {
-    super.initState();
-    stream = getStatus();
-  }
+class FirstPage extends StatelessWidget {
+  FirstPage({Key? key, required this.future}) : super(key: key);
+  Future<OsjList>? future;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: StreamBuilder<OsjList>(
-        stream: stream,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }
+    return FutureBuilder(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -185,8 +169,11 @@ class _FirstPageState extends State<FirstPage> {
               ),
             ],
           );
-        },
-      ),
+        } else if (snapshot.hasError)
+          return Text(snapshot.error.toString());
+        else
+          return Center(child: CircularProgressIndicator());
+      },
     );
   }
 }
