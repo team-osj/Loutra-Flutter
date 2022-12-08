@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/first_page.dart';
+import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/second_page.dart';
-
+import 'package:osj_flutter/view_model/get_status.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -11,35 +12,67 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  int selectedIndex = 0;
-  final List<Widget> pages = [const FirstPage(), const SecondPage()];
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
+  TabController? controller;
+  Future<OsjList>? future;
 
-  void indexChange(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
+    future = getStatus();
+    controller = TabController(length: 2, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.all(3.0.r),
-          child: pages[selectedIndex],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.looks_one), label: '세탁실 1'),
-            BottomNavigationBarItem(icon: Icon(Icons.looks_two), label: '세탁실 2'),
-          ],
-          currentIndex: selectedIndex,
-          selectedItemColor: Colors.black,
-          onTap: indexChange,
-          type: BottomNavigationBarType.fixed,
-        ),
-      ),
+    return FutureBuilder(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return SafeArea(
+            child: Scaffold(
+              body: Padding(
+                padding: EdgeInsets.all(3.0.r),
+                child: TabBarView(
+                  children: <Widget>[
+                    FirstPage(future: future),
+                    SecondPage(future: future),
+                  ],
+                  controller: controller,
+                ),
+              ),
+              bottomNavigationBar: TabBar(
+                tabs: <Tab>[
+                  const Tab(
+                    icon: Icon(
+                      Icons.looks_one,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const Tab(
+                    icon: Icon(
+                      Icons.looks_two,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+                controller: controller,
+              ),
+            ),
+          );
+        }
+        else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        } else
+          return Center(child: CircularProgressIndicator());
+      },
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller!.dispose();
   }
 }
