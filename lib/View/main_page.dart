@@ -39,29 +39,29 @@ class _MainPageState extends State<MainPage>
                       onPressed: () {
                         getStatus();
                       },
-                      icon: Icon(Icons.refresh)),
+                      icon: const Icon(Icons.refresh)),
                 ],
               ),
-              drawer: Drawer(),
+              drawer: const Drawer(),
               body: Padding(
                 padding: EdgeInsets.all(3.0.r),
                 child: TabBarView(
-                  children: <Widget>[
+                  controller: controller,
+                  children: [
                     FirstPage(future: future),
                     SecondPage(future: future),
                   ],
-                  controller: controller,
                 ),
               ),
               bottomNavigationBar: TabBar(
-                tabs: <Tab>[
-                  const Tab(
+                tabs: const <Tab>[
+                  Tab(
                     icon: Icon(
                       Icons.looks_one,
                       color: Colors.black,
                     ),
                   ),
-                  const Tab(
+                  Tab(
                     icon: Icon(
                       Icons.looks_two,
                       color: Colors.black,
@@ -74,19 +74,20 @@ class _MainPageState extends State<MainPage>
           );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
-        } else
+        } else {
           return Scaffold(
             appBar: AppBar(
-              leading: Icon(Icons.menu),
+              leading: const Icon(Icons.menu),
               actions: [
                 IconButton(
                     padding: EdgeInsets.only(right: 30.0.w),
                     onPressed: () {},
-                    icon: Icon(Icons.refresh)),
+                    icon: const Icon(Icons.refresh)),
               ],
             ),
-            body: Center(child: CircularProgressIndicator()),
+            body: const Center(child: CircularProgressIndicator()),
           );
+        }
       },
     );
   }
