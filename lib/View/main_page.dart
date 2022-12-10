@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:osj_flutter/first_page.dart';
+import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/model/list_model.dart';
-import 'package:osj_flutter/second_page.dart';
+import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
 
 class MainPage extends StatefulWidget {
