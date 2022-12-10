@@ -14,11 +14,11 @@ class Osj {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['state'] = this.state;
-    data['device_type'] = this.deviceType;
-    data['alive'] = this.alive;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['state'] = state;
+    data['device_type'] = deviceType;
+    data['alive'] = alive;
     return data;
   }
 }
