@@ -22,12 +22,12 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.dry_cleaning),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.dry_cleaning),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                 ],
               ),
@@ -37,12 +37,12 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                 ],
               ),
@@ -52,12 +52,12 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                 ],
               ),
@@ -67,12 +67,12 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                 ],
               ),
@@ -82,12 +82,12 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                 ],
               ),
@@ -97,27 +97,12 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 50.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
-                    iconSize: 50.0.r,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
                   ),
                 ],
               ),
@@ -127,12 +112,27 @@ class SecondPage extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.dry_cleaning),
-                    iconSize: 50.0.r,
+                    iconSize: 49.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 49.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.dry_cleaning),
+                    iconSize: 49.0.r,
                   ),
                   SizedBox(
-                    width: 50.0.w,
-                    height: 50.0.h,
-                  ),
+                    width: 65.0.w,
+                    height: 60.0.h,
+                  )
                 ],
               ),
             ],

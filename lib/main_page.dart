@@ -34,11 +34,15 @@ class _MainPageState extends State<MainPage>
             child: Scaffold(
               appBar: AppBar(
                 actions: [
-                  IconButton(onPressed: () {
-                    getStatus();
-                  }, icon: Icon(Icons.refresh))
+                  IconButton(
+                      padding: EdgeInsets.only(right: 30.0.w),
+                      onPressed: () {
+                        getStatus();
+                      },
+                      icon: Icon(Icons.refresh))
                 ],
               ),
+              drawer: Drawer(),
               body: Padding(
                 padding: EdgeInsets.all(3.0.r),
                 child: TabBarView(
