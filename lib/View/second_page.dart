@@ -21,27 +21,12 @@ class SecondPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
+                    icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
-                    iconSize: 49.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 49.0.r,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
+                    icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -51,27 +36,12 @@ class SecondPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 49.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 49.0.r,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -81,27 +51,12 @@ class SecondPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 49.0.r,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
-                    iconSize: 49.0.r,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.local_laundry_service_outlined),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -111,12 +66,12 @@ class SecondPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -126,7 +81,52 @@ class SecondPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(Icons.dry_cleaning),
+                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 49.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 49.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 49.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    iconSize: 49.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.dry_cleaning),
+                    iconSize: 49.0.r,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.dry_cleaning),
+                    iconSize: 49.0.r,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
                   ),
                   SizedBox(
