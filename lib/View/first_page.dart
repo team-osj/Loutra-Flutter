@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:osj_flutter/Widget/custom_dialog.dart';
 import 'package:osj_flutter/model/list_model.dart';
-import 'package:osj_flutter/view_model/get_fcm.dart';
 
 class FirstPage extends StatelessWidget {
   FirstPage({Key? key, required this.future}) : super(key: key);
@@ -21,7 +21,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![0].id!.toInt());
+                      showPopup(context, 1);
                     },
                     icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
@@ -31,7 +31,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![8].id!.toInt());
+                      showPopup(context, 9);
                     },
                     icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
@@ -46,7 +46,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![1].id!.toInt());
+                      showPopup(context, 2);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -56,7 +56,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![9].id!.toInt());
+                      showPopup(context, 10);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -71,7 +71,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![2].id!.toInt());
+                      showPopup(context, 3);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -81,7 +81,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![10].id!.toInt());
+                      showPopup(context, 11);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -96,7 +96,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![3].id!.toInt());
+                      showPopup(context, 4);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -106,7 +106,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![11].id!.toInt());
+                      showPopup(context, 12);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -121,7 +121,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![4].id!.toInt());
+                      showPopup(context, 5);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -131,7 +131,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![12].id!.toInt());
+                      showPopup(context, 13);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -146,7 +146,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![5].id!.toInt());
+                      showPopup(context, 6);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -156,7 +156,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![13].id!.toInt());
+                      showPopup(context, 14);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -171,7 +171,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![6].id!.toInt());
+                      showPopup(context, 7);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -181,7 +181,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![14].id!.toInt());
+                      showPopup(context, 15);
                     },
                     icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
@@ -196,7 +196,7 @@ class FirstPage extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![7].id!.toInt());
+                      showPopup(context, 8);
                     },
                     icon: const Icon(Icons.local_laundry_service_outlined),
                     iconSize: 49.0.r,
@@ -206,7 +206,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      getFcm(snapshot.data!.tests![15].id!.toInt());
+                      showPopup(context, 16);
                     },
                     icon: const Icon(Icons.dry_cleaning),
                     iconSize: 49.0.r,
