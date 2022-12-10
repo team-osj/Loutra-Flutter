@@ -32,6 +32,13 @@ class _MainPageState extends State<MainPage>
         if (snapshot.hasData) {
           return SafeArea(
             child: Scaffold(
+              appBar: AppBar(
+                actions: [
+                  IconButton(onPressed: () {
+                    getStatus();
+                  }, icon: Icon(Icons.refresh))
+                ],
+              ),
               body: Padding(
                 padding: EdgeInsets.all(3.0.r),
                 child: TabBarView(
@@ -58,12 +65,6 @@ class _MainPageState extends State<MainPage>
                   ),
                 ],
                 controller: controller,
-              ),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  future = getStatus();
-                },
-                child: Icon(Icons.refresh),
               ),
             ),
           );
