@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/View/first_page.dart';
-import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/View/second_page.dart';
+import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
 
 class MainPage extends StatefulWidget {
@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage>
                       onPressed: () {
                         getStatus();
                       },
-                      icon: Icon(Icons.refresh))
+                      icon: Icon(Icons.refresh)),
                 ],
               ),
               drawer: Drawer(),
@@ -75,7 +75,18 @@ class _MainPageState extends State<MainPage>
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else
-          return Center(child: CircularProgressIndicator());
+          return Scaffold(
+            appBar: AppBar(
+              leading: Icon(Icons.menu),
+              actions: [
+                IconButton(
+                    padding: EdgeInsets.only(right: 30.0.w),
+                    onPressed: () {},
+                    icon: Icon(Icons.refresh)),
+              ],
+            ),
+            body: Center(child: CircularProgressIndicator()),
+          );
       },
     );
   }
