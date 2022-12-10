@@ -12,7 +12,7 @@ void showPopup(context, int deviceId) {
             borderRadius: BorderRadius.circular(20.0)),
         child: SizedBox(
           width: 200.0.w,
-          height: 200.0.h,
+          height: 180.0.h,
           child: Card(
             elevation: 0,
             shape: RoundedRectangleBorder(
