@@ -1,13 +1,15 @@
 class Osj {
   int? id;
   int? state;
+  String? deviceType;
   int? alive;
 
-  Osj({this.id, this.state, this.alive});
+  Osj({this.id, this.state, this.deviceType, this.alive});
 
   Osj.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     state = json['state'];
+    deviceType = json['device_type'];
     alive = json['alive'];
   }
 
@@ -15,6 +17,7 @@ class Osj {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['state'] = this.state;
+    data['device_type'] = this.deviceType;
     data['alive'] = this.alive;
     return data;
   }
