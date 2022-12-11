@@ -32,17 +32,20 @@ class _MainPageState extends State<MainPage>
         if (snapshot.hasData) {
           return SafeArea(
             child: Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0.0,
                 actions: [
                   IconButton(
                       padding: EdgeInsets.only(right: 30.0.w),
                       onPressed: () {
                         getStatus();
                       },
-                      icon: const Icon(Icons.refresh)),
+                      icon: const Icon(Icons.refresh, color: Colors.black)),
                 ],
               ),
-              drawer: const Drawer(),
+              drawer: Drawer(),
               body: Padding(
                 padding: EdgeInsets.all(3.0.r),
                 child: TabBarView(
@@ -76,13 +79,16 @@ class _MainPageState extends State<MainPage>
           return Text(snapshot.error.toString());
         } else {
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
+              elevation: 0.0,
+              backgroundColor: Colors.white,
               leading: const Icon(Icons.menu),
               actions: [
                 IconButton(
                     padding: EdgeInsets.only(right: 30.0.w),
                     onPressed: () {},
-                    icon: const Icon(Icons.refresh)),
+                    icon: const Icon(Icons.refresh, color: Colors.black)),
               ],
             ),
             body: const Center(child: CircularProgressIndicator()),
