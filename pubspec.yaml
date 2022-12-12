@@ -43,6 +43,7 @@ dependencies:
   flutter_local_notifications: ^12.0.4
   dio: ^4.0.6
   shared_preferences: ^2.0.15
+  webview_flutter: ^3.0.4
 
 
 dev_dependencies:
