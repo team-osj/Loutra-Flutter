@@ -4,6 +4,7 @@ import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
+import 'package:osj_flutter/Widget/drawer_button.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -33,13 +34,14 @@ class _MainPageState extends State<MainPage>
           return SafeArea(
             child: Scaffold(
               drawer: Drawer(
+                backgroundColor: Colors.white,
                 child: ListView(
                   children: [
                     DrawerHeader(
                       decoration: BoxDecoration(color: Colors.green),
                       child: SizedBox.shrink(),
                     ),
-                    myPageButton('문의 사항'),
+                    myPageButtonToLink('문의 사항', 'https://open.kakao.com/o/sHjnH1Se'),
                     myPageButton('개발자 소개'),
                   ],
                 ),
@@ -125,32 +127,4 @@ class _MainPageState extends State<MainPage>
     super.dispose();
     controller!.dispose();
   }
-}
-
-Widget myPageButton(String title) {
-  return SizedBox(
-    width: 90.0.w,
-    height: 40.0.h,
-    child: MaterialButton(
-      onPressed: () {},
-      color: Colors.white,
-      elevation: 0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '$title',
-            style: TextStyle(
-              color: Colors.blueAccent[400],
-              fontSize: 20.0.sp,
-            ),
-          ),
-          Icon(
-            Icons.keyboard_arrow_right_outlined,
-            color: Colors.grey,
-          ),
-        ],
-      ),
-    ),
-  );
 }
