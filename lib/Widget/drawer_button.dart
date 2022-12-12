@@ -40,6 +40,7 @@ Widget myPageButtonToLink(String title, String link) {
         WebView(
           initialUrl: link,
           javascriptMode: JavascriptMode.unrestricted,
+          gestureNavigationEnabled: true,
         );
       },
       color: Colors.white,
