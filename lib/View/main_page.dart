@@ -32,10 +32,21 @@ class _MainPageState extends State<MainPage>
         if (snapshot.hasData) {
           return SafeArea(
             child: Scaffold(
+              drawer: Drawer(),
               backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: Colors.white,
                 elevation: 0.0,
+                leading: Builder(
+                  builder: (BuildContext context) {
+                    return IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: Icon(Icons.menu, color: Colors.black),
+                    );
+                  },
+                ),
                 actions: [
                   IconButton(
                       padding: EdgeInsets.only(right: 30.0.w),
@@ -45,7 +56,6 @@ class _MainPageState extends State<MainPage>
                       icon: const Icon(Icons.refresh, color: Colors.black)),
                 ],
               ),
-              drawer: Drawer(),
               body: Padding(
                 padding: EdgeInsets.all(3.0.r),
                 child: TabBarView(
