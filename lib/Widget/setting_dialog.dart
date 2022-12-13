@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void showSettingPopup(BuildContext context) {
   showDialog(
@@ -21,7 +22,19 @@ void showSettingPopup(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Builder(builder: (BuildContext context) {
+                        return const Scaffold(
+                          body: SafeArea(
+                            child: WebView(
+                              initialUrl: 'https://open.kakao.com/o/sHjnH1Se',
+                              debuggingEnabled: true,
+                              javascriptMode: JavascriptMode.unrestricted,
+                            ),
+                          ),
+                        );
+                      });
+                    },
                     child: Text(
                       '문의사항',
                       style: TextStyle(fontSize: 20.0.sp),
