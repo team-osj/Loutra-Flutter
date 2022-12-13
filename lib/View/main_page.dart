@@ -4,6 +4,7 @@ import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
+import 'package:osj_flutter/Widget/setting_dialog.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -45,7 +46,9 @@ class _MainPageState extends State<MainPage>
                   Builder(builder: (BuildContext contest) {
                     return IconButton(
                         padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
-                        onPressed: () {},
+                        onPressed: () {
+                          showSettingPopup(context);
+                        },
                         icon: Icon(Icons.settings),
                         color: Colors.black);
                   }),
