@@ -38,11 +38,17 @@ class _MainPageState extends State<MainPage>
                 elevation: 0.0,
                 actions: [
                   IconButton(
-                      padding: EdgeInsets.only(right: 30.0.w),
                       onPressed: () {
                         getStatus();
                       },
                       icon: const Icon(Icons.refresh, color: Colors.black)),
+                  Builder(builder: (BuildContext contest) {
+                    return IconButton(
+                        padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
+                        onPressed: () {},
+                        icon: Icon(Icons.settings),
+                        color: Colors.black);
+                  }),
                 ],
               ),
               body: Padding(
