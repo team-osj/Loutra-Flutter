@@ -4,7 +4,6 @@ import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
-import 'package:osj_flutter/Widget/drawer_button.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -33,34 +32,10 @@ class _MainPageState extends State<MainPage>
         if (snapshot.hasData) {
           return SafeArea(
             child: Scaffold(
-              drawer: Drawer(
-                backgroundColor: Colors.white,
-                child: ListView(
-                  children: [
-                    DrawerHeader(
-                      decoration: BoxDecoration(color: Colors.green),
-                      child: SizedBox.shrink(),
-                    ),
-                    myPageButtonToLink('문의 사항', 'https://open.kakao.com/o/sHjnH1Se'),
-                    myPageButton('개발자 소개'),
-                  ],
-                ),
-              ),
               backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: Colors.white,
                 elevation: 0.0,
-                leading: Builder(
-                  builder: (BuildContext context) {
-                    return IconButton(
-                      padding: EdgeInsets.only(left: 10.0.w),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      icon: const Icon(Icons.menu, color: Colors.black),
-                    );
-                  },
-                ),
                 actions: [
                   IconButton(
                       padding: EdgeInsets.only(right: 30.0.w),
