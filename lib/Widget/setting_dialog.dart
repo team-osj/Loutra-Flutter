@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:osj_flutter/View/open_kakao_page.dart';
 
 void showSettingPopup(BuildContext context) {
   showDialog(
@@ -23,17 +23,10 @@ void showSettingPopup(BuildContext context) {
               children: [
                 MaterialButton(
                     onPressed: () {
-                      Builder(builder: (BuildContext context) {
-                        return const Scaffold(
-                          body: SafeArea(
-                            child: WebView(
-                              initialUrl: 'https://open.kakao.com/o/sHjnH1Se',
-                              debuggingEnabled: true,
-                              javascriptMode: JavascriptMode.unrestricted,
-                            ),
-                          ),
-                        );
-                      });
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                        return OpenKakaoPage();
+                      }));
                     },
                     child: Text(
                       '문의사항',
