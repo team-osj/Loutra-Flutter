@@ -6,7 +6,7 @@ class OpenKakaoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: WebView(
           initialUrl: 'https://open.kakao.com/o/sHjnH1Se',
