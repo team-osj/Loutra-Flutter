@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color? colorFunc(int state) {
+MaterialColor colorFunc(int state) {
   if (state == 0) {
     return Colors.red;
   } else {
