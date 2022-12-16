@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/Widget/custom_dialog.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/View/color_func.dart';
+import 'package:osj_flutter/View/icon_func.dart';
 
 class FirstPage extends StatelessWidget {
   FirstPage({Key? key, required this.future}) : super(key: key);
@@ -21,25 +22,23 @@ class FirstPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
-                    onPressed: () {
-                      showPopup(context, 1);
-                    },
-                    icon: snapshot.data!.tests![0].alive == 1
-                        ? const Icon(Icons.dry_cleaning)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![0].state!.toInt())
-                  ),
+                      onPressed: () {
+                        showPopup(context, 1);
+                      },
+                      icon: iconFunc(
+                          snapshot.data!.tests![0].deviceType.toString()),
+                      iconSize: 49.0.r,
+                      color:
+                          colorFunc(snapshot.data!.tests![0].state!.toInt())),
                   IconButton(
-                    onPressed: () {
-                      showPopup(context, 9);
-                    },
-                    icon: snapshot.data!.tests![8].alive == 1
-                        ? const Icon(Icons.dry_cleaning)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![8].state!.toInt())
-                  ),
+                      onPressed: () {
+                        showPopup(context, 9);
+                      },
+                      icon: iconFunc(
+                          snapshot.data!.tests![8].deviceType.toString()),
+                      iconSize: 49.0.r,
+                      color:
+                          colorFunc(snapshot.data!.tests![8].state!.toInt())),
                 ],
               ),
               Row(
@@ -49,9 +48,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 2);
                     },
-                    icon: snapshot.data!.tests![1].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![1].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![1].state!.toInt()),
                   ),
@@ -59,9 +57,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 10);
                     },
-                    icon: snapshot.data!.tests![9].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![9].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![9].state!.toInt()),
                   ),
@@ -74,9 +71,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 3);
                     },
-                    icon: snapshot.data!.tests![2].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![2].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![2].state!.toInt()),
                   ),
@@ -84,9 +80,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 11);
                     },
-                    icon: snapshot.data!.tests![10].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![10].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![10].state!.toInt()),
                   ),
@@ -99,9 +94,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 4);
                     },
-                    icon: snapshot.data!.tests![3].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![3].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![3].state!.toInt()),
                   ),
@@ -109,9 +103,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 12);
                     },
-                    icon: snapshot.data!.tests![11].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![11].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![11].state!.toInt()),
                   ),
@@ -124,9 +117,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 5);
                     },
-                    icon: snapshot.data!.tests![4].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![4].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![4].state!.toInt()),
                   ),
@@ -134,9 +126,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 13);
                     },
-                    icon: snapshot.data!.tests![12].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![12].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![12].state!.toInt()),
                   ),
@@ -149,9 +140,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 6);
                     },
-                    icon: snapshot.data!.tests![5].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![5].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![5].state!.toInt()),
                   ),
@@ -159,9 +149,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 14);
                     },
-                    icon: snapshot.data!.tests![13].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![13].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![13].state!.toInt()),
                   ),
@@ -174,9 +163,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 7);
                     },
-                    icon: snapshot.data!.tests![6].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![6].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![6].state!.toInt()),
                   ),
@@ -184,9 +172,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 15);
                     },
-                    icon: snapshot.data!.tests![14].alive == 1
-                        ? const Icon(Icons.dry_cleaning)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![14].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![14].state!.toInt()),
                   ),
@@ -199,9 +186,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 8);
                     },
-                    icon: snapshot.data!.tests![7].alive == 1
-                        ? const Icon(Icons.local_laundry_service_outlined)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![7].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![7].state!.toInt()),
                   ),
@@ -209,9 +195,8 @@ class FirstPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 16);
                     },
-                    icon: snapshot.data!.tests![15].alive == 1
-                        ? const Icon(Icons.dry_cleaning)
-                        : const Icon(Icons.do_not_disturb_alt_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![15].deviceType.toString()),
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![15].state!.toInt()),
                   ),
