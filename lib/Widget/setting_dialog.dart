@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:osj_flutter/View/open_kakao_page.dart';
+import 'package:osj_flutter/View/link_to_open_kakao.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void showSettingPopup(BuildContext context) {
   showDialog(
@@ -12,7 +13,7 @@ void showSettingPopup(BuildContext context) {
             borderRadius: BorderRadius.circular(20.0)),
         child: SizedBox(
           width: 200.0.w,
-          height: 180.0.h,
+          height: 160.0.h,
           child: Card(
             elevation: 0,
             shape: RoundedRectangleBorder(
@@ -22,11 +23,8 @@ void showSettingPopup(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MaterialButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return OpenKakaoPage();
-                      }));
+                    onPressed: () async{
+                      await launchUrl(Uri.parse('https://open.kakao.com/o/sHjnH1Se'));
                     },
                     child: Text(
                       '문의사항',
@@ -34,11 +32,12 @@ void showSettingPopup(BuildContext context) {
                     )),
                 SizedBox(height: 20.0.h),
                 MaterialButton(
-                    onPressed: () {},
-                    child: Text(
-                      '개발자 소개',
-                      style: TextStyle(fontSize: 20.0.sp),
-                    )),
+                  onPressed: () {},
+                  child: Text(
+                    '개발자 소개',
+                    style: TextStyle(fontSize: 20.0.sp),
+                  ),
+                ),
               ],
             ),
           ),
