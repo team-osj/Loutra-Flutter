@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:osj_flutter/View/link_to_open_kakao.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void showSettingPopup(BuildContext context) {
@@ -24,7 +23,8 @@ void showSettingPopup(BuildContext context) {
               children: [
                 MaterialButton(
                     onPressed: () async{
-                      await launchUrl(Uri.parse('https://open.kakao.com/o/sHjnH1Se'));
+                      await launchUrl(Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
+                      mode: LaunchMode.externalApplication);
                     },
                     child: Text(
                       '문의사항',
