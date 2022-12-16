@@ -15,6 +15,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
+  bool isClicked = true;
   TabController? controller;
   Future<OsjList>? future;
 
@@ -40,9 +41,25 @@ class _MainPageState extends State<MainPage>
                 actions: [
                   IconButton(
                       onPressed: () {
+                        if (!isClicked) return null;
                         getStatus();
+                        setState(() {
+                          isClicked = false;
+                        });
+                        Future.delayed(Duration(seconds: 3), () {
+                          setState(() {
+                            isClicked = true;
+                          });
+                        });
                       },
-                      icon: const Icon(Icons.refresh, color: Colors.black)),
+                      icon: isClicked
+                          ? Icon(Icons.refresh, color: Colors.black)
+                          : SizedBox(
+                              width: 18.0.w,
+                              height: 18.0.w,
+                              child: CircularProgressIndicator(
+                                color: Colors.black,
+                              ))),
                   Builder(builder: (BuildContext contest) {
                     return IconButton(
                         padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
