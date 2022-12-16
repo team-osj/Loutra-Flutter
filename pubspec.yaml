@@ -45,6 +45,7 @@ dependencies:
   shared_preferences: ^2.0.15
   webview_flutter: ^3.0.4
   url_launcher: ^6.1.7
+  flutter_launcher_icons: ^0.11.0
 
 
 dev_dependencies:
