@@ -35,7 +35,8 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 25);
                     },
-                    icon: const Icon(Icons.dry_cleaning),
+                    icon: iconFunc(
+                        snapshot.data!.tests![24].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -47,14 +48,16 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 18);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![17].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 26);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![25].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -66,14 +69,16 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 19);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![18].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 27);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![26].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -85,14 +90,16 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 20);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![19].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 28);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![27].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -104,14 +111,16 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 21);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![20].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 29);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![28].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -123,14 +132,16 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 22);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![21].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 30);
                     },
-                    icon: const Icon(Icons.local_laundry_service_outlined),
+                    icon: iconFunc(
+                        snapshot.data!.tests![29].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -142,14 +153,16 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 23);
                     },
-                    icon: const Icon(Icons.dry_cleaning),
+                    icon: iconFunc(
+                        snapshot.data!.tests![22].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 31);
                     },
-                    icon: const Icon(Icons.dry_cleaning),
+                    icon: iconFunc(
+                        snapshot.data!.tests![30].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -161,7 +174,8 @@ class SecondPage extends StatelessWidget {
                     onPressed: () {
                       showPopup(context, 24);
                     },
-                    icon: const Icon(Icons.dry_cleaning),
+                    icon: iconFunc(
+                        snapshot.data!.tests![23].deviceType.toString()),
                     iconSize: 49.0.r,
                   ),
                   SizedBox(
