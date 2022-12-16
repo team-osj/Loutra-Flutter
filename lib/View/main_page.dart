@@ -41,23 +41,23 @@ class _MainPageState extends State<MainPage>
                 actions: [
                   IconButton(
                       onPressed: () {
-                        if (!isClicked) return null;
+                        if (!isClicked) return;
                         getStatus();
                         setState(() {
                           isClicked = false;
                         });
-                        Future.delayed(Duration(seconds: 3), () {
+                        Future.delayed(const Duration(seconds: 2), () {
                           setState(() {
                             isClicked = true;
                           });
                         });
                       },
                       icon: isClicked
-                          ? Icon(Icons.refresh, color: Colors.black)
+                          ? const Icon(Icons.refresh, color: Colors.black)
                           : SizedBox(
                               width: 18.0.w,
                               height: 18.0.w,
-                              child: CircularProgressIndicator(
+                              child: const CircularProgressIndicator(
                                 color: Colors.black,
                               ))),
                   Builder(builder: (BuildContext contest) {
@@ -66,7 +66,7 @@ class _MainPageState extends State<MainPage>
                         onPressed: () {
                           showSettingPopup(context);
                         },
-                        icon: Icon(Icons.settings),
+                        icon: const Icon(Icons.settings),
                         color: Colors.black);
                   }),
                 ],
