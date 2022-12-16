@@ -23,20 +23,21 @@ class SecondPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   IconButton(
-                      onPressed: () {
-                        showPopup(context, 17);
-                      },
-                      icon: iconFunc(
-                          snapshot.data!.tests![16].deviceType.toString()),
-                      iconSize: 49.0.r,
-                      color:
-                          colorFunc(snapshot.data!.tests![16].state!.toInt())),
+                    onPressed: () {
+                      showPopup(context, 17);
+                    },
+                    icon: iconFunc(
+                        snapshot.data!.tests![16].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![16].state!.toInt()),
+                    iconSize: 49.0.r,
+                  ),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 25);
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![24].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![23].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -50,6 +51,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![17].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![17].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
@@ -58,6 +60,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![25].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![24].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -71,6 +74,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![18].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![18].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
@@ -79,6 +83,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![26].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![26].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -92,6 +97,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![19].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![19].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
@@ -100,6 +106,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![27].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![26].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -113,6 +120,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![20].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![20].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
@@ -121,6 +129,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![28].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![28].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -134,6 +143,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![21].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![21].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
@@ -142,6 +152,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![29].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![29].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -155,6 +166,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![22].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![22].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   IconButton(
@@ -163,6 +175,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![30].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![30].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                 ],
@@ -176,6 +189,7 @@ class SecondPage extends StatelessWidget {
                     },
                     icon: iconFunc(
                         snapshot.data!.tests![23].deviceType.toString()),
+                    color: colorFunc(snapshot.data!.tests![23].state!.toInt()),
                     iconSize: 49.0.r,
                   ),
                   SizedBox(
