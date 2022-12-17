@@ -33,14 +33,14 @@ class FirstPage extends StatelessWidget {
                           colorFunc(snapshot.data!.tests![0].state!.toInt())),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
                   IconButton(
-                      onPressed: () {
-                        showPopup(context, 9);
-                      },
-                      icon: iconFunc(
-                          snapshot.data!.tests![8].deviceType.toString()),
-                      iconSize: 49.0.r,
-                      color:
-                          colorFunc(snapshot.data!.tests![8].state!.toInt())),
+                    onPressed: () {
+                      showPopup(context, 9);
+                    },
+                    icon: iconFunc(
+                        snapshot.data!.tests![8].deviceType.toString()),
+                    iconSize: 49.0.r,
+                    color: colorFunc(snapshot.data!.tests![8].state!.toInt()),
+                  ),
                 ],
               ),
               Row(
