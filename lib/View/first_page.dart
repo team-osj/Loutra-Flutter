@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/Widget/custom_dialog.dart';
+import '../Widget/custom_icons_icons.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/View/color_func.dart';
 import 'package:osj_flutter/View/icon_func.dart';
@@ -30,7 +31,7 @@ class FirstPage extends StatelessWidget {
                       iconSize: 49.0.r,
                       color:
                           colorFunc(snapshot.data!.tests![0].state!.toInt())),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                       onPressed: () {
                         showPopup(context, 9);
@@ -54,7 +55,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![1].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 10);
@@ -78,7 +79,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![2].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 11);
@@ -102,7 +103,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![3].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 12);
@@ -126,7 +127,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![4].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 13);
@@ -150,7 +151,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![5].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 14);
@@ -174,7 +175,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![6].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 15);
@@ -198,7 +199,7 @@ class FirstPage extends StatelessWidget {
                     iconSize: 49.0.r,
                     color: colorFunc(snapshot.data!.tests![7].state!.toInt()),
                   ),
-                  const Icon(Icons.change_history),
+                  const Icon(CustomIcons.triangle_up),
                   IconButton(
                     onPressed: () {
                       showPopup(context, 16);
