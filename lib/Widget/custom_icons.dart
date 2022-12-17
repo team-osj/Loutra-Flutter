@@ -19,8 +19,8 @@
 ///
 import 'package:flutter/widgets.dart';
 
-class DryMachine {
-  DryMachine._();
+class CustomIcons {
+  CustomIcons._();
 
   static const _kFontFam = 'DryMachine';
   static const String? _kFontPkg = null;

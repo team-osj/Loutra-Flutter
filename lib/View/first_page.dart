@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/Widget/custom_dialog.dart';
-import '../Widget/custom_icons_icons.dart';
+import 'package:osj_flutter/Widget/custom_icons.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/View/color_func.dart';
 import 'package:osj_flutter/View/icon_func.dart';
