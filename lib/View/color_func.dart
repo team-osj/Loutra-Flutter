@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:osj_flutter/Widget/custom_colors.dart';
 
-MaterialColor colorFunc(int state) {
+Color? colorFunc(int state) {
   if (state == 0) {
-    return Colors.red;
+    return customRed;
   } else {
-    return Colors.green;
+    return customGreen;
   }
 }
