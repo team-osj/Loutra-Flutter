@@ -22,192 +22,504 @@ class FirstPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        showPopup(context, 1);
-                      },
-                      icon: iconFunc(
-                          snapshot.data!.tests![0].deviceType.toString()),
-                      iconSize: 49.0.r,
-                      color:
-                          colorFunc(snapshot.data!.tests![0].state!.toInt())),
+                  GestureDetector(
+                    onTap: () {
+                      showPopup(context, 1);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '1',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![0].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![0].state!.toInt())),
+                        ],
+                      ),
+                    ),
+                  ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 9);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![8].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![8].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            ' 9',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![8].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![8].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 2);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![1].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![1].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '2',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![1].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![1].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 10);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![9].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![9].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '10',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![9].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![9].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 3);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![2].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![2].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '3',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![2].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![2].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 11);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![10].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![10].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '11',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![10].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![10].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 4);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![3].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![3].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '4',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![3].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![3].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 12);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![11].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![11].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '12',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![11].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![11].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 5);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![4].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![4].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '5',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![4].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![4].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 13);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![12].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![12].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '13',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![12].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![12].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 6);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![5].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![5].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '6',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![5].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![5].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 14);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![13].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![13].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '14',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![13].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![13].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 7);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![6].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![6].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '7',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![6].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![6].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 15);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![14].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![14].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '15',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![14].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![14].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 8);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![7].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![7].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '8',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: iconFunc(snapshot.data!.tests![7].deviceType
+                                  .toString()),
+                              iconSize: 49.0.r,
+                              color: colorFunc(
+                                  snapshot.data!.tests![7].state!.toInt())),
+                        ],
+                      ),
+                    ),
                   ),
                   const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       showPopup(context, 16);
                     },
-                    icon: iconFunc(
-                        snapshot.data!.tests![15].deviceType.toString()),
-                    iconSize: 49.0.r,
-                    color: colorFunc(snapshot.data!.tests![15].state!.toInt()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20.0)),
+                      width: 110.0.w,
+                      height: 60.0.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            '16',
+                            style: TextStyle(fontSize: 30),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: iconFunc(
+                                snapshot.data!.tests![15].deviceType.toString()),
+                            iconSize: 49.0.r,
+                            color: colorFunc(
+                                snapshot.data!.tests![15].state!.toInt()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
