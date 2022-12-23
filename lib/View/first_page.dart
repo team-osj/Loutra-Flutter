@@ -43,7 +43,7 @@ class FirstPage extends StatelessWidget {
                               onPressed: () {},
                               icon: iconFunc(snapshot.data!.tests![0].deviceType
                                   .toString()),
-                              iconSize: 49.0.r,
+                              iconSize: 40.0.r,
                               color: colorFunc(
                                   snapshot.data!.tests![0].state!.toInt())),
                         ],
@@ -531,6 +531,69 @@ class FirstPage extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
       },
+    );
+  }
+
+  widget(BuildContext context, int a, String aDeviceType, int aState, int b,
+      String bDeviceType, int bState) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        GestureDetector(
+          onTap: () {
+            showPopup(context, a);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(20.0)),
+            width: 110.0.w,
+            height: 60.0.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  a.toString(),
+                  style: TextStyle(fontSize: 25.0.sp),
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: iconFunc(aDeviceType),
+                    iconSize: 40.0.r,
+                    color: colorFunc(aState)),
+              ],
+            ),
+          ),
+        ),
+        const Icon(CustomIcons.triangle_up, color: Colors.grey),
+        GestureDetector(
+          onTap: () {
+            showPopup(context, b);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(20.0)),
+            width: 110.0.w,
+            height: 60.0.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  b.toString(),
+                  style: TextStyle(fontSize: 25.0.sp),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: iconFunc(bDeviceType),
+                  iconSize: 49.0.r,
+                  color: colorFunc(bState),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
