@@ -117,7 +117,9 @@ class FirstPage extends StatelessWidget {
                   style: TextStyle(fontSize: 25.0.sp),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showPopup(context, a);
+                    },
                     icon: iconFunc(aDeviceType),
                     iconSize: 40.0.r,
                     color: colorFunc(aState)),
@@ -144,7 +146,9 @@ class FirstPage extends StatelessWidget {
                   style: TextStyle(fontSize: 25.0.sp),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showPopup(context, b);
+                  },
                   icon: iconFunc(bDeviceType),
                   iconSize: 40.0.r,
                   color: colorFunc(bState),
