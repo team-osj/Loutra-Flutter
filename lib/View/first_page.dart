@@ -37,7 +37,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '1',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -66,7 +66,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             ' 9',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
@@ -100,7 +100,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '2',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -129,7 +129,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '10',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
@@ -163,7 +163,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '3',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -192,12 +192,12 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '11',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![10].deviceType.toString()),
+                            icon: iconFunc(snapshot.data!.tests![10].deviceType
+                                .toString()),
                             iconSize: 49.0.r,
                             color: colorFunc(
                                 snapshot.data!.tests![10].state!.toInt()),
@@ -226,7 +226,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '4',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -255,12 +255,12 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '12',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![11].deviceType.toString()),
+                            icon: iconFunc(snapshot.data!.tests![11].deviceType
+                                .toString()),
                             iconSize: 49.0.r,
                             color: colorFunc(
                                 snapshot.data!.tests![11].state!.toInt()),
@@ -289,7 +289,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '5',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -318,12 +318,12 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '13',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![12].deviceType.toString()),
+                            icon: iconFunc(snapshot.data!.tests![12].deviceType
+                                .toString()),
                             iconSize: 49.0.r,
                             color: colorFunc(
                                 snapshot.data!.tests![12].state!.toInt()),
@@ -352,7 +352,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '6',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -381,12 +381,12 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '14',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![13].deviceType.toString()),
+                            icon: iconFunc(snapshot.data!.tests![13].deviceType
+                                .toString()),
                             iconSize: 49.0.r,
                             color: colorFunc(
                                 snapshot.data!.tests![13].state!.toInt()),
@@ -415,7 +415,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '7',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -444,12 +444,12 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '15',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![14].deviceType.toString()),
+                            icon: iconFunc(snapshot.data!.tests![14].deviceType
+                                .toString()),
                             iconSize: 49.0.r,
                             color: colorFunc(
                                 snapshot.data!.tests![14].state!.toInt()),
@@ -478,7 +478,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '8',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                               onPressed: () {},
@@ -507,12 +507,12 @@ class FirstPage extends StatelessWidget {
                         children: [
                           Text(
                             '16',
-                            style: TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: 25.0.sp),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![15].deviceType.toString()),
+                            icon: iconFunc(snapshot.data!.tests![15].deviceType
+                                .toString()),
                             iconSize: 49.0.r,
                             color: colorFunc(
                                 snapshot.data!.tests![15].state!.toInt()),
