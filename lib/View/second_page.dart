@@ -73,13 +73,14 @@ class SecondPage extends StatelessWidget {
                   snapshot.data!.tests![30].deviceType.toString(),
                   snapshot.data!.tests![30].state!.toInt()),
               customRowButtons(
-                  context,
-                  snapshot.data!.tests![23].id.toString(),
-                  snapshot.data!.tests![23].deviceType.toString(),
-                  snapshot.data!.tests![23].state!.toInt(),
-                  snapshot.data!.tests![30].id.toString(),
-                  snapshot.data!.tests![30].deviceType.toString(),
-                  snapshot.data!.tests![30].state!.toInt()),
+                context,
+                snapshot.data!.tests![23].id.toString(),
+                snapshot.data!.tests![23].deviceType.toString(),
+                snapshot.data!.tests![23].state!.toInt(),
+                'null',
+                'null',
+                0,
+              ),
             ],
           );
         } else if (snapshot.hasError) {
