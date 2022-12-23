@@ -74,9 +74,13 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 640),
       builder: (context, child) {
-        return const MaterialApp(
+        return MaterialApp(
+          theme: ThemeData(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
           debugShowCheckedModeBanner: false,
-          home: MainPage(),
+          home: const MainPage(),
         );
       },
     );
