@@ -19,69 +19,14 @@ class FirstPage extends StatelessWidget {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      showPopup(context, 1);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(20.0)),
-                      width: 110.0.w,
-                      height: 60.0.h,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            '1',
-                            style: TextStyle(fontSize: 25.0.sp),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: iconFunc(snapshot.data!.tests![0].deviceType
-                                  .toString()),
-                              iconSize: 40.0.r,
-                              color: colorFunc(
-                                  snapshot.data!.tests![0].state!.toInt())),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Icon(CustomIcons.triangle_up, color: Colors.grey),
-                  GestureDetector(
-                    onTap: () {
-                      showPopup(context, 9);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(20.0)),
-                      width: 110.0.w,
-                      height: 60.0.h,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            ' 9',
-                            style: TextStyle(fontSize: 25.0.sp),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: iconFunc(
-                                snapshot.data!.tests![8].deviceType.toString()),
-                            iconSize: 49.0.r,
-                            color: colorFunc(
-                                snapshot.data!.tests![8].state!.toInt()),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              widget(
+                  context,
+                  1,
+                  snapshot.data!.tests![0].deviceType.toString(),
+                  snapshot.data!.tests![0].state!.toInt(),
+                  9,
+                  snapshot.data!.tests![8].deviceType.toString(),
+                  snapshot.data!.tests![8].state!.toInt()),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -586,7 +531,7 @@ class FirstPage extends StatelessWidget {
                 IconButton(
                   onPressed: () {},
                   icon: iconFunc(bDeviceType),
-                  iconSize: 49.0.r,
+                  iconSize: 40.0.r,
                   color: colorFunc(bState),
                 ),
               ],
