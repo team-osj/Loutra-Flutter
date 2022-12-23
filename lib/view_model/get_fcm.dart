@@ -2,7 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:osj_flutter/baseurl.dart';
 
-Future<void> getFcm(int deviceId) async {
+Future<void> getFcm(String deviceId) async {
   var token = await FirebaseMessaging.instance.getToken();
   print(token);
   final response = await http

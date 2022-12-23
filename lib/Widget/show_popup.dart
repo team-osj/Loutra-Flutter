@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/view_model/get_fcm.dart';
 
-void showPopup(context, int deviceId) {
+void showPopup(context, String deviceId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
