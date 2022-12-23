@@ -3,8 +3,8 @@ import 'package:osj_flutter/Widget/custom_icons.dart';
 
 Icon iconFunc(String type) {
   if (type == 'WASH') {
-    return const Icon(CustomIcons.wash__1_);
+    return const Icon(CustomIcons.washingMachine);
   } else {
-    return const Icon(CustomIcons.tumble_dryer);
+    return const Icon(CustomIcons.tumbleDryer);
   }
 }

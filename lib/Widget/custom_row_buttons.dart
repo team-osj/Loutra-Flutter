@@ -42,7 +42,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
           ),
         ),
       ),
-      const Icon(CustomIcons.triangle_up, color: Colors.grey),
+      const Icon(CustomIcons.triangleUp, color: Colors.grey),
       GestureDetector(
         onTap: () {
           showPopup(context, b);
