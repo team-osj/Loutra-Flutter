@@ -6,7 +6,7 @@ import 'package:osj_flutter/View/icon_func.dart';
 import 'package:osj_flutter/View/color_func.dart';
 
 customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
-    String b, String bDeviceType, int bState) {
+    int aAlive, String b, String bDeviceType, int bState, int bAlive) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
@@ -34,7 +34,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
                 onPressed: () {
                   showPopup(context, a);
                 },
-                icon: iconFunc(aDeviceType),
+                icon: iconFunc(aDeviceType, aAlive),
                 iconSize: 40.0.r,
                 color: colorFunc(aState),
               ),
@@ -73,7 +73,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
                       onPressed: () {
                         showPopup(context, b);
                       },
-                      icon: iconFunc(bDeviceType),
+                      icon: iconFunc(bDeviceType, bAlive),
                       iconSize: 40.0.r,
                       color: colorFunc(bState),
                     ),
