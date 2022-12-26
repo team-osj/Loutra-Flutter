@@ -12,7 +12,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
     children: [
       GestureDetector(
         onTap: () {
-          showPopup(context, a, aAlive);
+          showPopup(context, a, aAlive, aDeviceType);
         },
         child: Container(
           decoration: BoxDecoration(
@@ -32,7 +32,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
               ),
               IconButton(
                 onPressed: () {
-                  showPopup(context, a, aAlive);
+                  showPopup(context, a, aAlive, aDeviceType);
                 },
                 icon: iconFunc(aDeviceType, aAlive),
                 iconSize: 40.0.r,
@@ -45,7 +45,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
       const Icon(CustomIcons.triangleUp, color: Colors.grey),
       GestureDetector(
         onTap: () {
-          showPopup(context, b, bAlive);
+          showPopup(context, b, bAlive, bDeviceType);
         },
         child: b == 'null'
             ? SizedBox(
@@ -71,7 +71,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
                     ),
                     IconButton(
                       onPressed: () {
-                        showPopup(context, b, bAlive);
+                        showPopup(context, b, bAlive, bDeviceType);
                       },
                       icon: iconFunc(bDeviceType, bAlive),
                       iconSize: 40.0.r,
