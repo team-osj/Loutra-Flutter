@@ -24,7 +24,9 @@ void showPopup(context, String deviceId, int alive, String deviceType) {
               )
             : Column(
                 children: [
-                  Text('불편을 드려 죄송합니다.', style: TextStyle(fontSize: 22.0.sp)),
+                  Text('불편을 드려 죄송합니다.',
+                      style: TextStyle(
+                          fontSize: 22.0.sp, fontWeight: FontWeight.bold)),
                   Text('현재 $deviceId번 $type를',
                       style: TextStyle(fontSize: 22.0.sp)),
                   Text('사용할 수 없습니다.', style: TextStyle(fontSize: 22.0.sp)),
