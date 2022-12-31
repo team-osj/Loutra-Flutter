@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:osj_flutter/view_model/get_fcm.dart';
 
-void showPopup(context, String deviceId, int alive, String deviceType) {
-  String type = deviceType == 'DRY' ? '건조기' : '세탁기';
+void showPopup(context, String deviceId, int alive) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -12,22 +11,21 @@ void showPopup(context, String deviceId, int alive, String deviceType) {
             //모서리 둥글게 깎기
             borderRadius: BorderRadius.circular(10.0)),
         title: alive == 1
-            ? Column(
-                children: [
-                  Text('$deviceId번 $type 알림을',
-                      style: TextStyle(fontSize: 22.0.sp)),
-                  Text(
-                    '받으시겠습니까?',
-                    style: TextStyle(fontSize: 22.0.sp),
-                  ),
-                ],
+            ? Text(
+                '[$deviceId]번 세탁기/건조기\n알림을 받으시겠습니까?',
+                style: TextStyle(fontSize: 22.0.sp),
               )
             : Column(
                 children: [
+<<<<<<< HEAD
                   Text('불편을 드려 죄송합니다.',
                       style: TextStyle(
                           fontSize: 22.0.sp, fontWeight: FontWeight.bold)),
                   Text('현재 $deviceId번 $type를',
+=======
+                  Text('불편을 드려 죄송합니다.', style: TextStyle(fontSize: 22.0.sp)),
+                  Text('현재 $deviceId번 세탁기/건조기를',
+>>>>>>> parent of c3994ca... 문구 deviceType 에 맞춤
                       style: TextStyle(fontSize: 22.0.sp)),
                   Text('사용할 수 없습니다.', style: TextStyle(fontSize: 22.0.sp)),
                 ],
