@@ -3,14 +3,13 @@ import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/Widget/custom_row_buttons.dart';
 
 class SecondPage extends StatelessWidget {
-  SecondPage({Key? key, required this.future}) : super(key: key);
-
-  Future<OsjList>? future;
+  SecondPage({Key? key, required this.stream}) : super(key: key);
+  Stream<OsjList>? stream;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: future,
+    return StreamBuilder(
+      stream: stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Column(

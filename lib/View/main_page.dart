@@ -17,19 +17,19 @@ class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   bool isClicked = true;
   TabController? controller;
-  Future<OsjList>? future;
+  Stream<OsjList>? stream;
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this);
-    future = getStatus();
+    stream = getStatus();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: future,
+    return StreamBuilder(
+      stream: stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return SafeArea(
@@ -76,8 +76,8 @@ class _MainPageState extends State<MainPage>
                 child: TabBarView(
                   controller: controller,
                   children: [
-                    FirstPage(future: future),
-                    SecondPage(future: future),
+                    FirstPage(stream: stream),
+                    SecondPage(stream: stream),
                   ],
                 ),
               ),
