@@ -1,15 +1,27 @@
 import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:osj_flutter/baseurl.dart';
 import 'package:osj_flutter/model/list_model.dart';
 
-Future<OsjList> getStatus() async {
-  final response = await http.get(Uri.parse('$baseurl/query.php'));
-  if (response.statusCode == 200) {
-    print(response.body);
-    return OsjList.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('실ㄹㄹㄹㄹㄹ패');
-  }
+Stream<OsjList> getStatus() async* {
+  IO.Socket socket = IO.io(
+      '$baseurl/application',
+      IO.OptionBuilder()
+          .setTransports(['websocket'])
+          .enableForceNewConnection()
+          .disableAutoConnect()
+          .build());
+  socket.onConnect((data) {
+    print('연결 성공');
+  });
+  var jsonData;
+  socket.on('update', (data) {
+    jsonData = data;
+    print(jsonData);
+  });
+  socket.onDisconnect((_) => print('disconnect'));
+  socket.onConnectError((data) => print('CE : $data'));
+  socket.onError((data) => print('E : $data'));
+  socket.connect();
+  yield OsjList.fromJson(jsonDecode(jsonData));
 }
