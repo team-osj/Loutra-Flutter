@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
             highlightColor: Colors.transparent,
           ),
           debugShowCheckedModeBanner: false,
-          home: const MainPage(),
+          home: MainPage(),
         );
       },
     );

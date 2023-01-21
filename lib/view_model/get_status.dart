@@ -8,8 +8,7 @@ Stream<OsjList> getStatus() async* {
       '$baseurl/application',
       IO.OptionBuilder()
           .setTransports(['websocket'])
-          .enableForceNewConnection()
-          .disableAutoConnect()
+          .enableAutoConnect()
           .build());
   socket.onConnect((data) {
     print('연결 성공');
@@ -17,11 +16,11 @@ Stream<OsjList> getStatus() async* {
   var jsonData;
   socket.on('update', (data) {
     jsonData = data;
-    print(jsonData);
+    print('받은 데이터 : $jsonData');
   });
   socket.onDisconnect((_) => print('disconnect'));
   socket.onConnectError((data) => print('CE : $data'));
   socket.onError((data) => print('E : $data'));
-  socket.connect();
+  socket.connect;
   yield OsjList.fromJson(jsonDecode(jsonData));
 }
