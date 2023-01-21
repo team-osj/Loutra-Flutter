@@ -37,13 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.6.0
   http: ^0.13.5
-  cloud_firestore: ^4.2.0
   firebase_core: ^2.4.0
   firebase_messaging: ^14.1.4
   flutter_local_notifications: ^12.0.4
-  dio: ^4.0.6
-  shared_preferences: ^2.0.15
-  webview_flutter: ^3.0.4
   url_launcher: ^6.1.7
   flutter_launcher_icons: ^0.11.0
   socket_io_client: ^2.0.1
