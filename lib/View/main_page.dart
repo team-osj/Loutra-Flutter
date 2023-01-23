@@ -7,7 +7,6 @@ import 'package:http/http.dart';
 import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/model/list_model.dart';
-import 'package:osj_flutter/model/model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
 import 'package:osj_flutter/Widget/setting_dialog.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -24,7 +23,6 @@ class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   StreamController<OsjList> streamController = StreamController<OsjList>();
-  var jsonData;
   IO.Socket socket = IO.io(
       '$baseurl/application',
       IO.OptionBuilder()
@@ -38,13 +36,18 @@ class _MainPageState extends State<MainPage>
     socket.onConnect((data) {
       print('연결 성공');
     });
-    socket.on('update',
-        (data) => streamController.add(OsjList.fromJson(jsonDecode(data))));
+    socket.on(
+        'update',
+        (data) =>
+            streamController.sink.add(OsjList.fromJson(jsonDecode(data))));
     socket.onDisconnect((_) => print('disconnect'));
     socket.onConnectError((data) => print('CE : $data'));
     socket.onError((data) => print('E : $data'));
     socket.connect;
     controller = TabController(length: 2, vsync: this);
+    // streamController.stream.listen((event) {
+    //   print("데이터가 들어가면 출력됨");
+    // });
   }
 
   @override
@@ -53,6 +56,7 @@ class _MainPageState extends State<MainPage>
       stream: streamController.stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          final OsjList? result = snapshot.data;
           return SafeArea(
             child: Scaffold(
               backgroundColor: Colors.white,
@@ -76,8 +80,8 @@ class _MainPageState extends State<MainPage>
                 child: TabBarView(
                   controller: controller,
                   children: [
-                    //FirstPage(stream: streamController.stream),
-                    //SecondPage(stream: streamController.stream),
+                    FirstPage(osjList: result!),
+                    SecondPage(osjList: result!),
                   ],
                 ),
               ),
@@ -108,12 +112,11 @@ class _MainPageState extends State<MainPage>
             appBar: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.white,
-              leading: const Icon(Icons.menu),
               actions: [
                 IconButton(
                     padding: EdgeInsets.only(right: 30.0.w),
                     onPressed: () {},
-                    icon: const Icon(Icons.refresh, color: Colors.black)),
+                    icon: const Icon(Icons.settings, color: Colors.black)),
               ],
             ),
             body: const Center(child: CircularProgressIndicator()),
