@@ -1,10 +1,14 @@
 class Osj {
-  int? id;
-  int? state;
-  String? deviceType;
-  int? alive;
+  final int id;
+  final int state;
+  final String deviceType;
+  final int alive;
 
-  Osj({this.id, this.state, this.deviceType, this.alive});
+  Osj(
+      {required this.id,
+      required this.state,
+      required this.deviceType,
+      required this.alive});
 
   factory Osj.fromJson(Map<String, dynamic> json) {
     return Osj(
