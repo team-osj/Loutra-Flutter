@@ -1,10 +1,17 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
 import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/model/list_model.dart';
+import 'package:osj_flutter/model/model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
 import 'package:osj_flutter/Widget/setting_dialog.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:osj_flutter/baseurl.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -16,19 +23,34 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
-  Stream<OsjList>? stream;
+  StreamController<OsjList> streamController = StreamController<OsjList>();
+  var jsonData;
+  IO.Socket socket = IO.io(
+      '$baseurl/application',
+      IO.OptionBuilder()
+          .setTransports(['websocket'])
+          .enableAutoConnect()
+          .build());
 
   @override
   void initState() {
     super.initState();
+    socket.onConnect((data) {
+      print('연결 성공');
+    });
+    socket.on('update',
+        (data) => streamController.add(OsjList.fromJson(jsonDecode(data))));
+    socket.onDisconnect((_) => print('disconnect'));
+    socket.onConnectError((data) => print('CE : $data'));
+    socket.onError((data) => print('E : $data'));
+    socket.connect;
     controller = TabController(length: 2, vsync: this);
-    stream = getStatus();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: stream,
+    return StreamBuilder<OsjList>(
+      stream: streamController.stream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return SafeArea(
@@ -54,8 +76,8 @@ class _MainPageState extends State<MainPage>
                 child: TabBarView(
                   controller: controller,
                   children: [
-                    FirstPage(stream: stream),
-                    SecondPage(stream: stream),
+                    //FirstPage(stream: streamController.stream),
+                    //SecondPage(stream: streamController.stream),
                   ],
                 ),
               ),
@@ -79,7 +101,7 @@ class _MainPageState extends State<MainPage>
             ),
           );
         } else if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
+          return Center(child: Text(snapshot.error.toString()));
         } else {
           return Scaffold(
             backgroundColor: Colors.white,
