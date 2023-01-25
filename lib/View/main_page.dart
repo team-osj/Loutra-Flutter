@@ -33,21 +33,8 @@ class _MainPageState extends State<MainPage>
   @override
   void initState() {
     super.initState();
-    socket.onConnect((data) {
-      print('연결 성공');
-    });
-    socket.on(
-        'update',
-        (data) =>
-            streamController.sink.add(OsjList.fromJson(jsonDecode(data))));
-    socket.onDisconnect((_) => print('disconnect'));
-    socket.onConnectError((data) => print('CE : $data'));
-    socket.onError((data) => print('E : $data'));
-    socket.connect;
     controller = TabController(length: 2, vsync: this);
-    // streamController.stream.listen((event) {
-    //   print("데이터가 들어가면 출력됨");
-    // });
+    socketInit();
   }
 
   @override
@@ -124,6 +111,20 @@ class _MainPageState extends State<MainPage>
         }
       },
     );
+  }
+
+  void socketInit() async {
+    socket.onConnect((data) {
+      print('연결 성공');
+    });
+    socket.on('update', (data) {
+      print(data.runtimeType.toString());
+      streamController.add(OsjList.fromJson(data));
+    });
+    socket.onDisconnect((_) => print('disconnect'));
+    socket.onConnectError((data) => print('CE : $data'));
+    socket.onError((data) => print('E : $data'));
+    socket.connect;
   }
 
   @override
