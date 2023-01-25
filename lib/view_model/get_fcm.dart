@@ -10,7 +10,7 @@ Future<void> getFcm(String deviceId) async {
     'expect_state': '1',
   };
   IO.Socket socket = IO.io(
-      '$socketUrl/application',
+      '$baseurl/application',
       IO.OptionBuilder()
           .setTransports(['websocket'])
           .enableForceNewConnection()
