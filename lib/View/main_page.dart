@@ -44,51 +44,49 @@ class _MainPageState extends State<MainPage>
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           final OsjList? result = snapshot.data;
-          return SafeArea(
-            child: Scaffold(
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
               backgroundColor: Colors.white,
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0.0,
-                actions: [
-                  Builder(builder: (BuildContext contest) {
-                    return IconButton(
-                        padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
-                        onPressed: () {
-                          showSettingPopup(context);
-                        },
-                        icon: const Icon(Icons.settings),
-                        color: Colors.black);
-                  }),
-                ],
-              ),
-              body: Padding(
-                padding: EdgeInsets.all(3.0.r),
-                child: TabBarView(
-                  controller: controller,
-                  children: [
-                    FirstPage(osjList: result!),
-                    SecondPage(osjList: result!),
-                  ],
-                ),
-              ),
-              bottomNavigationBar: TabBar(
-                tabs: const <Tab>[
-                  Tab(
-                    icon: Icon(
-                      Icons.looks_one,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Tab(
-                    icon: Icon(
-                      Icons.looks_two,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
+              elevation: 0.0,
+              actions: [
+                Builder(builder: (BuildContext contest) {
+                  return IconButton(
+                      padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
+                      onPressed: () {
+                        showSettingPopup(context);
+                      },
+                      icon: const Icon(Icons.settings),
+                      color: Colors.black);
+                }),
+              ],
+            ),
+            body: Padding(
+              padding: EdgeInsets.all(3.0.r),
+              child: TabBarView(
                 controller: controller,
+                children: [
+                  FirstPage(osjList: result!),
+                  SecondPage(osjList: result!),
+                ],
               ),
+            ),
+            bottomNavigationBar: TabBar(
+              tabs: const <Tab>[
+                Tab(
+                  icon: Icon(
+                    Icons.looks_one,
+                    color: Colors.black,
+                  ),
+                ),
+                Tab(
+                  icon: Icon(
+                    Icons.looks_two,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+              controller: controller,
             ),
           );
         } else if (snapshot.hasError) {
