@@ -14,7 +14,7 @@ class Osj {
     return Osj(
       id: json['id'],
       state: json['state'],
-      deviceType: json['deviceType'],
+      deviceType: json['device_type'],
       alive: json['alive'],
     );
   }
