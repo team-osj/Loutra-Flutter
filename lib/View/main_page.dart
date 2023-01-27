@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart';
 import 'package:osj_flutter/View/first_page.dart';
 import 'package:osj_flutter/View/second_page.dart';
+import 'package:osj_flutter/View/socket_init.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/view_model/get_status.dart';
 import 'package:osj_flutter/Widget/setting_dialog.dart';
