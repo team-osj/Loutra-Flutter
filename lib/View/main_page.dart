@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage>
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this);
-    socketInit();
+    socketInit(streamController, socket);
   }
 
   @override
@@ -109,20 +109,6 @@ class _MainPageState extends State<MainPage>
         }
       },
     );
-  }
-
-  void socketInit() async {
-    socket.onConnect((data) {
-      print('연결 성공');
-    });
-    socket.on('update', (data) {
-      print(data.runtimeType.toString());
-      streamController.add(OsjList.fromJson(data));
-    });
-    socket.onDisconnect((_) => print('disconnect'));
-    socket.onConnectError((data) => print('CE : $data'));
-    socket.onError((data) => print('E : $data'));
-    socket.connect;
   }
 
   @override
