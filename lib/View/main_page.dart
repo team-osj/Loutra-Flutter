@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage>
                 controller: controller,
                 children: [
                   FirstPage(osjList: result!),
-                  SecondPage(osjList: result!),
+                  SecondPage(osjList: result),
                 ],
               ),
             ),
