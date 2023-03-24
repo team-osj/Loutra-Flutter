@@ -7,6 +7,7 @@ void showSettingPopup(BuildContext context) {
     context: context,
     builder: (context) {
       return Dialog(
+        insetPadding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
             //모서리 둥글게 깎기
             borderRadius: BorderRadius.circular(20.0)),
