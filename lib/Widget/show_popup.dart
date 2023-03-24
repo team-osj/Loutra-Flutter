@@ -10,6 +10,7 @@ void showPopup(context, String deviceId, int alive, String deviceType) {
     builder: (BuildContext context) {
       if (Theme.of(context).platform == TargetPlatform.android) {
         return AlertDialog(
+          insetPadding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
               //모서리 둥글게 깎기
               borderRadius: BorderRadius.circular(10.0)),
