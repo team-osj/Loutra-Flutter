@@ -18,27 +18,15 @@ void showSettingPopup(BuildContext context) {
             shape: RoundedRectangleBorder(
                 //모서리 둥글게 깎기
                 borderRadius: BorderRadius.circular(20.0)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MaterialButton(
-                    onPressed: () async{
-                      await launchUrl(Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
-                      mode: LaunchMode.externalApplication);
-                    },
-                    child: Text(
-                      '문의사항',
-                      style: TextStyle(fontSize: 20.0.sp),
-                    )),
-                SizedBox(height: 20.0.h),
-                MaterialButton(
-                  onPressed: () {},
-                  child: Text(
-                    '개발자 소개',
-                    style: TextStyle(fontSize: 20.0.sp),
-                  ),
-                ),
-              ],
+            child: MaterialButton(
+              onPressed: () async {
+                await launchUrl(Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
+                    mode: LaunchMode.externalApplication);
+              },
+              child: Text(
+                '문의사항',
+                style: TextStyle(fontSize: 20.0.sp),
+              ),
             ),
           ),
         ),
