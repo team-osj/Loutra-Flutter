@@ -38,7 +38,10 @@ void showSettingPopup(BuildContext context) {
       } else {
         return CupertinoAlertDialog(
           content: CupertinoButton(
-            onPressed: () {},
+            onPressed: () async {
+              await launchUrl(Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
+                  mode: LaunchMode.externalApplication);
+            },
             child: Text(
               '문의하기',
               style: TextStyle(fontSize: 20.0.sp, color: Colors.black),
