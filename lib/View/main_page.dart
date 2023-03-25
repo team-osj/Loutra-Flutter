@@ -86,24 +86,40 @@ class _MainPageState extends State<MainPage>
               controller: controller,
             ),
           );
-        } else if (snapshot.hasError) {
-          return Center(child: Text(snapshot.error.toString()));
-        } else {
-          return Scaffold(
+        }
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            elevation: 0.0,
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              elevation: 0.0,
-              backgroundColor: Colors.white,
-              actions: [
-                IconButton(
-                    padding: EdgeInsets.only(right: 30.0.w),
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings, color: Colors.black)),
+            actions: [
+              IconButton(
+                  padding: EdgeInsets.only(right: 30.0.w),
+                  onPressed: null,
+                  icon: const Icon(Icons.settings, color: Colors.black)),
+            ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "서버에서 데이터를 받아오는중...",
+                  style: TextStyle(
+                    fontSize: 20.0.sp,
+                    fontFamily: 'NanumGothicCoding',
+                  ),
+                ),
+                SizedBox(height: 20.0.h),
+                Image.asset(
+                  "assets/applogo.webp",
+                  width: 100.0.r,
+                  height: 100.0.r,
+                ),
               ],
             ),
-            body: const Center(child: CircularProgressIndicator()),
-          );
-        }
+          ),
+        );
       },
     );
   }
