@@ -6,6 +6,7 @@ import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/View/socket_init.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/Widget/setting_dialog.dart';
+import 'package:osj_flutter/model/model.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:osj_flutter/baseurl.dart';
 
@@ -36,91 +37,77 @@ class _MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<OsjList>(
-      stream: streamController.stream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final OsjList? result = snapshot.data;
-          return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0.0,
-              actions: [
-                Builder(builder: (BuildContext contest) {
-                  return IconButton(
-                      padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
-                      onPressed: () {
-                        showSettingPopup(context);
-                      },
-                      icon: const Icon(Icons.settings),
-                      color: Colors.black);
-                }),
-              ],
-            ),
-            body: Padding(
-              padding: EdgeInsets.all(3.0.r),
-              child: TabBarView(
-                controller: controller,
-                children: [
-                  FirstPage(osjList: result!),
-                  SecondPage(osjList: result),
-                ],
-              ),
-            ),
-            bottomNavigationBar: TabBar(
-              tabs: const <Tab>[
-                Tab(
-                  icon: Icon(
-                    Icons.looks_one,
-                    color: Colors.black,
-                  ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        actions: [
+          Builder(builder: (BuildContext contest) {
+            return IconButton(
+                padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
+                onPressed: () {
+                  showSettingPopup(context);
+                },
+                icon: const Icon(Icons.settings),
+                color: Colors.black);
+          }),
+        ],
+      ),
+      body: StreamBuilder<OsjList>(
+          stream: streamController.stream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
+                padding: EdgeInsets.all(3.0.r),
+                child: TabBarView(
+                  controller: controller,
+                  children: [
+                    FirstPage(osjList: snapshot.data!),
+                    SecondPage(osjList: snapshot.data!),
+                  ],
                 ),
-                Tab(
-                  icon: Icon(
-                    Icons.looks_two,
-                    color: Colors.black,
-                  ),
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "서버에서 데이터를 받아오는중...",
+                      style: TextStyle(
+                        fontSize: 20.0.sp,
+                        fontFamily: 'NanumGothicCoding',
+                      ),
+                    ),
+                    SizedBox(height: 20.0.h),
+                    Image.asset(
+                      "assets/applogo.webp",
+                      width: 100.0.r,
+                      height: 100.0.r,
+                    ),
+                  ],
                 ),
-              ],
-              controller: controller,
-            ),
-          );
-        }
-        return Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.white,
-            actions: [
-              IconButton(
-                  padding: EdgeInsets.only(right: 30.0.w),
-                  onPressed: null,
-                  icon: const Icon(Icons.settings, color: Colors.black)),
-            ],
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "서버에서 데이터를 받아오는중...",
-                  style: TextStyle(
-                    fontSize: 20.0.sp,
-                    fontFamily: 'NanumGothicCoding',
-                  ),
-                ),
-                SizedBox(height: 20.0.h),
-                Image.asset(
-                  "assets/applogo.webp",
-                  width: 100.0.r,
-                  height: 100.0.r,
-                ),
-              ],
+              );
+            }
+          }),
+      bottomNavigationBar: TabBar(
+        tabs: const <Tab>[
+          Tab(
+            icon: Icon(
+              Icons.looks_one,
+              color: Colors.black,
             ),
           ),
-        );
-      },
+          Tab(
+            icon: Icon(
+              Icons.looks_two,
+              color: Colors.black,
+            ),
+          ),
+        ],
+        controller: controller,
+      ),
     );
   }
 
