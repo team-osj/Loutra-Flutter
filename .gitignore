@@ -49,3 +49,4 @@ app.*.map.json
 /android/app/release
 /android/app/key.jks
 /android/app/key.properties
+/android/app/proguard-rules.pro
