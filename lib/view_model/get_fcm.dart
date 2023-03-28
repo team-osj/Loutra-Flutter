@@ -1,5 +1,4 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:osj_flutter/global/socket.dart';
 
 Future<void> getFcm(String deviceId) async {
