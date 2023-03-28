@@ -1,6 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:osj_flutter/baseurl.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:osj_flutter/global/socket.dart';
 
 Future<void> getFcm(String deviceId) async {
   var token = await FirebaseMessaging.instance.getToken();
@@ -9,13 +9,6 @@ Future<void> getFcm(String deviceId) async {
     'device_id': deviceId,
     'expect_state': '1',
   };
-  IO.Socket socket = IO.io(
-      '$baseurl/application',
-      IO.OptionBuilder()
-          .setTransports(['websocket'])
-          .enableForceNewConnection()
-          .disableAutoConnect()
-          .build());
   socket.onConnect((data) {
     print('$deviceId번 기기 fcm 전송');
     socket.emit('request_push', deviceStatus);
