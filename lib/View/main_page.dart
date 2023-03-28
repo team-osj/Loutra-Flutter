@@ -6,9 +6,7 @@ import 'package:osj_flutter/View/second_page.dart';
 import 'package:osj_flutter/View/socket_init.dart';
 import 'package:osj_flutter/model/list_model.dart';
 import 'package:osj_flutter/Widget/setting_dialog.dart';
-import 'package:osj_flutter/model/model.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:osj_flutter/baseurl.dart';
+import 'package:osj_flutter/global/socket.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -21,12 +19,6 @@ class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   StreamController<OsjList> streamController = StreamController<OsjList>();
-  IO.Socket socket = IO.io(
-      '$baseurl/application',
-      IO.OptionBuilder()
-          .setTransports(['websocket'])
-          .enableAutoConnect()
-          .build());
 
   @override
   void initState() {
