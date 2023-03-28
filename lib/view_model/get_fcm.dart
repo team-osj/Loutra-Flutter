@@ -11,8 +11,7 @@ Future<void> getFcm(String deviceId) async {
   };
   print('$deviceId번 기기 fcm 전송');
   socket.emit('request_push', deviceStatus);
-  socket.onConnect((data) {
-  });
+  //테스트용
   socket.on('msg', (data) {
     print('답장 : $data');
   });
