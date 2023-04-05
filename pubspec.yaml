@@ -60,7 +60,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/applogo.png
+    - assets/applogo.jpg
   fonts:
     - family: CustomIcons
       fonts:
