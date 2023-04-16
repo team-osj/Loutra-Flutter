@@ -27,6 +27,12 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
+flutter_icons:
+  android : "launcher_icon"
+  ios: true
+  image_path : "assets/applogo.jpg"
+
 dependencies:
   flutter:
     sdk: flutter
