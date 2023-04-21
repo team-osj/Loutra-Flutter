@@ -41,10 +41,11 @@ void fcmInit() async {
           0,
           notification.title,
           notification.body,
-          const NotificationDetails(
+          NotificationDetails(
             android: AndroidNotificationDetails(
-              'high_importance_channel',
-              'High Importance Notifications',
+              channel.id,
+              channel.name,
+              channelDescription: channel.description,
             ),
           ),
         );
