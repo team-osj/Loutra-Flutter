@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/view_model/get_fcm.dart';
 
-void showPopup(context, String deviceId, int alive, String deviceType) {
+void showPopup(
+    context, String deviceId, int alive, int state, String deviceType) {
   String type = deviceType == 'DRY' ? '건조기' : '세탁기';
   showDialog(
     context: context,
@@ -14,25 +15,38 @@ void showPopup(context, String deviceId, int alive, String deviceType) {
           shape: RoundedRectangleBorder(
               //모서리 둥글게 깎기
               borderRadius: BorderRadius.circular(10.0)),
-          title: alive == 1
-              ? Column(
-                  children: [
-                    Text('$deviceId번 $type 알림을',
-                        style: TextStyle(fontSize: 22.0.sp)),
-                    Text(
-                      '받으시겠습니까?',
-                      style: TextStyle(fontSize: 22.0.sp),
-                    ),
-                  ],
-                )
+          title: state == 0
+              ? alive == 1
+                  ? Column(
+                      children: [
+                        Text('$deviceId번 $type 알림을',
+                            style: TextStyle(fontSize: 22.0.sp)),
+                        Text(
+                          '받으시겠습니까?',
+                          style: TextStyle(fontSize: 22.0.sp),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Text('불편을 드려 죄송합니다.',
+                            style: TextStyle(
+                                fontSize: 22.0.sp,
+                                fontWeight: FontWeight.bold)),
+                        Text('현재 $deviceId번 $type를',
+                            style: TextStyle(fontSize: 22.0.sp)),
+                        Text('사용할 수 없습니다.',
+                            style: TextStyle(fontSize: 22.0.sp)),
+                      ],
+                    )
               : Column(
                   children: [
-                    Text('불편을 드려 죄송합니다.',
-                        style: TextStyle(
-                            fontSize: 22.0.sp, fontWeight: FontWeight.bold)),
-                    Text('현재 $deviceId번 $type를',
+                    Text('$type 사용할 수 있는 상태에요...!',
                         style: TextStyle(fontSize: 22.0.sp)),
-                    Text('사용할 수 없습니다.', style: TextStyle(fontSize: 22.0.sp)),
+                    Text(
+                      '얼른 세탁실로 ㄱㄱ',
+                      style: TextStyle(fontSize: 22.0.sp),
+                    ),
                   ],
                 ),
           actions: [
@@ -76,51 +90,76 @@ void showPopup(context, String deviceId, int alive, String deviceType) {
         );
       } else {
         return CupertinoAlertDialog(
-          title: alive == 1
-              ? Column(
-                  children: [
-                    Text('$deviceId번 $type 알림을',
-                        style: TextStyle(fontSize: 20.0.sp)),
-                    Text(
-                      '받으시겠습니까?',
-                      style: TextStyle(fontSize: 20.0.sp),
-                    ),
-                  ],
-                )
+          title: state == 0
+              ? alive == 1
+                  ? Column(
+                      children: [
+                        Text('$deviceId번 $type 알림을',
+                            style: TextStyle(fontSize: 20.0.sp)),
+                        Text(
+                          '받으시겠습니까?',
+                          style: TextStyle(fontSize: 20.0.sp),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        Text('불편을 드려 죄송합니다.',
+                            style: TextStyle(fontSize: 20.0.sp)),
+                        Text('현재 $deviceId번 $type를',
+                            style: TextStyle(fontSize: 20.0.sp)),
+                        Text('사용할 수 없습니다.',
+                            style: TextStyle(fontSize: 20.0.sp)),
+                      ],
+                    )
               : Column(
                   children: [
-                    Text('불편을 드려 죄송합니다.', style: TextStyle(fontSize: 20.0.sp)),
-                    Text('현재 $deviceId번 $type를',
-                        style: TextStyle(fontSize: 20.0.sp)),
-                    Text('사용할 수 없습니다.', style: TextStyle(fontSize: 20.0.sp)),
+                    Text('$type를 사용할 수 있는 상태에요...!',
+                        style: TextStyle(fontSize: 22.0.sp)),
+                    Text(
+                      '얼른 세탁실로 ㄱㄱ',
+                      style: TextStyle(fontSize: 22.0.sp),
+                    ),
                   ],
                 ),
           actions: [
-            alive == 1
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          '취소',
-                          style: TextStyle(fontSize: 15.0.sp),
+            state == 0
+                ? alive == 1
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              '취소',
+                              style: TextStyle(fontSize: 15.0.sp),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              getFcm(deviceId);
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              '확인',
+                              style: TextStyle(fontSize: 15.0.sp),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Center(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            '확인',
+                            style: TextStyle(fontSize: 15.0.sp),
+                          ),
                         ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          getFcm(deviceId);
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          '확인',
-                          style: TextStyle(fontSize: 15.0.sp),
-                        ),
-                      ),
-                    ],
-                  )
+                      )
                 : Center(
                     child: TextButton(
                       onPressed: () {
