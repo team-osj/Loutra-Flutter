@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/View/main_page.dart';
+import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/firebase_options.dart';
 
 @pragma('vm:entry-point')
