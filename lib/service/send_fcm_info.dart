@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:lotura/global/socket.dart';
 
-Future<void> getFcm(String deviceId) async {
+Future<void> sendFcmInfo(String deviceId) async {
   var token = await FirebaseMessaging.instance.getToken();
   var deviceStatus = {
     'token': token,
