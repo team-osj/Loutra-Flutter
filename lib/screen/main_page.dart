@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/screen/first_page.dart';
 import 'package:lotura/screen/second_page.dart';
-import 'package:lotura/socket_init.dart';
+import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/model/list_model.dart';
 import 'package:lotura/Widget/setting_dialog.dart';
 import 'package:lotura/global/socket.dart';
