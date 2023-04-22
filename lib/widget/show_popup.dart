@@ -126,11 +126,11 @@ void showPopup(
                     )
               : Column(
                   children: [
-                    Text('$type를 사용할 수 있는 상태에요...!',
-                        style: TextStyle(fontSize: 22.0.sp)),
+                    Text('$type를 사용할 수 있는',
+                        style: TextStyle(fontSize: 20.0.sp)),
                     Text(
-                      '얼른 세탁실로 ㄱㄱ',
-                      style: TextStyle(fontSize: 22.0.sp),
+                      '상태입니다.',
+                      style: TextStyle(fontSize: 20.0.sp),
                     ),
                   ],
                 ),
