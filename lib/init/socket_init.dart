@@ -1,8 +1,9 @@
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:lotura/global/socket.dart';
 import 'dart:async';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:lotura/model/osj_list.dart';
 
-void socketInit(StreamController streamController, IO.Socket socket) async {
+void socketInit(StreamController streamController) async {
   socket.onConnect((data) {
     print('연결 성공');
   });
