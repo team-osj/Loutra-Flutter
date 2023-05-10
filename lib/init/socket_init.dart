@@ -1,6 +1,6 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'dart:async';
-import 'package:lotura/model/list_model.dart';
+import 'package:lotura/model/osj_list.dart';
 
 void socketInit(StreamController streamController, IO.Socket socket) async {
   socket.onConnect((data) {

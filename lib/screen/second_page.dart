@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lotura/model/list_model.dart';
+import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/Widget/custom_row_buttons.dart';
 
 class SecondPage extends StatelessWidget {
