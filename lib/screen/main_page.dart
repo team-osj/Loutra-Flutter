@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/model/apply_list.dart';
 import 'package:lotura/screen/first_page.dart';
 import 'package:lotura/screen/second_page.dart';
 import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/Widget/setting_dialog.dart';
-import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/stream_drawer.dart';
 
 class MainPage extends StatefulWidget {
@@ -40,8 +38,8 @@ class _MainPageState extends State<MainPage>
         leading: Builder(
           builder: (context) {
             return IconButton(
+              padding: EdgeInsets.only(left: 20.0.w),
                 onPressed: () {
-                  //receiveApplyList(applyStreamController);
                   Scaffold.of(context).openDrawer();
                 },
                 icon: const Icon(Icons.menu, color: Colors.black));
