@@ -1,4 +1,4 @@
-import 'package:lotura/model/model.dart';
+import 'package:lotura/model/osj.dart';
 
 class OsjList {
   final List<Osj>? tests;
