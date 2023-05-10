@@ -20,26 +20,36 @@ class _StreamDrawerState extends State<StreamDrawer> {
     receiveApplyList(controller);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: StreamBuilder<ApplyList>(
-          stream: controller.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data!.applyList!.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                        snapshot.data!.applyList![index].deviceId.toString()),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(child: Text("신청 리스트")),
+          SizedBox(
+            width: double.infinity,
+            height:double.maxFinite,
+            child: StreamBuilder<ApplyList>(
+              stream: controller.stream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.applyList!.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(snapshot.data!.applyList![index].deviceId
+                            .toString()),
+                      );
+                    },
                   );
-                },
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
-          }),
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
