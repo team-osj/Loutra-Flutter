@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lotura/model/apply_list.dart';
 import 'package:lotura/service/receive_apply_list.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StreamDrawer extends StatefulWidget {
   StreamDrawer({Key? key}) : super(key: key);
@@ -23,13 +24,25 @@ class _StreamDrawerState extends State<StreamDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          const DrawerHeader(child: Text("신청 리스트")),
           SizedBox(
+            height: 120.0.h,
+            child: DrawerHeader(
+              child: Center(
+                child: Text(
+                  "신청 리스트",
+                  style: TextStyle(fontSize: 24.0.sp),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+            ),
             width: double.infinity,
-            height:double.maxFinite,
+            height: 520.0.h,
             child: StreamBuilder<ApplyList>(
               stream: controller.stream,
               builder: (context, snapshot) {
