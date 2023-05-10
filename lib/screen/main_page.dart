@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
   StreamController<OsjList> osjStreamController = StreamController<OsjList>();
-  StreamController<ApplyList>? applyStreamController;
+  late StreamController<ApplyList> applyStreamController;
 
   @override
   void initState() {
@@ -50,6 +50,24 @@ class _MainPageState extends State<MainPage>
             },
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: StreamBuilder<ApplyList>(
+            stream: applyStreamController.stream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemCount: snapshot.data!.applyList!.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                          snapshot.data!.applyList![index].deviceId.toString()),
+                    );
+                  },
+                );
+              }
+              return const Center(child: CircularProgressIndicator());
+            }),
       ),
       body: StreamBuilder<OsjList>(
           stream: osjStreamController.stream,
