@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/model/apply_list.dart';
 import 'package:lotura/screen/first_page.dart';
 import 'package:lotura/screen/second_page.dart';
 import 'package:lotura/init/socket_init.dart';
-import 'package:lotura/model/list_model.dart';
+import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/Widget/setting_dialog.dart';
 import 'package:lotura/global/socket.dart';
 
@@ -18,13 +19,15 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
-  StreamController<OsjList> streamController = StreamController<OsjList>();
+  StreamController<OsjList> osjStreamController = StreamController<OsjList>();
+  StreamController<ApplyList>? applyStreamController;
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this);
-    socketInit(streamController, socket);
+    socketInit(osjStreamController, socket);
+    applyStreamController = StreamController<ApplyList>();
   }
 
   @override
@@ -35,19 +38,21 @@ class _MainPageState extends State<MainPage>
         backgroundColor: Colors.white,
         elevation: 0.0,
         actions: [
-          Builder(builder: (BuildContext contest) {
-            return IconButton(
-                padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
-                onPressed: () {
-                  showSettingPopup(context);
-                },
-                icon: const Icon(Icons.settings),
-                color: Colors.black);
-          }),
+          Builder(
+            builder: (BuildContext contest) {
+              return IconButton(
+                  padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
+                  onPressed: () {
+                    showSettingPopup(context);
+                  },
+                  icon: const Icon(Icons.settings),
+                  color: Colors.black);
+            },
+          ),
         ],
       ),
       body: StreamBuilder<OsjList>(
-          stream: streamController.stream,
+          stream: osjStreamController.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Padding(
