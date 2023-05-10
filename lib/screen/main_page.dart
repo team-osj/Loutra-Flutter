@@ -7,7 +7,8 @@ import 'package:lotura/screen/second_page.dart';
 import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/Widget/setting_dialog.dart';
-import 'package:lotura/global/socket.dart';
+import 'package:lotura/service/receive_apply_list.dart';
+import 'package:lotura/widget/stream_drawer.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -19,15 +20,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   TabController? controller;
-  StreamController<OsjList> osjStreamController = StreamController<OsjList>();
-  late StreamController<ApplyList> applyStreamController;
+  late StreamController<OsjList> osjStreamController;
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this);
-    socketInit(osjStreamController, socket);
-    applyStreamController = StreamController<ApplyList>();
+    osjStreamController = StreamController<OsjList>();
+    socketInit(osjStreamController);
   }
 
   @override
@@ -37,9 +37,19 @@ class _MainPageState extends State<MainPage>
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+                onPressed: () {
+                  //receiveApplyList(applyStreamController);
+                  Scaffold.of(context).openDrawer();
+                },
+                icon: const Icon(Icons.menu, color: Colors.black));
+          },
+        ),
         actions: [
           Builder(
-            builder: (BuildContext contest) {
+            builder: (BuildContext context) {
               return IconButton(
                   padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
                   onPressed: () {
@@ -51,24 +61,7 @@ class _MainPageState extends State<MainPage>
           ),
         ],
       ),
-      drawer: Drawer(
-        child: StreamBuilder<ApplyList>(
-            stream: applyStreamController.stream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  itemCount: snapshot.data!.applyList!.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(
-                          snapshot.data!.applyList![index].deviceId.toString()),
-                    );
-                  },
-                );
-              }
-              return const Center(child: CircularProgressIndicator());
-            }),
-      ),
+      drawer: StreamDrawer(),
       body: StreamBuilder<OsjList>(
           stream: osjStreamController.stream,
           builder: (context, snapshot) {
