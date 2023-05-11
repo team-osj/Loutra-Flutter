@@ -30,89 +30,91 @@ class _MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: Colors.white,
-        elevation: 0.0,
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              padding: EdgeInsets.only(left: 20.0.w),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: const Icon(Icons.menu, color: Colors.black));
-          },
-        ),
-        actions: [
-          Builder(
-            builder: (BuildContext context) {
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          leading: Builder(
+            builder: (context) {
               return IconButton(
-                  padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
+                padding: EdgeInsets.only(left: 20.0.w),
                   onPressed: () {
-                    showSettingPopup(context);
+                    Scaffold.of(context).openDrawer();
                   },
-                  icon: const Icon(Icons.settings),
-                  color: Colors.black);
+                  icon: const Icon(Icons.menu, color: Colors.black));
             },
           ),
-        ],
-      ),
-      drawer: StreamDrawer(),
-      body: StreamBuilder<OsjList>(
-          stream: osjStreamController.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Padding(
-                padding: EdgeInsets.all(3.0.r),
-                child: TabBarView(
-                  controller: controller,
-                  children: [
-                    FirstPage(osjList: snapshot.data!),
-                    SecondPage(osjList: snapshot.data!),
-                  ],
-                ),
-              );
-            } else {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "서버에서 데이터를 받아오는중...",
-                      style: TextStyle(
-                        fontSize: 20.0.sp,
-                        fontFamily: 'NanumGothicCoding',
+          actions: [
+            Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                    padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
+                    onPressed: () {
+                      showSettingPopup(context);
+                    },
+                    icon: const Icon(Icons.settings),
+                    color: Colors.black);
+              },
+            ),
+          ],
+        ),
+        drawer: StreamDrawer(),
+        body: StreamBuilder<OsjList>(
+            stream: osjStreamController.stream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: EdgeInsets.all(3.0.r),
+                  child: TabBarView(
+                    controller: controller,
+                    children: [
+                      FirstPage(osjList: snapshot.data!),
+                      SecondPage(osjList: snapshot.data!),
+                    ],
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "서버에서 데이터를 받아오는중...",
+                        style: TextStyle(
+                          fontSize: 20.0.sp,
+                          fontFamily: 'NanumGothicCoding',
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 20.0.h),
-                    Image.asset(
-                      "assets/applogo.jpg",
-                      width: 100.0.r,
-                      height: 100.0.r,
-                    ),
-                  ],
-                ),
-              );
-            }
-          }),
-      bottomNavigationBar: TabBar(
-        tabs: const <Tab>[
-          Tab(
-            icon: Icon(
-              Icons.looks_one,
-              color: Colors.black,
+                      SizedBox(height: 20.0.h),
+                      Image.asset(
+                        "assets/applogo.jpg",
+                        width: 100.0.r,
+                        height: 100.0.r,
+                      ),
+                    ],
+                  ),
+                );
+              }
+            }),
+        bottomNavigationBar: TabBar(
+          tabs: const <Tab>[
+            Tab(
+              icon: Icon(
+                Icons.looks_one,
+                color: Colors.black,
+              ),
             ),
-          ),
-          Tab(
-            icon: Icon(
-              Icons.looks_two,
-              color: Colors.black,
+            Tab(
+              icon: Icon(
+                Icons.looks_two,
+                color: Colors.black,
+              ),
             ),
-          ),
-        ],
-        controller: controller,
+          ],
+          controller: controller,
+        ),
       ),
     );
   }
