@@ -51,8 +51,13 @@ class _StreamDrawerState extends State<StreamDrawer> {
                     itemCount: snapshot.data!.applyList!.length,
                     itemBuilder: (context, index) {
                       return ListTile(
+                        leading: Image.asset(
+                          "assets/applogo.jpg",
+                          width: 30.0.r,
+                        ),
                         title: Text(
-                          snapshot.data!.applyList![index].deviceId.toString(),
+                          "${snapshot.data!.applyList![index].deviceId}번 기기 작동 중",
+                          style: TextStyle(fontSize: 20.0.sp),
                         ),
                       );
                     },
