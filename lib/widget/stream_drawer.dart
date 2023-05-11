@@ -29,6 +29,8 @@ class _StreamDrawerState extends State<StreamDrawer> {
           SizedBox(
             height: 120.0.h,
             child: DrawerHeader(
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
               child: Center(
                 child: Text(
                   "신청 리스트",
@@ -37,10 +39,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-            ),
+          SizedBox(
             width: double.infinity,
             height: 520.0.h,
             child: StreamBuilder<ApplyList>(
@@ -48,11 +47,13 @@ class _StreamDrawerState extends State<StreamDrawer> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return ListView.builder(
+                    padding: EdgeInsets.only(top: 20.0.w),
                     itemCount: snapshot.data!.applyList!.length,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(snapshot.data!.applyList![index].deviceId
-                            .toString()),
+                        title: Text(
+                          snapshot.data!.applyList![index].deviceId.toString(),
+                        ),
                       );
                     },
                   );
