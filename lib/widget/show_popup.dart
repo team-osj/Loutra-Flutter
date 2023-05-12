@@ -134,58 +134,36 @@ void showPopup(
                     ),
                   ],
                 ),
-          actions: [
-            state == 0
-                ? alive == 1
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              '취소',
-                              style: TextStyle(fontSize: 15.0.sp),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              sendFcmInfo(deviceId);
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              '확인',
-                              style: TextStyle(fontSize: 15.0.sp),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Center(
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                            '확인',
-                            style: TextStyle(fontSize: 15.0.sp),
-                          ),
-                        ),
-                      )
-                : Center(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        '확인',
-                        style: TextStyle(fontSize: 15.0.sp),
-                      ),
+          actions: state == 0 && alive == 1
+              ? apply(context)
+              : [
+                  CupertinoDialogAction(
+                    child: Text(
+                      '확인',
+                      style: TextStyle(fontSize: 15.0.sp),
                     ),
-                  ),
-          ],
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
         );
       }
     },
   );
+}
+
+List<Widget> apply(BuildContext context) {
+  List<Widget> list = List.empty(growable: true);
+  list.add(
+    CupertinoDialogAction(
+      child: Text("ㄴㅇㄹㅁㄴㄹㄹㄹ"),
+      onPressed: () => Navigator.of(context).pop(),
+    ),
+  );
+  list.add(
+    CupertinoDialogAction(
+      child: Text("ㄴㅇㄹㅁㄴㄹㄴㅁㅇ"),
+      onPressed: () => Navigator.of(context).pop(),
+    ),
+  );
+  return list;
 }
