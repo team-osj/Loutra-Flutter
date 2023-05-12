@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/Widget/custom_colors.dart';
 import 'package:lotura/service/send_fcm_info.dart';
 
 void showPopup(
@@ -134,58 +135,45 @@ void showPopup(
                     ),
                   ],
                 ),
-          actions: [
-            state == 0
-                ? alive == 1
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              '취소',
-                              style: TextStyle(fontSize: 15.0.sp),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              sendFcmInfo(deviceId);
-                              Navigator.of(context).pop();
-                            },
-                            child: Text(
-                              '확인',
-                              style: TextStyle(fontSize: 15.0.sp),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Center(
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                            '확인',
-                            style: TextStyle(fontSize: 15.0.sp),
-                          ),
-                        ),
-                      )
-                : Center(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        '확인',
-                        style: TextStyle(fontSize: 15.0.sp),
-                      ),
+          actions: state == 0 && alive == 1
+              ? apply(context, deviceId)
+              : [
+                  CupertinoDialogAction(
+                    child: Text(
+                      'OK',
+                      style: TextStyle(fontSize: 18.0.sp),
                     ),
-                  ),
-          ],
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                ],
         );
       }
     },
   );
+}
+
+List<Widget> apply(BuildContext context, String deviceId) {
+  List<Widget> list = List.empty(growable: true);
+  list.add(
+    CupertinoDialogAction(
+      child: Text(
+        "Cancel",
+        style: TextStyle(fontSize: 16.0.sp, color: customRed),
+      ),
+      onPressed: () => Navigator.of(context).pop(),
+    ),
+  );
+  list.add(
+    CupertinoDialogAction(
+      child: Text(
+        "OK",
+        style: TextStyle(fontSize: 16.0.sp),
+      ),
+      onPressed: () {
+        sendFcmInfo(deviceId);
+        Navigator.of(context).pop();
+      },
+    ),
+  );
+  return list;
 }
