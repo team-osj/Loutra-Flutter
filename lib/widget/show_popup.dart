@@ -135,12 +135,12 @@ void showPopup(
                   ],
                 ),
           actions: state == 0 && alive == 1
-              ? apply(context)
+              ? apply(context, deviceId)
               : [
                   CupertinoDialogAction(
                     child: Text(
-                      '확인',
-                      style: TextStyle(fontSize: 15.0.sp),
+                      'OK',
+                      style: TextStyle(fontSize: 18.0.sp),
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   )
@@ -151,18 +151,27 @@ void showPopup(
   );
 }
 
-List<Widget> apply(BuildContext context) {
+List<Widget> apply(BuildContext context, String deviceId) {
   List<Widget> list = List.empty(growable: true);
   list.add(
     CupertinoDialogAction(
-      child: Text("ㄴㅇㄹㅁㄴㄹㄹㄹ"),
+      child: Text(
+        "Cancel",
+        style: TextStyle(fontSize: 16.0.sp),
+      ),
       onPressed: () => Navigator.of(context).pop(),
     ),
   );
   list.add(
     CupertinoDialogAction(
-      child: Text("ㄴㅇㄹㅁㄴㄹㄴㅁㅇ"),
-      onPressed: () => Navigator.of(context).pop(),
+      child: Text(
+        "OK",
+        style: TextStyle(fontSize: 16.0.sp),
+      ),
+      onPressed: () {
+        sendFcmInfo(deviceId);
+        Navigator.of(context).pop();
+      },
     ),
   );
   return list;
