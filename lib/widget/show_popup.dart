@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/Widget/custom_colors.dart';
 import 'package:lotura/service/send_fcm_info.dart';
 
 void showPopup(
@@ -157,7 +158,7 @@ List<Widget> apply(BuildContext context, String deviceId) {
     CupertinoDialogAction(
       child: Text(
         "Cancel",
-        style: TextStyle(fontSize: 16.0.sp),
+        style: TextStyle(fontSize: 16.0.sp, color: customRed),
       ),
       onPressed: () => Navigator.of(context).pop(),
     ),
