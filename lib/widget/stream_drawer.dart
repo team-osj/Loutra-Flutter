@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:lotura/model/apply_list.dart';
-import 'package:lotura/service/apply_cancle.dart';
+import 'package:lotura/model/apply_response_list.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/widget/remove_popup.dart';
@@ -14,12 +13,12 @@ class StreamDrawer extends StatefulWidget {
 }
 
 class _StreamDrawerState extends State<StreamDrawer> {
-  late StreamController<ApplyList> controller;
+  late StreamController<ApplyResponseList> controller;
 
   @override
   void initState() {
     super.initState();
-    controller = StreamController<ApplyList>();
+    controller = StreamController<ApplyResponseList>();
     receiveApplyList(controller);
   }
 
@@ -44,7 +43,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.77,
-            child: StreamBuilder<ApplyList>(
+            child: StreamBuilder<ApplyResponseList>(
               stream: controller.stream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -53,7 +52,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
                         const ScrollBehavior().copyWith(overscroll: false),
                     child: ListView.builder(
                       padding: EdgeInsets.only(top: 20.0.w),
-                      itemCount: snapshot.data!.applyList!.length,
+                      itemCount: snapshot.data!.applyResponseList!.length,
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: Image.asset(
@@ -61,16 +60,19 @@ class _StreamDrawerState extends State<StreamDrawer> {
                             width: 30.0.r,
                           ),
                           title: Text(
-                            "${snapshot.data!.applyList![index].deviceId}번 ${snapshot.data!.applyList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
+                            "${snapshot.data!.applyResponseList![index].deviceId}번 ${snapshot.data!.applyResponseList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
                             style: TextStyle(fontSize: 17.0.sp),
                           ),
                           trailing: IconButton(
-                              onPressed: () => removePopup(
-                                  controller,
-                                  context,
-                                  snapshot.data!.applyList![index].deviceId,
-                                  snapshot.data!.applyList![index].deviceType),
-                              icon: const Icon(Icons.close)),
+                            onPressed: () => removePopup(
+                                controller,
+                                context,
+                                snapshot
+                                    .data!.applyResponseList![index].deviceId,
+                                snapshot.data!.applyResponseList![index]
+                                    .deviceType),
+                            icon: const Icon(Icons.close),
+                          ),
                         );
                       },
                     ),
