@@ -16,16 +16,66 @@ void removePopup(
           shape: RoundedRectangleBorder(
               //모서리 둥글게 깎기
               borderRadius: BorderRadius.circular(10.0)),
-          title: Text(
-              "$deviceId번 ${deviceType == "DRY" ? "건조기" : "세탁기"} 알림 신청을\n 취소하시겠습니까?"),
+          title: Column(
+            children: [
+              Text(
+                "$deviceId번 ${deviceType == "DRY" ? "건조기" : "세탁기"} 알림 신청을",
+                style: TextStyle(
+                  fontSize: 20.0.sp,
+                ),
+              ),
+              Text(
+                "취소하시겠습니까?",
+                style: TextStyle(
+                  fontSize: 20.0.sp,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    '취소',
+                    style: TextStyle(fontSize: 15.0.sp),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    applyCancle(controller, deviceId);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    '확인',
+                    style: TextStyle(fontSize: 15.0.sp),
+                  ),
+                ),
+              ],
+            )
+          ],
         );
       } else {
         return CupertinoAlertDialog(
-          title: Text(
-            "$deviceId번 ${deviceType == "DRY" ? "건조기" : "세탁기"} 알림 신청을\n 취소하시겠습니까?",
-            style: TextStyle(
-              fontSize: 20.0.sp,
-            ),
+          title: Column(
+            children: [
+              Text(
+                "$deviceId번 ${deviceType == "DRY" ? "건조기" : "세탁기"} 알림 신청을",
+                style: TextStyle(
+                  fontSize: 20.0.sp,
+                ),
+              ),
+              Text(
+                "취소하시겠습니까?",
+                style: TextStyle(
+                  fontSize: 20.0.sp,
+                ),
+              ),
+            ],
           ),
           actions: [
             CupertinoDialogAction(
