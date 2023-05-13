@@ -48,28 +48,32 @@ class _StreamDrawerState extends State<StreamDrawer> {
               stream: controller.stream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return ListView.builder(
-                    padding: EdgeInsets.only(top: 20.0.w),
-                    itemCount: snapshot.data!.applyList!.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: Image.asset(
-                          "assets/applogo.jpg",
-                          width: 30.0.r,
-                        ),
-                        title: Text(
-                          "${snapshot.data!.applyList![index].deviceId}번 ${snapshot.data!.applyList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
-                          style: TextStyle(fontSize: 17.0.sp),
-                        ),
-                        trailing: IconButton(
-                            onPressed: () => removePopup(
-                                controller,
-                                context,
-                                snapshot.data!.applyList![index].deviceId,
-                                snapshot.data!.applyList![index].deviceType),
-                            icon: const Icon(Icons.close)),
-                      );
-                    },
+                  return ScrollConfiguration(
+                    behavior:
+                        const ScrollBehavior().copyWith(overscroll: false),
+                    child: ListView.builder(
+                      padding: EdgeInsets.only(top: 20.0.w),
+                      itemCount: snapshot.data!.applyList!.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: Image.asset(
+                            "assets/applogo.jpg",
+                            width: 30.0.r,
+                          ),
+                          title: Text(
+                            "${snapshot.data!.applyList![index].deviceId}번 ${snapshot.data!.applyList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
+                            style: TextStyle(fontSize: 17.0.sp),
+                          ),
+                          trailing: IconButton(
+                              onPressed: () => removePopup(
+                                  controller,
+                                  context,
+                                  snapshot.data!.applyList![index].deviceId,
+                                  snapshot.data!.applyList![index].deviceType),
+                              icon: const Icon(Icons.close)),
+                        );
+                      },
+                    ),
                   );
                 }
                 return const Center(child: CircularProgressIndicator());
