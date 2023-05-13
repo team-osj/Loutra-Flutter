@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:lotura/global/socket.dart';
-import 'package:lotura/model/apply_list.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:lotura/model/apply_response_list.dart';
 
 void applyCancle(StreamController controller, int id) async {
   var token = await FirebaseMessaging.instance.getToken();
@@ -10,6 +9,6 @@ void applyCancle(StreamController controller, int id) async {
   print('리스트 받아오기');
   socket.emit('remove_request', cancelRequestBody);
   socket.on('request_list', (data) {
-    controller.sink.add(ApplyList.fromJson(data));
+    controller.sink.add(ApplyResponseList.fromJson(data));
   });
 }
