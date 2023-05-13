@@ -4,6 +4,7 @@ import 'package:lotura/model/apply_list.dart';
 import 'package:lotura/service/apply_cancle.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/widget/remove_popup.dart';
 
 class StreamDrawer extends StatefulWidget {
   const StreamDrawer({Key? key}) : super(key: key);
@@ -61,8 +62,11 @@ class _StreamDrawerState extends State<StreamDrawer> {
                           style: TextStyle(fontSize: 18.0.sp),
                         ),
                         trailing: IconButton(
-                            onPressed: () => applyCancle(controller,
-                                snapshot.data!.applyList![index].deviceId),
+                            onPressed: () => removePopup(
+                                controller,
+                                context,
+                                snapshot.data!.applyList![index].deviceId,
+                                snapshot.data!.applyList![index].deviceType),
                             icon: const Icon(Icons.close)),
                       );
                     },
