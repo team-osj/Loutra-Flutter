@@ -57,8 +57,8 @@ class _StreamDrawerState extends State<StreamDrawer> {
                           width: 30.0.r,
                         ),
                         title: Text(
-                          "${snapshot.data!.applyList![index].deviceId}번 기기 작동 중",
-                          style: TextStyle(fontSize: 20.0.sp),
+                          "${snapshot.data!.applyList![index].deviceId}번 ${snapshot.data!.applyList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
+                          style: TextStyle(fontSize: 18.0.sp),
                         ),
                         trailing: IconButton(
                             onPressed: () => applyCancle(controller,
