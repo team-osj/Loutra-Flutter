@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lotura/model/apply_list.dart';
+import 'package:lotura/service/apply_cancle.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class StreamDrawer extends StatefulWidget {
-  StreamDrawer({Key? key}) : super(key: key);
+  const StreamDrawer({Key? key}) : super(key: key);
 
   @override
   State<StreamDrawer> createState() => _StreamDrawerState();
@@ -59,6 +60,10 @@ class _StreamDrawerState extends State<StreamDrawer> {
                           "${snapshot.data!.applyList![index].deviceId}번 기기 작동 중",
                           style: TextStyle(fontSize: 20.0.sp),
                         ),
+                        trailing: IconButton(
+                            onPressed: () => applyCancle(controller,
+                                snapshot.data!.applyList![index].deviceId),
+                            icon: const Icon(Icons.close)),
                       );
                     },
                   );
