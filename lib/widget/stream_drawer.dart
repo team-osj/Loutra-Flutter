@@ -52,33 +52,39 @@ class _StreamDrawerState extends State<StreamDrawer> {
                     behavior:
                         const ScrollBehavior().copyWith(overscroll: false),
                     child: ListView.builder(
-                      padding: EdgeInsets.only(top: 20.0.w),
+                      padding: EdgeInsets.only(top: 8.0.h),
                       itemCount: snapshot.data!.applyResponseList!.length,
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Icon(
-                            snapshot.data!.applyResponseList![index]
-                                        .deviceType ==
-                                    "DRY"
-                                ? CustomIcons.tumbleDryer
-                                : CustomIcons.washingMachine,
-                            color: Colors.blue,
-                            size: 28.0.r,
-                          ),
-                          title: Text(
-                            "${snapshot.data!.applyResponseList![index].deviceId}번 ${snapshot.data!.applyResponseList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
-                            style: TextStyle(fontSize: 17.0.sp),
-                          ),
-                          trailing: IconButton(
-                            onPressed: () => removePopup(
-                                controller,
-                                context,
-                                snapshot
-                                    .data!.applyResponseList![index].deviceId,
+                        return Column(
+                          children: [
+                            ListTile(
+                              leading: Icon(
                                 snapshot.data!.applyResponseList![index]
-                                    .deviceType),
-                            icon: const Icon(Icons.close),
-                          ),
+                                            .deviceType ==
+                                        "DRY"
+                                    ? CustomIcons.tumbleDryer
+                                    : CustomIcons.washingMachine,
+                                color: Colors.blue,
+                                size: 28.0.r,
+                              ),
+                              title: Text(
+                                "${snapshot.data!.applyResponseList![index].deviceId}번 ${snapshot.data!.applyResponseList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
+                                style: TextStyle(fontSize: 17.0.sp),
+                              ),
+                              trailing: IconButton(
+                                padding: EdgeInsets.only(left: 20.0.w),
+                                onPressed: () => removePopup(
+                                    controller,
+                                    context,
+                                    snapshot.data!.applyResponseList![index]
+                                        .deviceId,
+                                    snapshot.data!.applyResponseList![index]
+                                        .deviceType),
+                                icon: const Icon(Icons.close),
+                              ),
+                            ),
+                            const Divider(),
+                          ],
                         );
                       },
                     ),
