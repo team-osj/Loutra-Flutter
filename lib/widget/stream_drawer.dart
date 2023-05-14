@@ -56,11 +56,15 @@ class _StreamDrawerState extends State<StreamDrawer> {
                       itemCount: snapshot.data!.applyResponseList!.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          leading: Icon(snapshot.data!.applyResponseList![index]
-                                      .deviceType ==
-                                  "DRY"
-                              ? CustomIcons.tumbleDryer
-                              : CustomIcons.washingMachine),
+                          leading: Icon(
+                            snapshot.data!.applyResponseList![index]
+                                        .deviceType ==
+                                    "DRY"
+                                ? CustomIcons.tumbleDryer
+                                : CustomIcons.washingMachine,
+                            color: Colors.blue,
+                            size: 28.0.r,
+                          ),
                           title: Text(
                             "${snapshot.data!.applyResponseList![index].deviceId}번 ${snapshot.data!.applyResponseList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
                             style: TextStyle(fontSize: 17.0.sp),
