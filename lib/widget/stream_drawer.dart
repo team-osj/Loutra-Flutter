@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:lotura/Widget/custom_icons.dart';
 import 'package:lotura/model/apply_response_list.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,10 +56,11 @@ class _StreamDrawerState extends State<StreamDrawer> {
                       itemCount: snapshot.data!.applyResponseList!.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          leading: Image.asset(
-                            "assets/applogo.jpg",
-                            width: 30.0.r,
-                          ),
+                          leading: Icon(snapshot.data!.applyResponseList![index]
+                                      .deviceType ==
+                                  "DRY"
+                              ? CustomIcons.tumbleDryer
+                              : CustomIcons.washingMachine),
                           title: Text(
                             "${snapshot.data!.applyResponseList![index].deviceId}번 ${snapshot.data!.applyResponseList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
                             style: TextStyle(fontSize: 17.0.sp),
