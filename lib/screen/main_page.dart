@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage>
           leading: Builder(
             builder: (context) {
               return IconButton(
-                padding: EdgeInsets.only(left: 20.0.w),
+                  padding: EdgeInsets.only(left: 20.0.w),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
@@ -101,15 +101,15 @@ class _MainPageState extends State<MainPage>
         bottomNavigationBar: TabBar(
           tabs: const <Tab>[
             Tab(
-              icon: Icon(
-                Icons.looks_one,
-                color: Colors.black,
+              child: Text(
+                "남자 기숙사측 세탁실",
+                style: TextStyle(color: Colors.black),
               ),
             ),
             Tab(
-              icon: Icon(
-                Icons.looks_two,
-                color: Colors.black,
+              child: Text(
+                "남자 학교측 세탁실",
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ],
