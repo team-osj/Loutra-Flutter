@@ -100,21 +100,34 @@ class _MainPageState extends State<MainPage>
           },
         ),
         bottomNavigationBar: TabBar(
-          tabs: const <Tab>[
-            Tab(
+          padding: EdgeInsets.only(top: 3.0.h),
+          tabs: [
+            Container(
+              height: 45.0.h,
+              alignment: Alignment.center,
               child: Text(
                 "남자 기숙사측 세탁실",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0.sp,
+                ),
               ),
             ),
-            Tab(
+            Container(
+              height: 45.0.h,
+              alignment: Alignment.center,
               child: Text(
                 "남자 학교측 세탁실",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0.sp,
+                ),
               ),
             ),
           ],
           controller: controller,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.black,
           indicator: const BoxDecoration(
             color: Colors.blue,
           ),
