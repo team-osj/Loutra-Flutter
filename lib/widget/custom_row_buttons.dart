@@ -25,10 +25,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
             children: [
               Text(
                 a.toString(),
-                style: TextStyle(
-                    fontSize: 20.0.sp,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20.0.sp, fontFamily: 'Inter'),
               ),
               IconButton(
                 onPressed: () {
@@ -64,10 +61,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
                   children: [
                     Text(
                       b.toString(),
-                      style: TextStyle(
-                          fontSize: 20.0.sp,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20.0.sp, fontFamily: 'Inter'),
                     ),
                     IconButton(
                       onPressed: () {
