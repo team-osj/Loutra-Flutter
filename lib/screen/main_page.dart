@@ -108,7 +108,6 @@ class _MainPageState extends State<MainPage>
               child: Text(
                 "남자 기숙사측 세탁실",
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 14.0.sp,
                 ),
               ),
@@ -119,18 +118,17 @@ class _MainPageState extends State<MainPage>
               child: Text(
                 "남자 학교측 세탁실",
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 14.0.sp,
                 ),
               ),
             ),
           ],
-          controller: controller,
+          indicator: const BoxDecoration(
+            color: Color(0xff5C80D6),
+          ),
           labelColor: Colors.white,
           unselectedLabelColor: Colors.black,
-          indicator: const BoxDecoration(
-            color: Colors.blue,
-          ),
+          controller: controller,
         ),
       ),
     );
