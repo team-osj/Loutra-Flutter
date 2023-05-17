@@ -83,8 +83,8 @@ class _MainPageState extends State<MainPage>
                       Text(
                         "서버에서 데이터를 받아오는중...",
                         style: TextStyle(
-                          fontSize: 20.0.sp,
-                          fontFamily: 'NanumGothicCoding',
+                          fontSize: 21.0.sp,
+                          fontFamily: 'Inter',
                         ),
                       ),
                       SizedBox(height: 20.0.h),
