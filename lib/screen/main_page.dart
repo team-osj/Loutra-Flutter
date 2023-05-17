@@ -60,44 +60,45 @@ class _MainPageState extends State<MainPage>
             ),
           ],
         ),
-        drawer: StreamDrawer(),
+        drawer: const StreamDrawer(),
         body: StreamBuilder<OsjList>(
-            stream: osjStreamController.stream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Padding(
-                  padding: EdgeInsets.all(3.0.r),
-                  child: TabBarView(
-                    controller: controller,
-                    children: [
-                      FirstPage(osjList: snapshot.data!),
-                      SecondPage(osjList: snapshot.data!),
-                    ],
-                  ),
-                );
-              } else {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "서버에서 데이터를 받아오는중...",
-                        style: TextStyle(
-                          fontSize: 21.0.sp,
-                          fontFamily: 'Inter',
-                        ),
+          stream: osjStreamController.stream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
+                padding: EdgeInsets.all(3.0.r),
+                child: TabBarView(
+                  controller: controller,
+                  children: [
+                    FirstPage(osjList: snapshot.data!),
+                    SecondPage(osjList: snapshot.data!),
+                  ],
+                ),
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "서버에서 데이터를 받아오는중...",
+                      style: TextStyle(
+                        fontSize: 21.0.sp,
+                        fontFamily: 'Inter',
                       ),
-                      SizedBox(height: 20.0.h),
-                      Image.asset(
-                        "assets/applogo.png",
-                        width: 100.0.r,
-                        height: 100.0.r,
-                      ),
-                    ],
-                  ),
-                );
-              }
-            }),
+                    ),
+                    SizedBox(height: 20.0.h),
+                    Image.asset(
+                      "assets/applogo.png",
+                      width: 100.0.r,
+                      height: 100.0.r,
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
         bottomNavigationBar: TabBar(
           tabs: const <Tab>[
             Tab(
@@ -114,6 +115,9 @@ class _MainPageState extends State<MainPage>
             ),
           ],
           controller: controller,
+          indicator: const BoxDecoration(
+            color: Colors.blue,
+          ),
         ),
       ),
     );
