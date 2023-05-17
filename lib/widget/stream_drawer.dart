@@ -36,7 +36,10 @@ class _StreamDrawerState extends State<StreamDrawer> {
               child: Center(
                 child: Text(
                   "신청 리스트",
-                  style: TextStyle(fontSize: 24.0.sp),
+                  style: TextStyle(
+                    fontSize: 24.0.sp,
+                    fontFamily: 'Inter',
+                  ),
                 ),
               ),
             ),
