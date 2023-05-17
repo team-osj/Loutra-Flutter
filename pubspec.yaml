@@ -71,9 +71,9 @@ flutter:
     - family: CustomIcons
       fonts:
         - asset: assets/fonts/CustomIcons.ttf
-    - family: NanumGothicCoding
+    - family: Inter
       fonts:
-        - asset: assets/fonts/NanumGothicCoding.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
 
 
   # The following line ensures that the Material Icons font is
