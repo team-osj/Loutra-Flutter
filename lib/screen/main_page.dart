@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage>
           leading: Builder(
             builder: (context) {
               return IconButton(
-                padding: EdgeInsets.only(left: 20.0.w),
+                  padding: EdgeInsets.only(left: 20.0.w),
                   onPressed: () {
                     Scaffold.of(context).openDrawer();
                   },
@@ -60,59 +60,74 @@ class _MainPageState extends State<MainPage>
             ),
           ],
         ),
-        drawer: StreamDrawer(),
+        drawer: const StreamDrawer(),
         body: StreamBuilder<OsjList>(
-            stream: osjStreamController.stream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Padding(
-                  padding: EdgeInsets.all(3.0.r),
-                  child: TabBarView(
-                    controller: controller,
-                    children: [
-                      FirstPage(osjList: snapshot.data!),
-                      SecondPage(osjList: snapshot.data!),
-                    ],
-                  ),
-                );
-              } else {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "서버에서 데이터를 받아오는중...",
-                        style: TextStyle(
-                          fontSize: 20.0.sp,
-                          fontFamily: 'NanumGothicCoding',
-                        ),
+          stream: osjStreamController.stream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Padding(
+                padding: EdgeInsets.all(3.0.r),
+                child: TabBarView(
+                  controller: controller,
+                  children: [
+                    FirstPage(osjList: snapshot.data!),
+                    SecondPage(osjList: snapshot.data!),
+                  ],
+                ),
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "서버에서 데이터를 받아오는중...",
+                      style: TextStyle(
+                        fontSize: 21.0.sp,
+                        fontFamily: 'Inter',
                       ),
-                      SizedBox(height: 20.0.h),
-                      Image.asset(
-                        "assets/applogo.jpg",
-                        width: 100.0.r,
-                        height: 100.0.r,
-                      ),
-                    ],
-                  ),
-                );
-              }
-            }),
+                    ),
+                    SizedBox(height: 20.0.h),
+                    Image.asset(
+                      "assets/applogo.png",
+                      width: 100.0.r,
+                      height: 100.0.r,
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
         bottomNavigationBar: TabBar(
-          tabs: const <Tab>[
-            Tab(
-              icon: Icon(
-                Icons.looks_one,
-                color: Colors.black,
+          padding: EdgeInsets.only(top: 3.0.h),
+          tabs: [
+            Container(
+              height: 45.0.h,
+              alignment: Alignment.center,
+              child: Text(
+                "남자 기숙사측 세탁실",
+                style: TextStyle(
+                  fontSize: 14.0.sp,
+                ),
               ),
             ),
-            Tab(
-              icon: Icon(
-                Icons.looks_two,
-                color: Colors.black,
+            Container(
+              height: 45.0.h,
+              alignment: Alignment.center,
+              child: Text(
+                "남자 학교측 세탁실",
+                style: TextStyle(
+                  fontSize: 14.0.sp,
+                ),
               ),
             ),
           ],
+          indicator: const BoxDecoration(
+            color: Color(0xff5C80D6),
+          ),
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.black,
           controller: controller,
         ),
       ),

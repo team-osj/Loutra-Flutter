@@ -31,7 +31,7 @@ environment:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/applogo.jpg"
+  image_path: "assets/applogo.png"
 
 dependencies:
   flutter:
@@ -66,14 +66,14 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/applogo.jpg
+    - assets/applogo.png
   fonts:
     - family: CustomIcons
       fonts:
         - asset: assets/fonts/CustomIcons.ttf
-    - family: NanumGothicCoding
+    - family: Inter
       fonts:
-        - asset: assets/fonts/NanumGothicCoding.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
 
 
   # The following line ensures that the Material Icons font is

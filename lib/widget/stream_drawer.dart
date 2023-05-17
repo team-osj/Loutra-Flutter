@@ -36,7 +36,10 @@ class _StreamDrawerState extends State<StreamDrawer> {
               child: Center(
                 child: Text(
                   "신청 리스트",
-                  style: TextStyle(fontSize: 24.0.sp),
+                  style: TextStyle(
+                    fontSize: 24.0.sp,
+                    fontFamily: 'Inter',
+                  ),
                 ),
               ),
             ),
@@ -62,7 +65,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
                                 snapshot.data!.applyResponseList![index]
                                             .deviceType ==
                                         "DRY"
-                                    ? CustomIcons.tumbleDryer
+                                    ? CustomIcons.dryer
                                     : CustomIcons.washingMachine,
                                 color: Colors.blue,
                                 size: 28.0.r,
