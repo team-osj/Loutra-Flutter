@@ -16,8 +16,9 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
         },
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(20.0)),
+            border: Border.all(width: 1, color: Colors.grey),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
           width: 110.0.w,
           height: 60.0.h,
           child: Row(
@@ -51,7 +52,7 @@ customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
               )
             : Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  border: Border.all(width: 1, color: Colors.grey),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 width: 110.0.w,
