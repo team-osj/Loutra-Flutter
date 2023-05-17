@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage>
                       ),
                       SizedBox(height: 20.0.h),
                       Image.asset(
-                        "assets/applogo.jpg",
+                        "assets/applogo.png",
                         width: 100.0.r,
                         height: 100.0.r,
                       ),
