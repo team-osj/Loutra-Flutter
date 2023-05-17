@@ -65,7 +65,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
                                 snapshot.data!.applyResponseList![index]
                                             .deviceType ==
                                         "DRY"
-                                    ? CustomIcons.tumbleDryer
+                                    ? CustomIcons.dryer
                                     : CustomIcons.washingMachine,
                                 color: Colors.blue,
                                 size: 28.0.r,
