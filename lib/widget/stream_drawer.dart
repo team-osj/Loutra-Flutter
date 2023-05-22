@@ -72,7 +72,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
                               ),
                               title: Text(
                                 "${snapshot.data!.applyResponseList![index].deviceId}번 ${snapshot.data!.applyResponseList![index].deviceType == "WASH" ? "세탁기" : "건조기"} 작동 중",
-                                style: TextStyle(fontSize: 17.0.sp),
+                                style: TextStyle(fontSize: 16.0.sp),
                               ),
                               trailing: IconButton(
                                 padding: EdgeInsets.only(left: 20.0.w),
