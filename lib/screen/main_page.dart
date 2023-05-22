@@ -103,7 +103,7 @@ class _MainPageState extends State<MainPage>
           padding: EdgeInsets.only(top: 3.0.h),
           tabs: [
             Container(
-              height: 45.0.h,
+              height: 40.0.h,
               alignment: Alignment.center,
               child: Text(
                 "남자 기숙사측 세탁실",
@@ -113,7 +113,7 @@ class _MainPageState extends State<MainPage>
               ),
             ),
             Container(
-              height: 45.0.h,
+              height: 40.0.h,
               alignment: Alignment.center,
               child: Text(
                 "남자 학교측 세탁실",
