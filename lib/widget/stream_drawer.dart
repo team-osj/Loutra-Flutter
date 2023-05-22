@@ -46,7 +46,7 @@ class _StreamDrawerState extends State<StreamDrawer> {
           ),
           SizedBox(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.77,
+            height: MediaQuery.of(context).size.height * 0.7,
             child: StreamBuilder<ApplyResponseList>(
               stream: controller.stream,
               builder: (context, snapshot) {
