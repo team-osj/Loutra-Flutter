@@ -52,8 +52,8 @@ AlertDialog androidDialog(
     shape: RoundedRectangleBorder(
         //모서리 둥글게 깎기
         borderRadius: BorderRadius.circular(10.0)),
-    title: state == 0
-        ? alive == 1
+    title: alive == 1
+        ? state == 0
             ? Column(
                 children: [
                   Text('$deviceId번 $type 알림을',
@@ -66,26 +66,25 @@ AlertDialog androidDialog(
               )
             : Column(
                 children: [
-                  Text('불편을 드려 죄송합니다.',
-                      style: TextStyle(
-                          fontSize: 22.0.sp, fontWeight: FontWeight.bold)),
-                  Text('현재 $deviceId번 $type를',
-                      style: TextStyle(fontSize: 22.0.sp)),
-                  Text('사용할 수 없습니다.', style: TextStyle(fontSize: 22.0.sp)),
+                  Text('$type를 사용할 수 있는', style: TextStyle(fontSize: 22.0.sp)),
+                  Text(
+                    '상태입니다.',
+                    style: TextStyle(fontSize: 22.0.sp),
+                  ),
                 ],
               )
         : Column(
             children: [
-              Text('$type를 사용할 수 있는', style: TextStyle(fontSize: 22.0.sp)),
-              Text(
-                '상태입니다.',
-                style: TextStyle(fontSize: 22.0.sp),
-              ),
+              Text('불편을 드려 죄송합니다.',
+                  style: TextStyle(
+                      fontSize: 22.0.sp, fontWeight: FontWeight.bold)),
+              Text('현재 $deviceId번 $type를', style: TextStyle(fontSize: 22.0.sp)),
+              Text('사용할 수 없습니다.', style: TextStyle(fontSize: 22.0.sp)),
             ],
           ),
     actions: [
-      state == 0
-          ? alive == 1
+      alive == 1
+          ? state == 0
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -139,8 +138,8 @@ AlertDialog androidDialog(
 CupertinoAlertDialog iOSDialog(
     int state, alive, String deviceId, type, BuildContext context) {
   return CupertinoAlertDialog(
-    title: state == 0
-        ? alive == 1
+    title: alive == 1
+        ? state == 0
             ? Column(
                 children: [
                   Text('$deviceId번 $type 알림을',
@@ -153,19 +152,18 @@ CupertinoAlertDialog iOSDialog(
               )
             : Column(
                 children: [
-                  Text('불편을 드려 죄송합니다.', style: TextStyle(fontSize: 20.0.sp)),
-                  Text('현재 $deviceId번 $type를',
-                      style: TextStyle(fontSize: 20.0.sp)),
-                  Text('사용할 수 없습니다.', style: TextStyle(fontSize: 20.0.sp)),
+                  Text('$type를 사용할 수 있는', style: TextStyle(fontSize: 20.0.sp)),
+                  Text(
+                    '상태입니다.',
+                    style: TextStyle(fontSize: 20.0.sp),
+                  ),
                 ],
               )
         : Column(
             children: [
-              Text('$type를 사용할 수 있는', style: TextStyle(fontSize: 20.0.sp)),
-              Text(
-                '상태입니다.',
-                style: TextStyle(fontSize: 20.0.sp),
-              ),
+              Text('불편을 드려 죄송합니다.', style: TextStyle(fontSize: 20.0.sp)),
+              Text('현재 $deviceId번 $type를', style: TextStyle(fontSize: 20.0.sp)),
+              Text('사용할 수 없습니다.', style: TextStyle(fontSize: 20.0.sp)),
             ],
           ),
     actions: state == 0 && alive == 1
