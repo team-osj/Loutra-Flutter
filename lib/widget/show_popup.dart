@@ -83,43 +83,31 @@ AlertDialog androidDialog(
             ],
           ),
     actions: [
-      alive == 1
-          ? state == 0
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        '취소',
-                        style: TextStyle(fontSize: 15.0.sp),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        sendFcmInfo(deviceId);
-                        Navigator.of(context).pop();
-                      },
-                      child: Text(
-                        '확인',
-                        style: TextStyle(fontSize: 15.0.sp),
-                      ),
-                    ),
-                  ],
-                )
-              : Center(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      '확인',
-                      style: TextStyle(fontSize: 15.0.sp),
-                    ),
+      alive == 1 && state == 0
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    '취소',
+                    style: TextStyle(fontSize: 15.0.sp),
                   ),
-                )
+                ),
+                TextButton(
+                  onPressed: () {
+                    sendFcmInfo(deviceId);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    '확인',
+                    style: TextStyle(fontSize: 15.0.sp),
+                  ),
+                ),
+              ],
+            )
           : Center(
               child: TextButton(
                 onPressed: () {
@@ -175,7 +163,7 @@ CupertinoAlertDialog iOSDialog(
                 style: TextStyle(fontSize: 18.0.sp),
               ),
               onPressed: () => Navigator.of(context).pop(),
-            )
+            ),
           ],
   );
 }
