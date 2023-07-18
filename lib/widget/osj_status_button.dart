@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/main.dart';
 
 class OSJStatusButton extends StatelessWidget {
-  const OSJStatusButton({
+  OSJStatusButton({
     super.key,
-    required this.text,
-    required this.color,
+    required this.status,
   });
 
-  final Color color;
-  final String text;
+  final Status status;
+
+  Map map = <Status, String>{
+    Status.available: "사용 가능",
+    Status.working: "작동중",
+    Status.breakdown: "고장",
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +23,11 @@ class OSJStatusButton extends StatelessWidget {
       height: 32.0.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100.0),
-        color: color,
+        color: Colors.orange,
       ),
       child: Center(
         child: Text(
-          text,
+          map[status].toString(),
           style: TextStyle(
             fontSize: 14.0.sp,
           ),
