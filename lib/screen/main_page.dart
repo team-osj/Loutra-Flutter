@@ -9,7 +9,34 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
+  late TabController controller;
+  int selectedIndex = 0;
+
+  TextStyle bigStyle = TextStyle(
+    fontSize: 40.0.sp,
+    color: OsjColor.black,
+    fontWeight: FontWeight.bold,
+  );
+
+  TextStyle smallStyle = TextStyle(
+    fontSize: 16.0.sp,
+    color: OsjColor.gray500,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +64,32 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
         actions: [
-          IconButton(onPressed: null, icon: Icon(Icons.settings)),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.settings,
+                color: OsjColor.black,
+              )),
           SizedBox(width: 24.0.w),
         ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 36.0.h),
+        child: Column(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("알림 설정한", style: bigStyle),
+                Text("세탁기와 건조기", style: bigStyle),
+                SizedBox(height: 24.0.h),
+                Text("알림을 설정하여 세탁기와 건조기를", style: smallStyle),
+                SizedBox(height: 5.0.h),
+                Text("누구보다 빠르게 사용해보세요.", style: smallStyle),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
