@@ -1,142 +1,46 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:lotura/widget/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/screen/first_page.dart';
-import 'package:lotura/screen/second_page.dart';
-import 'package:lotura/init/socket_init.dart';
-import 'package:lotura/model/osj_list.dart';
-import 'package:lotura/Widget/setting_dialog.dart';
-import 'package:lotura/widget/stream_drawer.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage>
-    with SingleTickerProviderStateMixin {
-  TabController? controller;
-  late StreamController<OsjList> osjStreamController;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = TabController(length: 2, vsync: this);
-    osjStreamController = StreamController<OsjList>();
-    socketInit(osjStreamController);
-  }
-
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading: Builder(
-            builder: (context) {
-              return IconButton(
-                  padding: EdgeInsets.only(left: 20.0.w),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: const Icon(Icons.menu, color: Colors.black));
-            },
-          ),
-          actions: [
-            Builder(
-              builder: (BuildContext context) {
-                return IconButton(
-                    padding: EdgeInsets.only(left: 20.0.w, right: 30.0.w),
-                    onPressed: () {
-                      showSettingPopup(context);
-                    },
-                    icon: const Icon(Icons.settings),
-                    color: Colors.black);
-              },
+    return Scaffold(
+      backgroundColor: OsjColor.white,
+      appBar: AppBar(
+        backgroundColor: OsjColor.white,
+        elevation: 0.0,
+        leadingWidth: 200.0.w,
+        leading: Row(
+          children: [
+            SizedBox(width: 24.0.w),
+            Image.asset(
+              "assets/applogo.jpeg",
+              width: 24.0.w,
+              height: 24.0.h,
+            ),
+            SizedBox(width: 8.0.w),
+            Text(
+              "OSJ",
+              style: TextStyle(
+                  fontSize: 20.0.sp,
+                  color: OsjColor.primary700,
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),
-        drawer: const StreamDrawer(),
-        body: StreamBuilder<OsjList>(
-          stream: osjStreamController.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Padding(
-                padding: EdgeInsets.all(3.0.r),
-                child: TabBarView(
-                  controller: controller,
-                  children: [
-                    FirstPage(osjList: snapshot.data!),
-                    SecondPage(osjList: snapshot.data!),
-                  ],
-                ),
-              );
-            } else {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "서버에서 데이터를 받아오는중...",
-                      style: TextStyle(
-                        fontSize: 21.0.sp,
-                        fontFamily: 'Inter',
-                      ),
-                    ),
-                    SizedBox(height: 20.0.h),
-                    Image.asset(
-                      "assets/applogo.jpeg",
-                      width: 100.0.r,
-                      height: 100.0.r,
-                    ),
-                  ],
-                ),
-              );
-            }
-          },
-        ),
-        bottomNavigationBar: TabBar(
-          padding: EdgeInsets.only(top: 3.0.h),
-          tabs: [
-            Container(
-              height: 40.0.h,
-              alignment: Alignment.center,
-              child: Text(
-                "남자 기숙사측 세탁실",
-                style: TextStyle(
-                  fontSize: 14.0.sp,
-                ),
-              ),
-            ),
-            Container(
-              height: 40.0.h,
-              alignment: Alignment.center,
-              child: Text(
-                "남자 학교측 세탁실",
-                style: TextStyle(
-                  fontSize: 14.0.sp,
-                ),
-              ),
-            ),
-          ],
-          indicator: const BoxDecoration(
-            color: Color(0xff5C80D6),
-          ),
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.black,
-          controller: controller,
-        ),
+        actions: [
+          IconButton(onPressed: null, icon: Icon(Icons.settings)),
+          SizedBox(width: 24.0.w),
+        ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller!.dispose();
   }
 }
