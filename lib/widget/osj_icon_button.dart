@@ -7,18 +7,19 @@ class OSJIconButton extends StatelessWidget {
       required this.height,
       required this.iconSize,
       required this.color,
+      required this.iconColor,
       required this.iconData,
-      required this.function});
+      this.function});
 
   final double width, height, iconSize;
-  final Color color;
+  final Color color, iconColor;
   final IconData iconData;
-  final Function function;
+  final Function? function;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => function,
+      onTap: function != null ? () => function : null,
       child: Container(
         width: width,
         height: height,
@@ -27,7 +28,7 @@ class OSJIconButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Center(
-          child: Icon(iconData, size: iconSize),
+          child: Icon(iconData, size: iconSize, color: iconColor),
         ),
       ),
     );
