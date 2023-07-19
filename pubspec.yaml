@@ -68,9 +68,9 @@ flutter:
   assets:
     - assets/
   fonts:
-    - family: CustomIcons
+    - family: OSJIcons
       fonts:
-        - asset: assets/fonts/CustomIcons.ttf
+        - asset: assets/fonts/OSJIcons.ttf
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter-Medium.ttf
