@@ -1,13 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/model/osj_list.dart';
-import 'package:lotura/screen/first_page.dart';
+import 'package:lotura/screen/laundry_room_page.dart';
 import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/osj_icon_button.dart';
-import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_image_button.dart';
 
 class BottomNavi extends StatefulWidget {
@@ -41,11 +37,9 @@ class _BottomNaviState extends State<BottomNavi>
       backgroundColor: OsjColor.gray100,
       body: TabBarView(
         controller: controller,
-        children: [
+        children: const [
           MainPage(),
-          Container(
-            color: OsjColor.gray500,
-          ),
+          LaundryRoomPage(),
         ],
       ),
       bottomNavigationBar: TabBar(
