@@ -43,7 +43,7 @@ class _BottomNaviState extends State<BottomNavi>
         ],
       ),
       bottomNavigationBar: TabBar(
-        padding: EdgeInsets.only(bottom: 34.0.h),
+        padding: EdgeInsets.only(top: 10.0.h, bottom: 34.0.h),
         controller: controller,
         indicatorColor: Colors.transparent,
         tabs: [
