@@ -9,9 +9,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage>
-    with SingleTickerProviderStateMixin {
-  late TabController controller;
+class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
 
   TextStyle bigStyle = TextStyle(
@@ -26,23 +24,11 @@ class _MainPageState extends State<MainPage>
   );
 
   @override
-  void initState() {
-    super.initState();
-    controller = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OsjColor.white,
+      backgroundColor: OsjColor.gray100,
       appBar: AppBar(
-        backgroundColor: OsjColor.white,
+        backgroundColor: OsjColor.gray100,
         elevation: 0.0,
         leadingWidth: 200.0.w,
         leading: Row(
