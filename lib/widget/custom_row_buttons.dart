@@ -4,7 +4,19 @@ import 'package:lotura/widget/machine_button.dart';
 import 'package:lotura/main.dart';
 
 class CustomRowButton extends StatelessWidget {
-  const CustomRowButton({super.key});
+  const CustomRowButton({
+    super.key,
+    required this.leftIndex,
+    required this.rightIndex,
+    required this.leftStatus,
+    required this.rightStatus,
+    required this.leftMachine,
+    required this.rightMachine,
+  });
+
+  final int leftIndex, rightIndex;
+  final Status leftStatus, rightStatus;
+  final Machine leftMachine, rightMachine;
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +24,13 @@ class CustomRowButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         MachineButton(
-            index: 10,
-            status: Status.breakdown,
-            machine: Machine.laundryMachine),
+            index: leftIndex, status: leftStatus, machine: leftMachine),
         const Icon(CustomIcons.triangleUp, color: Colors.grey),
         MachineButton(
-            index: 9, status: Status.working, machine: Machine.dryMachine),
+          index: rightIndex,
+          status: rightStatus,
+          machine: rightMachine,
+        ),
       ],
     );
   }
