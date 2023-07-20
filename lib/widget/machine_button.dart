@@ -43,16 +43,16 @@ class MachineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showBottomSheet(
+        showModalBottomSheet(
           context: context,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
-              top: Radius.circular(50.r),
+              top: Radius.circular(25.r),
             ),
           ),
           builder: (context) => SizedBox(
             width: double.infinity,
-            height: 176.0.h,
+            height: 220.0.h,
             child: Padding(
               padding: EdgeInsets.only(
                 left: 24.0.w,
@@ -67,7 +67,7 @@ class MachineButton extends StatelessWidget {
                     '$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 20.0.sp,
+                      fontSize: 22.0.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -75,6 +75,7 @@ class MachineButton extends StatelessWidget {
                   Row(
                     children: [
                       OSJTextButton(
+                          function: ()=> Navigator.of(context).pop(),
                           width: 185.0.w,
                           height: 56.0.h,
                           fontSize: 16.0.h,
@@ -83,6 +84,7 @@ class MachineButton extends StatelessWidget {
                           text: "취소"),
                       SizedBox(width: 12.0.w),
                       OSJTextButton(
+                          function: () => Navigator.of(context).pop(),
                           width: 185.0.w,
                           height: 56.0.h,
                           fontSize: 16.0.h,
