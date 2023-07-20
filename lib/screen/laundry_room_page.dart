@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
@@ -14,6 +16,8 @@ class LaundryRoomPage extends StatefulWidget {
 }
 
 class _LaundryRoomPageState extends State<LaundryRoomPage> {
+  bool isClicked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,9 +94,11 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {}, icon: Icon(OSJIcons.grid, size: 24.0.r)),
+                    onPressed: () {},
+                    icon: Icon(OSJIcons.grid, size: 18.0.r)),
                 IconButton(
-                    onPressed: () {}, icon: Icon(OSJIcons.list, size: 24.0.r)),
+                    onPressed: () {},
+                    icon: Icon(OSJIcons.list, size: 18.0.r)),
               ],
             ),
             Expanded(
