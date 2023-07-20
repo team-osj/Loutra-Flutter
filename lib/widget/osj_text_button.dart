@@ -9,23 +9,24 @@ class OSJTextButton extends StatelessWidget {
       required this.color,
       required this.fontColor,
       required this.text,
-      required this.function});
+      this.function,
+      this.radius = 16.0});
 
-  final double width, height, fontSize;
+  final double width, height, fontSize, radius;
   final Color color, fontColor;
   final String text;
-  final Function function;
+  final Function? function;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => function,
+      onTap: function != null ? () => function!() : null,
       child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(radius),
         ),
         child: Center(
           child: Text(
