@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/firebase_options.dart';
+import 'package:lotura/widget/bottom_navi.dart';
+import 'package:lotura/widget/machine_card.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360, 640),
+      designSize: const Size(430, 932),
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(
@@ -30,10 +32,35 @@ class MyApp extends StatelessWidget {
             highlightColor: Colors.transparent,
           ),
           debugShowCheckedModeBanner: false,
-          home: const MainPage(),
+          home: const BottomNavi(),
         );
       },
     );
   }
 }
 
+enum Status {
+  available,
+  working,
+  breakdown,
+}
+
+enum Machine { laundryMachine, dryMachine }
+
+// class TestPage extends StatelessWidget {
+//   const TestPage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.grey,
+//       body: Center(
+//         child: MachineCard(
+//           index: 1,
+//           machine: Machine.laundryMachine,
+//           status: Status.available,
+//         ),
+//       ),
+//     );
+//   }
+// }
