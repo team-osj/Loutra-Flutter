@@ -36,6 +36,7 @@ class _BottomNaviState extends State<BottomNavi>
     return Scaffold(
       backgroundColor: OsjColor.gray100,
       body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         children: const [
           MainPage(),
