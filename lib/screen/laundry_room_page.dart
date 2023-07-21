@@ -16,7 +16,7 @@ class LaundryRoomPage extends StatefulWidget {
 }
 
 class _LaundryRoomPageState extends State<LaundryRoomPage> {
-  bool isClicked = false;
+  int isSelectedIcon = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +94,30 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    onPressed: () {},
-                    icon: Icon(OSJIcons.grid, size: 18.0.r)),
+                  onPressed: () {
+                    setState(() {
+                      isSelectedIcon = 0;
+                    });
+                  },
+                  icon: Icon(OSJIcons.grid,
+                      size: 18.0.r,
+                      color: isSelectedIcon == 0
+                          ? OsjColor.black
+                          : OsjColor.gray300),
+                ),
                 IconButton(
-                    onPressed: () {},
-                    icon: Icon(OSJIcons.list, size: 18.0.r)),
+                    onPressed: () {
+                      setState(() {
+                        isSelectedIcon = 1;
+                      });
+                    },
+                    icon: Icon(
+                      OSJIcons.list,
+                      size: 18.0.r,
+                      color: isSelectedIcon == 1
+                          ? OsjColor.black
+                          : OsjColor.gray300,
+                    )),
               ],
             ),
             Expanded(
