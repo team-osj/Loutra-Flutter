@@ -20,4 +20,6 @@ class OSJIcons {
       IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData checkCircle =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData triangleUp =
+      IconData(0xf311, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
