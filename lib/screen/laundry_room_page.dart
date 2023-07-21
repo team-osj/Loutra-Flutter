@@ -127,6 +127,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                   return Column(
                     children: [
                       CustomRowButton(
+                        isSelectedIcon: isSelectedIcon,
                         leftIndex: index,
                         leftStatus: Status.working,
                         leftMachine: Machine.laundryMachine,
