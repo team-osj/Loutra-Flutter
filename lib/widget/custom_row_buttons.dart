@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:lotura/Widget/custom_icons.dart';
 import 'package:lotura/widget/machine_button.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/widget/machine_card.dart';
 
 class CustomRowButton extends StatelessWidget {
   const CustomRowButton({
     super.key,
+    required this.isSelectedIcon,
     required this.leftIndex,
     required this.rightIndex,
     required this.leftStatus,
@@ -14,7 +16,7 @@ class CustomRowButton extends StatelessWidget {
     required this.rightMachine,
   });
 
-  final int leftIndex, rightIndex;
+  final int leftIndex, rightIndex, isSelectedIcon;
   final Status leftStatus, rightStatus;
   final Machine leftMachine, rightMachine;
 
@@ -23,14 +25,22 @@ class CustomRowButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MachineButton(
-            index: leftIndex, status: leftStatus, machine: leftMachine),
-        const Icon(CustomIcons.triangleUp, color: Colors.grey),
-        MachineButton(
-          index: rightIndex,
-          status: rightStatus,
-          machine: rightMachine,
-        ),
+        isSelectedIcon == 0
+            ? MachineCard(
+                index: leftIndex, machine: leftMachine, status: leftStatus)
+            : MachineButton(
+                index: leftIndex, status: leftStatus, machine: leftMachine),
+        isSelectedIcon == 0
+            ? const SizedBox.shrink()
+            : const Icon(CustomIcons.triangleUp, color: Colors.grey),
+        isSelectedIcon == 0
+            ? MachineCard(
+                index: rightIndex, machine: rightMachine, status: rightStatus)
+            : MachineButton(
+                index: rightIndex,
+                status: rightStatus,
+                machine: rightMachine,
+              ),
       ],
     );
   }
