@@ -8,7 +8,6 @@ class OSJImageButton extends StatelessWidget {
     required this.height,
     required this.color,
     required this.imagePath,
-    required this.imageColor,
     this.function,
     this.imageWidth,
     this.imageHeight,
@@ -16,7 +15,7 @@ class OSJImageButton extends StatelessWidget {
 
   final double width, height;
   final double? imageWidth, imageHeight;
-  final Color color, imageColor;
+  final Color color;
   final String imagePath;
   final Function? function;
 
