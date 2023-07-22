@@ -10,12 +10,13 @@ class OSJBottomSheet extends StatelessWidget {
     super.key,
     required this.index,
     required this.isEnableNotification,
+    required this.isWoman,
     required this.status,
     required this.machine,
   });
 
   final int index;
-  final bool isEnableNotification;
+  final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
 
@@ -58,8 +59,8 @@ class OSJBottomSheet extends StatelessWidget {
           children: [
             Text(
               isEnableNotification
-                  ? '$index번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : '$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
+                  ? '${isWoman ? index - 31 : index}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
+                  : '${isWoman ? index - 31 : index}의\n알림 설정을 해제하실건가요?',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.0.sp,

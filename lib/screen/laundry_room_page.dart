@@ -22,11 +22,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     2: "여자 세탁실",
   };
 
-  Map placeIndex = <int, int>{
-    0: 1,
-    1: 17,
-    2: 33
-  };
+  Map placeIndex = <int, int>{0: 1, 1: 17, 2: 32};
 
   @override
   Widget build(BuildContext context) {
@@ -153,10 +149,13 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     children: [
                       CustomRowButton(
                         isSelectedIcon: isSelectedIcon,
+                        isWoman: isSelectedPlace == 2 ? true : false,
                         leftIndex: placeIndex[isSelectedPlace] + index,
                         leftStatus: Status.working,
                         leftMachine: Machine.laundryMachine,
-                        rightIndex: placeIndex[isSelectedPlace] + index + 8,
+                        rightIndex: placeIndex[isSelectedPlace] +
+                            index +
+                            (isSelectedPlace == 2 ? 10 : 8),
                         rightStatus: Status.available,
                         rightMachine: Machine.dryMachine,
                       ),

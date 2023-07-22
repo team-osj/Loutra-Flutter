@@ -8,6 +8,7 @@ class CustomRowButton extends StatelessWidget {
   const CustomRowButton({
     super.key,
     required this.isSelectedIcon,
+    required this.isWoman,
     required this.leftIndex,
     required this.rightIndex,
     required this.leftStatus,
@@ -19,6 +20,7 @@ class CustomRowButton extends StatelessWidget {
   final int leftIndex, rightIndex, isSelectedIcon;
   final Status leftStatus, rightStatus;
   final Machine leftMachine, rightMachine;
+  final bool isWoman;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +30,14 @@ class CustomRowButton extends StatelessWidget {
         isSelectedIcon == 0
             ? MachineCard(
                 index: leftIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 machine: leftMachine,
                 status: leftStatus,
               )
             : MachineButton(
                 index: leftIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 status: leftStatus,
                 machine: leftMachine),
@@ -43,12 +47,14 @@ class CustomRowButton extends StatelessWidget {
         isSelectedIcon == 0
             ? MachineCard(
                 index: rightIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 machine: rightMachine,
                 status: rightStatus,
               )
             : MachineButton(
                 index: rightIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 status: rightStatus,
                 machine: rightMachine,
@@ -57,26 +63,3 @@ class CustomRowButton extends StatelessWidget {
     );
   }
 }
-
-//customRowButtons(
-//         BuildContext context,
-//         String aIndex,
-//         String aDeviceType,
-//         int aState,
-//         int aAlive,
-//         String bIndex,
-//         String bDeviceType,
-//         int bState,
-//         int bAlive) =>
-//     Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         MachineButton(
-//             index: 10,
-//             status: Status.breakdown,
-//             machine: Machine.laundryMachine),
-//         const Icon(CustomIcons.triangleUp, color: Colors.grey),
-//         MachineButton(
-//             index: 9, status: Status.working, machine: Machine.dryMachine),
-//       ],
-//     );
