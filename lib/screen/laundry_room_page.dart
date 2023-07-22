@@ -14,7 +14,13 @@ class LaundryRoomPage extends StatefulWidget {
 }
 
 class _LaundryRoomPageState extends State<LaundryRoomPage> {
-  int isSelectedIcon = 0;
+  int isSelectedIcon = 0, isSelectedPlace = 0;
+
+  Map place = <int, String>{
+    0: "남자 기숙사측 세탁실",
+    1: "남자 학교측 세탁실",
+    2: "여자 세탁실",
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
           children: [
             SizedBox(width: 24.0.w),
             Text(
-              '남자 기숙사측 세탁실',
+              place[isSelectedPlace],
               style: TextStyle(
                 color: OsjColor.black,
                 fontSize: 24.0.sp,
@@ -57,6 +63,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               child: Row(
                 children: [
                   OSJTextButton(
+                    function: () => setState(() => isSelectedPlace = 0),
                     width: 111.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
@@ -67,6 +74,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                   ),
                   SizedBox(width: 8.0.w),
                   OSJTextButton(
+                    function: () => setState(() => isSelectedPlace = 1),
                     width: 99.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
@@ -77,6 +85,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                   ),
                   SizedBox(width: 8.0.w),
                   OSJTextButton(
+                    function: () => setState(() => isSelectedPlace = 2),
                     width: 53.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
