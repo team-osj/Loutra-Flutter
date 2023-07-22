@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
@@ -5,18 +7,21 @@ import 'package:lotura/widget/osj_bottom_sheet.dart';
 import 'package:lotura/widget/osj_status_button.dart';
 
 class MachineCard extends StatelessWidget {
-  const MachineCard(
-      {super.key,
-      required this.index,
-      required this.isEnableNotification,
-      required this.isWoman,
-      required this.machine,
-      required this.status});
+  MachineCard({
+    super.key,
+    required this.index,
+    required this.isEnableNotification,
+    required this.isWoman,
+    required this.machine,
+    required this.status,
+    this.osjStreamController,
+  });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Machine machine;
   final Status status;
+  StreamController? osjStreamController;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,8 @@ class MachineCard extends StatelessWidget {
                 isWoman: isWoman,
                 status: status,
                 machine: machine,
+                osjStreamController:
+                    isEnableNotification ? null : osjStreamController,
               ),
             ),
             child: Container(

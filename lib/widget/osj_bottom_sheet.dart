@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/service/apply_cancle.dart';
+import 'package:lotura/service/send_fcm_info.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_text_button.dart';
@@ -13,12 +17,14 @@ class OSJBottomSheet extends StatelessWidget {
     required this.isWoman,
     required this.status,
     required this.machine,
+    this.osjStreamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
+  StreamController? osjStreamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OsjColor.green50,
@@ -80,7 +86,12 @@ class OSJBottomSheet extends StatelessWidget {
                     text: "취소"),
                 SizedBox(width: 12.0.w),
                 OSJTextButton(
-                    function: () => Navigator.of(context).pop(),
+                    function: () {
+                      isEnableNotification
+                          ? sendFcmInfo(index.toString())
+                          : applyCancle(osjStreamController!, index);
+                      Navigator.pop(context);
+                    },
                     width: 185.0.w,
                     height: 56.0.h,
                     fontSize: 16.0.h,
