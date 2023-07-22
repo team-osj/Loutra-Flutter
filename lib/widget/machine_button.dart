@@ -44,7 +44,7 @@ class MachineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 32) || (isWoman && index > 44)
+    return (!isWoman && index == 31) || (isWoman && index > 44)
         ? SizedBox(width: 154.0.w, height: 84.0.h)
         : GestureDetector(
             onTap: () {
