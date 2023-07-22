@@ -33,13 +33,13 @@ class MachineButton extends StatelessWidget {
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.laundryMachine: OSJIcons.laundry,
-    Machine.dryMachine: OSJIcons.dry,
+    Machine.WASH: OSJIcons.laundry,
+    Machine.DRY: OSJIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
-    Machine.laundryMachine: "세탁기",
-    Machine.dryMachine: "건조기",
+    Machine.WASH: "세탁기",
+    Machine.DRY: "건조기",
   };
 
   @override

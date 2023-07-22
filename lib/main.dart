@@ -45,7 +45,7 @@ enum Status {
   breakdown,
 }
 
-enum Machine { laundryMachine, dryMachine }
+enum Machine { WASH, DRY }
 
 // class TestPage extends StatelessWidget {
 //   const TestPage({super.key});

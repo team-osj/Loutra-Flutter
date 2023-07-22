@@ -155,12 +155,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                         isWoman: isSelectedPlace == 2 ? true : false,
                         leftIndex: placeIndex[isSelectedPlace] + index,
                         leftStatus: Status.working,
-                        leftMachine: Machine.laundryMachine,
+                        leftMachine: Machine.WASH,
                         rightIndex: placeIndex[isSelectedPlace] +
                             index +
                             (isSelectedPlace == 2 ? 10 : 8),
                         rightStatus: Status.available,
-                        rightMachine: Machine.dryMachine,
+                        rightMachine: Machine.DRY,
                       ),
                       SizedBox(height: 10.0.h),
                     ],
