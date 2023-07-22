@@ -17,7 +17,7 @@ class LaundryRoomPage extends StatefulWidget {
 }
 
 class _LaundryRoomPageState extends State<LaundryRoomPage> {
-  int isSelectedIcon = 0, isSelectedPlace = 0;
+  int isSelectedIcon = 1, isSelectedPlace = 0;
 
   Map place = <int, String>{
     0: "남자 기숙사측 세탁실",
