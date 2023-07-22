@@ -20,7 +20,7 @@ class MachineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 32) || (isWoman && index > 44)
+    return (!isWoman && index == 31) || (isWoman && index == -1)
         ? SizedBox(width: 185.0.w, height: 256.0.h)
         : GestureDetector(
             onTap: () => showModalBottomSheet(
@@ -60,7 +60,7 @@ class MachineCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${isWoman ? index - 31 : index}번 ",
+                        "${(isWoman ? index - 31 : index) + 1}번 ",
                         style: TextStyle(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.w500,

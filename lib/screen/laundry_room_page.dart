@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_text_button.dart';
 
 class LaundryRoomPage extends StatefulWidget {
-  const LaundryRoomPage({super.key});
+  LaundryRoomPage({super.key, required this.osjList});
+
+  OsjList osjList;
 
   @override
   State<LaundryRoomPage> createState() => _LaundryRoomPageState();
@@ -22,7 +25,15 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     2: "여자 세탁실",
   };
 
-  Map placeIndex = <int, int>{0: 1, 1: 17, 2: 32};
+  Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
+
+  Map status = <int, Status>{
+    0: Status.working,
+    1: Status.available,
+    2: Status.breakdown
+  };
+
+  Map machine = <String, Machine>{"WASH": Machine.WASH, "DRY": Machine.DRY};
 
   @override
   Widget build(BuildContext context) {
@@ -151,13 +162,42 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                         isSelectedIcon: isSelectedIcon,
                         isWoman: isSelectedPlace == 2 ? true : false,
                         leftIndex: placeIndex[isSelectedPlace] + index,
-                        leftStatus: Status.working,
-                        leftMachine: Machine.laundryMachine,
+                        leftStatus: status[widget.osjList
+                            .tests![placeIndex[isSelectedPlace] + index].state],
+                        leftMachine: machine[widget
+                            .osjList
+                            .tests![placeIndex[isSelectedPlace] + index]
+                            .deviceType],
                         rightIndex: placeIndex[isSelectedPlace] +
-                            index +
-                            (isSelectedPlace == 2 ? 10 : 8),
-                        rightStatus: Status.available,
-                        rightMachine: Machine.dryMachine,
+                                    index +
+                                    (isSelectedPlace == 2 ? 10 : 8) <
+                                44
+                            ? placeIndex[isSelectedPlace] +
+                                index +
+                                (isSelectedPlace == 2 ? 10 : 8)
+                            : -1,
+                        rightStatus: placeIndex[isSelectedPlace] +
+                                    index +
+                                    (isSelectedPlace == 2 ? 10 : 8) <
+                                44
+                            ? status[widget
+                                .osjList
+                                .tests![placeIndex[isSelectedPlace] +
+                                    index +
+                                    (isSelectedPlace == 2 ? 10 : 8)]
+                                .state]
+                            : Status.breakdown,
+                        rightMachine: placeIndex[isSelectedPlace] +
+                                    index +
+                                    (isSelectedPlace == 2 ? 10 : 8) <
+                                44
+                            ? machine[widget
+                                .osjList
+                                .tests![placeIndex[isSelectedPlace] +
+                                    index +
+                                    (isSelectedPlace == 2 ? 10 : 8)]
+                                .deviceType]
+                            : Machine.DRY,
                       ),
                       SizedBox(height: 10.0.h),
                     ],

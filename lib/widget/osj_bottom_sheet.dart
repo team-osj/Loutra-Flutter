@@ -33,13 +33,13 @@ class OSJBottomSheet extends StatelessWidget {
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.laundryMachine: OSJIcons.laundry,
-    Machine.dryMachine: OSJIcons.dry,
+    Machine.WASH: OSJIcons.laundry,
+    Machine.DRY: OSJIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
-    Machine.laundryMachine: "세탁기",
-    Machine.dryMachine: "건조기",
+    Machine.WASH: "세탁기",
+    Machine.DRY: "건조기",
   };
 
   @override
@@ -59,8 +59,8 @@ class OSJBottomSheet extends StatelessWidget {
           children: [
             Text(
               isEnableNotification
-                  ? '${isWoman ? index - 31 : index}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : '${isWoman ? index - 31 : index}의\n알림 설정을 해제하실건가요?',
+                  ? '${(isWoman ? index - 31 : index) + 1}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
+                  : '${(isWoman ? index - 31 : index) + 1}의\n알림 설정을 해제하실건가요?',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.0.sp,

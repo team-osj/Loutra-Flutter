@@ -33,18 +33,18 @@ class MachineButton extends StatelessWidget {
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.laundryMachine: OSJIcons.laundry,
-    Machine.dryMachine: OSJIcons.dry,
+    Machine.WASH: OSJIcons.laundry,
+    Machine.DRY: OSJIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
-    Machine.laundryMachine: "세탁기",
-    Machine.dryMachine: "건조기",
+    Machine.WASH: "세탁기",
+    Machine.DRY: "건조기",
   };
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 32) || (isWoman && index > 44)
+    return (!isWoman && index == 31) || (isWoman && index == -1)
         ? SizedBox(width: 154.0.w, height: 84.0.h)
         : GestureDetector(
             onTap: () {
@@ -80,7 +80,7 @@ class MachineButton extends StatelessWidget {
                     SizedBox(height: 12.0.h),
                     Row(
                       children: [
-                        Text("${isWoman ? index - 31 : index}번",
+                        Text("${(isWoman ? index - 31 : index) + 1}번",
                             style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(
                             width: (isWoman ? index - 31 : index) < 10

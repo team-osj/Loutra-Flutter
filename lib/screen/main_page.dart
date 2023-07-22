@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  MainPage({super.key, required this.osjList});
+
+  OsjList osjList;
 
   @override
   State<MainPage> createState() => _MainPageState();
