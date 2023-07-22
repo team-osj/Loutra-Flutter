@@ -9,11 +9,12 @@ class MachineCard extends StatelessWidget {
       {super.key,
       required this.index,
       required this.isEnableNotification,
+      required this.isWoman,
       required this.machine,
       required this.status});
 
   final int index;
-  final bool isEnableNotification;
+  final bool isEnableNotification, isWoman;
   final Machine machine;
   final Status status;
 
@@ -58,7 +59,7 @@ class MachineCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "$index번 ",
+                        "${isWoman ? index - 32 : index}번 ",
                         style: TextStyle(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.w500,

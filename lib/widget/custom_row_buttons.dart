@@ -30,6 +30,7 @@ class CustomRowButton extends StatelessWidget {
         isSelectedIcon == 0
             ? MachineCard(
                 index: leftIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 machine: leftMachine,
                 status: leftStatus,
@@ -46,6 +47,7 @@ class CustomRowButton extends StatelessWidget {
         isSelectedIcon == 0
             ? MachineCard(
                 index: rightIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 machine: rightMachine,
                 status: rightStatus,
