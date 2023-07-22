@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:lotura/model/apply_response_list.dart';
 import 'package:lotura/model/osj_list.dart';
+import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,6 +18,14 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
+  late StreamController<ApplyResponseList> applyResponseController;
+
+  @override
+  void initState() {
+    super.initState();
+    applyResponseController = StreamController<ApplyResponseList>();
+    receiveApplyList(applyResponseController);
+  }
 
   TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
@@ -65,6 +77,7 @@ class _MainPageState extends State<MainPage> {
       body: Padding(
         padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 36.0.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +89,27 @@ class _MainPageState extends State<MainPage> {
                 SizedBox(height: 5.0.h),
                 Text("누구보다 빠르게 사용해보세요.", style: smallStyle),
               ],
+            ),
+            Expanded(
+              child: StreamBuilder(
+                  stream: applyResponseController.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      print(snapshot.data!.applyResponseList!.length);
+                      return ListView.builder(
+                        itemCount: snapshot.data!.applyResponseList!.length,
+                        itemBuilder: (context, index) => SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: Text(snapshot
+                              .data!.applyResponseList![index].deviceType),
+                        ),
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }),
             ),
           ],
         ),
