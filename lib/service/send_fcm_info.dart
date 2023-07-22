@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:lotura/global/socket.dart';
+import 'package:lotura/secret.dart';
 
 Future<void> sendFcmInfo(String deviceId) async {
   var token = await FirebaseMessaging.instance.getToken();
@@ -9,7 +10,7 @@ Future<void> sendFcmInfo(String deviceId) async {
     'expect_state': '1',
   };
   print('$deviceId번 기기 fcm 전송');
-  socket.emit('request_push', deviceStatus);
+  socket.emit(sendFCM, deviceStatus);
   //테스트용
   socket.on('msg', (data) {
     print('답장 : $data');
