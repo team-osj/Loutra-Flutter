@@ -19,60 +19,62 @@ class MachineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => showModalBottomSheet(
-        context: context,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(25.r),
-          ),
-        ),
-        builder: (context) => OSJBottomSheet(
-          index: index,
-          isEnableNotification: isEnableNotification,
-          status: status,
-          machine: machine,
-        ),
-      ),
-      child: Container(
-        width: 185.0.w,
-        height: 256.0.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0),
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            SizedBox(height: 24.0.h),
-            Image.asset(
-              machine.index == 0
-                  ? "assets/laundry_image.jpeg"
-                  : "assets/dry_image.jpeg",
-              width: 120.0.r,
-              height: 120.0.r,
+    return index == 31
+        ? SizedBox(width: 185.0.w, height: 256.0.h)
+        : GestureDetector(
+            onTap: () => showModalBottomSheet(
+              context: context,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(25.r),
+                ),
+              ),
+              builder: (context) => OSJBottomSheet(
+                index: index,
+                isEnableNotification: isEnableNotification,
+                status: status,
+                machine: machine,
+              ),
             ),
-            SizedBox(height: 12.0.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "$index번 ",
-                  style: TextStyle(
-                    fontSize: 16.0.sp,
-                    fontWeight: FontWeight.w500,
+            child: Container(
+              width: 185.0.w,
+              height: 256.0.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0),
+                color: Colors.white,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: 24.0.h),
+                  Image.asset(
+                    machine.index == 0
+                        ? "assets/laundry_image.jpeg"
+                        : "assets/dry_image.jpeg",
+                    width: 120.0.r,
+                    height: 120.0.r,
                   ),
-                ),
-                Text(
-                  machine.index == 0 ? "세탁기" : "건조기",
-                  style: TextStyle(fontSize: 16.0.sp),
-                ),
-              ],
+                  SizedBox(height: 12.0.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "$index번 ",
+                        style: TextStyle(
+                          fontSize: 16.0.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        machine.index == 0 ? "세탁기" : "건조기",
+                        style: TextStyle(fontSize: 16.0.sp),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12.0.h),
+                  OSJStatusButton(status: status),
+                ],
+              ),
             ),
-            SizedBox(height: 12.0.h),
-            OSJStatusButton(status: status),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }
