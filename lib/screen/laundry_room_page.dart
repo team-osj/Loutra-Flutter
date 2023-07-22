@@ -14,7 +14,19 @@ class LaundryRoomPage extends StatefulWidget {
 }
 
 class _LaundryRoomPageState extends State<LaundryRoomPage> {
-  int isSelectedIcon = 0;
+  int isSelectedIcon = 0, isSelectedPlace = 0;
+
+  Map place = <int, String>{
+    0: "남자 기숙사측 세탁실",
+    1: "남자 학교측 세탁실",
+    2: "여자 세탁실",
+  };
+
+  Map placeIndex = <int, int>{
+    0: 1,
+    1: 16,
+    2: 32,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +40,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
           children: [
             SizedBox(width: 24.0.w),
             Text(
-              '남자 기숙사측 세탁실',
+              place[isSelectedPlace],
               style: TextStyle(
                 color: OsjColor.black,
                 fontSize: 24.0.sp,
@@ -57,31 +69,46 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               child: Row(
                 children: [
                   OSJTextButton(
+                    function: () => setState(() => isSelectedPlace = 0),
                     width: 111.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
-                    color: OsjColor.white,
-                    fontColor: OsjColor.primary700,
+                    color: isSelectedPlace == 0
+                        ? OsjColor.white
+                        : OsjColor.gray100,
+                    fontColor: isSelectedPlace == 0
+                        ? OsjColor.primary700
+                        : OsjColor.gray300,
                     text: "남자 기숙사측",
                     radius: 8.0,
                   ),
                   SizedBox(width: 8.0.w),
                   OSJTextButton(
+                    function: () => setState(() => isSelectedPlace = 1),
                     width: 99.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
-                    color: OsjColor.gray100,
-                    fontColor: OsjColor.gray300,
+                    color: isSelectedPlace == 1
+                        ? OsjColor.white
+                        : OsjColor.gray100,
+                    fontColor: isSelectedPlace == 1
+                        ? OsjColor.primary700
+                        : OsjColor.gray300,
                     text: "남자 학교측",
                     radius: 8.0,
                   ),
                   SizedBox(width: 8.0.w),
                   OSJTextButton(
+                    function: () => setState(() => isSelectedPlace = 2),
                     width: 53.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
-                    color: OsjColor.gray100,
-                    fontColor: OsjColor.gray300,
+                    color: isSelectedPlace == 2
+                        ? OsjColor.white
+                        : OsjColor.gray100,
+                    fontColor: isSelectedPlace == 2
+                        ? OsjColor.primary700
+                        : OsjColor.gray300,
                     text: "여자",
                     radius: 8.0,
                   ),
@@ -120,16 +147,16 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 16,
+                itemCount: isSelectedPlace == 2 ? 10 : 8,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       CustomRowButton(
                         isSelectedIcon: isSelectedIcon,
-                        leftIndex: index,
+                        leftIndex: placeIndex[isSelectedPlace] + index,
                         leftStatus: Status.working,
                         leftMachine: Machine.laundryMachine,
-                        rightIndex: index + 8,
+                        rightIndex: placeIndex[isSelectedPlace] + index + 8,
                         rightStatus: Status.available,
                         rightMachine: Machine.dryMachine,
                       ),
