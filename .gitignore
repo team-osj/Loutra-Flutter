@@ -35,7 +35,7 @@ android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 ios/firebase_app_id_file.json
 lib/firebase_options.dart
-/lib/baseurl.dart
+/lib/secret.dart
 
 # Symbolication related
 app.*.symbols
