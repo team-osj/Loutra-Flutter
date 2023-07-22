@@ -67,8 +67,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     width: 111.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
-                    color: OsjColor.white,
-                    fontColor: OsjColor.primary700,
+                    color: isSelectedPlace == 0
+                        ? OsjColor.white
+                        : OsjColor.gray100,
+                    fontColor: isSelectedPlace == 0
+                        ? OsjColor.primary700
+                        : OsjColor.gray300,
                     text: "남자 기숙사측",
                     radius: 8.0,
                   ),
@@ -78,8 +82,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     width: 99.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
-                    color: OsjColor.gray100,
-                    fontColor: OsjColor.gray300,
+                    color: isSelectedPlace == 1
+                        ? OsjColor.white
+                        : OsjColor.gray100,
+                    fontColor: isSelectedPlace == 1
+                        ? OsjColor.primary700
+                        : OsjColor.gray300,
                     text: "남자 학교측",
                     radius: 8.0,
                   ),
@@ -89,8 +97,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     width: 53.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
-                    color: OsjColor.gray100,
-                    fontColor: OsjColor.gray300,
+                    color: isSelectedPlace == 2
+                        ? OsjColor.white
+                        : OsjColor.gray100,
+                    fontColor: isSelectedPlace == 2
+                        ? OsjColor.primary700
+                        : OsjColor.gray300,
                     text: "여자",
                     radius: 8.0,
                   ),
