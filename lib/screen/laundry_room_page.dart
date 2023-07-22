@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_text_button.dart';
 
 class LaundryRoomPage extends StatefulWidget {
-  const LaundryRoomPage({super.key});
+  LaundryRoomPage({super.key, required this.osjList});
+
+  OsjList osjList;
 
   @override
   State<LaundryRoomPage> createState() => _LaundryRoomPageState();
