@@ -20,7 +20,7 @@ class MachineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 32) || (isWoman && index == -1)
+    return (!isWoman && index == 31) || (isWoman && index == -1)
         ? SizedBox(width: 185.0.w, height: 256.0.h)
         : GestureDetector(
             onTap: () => showModalBottomSheet(
