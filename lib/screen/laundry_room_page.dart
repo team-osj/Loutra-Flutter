@@ -22,6 +22,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     2: "여자 세탁실",
   };
 
+  Map placeIndex = <int, int>{
+    0: 1,
+    1: 16,
+    2: 1,
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,16 +147,16 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 16,
+                itemCount: isSelectedPlace == 2 ? 10 : 8,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       CustomRowButton(
                         isSelectedIcon: isSelectedIcon,
-                        leftIndex: index,
+                        leftIndex: placeIndex[isSelectedPlace] + index,
                         leftStatus: Status.working,
                         leftMachine: Machine.laundryMachine,
-                        rightIndex: index + 8,
+                        rightIndex: placeIndex[isSelectedPlace] + index + 8,
                         rightStatus: Status.available,
                         rightMachine: Machine.dryMachine,
                       ),
