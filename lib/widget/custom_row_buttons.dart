@@ -8,6 +8,7 @@ class CustomRowButton extends StatelessWidget {
   const CustomRowButton({
     super.key,
     required this.isSelectedIcon,
+    required this.isWoman,
     required this.leftIndex,
     required this.rightIndex,
     required this.leftStatus,
@@ -19,6 +20,7 @@ class CustomRowButton extends StatelessWidget {
   final int leftIndex, rightIndex, isSelectedIcon;
   final Status leftStatus, rightStatus;
   final Machine leftMachine, rightMachine;
+  final bool isWoman;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CustomRowButton extends StatelessWidget {
               )
             : MachineButton(
                 index: leftIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 status: leftStatus,
                 machine: leftMachine),
@@ -49,6 +52,7 @@ class CustomRowButton extends StatelessWidget {
               )
             : MachineButton(
                 index: rightIndex,
+                isWoman: isWoman,
                 isEnableNotification: true,
                 status: rightStatus,
                 machine: rightMachine,

@@ -153,6 +153,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     children: [
                       CustomRowButton(
                         isSelectedIcon: isSelectedIcon,
+                        isWoman: isSelectedPlace == 2 ? true : false,
                         leftIndex: placeIndex[isSelectedPlace] + index,
                         leftStatus: Status.working,
                         leftMachine: Machine.laundryMachine,
