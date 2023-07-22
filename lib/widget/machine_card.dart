@@ -19,7 +19,7 @@ class MachineCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return index == 31
+    return index == 32
         ? SizedBox(width: 185.0.w, height: 256.0.h)
         : GestureDetector(
             onTap: () => showModalBottomSheet(
