@@ -27,6 +27,14 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
 
   Map placeIndex = <int, int>{0: 1, 1: 17, 2: 32};
 
+  Map status = <int, Status>{
+    0: Status.working,
+    1: Status.available,
+    2: Status.breakdown
+  };
+
+  Map machine = <String, Machine>{"WASH": Machine.WASH, "DRY": Machine.DRY};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,13 +162,21 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                         isSelectedIcon: isSelectedIcon,
                         isWoman: isSelectedPlace == 2 ? true : false,
                         leftIndex: placeIndex[isSelectedPlace] + index,
-                        leftStatus: Status.working,
-                        leftMachine: Machine.WASH,
+                        leftStatus: status[widget.osjList
+                            .tests![placeIndex[isSelectedPlace] + index].state],
+                        leftMachine: machine[widget
+                            .osjList
+                            .tests![placeIndex[isSelectedPlace] + index]
+                            .deviceType],
                         rightIndex: placeIndex[isSelectedPlace] +
                             index +
                             (isSelectedPlace == 2 ? 10 : 8),
-                        rightStatus: Status.available,
-                        rightMachine: Machine.DRY,
+                        rightStatus: status[widget.osjList
+                            .tests![placeIndex[isSelectedPlace] + index].state],
+                        rightMachine: machine[widget
+                            .osjList
+                            .tests![placeIndex[isSelectedPlace] + index]
+                            .deviceType],
                       ),
                       SizedBox(height: 10.0.h),
                     ],
