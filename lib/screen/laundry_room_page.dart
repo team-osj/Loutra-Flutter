@@ -24,8 +24,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
 
   Map placeIndex = <int, int>{
     0: 1,
-    1: 16,
-    2: 32,
+    1: 17,
+    2: 33
   };
 
   @override
