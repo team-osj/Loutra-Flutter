@@ -25,7 +25,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     2: "여자 세탁실",
   };
 
-  Map placeIndex = <int, int>{0: 1, 1: 17, 2: 32};
+  Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
 
   Map status = <int, Status>{
     0: Status.working,
@@ -171,11 +171,17 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                         rightIndex: placeIndex[isSelectedPlace] +
                             index +
                             (isSelectedPlace == 2 ? 10 : 8),
-                        rightStatus: status[widget.osjList
-                            .tests![placeIndex[isSelectedPlace] + index].state],
+                        rightStatus: status[widget
+                            .osjList
+                            .tests![placeIndex[isSelectedPlace] +
+                                index +
+                                (isSelectedPlace == 2 ? 10 : 8)]
+                            .state],
                         rightMachine: machine[widget
                             .osjList
-                            .tests![placeIndex[isSelectedPlace] + index]
+                            .tests![placeIndex[isSelectedPlace] +
+                                index +
+                                (isSelectedPlace == 2 ? 10 : 8)]
                             .deviceType],
                       ),
                       SizedBox(height: 10.0.h),
