@@ -60,7 +60,7 @@ class MachineCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${isWoman ? index - 31 : index}번 ",
+                        "${(isWoman ? index - 31 : index) + 1}번 ",
                         style: TextStyle(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.w500,
