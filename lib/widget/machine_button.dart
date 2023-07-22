@@ -58,6 +58,7 @@ class MachineButton extends StatelessWidget {
                 builder: (context) => OSJBottomSheet(
                     index: index,
                     isEnableNotification: isEnableNotification,
+                    isWoman: isWoman,
                     status: status,
                     machine: machine),
               );
