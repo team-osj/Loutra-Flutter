@@ -26,6 +26,12 @@ class MachineButton extends StatelessWidget {
     Status.breakdown: OsjColor.red50,
   };
 
+  final Map statusIconColor = <Status, Color>{
+    Status.available: OsjColor.green700,
+    Status.working: OsjColor.primary700,
+    Status.breakdown: OsjColor.red700,
+  };
+
   final Map statusIcon = <Status, IconData>{
     Status.available: OSJIcons.checkCircle,
     Status.working: OSJIcons.working,
@@ -76,7 +82,8 @@ class MachineButton extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(machineIcon[machine], size: 24.0.r),
+                    Icon(machineIcon[machine],
+                        size: 24.0.r, color: OsjColor.gray300),
                     SizedBox(height: 12.0.h),
                     Row(
                       children: [
@@ -89,7 +96,7 @@ class MachineButton extends StatelessWidget {
                         Text(machineText[machine],
                             style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(width: 8.0.w),
-                        Icon(statusIcon[status], size: 18.0.r),
+                        Icon(statusIcon[status], size: 18.0.r, color: statusIconColor[status],),
                       ],
                     ),
                   ],
