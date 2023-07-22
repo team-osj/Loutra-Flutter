@@ -27,7 +27,11 @@ class CustomRowButton extends StatelessWidget {
       children: [
         isSelectedIcon == 0
             ? MachineCard(
-                index: leftIndex, machine: leftMachine, status: leftStatus)
+                index: leftIndex,
+                isEnableNotification: true,
+                machine: leftMachine,
+                status: leftStatus,
+              )
             : MachineButton(
                 index: leftIndex,
                 isEnableNotification: true,
@@ -38,7 +42,11 @@ class CustomRowButton extends StatelessWidget {
             : const Icon(OSJIcons.triangleUp, color: Colors.grey),
         isSelectedIcon == 0
             ? MachineCard(
-                index: rightIndex, machine: rightMachine, status: rightStatus)
+                index: rightIndex,
+                isEnableNotification: true,
+                machine: rightMachine,
+                status: rightStatus,
+              )
             : MachineButton(
                 index: rightIndex,
                 isEnableNotification: true,
