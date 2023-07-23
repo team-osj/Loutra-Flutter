@@ -25,7 +25,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     2: "여자 세탁실",
   };
 
-  Map placeIndex = <int, int>{0: 1, 1: 17, 2: 32};
+  Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
 
   Map status = <int, Status>{
     0: Status.working,
@@ -161,7 +161,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                       CustomRowButton(
                         isSelectedIcon: isSelectedIcon,
                         isWoman: isSelectedPlace == 2 ? true : false,
-                        leftIndex: placeIndex[isSelectedPlace] + index,
+                        leftIndex: widget.osjList
+                            .tests![placeIndex[isSelectedPlace] + index].id,
                         leftStatus: status[widget.osjList
                             .tests![placeIndex[isSelectedPlace] + index].state],
                         leftMachine: machine[widget
@@ -172,9 +173,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                     index +
                                     (isSelectedPlace == 2 ? 10 : 8) <
                                 44
-                            ? placeIndex[isSelectedPlace] +
-                                index +
-                                (isSelectedPlace == 2 ? 10 : 8)
+                            ? widget
+                                .osjList
+                                .tests![placeIndex[isSelectedPlace] +
+                                    index +
+                                    (isSelectedPlace == 2 ? 10 : 8)]
+                                .id
                             : -1,
                         rightStatus: placeIndex[isSelectedPlace] +
                                     index +
