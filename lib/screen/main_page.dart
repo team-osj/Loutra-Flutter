@@ -103,7 +103,6 @@ class _MainPageState extends State<MainPage> {
                   stream: applyResponseController.stream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      print(snapshot.data!.applyResponseList!.length);
                       return ListView.builder(
                           itemCount: snapshot
                                   .data!.applyResponseList!.length.isEven
@@ -143,7 +142,14 @@ class _MainPageState extends State<MainPage> {
                                                     index * 2 + 1]
                                                 .deviceId,
                                             isEnableNotification: false,
-                                            isWoman: false,
+                                            isWoman: snapshot
+                                                        .data!
+                                                        .applyResponseList![
+                                                            index * 2 + 1]
+                                                        .deviceId >
+                                                    31
+                                                ? true
+                                                : false,
                                             machine: machine[snapshot
                                                 .data!
                                                 .applyResponseList![
