@@ -17,14 +17,14 @@ class OSJBottomSheet extends StatelessWidget {
     required this.isWoman,
     required this.status,
     required this.machine,
-    this.osjStreamController,
+    this.streamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
-  StreamController? osjStreamController;
+  StreamController? streamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OsjColor.green50,
@@ -64,9 +64,13 @@ class OSJBottomSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              isEnableNotification
-                  ? '${(isWoman ? index - 31 : index) + 1}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : '${(isWoman ? index - 31 : index) + 1}의\n알림 설정을 해제하실건가요?',
+              isWoman && isEnableNotification
+                  ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
+                  : !isWoman && isEnableNotification
+                      ? '$index번 ${machineText[machine]}를\n알림 설정 하실건가요?'
+                      : isWoman && !isEnableNotification
+                          ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?'
+                          : '$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.0.sp,
@@ -89,7 +93,7 @@ class OSJBottomSheet extends StatelessWidget {
                     function: () {
                       isEnableNotification
                           ? sendFcmInfo(index.toString())
-                          : applyCancle(osjStreamController!, index);
+                          : applyCancle(streamController!, index);
                       Navigator.pop(context);
                     },
                     width: 185.0.w,

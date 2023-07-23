@@ -14,18 +14,19 @@ class MachineCard extends StatelessWidget {
     required this.isWoman,
     required this.machine,
     required this.status,
-    this.osjStreamController,
+    this.streamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Machine machine;
   final Status status;
-  StreamController? osjStreamController;
+  StreamController? streamController;
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 31) || (isWoman && index == -1)
+    return (!isWoman && index == 32 && isEnableNotification) ||
+            (isWoman && index == -1)
         ? SizedBox(width: 185.0.w, height: 256.0.h)
         : GestureDetector(
             onTap: () => showModalBottomSheet(
@@ -41,8 +42,8 @@ class MachineCard extends StatelessWidget {
                 isWoman: isWoman,
                 status: status,
                 machine: machine,
-                osjStreamController:
-                    isEnableNotification ? null : osjStreamController,
+                streamController:
+                    isEnableNotification ? null : streamController,
               ),
             ),
             child: Container(
@@ -67,7 +68,7 @@ class MachineCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${(isWoman ? index - 31 : index) + 1}번 ",
+                        "${isWoman ? index - 31 : index}번 ",
                         style: TextStyle(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.w500,

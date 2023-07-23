@@ -54,7 +54,7 @@ class MachineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 31) || (isWoman && index == -1)
+    return (!isWoman && index == 32) || (isWoman && index == -1)
         ? SizedBox(width: 154.0.w, height: 84.0.h)
         : GestureDetector(
             onTap: () {
@@ -71,7 +71,7 @@ class MachineButton extends StatelessWidget {
                   isWoman: isWoman,
                   status: status,
                   machine: machine,
-                  osjStreamController:
+                  streamController:
                       isEnableNotification ? null : osjStreamController,
                 ),
               );
@@ -94,7 +94,7 @@ class MachineButton extends StatelessWidget {
                     SizedBox(height: 12.0.h),
                     Row(
                       children: [
-                        Text("${(isWoman ? index - 31 : index) + 1}번",
+                        Text("${isWoman ? index - 31 : index}번",
                             style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(
                             width: (isWoman ? index - 31 : index) < 10

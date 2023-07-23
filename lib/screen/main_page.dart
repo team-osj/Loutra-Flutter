@@ -1,7 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:lotura/main.dart';
+import 'package:lotura/model/apply_response_list.dart';
 import 'package:lotura/model/osj_list.dart';
+import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/widget/custom_row_buttons.dart';
+import 'package:lotura/widget/machine_card.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({super.key, required this.osjList});
@@ -14,6 +21,14 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
+  late StreamController<ApplyResponseList> applyResponseController;
+
+  @override
+  void initState() {
+    super.initState();
+    applyResponseController = StreamController<ApplyResponseList>();
+    receiveApplyList(applyResponseController);
+  }
 
   TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
@@ -25,6 +40,11 @@ class _MainPageState extends State<MainPage> {
     fontSize: 16.0.sp,
     color: OsjColor.gray500,
   );
+
+  Map machine = <String, Machine>{
+    "WASH": Machine.WASH,
+    "DRY": Machine.DRY,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +85,7 @@ class _MainPageState extends State<MainPage> {
       body: Padding(
         padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 36.0.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,6 +97,80 @@ class _MainPageState extends State<MainPage> {
                 SizedBox(height: 5.0.h),
                 Text("누구보다 빠르게 사용해보세요.", style: smallStyle),
               ],
+            ),
+            Expanded(
+              child: StreamBuilder(
+                  stream: applyResponseController.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: snapshot
+                                  .data!.applyResponseList!.length.isEven
+                              ? snapshot.data!.applyResponseList!.length ~/ 2
+                              : snapshot.data!.applyResponseList!.length ~/ 2 +
+                                  1,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    MachineCard(
+                                        streamController:
+                                            applyResponseController,
+                                        index: snapshot
+                                            .data!
+                                            .applyResponseList![index * 2]
+                                            .deviceId,
+                                        isEnableNotification: false,
+                                        isWoman: false,
+                                        machine: machine[snapshot
+                                            .data!
+                                            .applyResponseList![index * 2]
+                                            .deviceType],
+                                        status: Status.working),
+                                    index * 2 + 1 <
+                                            snapshot
+                                                .data!.applyResponseList!.length
+                                        ? MachineCard(
+                                            streamController:
+                                                applyResponseController,
+                                            index: snapshot
+                                                .data!
+                                                .applyResponseList![
+                                                    index * 2 + 1]
+                                                .deviceId,
+                                            isEnableNotification: false,
+                                            isWoman: snapshot
+                                                        .data!
+                                                        .applyResponseList![
+                                                            index * 2 + 1]
+                                                        .deviceId >
+                                                    31
+                                                ? true
+                                                : false,
+                                            machine: machine[snapshot
+                                                .data!
+                                                .applyResponseList![
+                                                    index * 2 + 1]
+                                                .deviceType],
+                                            status: Status.working)
+                                        : SizedBox(
+                                            width: 185.0.w,
+                                            height: 256.0.h,
+                                          ),
+                                  ],
+                                ),
+                                SizedBox(height: 10.0.h),
+                              ],
+                            );
+                          });
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }),
             ),
           ],
         ),
