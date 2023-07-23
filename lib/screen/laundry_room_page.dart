@@ -25,7 +25,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     2: "여자 세탁실",
   };
 
-  Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
+  Map placeIndex = <int, int>{0: 1, 1: 17, 2: 32};
 
   Map status = <int, Status>{
     0: Status.working,
