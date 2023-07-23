@@ -118,7 +118,7 @@ class _MainPageState extends State<MainPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     MachineCard(
-                                        osjStreamController:
+                                        streamController:
                                             applyResponseController,
                                         index: snapshot
                                             .data!
@@ -135,7 +135,7 @@ class _MainPageState extends State<MainPage> {
                                             snapshot
                                                 .data!.applyResponseList!.length
                                         ? MachineCard(
-                                            osjStreamController:
+                                            streamController:
                                                 applyResponseController,
                                             index: snapshot
                                                 .data!

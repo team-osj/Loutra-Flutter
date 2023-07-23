@@ -14,14 +14,14 @@ class MachineCard extends StatelessWidget {
     required this.isWoman,
     required this.machine,
     required this.status,
-    this.osjStreamController,
+    this.streamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Machine machine;
   final Status status;
-  StreamController? osjStreamController;
+  StreamController? streamController;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class MachineCard extends StatelessWidget {
                 isWoman: isWoman,
                 status: status,
                 machine: machine,
-                osjStreamController:
-                    isEnableNotification ? null : osjStreamController,
+                streamController:
+                    isEnableNotification ? null : streamController,
               ),
             ),
             child: Container(

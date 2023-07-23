@@ -17,14 +17,14 @@ class OSJBottomSheet extends StatelessWidget {
     required this.isWoman,
     required this.status,
     required this.machine,
-    this.osjStreamController,
+    this.streamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
-  StreamController? osjStreamController;
+  StreamController? streamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OsjColor.green50,
@@ -89,7 +89,7 @@ class OSJBottomSheet extends StatelessWidget {
                     function: () {
                       isEnableNotification
                           ? sendFcmInfo(index.toString())
-                          : applyCancle(osjStreamController!, index);
+                          : applyCancle(streamController!, index);
                       Navigator.pop(context);
                     },
                     width: 185.0.w,

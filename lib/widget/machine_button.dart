@@ -71,7 +71,7 @@ class MachineButton extends StatelessWidget {
                   isWoman: isWoman,
                   status: status,
                   machine: machine,
-                  osjStreamController:
+                  streamController:
                       isEnableNotification ? null : osjStreamController,
                 ),
               );
