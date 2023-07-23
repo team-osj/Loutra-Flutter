@@ -64,9 +64,13 @@ class OSJBottomSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              isEnableNotification
-                  ? '${isWoman ? index - 31 : index}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : '${isWoman ? index - 31 : index}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
+              isWoman && isEnableNotification
+                  ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
+                  : !isWoman && isEnableNotification
+                      ? '$index번 ${machineText[machine]}를\n알림 설정 하실건가요?'
+                      : isWoman && !isEnableNotification
+                          ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?'
+                          : '$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.0.sp,
