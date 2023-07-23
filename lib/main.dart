@@ -7,6 +7,7 @@ import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:lotura/screen/splash_page.dart';
 import 'package:lotura/widget/bottom_navi.dart';
+import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/machine_card.dart';
 
 Future<void> main() async {
@@ -15,6 +16,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   fcmInit();
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor: OsjColor.gray100,
+      statusBarColor: OsjColor.gray100,
+    ),
+  );
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
