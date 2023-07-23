@@ -66,7 +66,7 @@ class OSJBottomSheet extends StatelessWidget {
             Text(
               isEnableNotification
                   ? '${isWoman ? index - 31 : index}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : '${isWoman ? index - 31 : index}의\n알림 설정을 해제하실건가요?',
+                  : '${isWoman ? index - 31 : index}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.0.sp,
