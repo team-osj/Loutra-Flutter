@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lotura/main.dart';
 import 'package:lotura/model/apply_response_list.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/widget/custom_row_buttons.dart';
+import 'package:lotura/widget/machine_card.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({super.key, required this.osjList});
@@ -37,6 +40,11 @@ class _MainPageState extends State<MainPage> {
     fontSize: 16.0.sp,
     color: OsjColor.gray500,
   );
+
+  Map machine = <String, Machine>{
+    "WASH": Machine.WASH,
+    "DRY": Machine.DRY,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +105,61 @@ class _MainPageState extends State<MainPage> {
                     if (snapshot.hasData) {
                       print(snapshot.data!.applyResponseList!.length);
                       return ListView.builder(
-                        itemCount: snapshot.data!.applyResponseList!.length,
-                        itemBuilder: (context, index) => SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: Text(snapshot
-                              .data!.applyResponseList![index].deviceType),
-                        ),
-                      );
+                          itemCount: snapshot
+                                  .data!.applyResponseList!.length.isEven
+                              ? snapshot.data!.applyResponseList!.length ~/ 2
+                              : snapshot.data!.applyResponseList!.length ~/ 2 +
+                                  1,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    MachineCard(
+                                        osjStreamController:
+                                            applyResponseController,
+                                        index: snapshot
+                                            .data!
+                                            .applyResponseList![index * 2]
+                                            .deviceId,
+                                        isEnableNotification: false,
+                                        isWoman: false,
+                                        machine: machine[snapshot
+                                            .data!
+                                            .applyResponseList![index * 2]
+                                            .deviceType],
+                                        status: Status.working),
+                                    index * 2 + 1 <
+                                            snapshot
+                                                .data!.applyResponseList!.length
+                                        ? MachineCard(
+                                            osjStreamController:
+                                                applyResponseController,
+                                            index: snapshot
+                                                .data!
+                                                .applyResponseList![
+                                                    index * 2 + 1]
+                                                .deviceId,
+                                            isEnableNotification: false,
+                                            isWoman: false,
+                                            machine: machine[snapshot
+                                                .data!
+                                                .applyResponseList![
+                                                    index * 2 + 1]
+                                                .deviceType],
+                                            status: Status.working)
+                                        : SizedBox(
+                                            width: 185.0.w,
+                                            height: 256.0.h,
+                                          ),
+                                  ],
+                                ),
+                                SizedBox(height: 10.0.h),
+                              ],
+                            );
+                          });
                     }
                     return const Center(
                       child: CircularProgressIndicator(),
