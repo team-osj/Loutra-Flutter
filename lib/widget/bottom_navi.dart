@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/screen/laundry_room_page.dart';
 import 'package:lotura/screen/main_page.dart';
@@ -11,7 +10,9 @@ import 'package:lotura/widget/osj_icon_button.dart';
 import 'package:lotura/widget/osj_image_button.dart';
 
 class BottomNavi extends StatefulWidget {
-  const BottomNavi({super.key});
+  BottomNavi({super.key, required this.osjStreamController});
+
+  StreamController<OsjList> osjStreamController;
 
   @override
   State<BottomNavi> createState() => _BottomNaviState();
@@ -20,7 +21,6 @@ class BottomNavi extends StatefulWidget {
 class _BottomNaviState extends State<BottomNavi>
     with SingleTickerProviderStateMixin {
   late TabController controller;
-  late StreamController<OsjList> osjStreamController;
 
   int selectedIndex = 0;
 
@@ -29,15 +29,13 @@ class _BottomNaviState extends State<BottomNavi>
     super.initState();
     controller = TabController(length: 2, vsync: this)
       ..addListener(() => setState(() => selectedIndex = controller.index));
-    osjStreamController = StreamController<OsjList>();
-    socketInit(osjStreamController);
   }
 
   @override
   void dispose() {
     super.dispose();
     controller.dispose();
-    osjStreamController.close();
+    widget.osjStreamController.close();
   }
 
   @override
@@ -45,7 +43,7 @@ class _BottomNaviState extends State<BottomNavi>
     return Scaffold(
       backgroundColor: OsjColor.gray100,
       body: StreamBuilder(
-          stream: osjStreamController.stream,
+          stream: widget.osjStreamController.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return TabBarView(
