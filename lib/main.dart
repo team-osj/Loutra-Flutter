@@ -18,11 +18,10 @@ Future<void> main() async {
   fcmInit();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      systemNavigationBarColor: OsjColor.gray100,
-      statusBarColor: OsjColor.gray100,
+      statusBarColor: OsjColor.gray100
     ),
   );
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
