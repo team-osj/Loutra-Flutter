@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     controller = StreamController();
     socketInit(controller);
-    Future.delayed(const Duration(seconds: 2)).then(
+    Future.delayed(const Duration(milliseconds: 1100)).then(
       (value) => Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
