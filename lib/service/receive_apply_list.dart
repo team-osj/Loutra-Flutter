@@ -11,7 +11,6 @@ void receiveApplyList(StreamController streamController) async {
   print('리스트 받아오기');
   socket.emit('view_request', deviceToken);
   socket.on('request_list', (data) {
-    print(data);
     streamController.sink.add(ApplyResponseList.fromJson(data));
   });
 }
