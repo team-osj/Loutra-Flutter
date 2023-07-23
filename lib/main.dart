@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/firebase_options.dart';
+import 'package:lotura/screen/splash_page.dart';
 import 'package:lotura/widget/bottom_navi.dart';
 import 'package:lotura/widget/machine_card.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
             highlightColor: Colors.transparent,
           ),
           debugShowCheckedModeBanner: false,
-          home: const BottomNavi(),
+          home: const SplashPage(),
         );
       },
     );
