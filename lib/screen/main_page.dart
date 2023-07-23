@@ -125,7 +125,14 @@ class _MainPageState extends State<MainPage> {
                                             .applyResponseList![index * 2]
                                             .deviceId,
                                         isEnableNotification: false,
-                                        isWoman: false,
+                                        isWoman: snapshot
+                                                    .data!
+                                                    .applyResponseList![
+                                                        index * 2]
+                                                    .deviceId >
+                                                31
+                                            ? true
+                                            : false,
                                         machine: machine[snapshot
                                             .data!
                                             .applyResponseList![index * 2]
