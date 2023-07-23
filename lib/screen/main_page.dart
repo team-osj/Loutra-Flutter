@@ -98,6 +98,7 @@ class _MainPageState extends State<MainPage> {
                 Text("누구보다 빠르게 사용해보세요.", style: smallStyle),
               ],
             ),
+            SizedBox(height: 20.0.h),
             Expanded(
               child: StreamBuilder(
                   stream: applyResponseController.stream,
