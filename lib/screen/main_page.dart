@@ -104,76 +104,81 @@ class _MainPageState extends State<MainPage> {
                   stream: applyResponseController.stream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return ListView.builder(
-                          itemCount: snapshot
-                                  .data!.applyResponseList!.length.isEven
-                              ? snapshot.data!.applyResponseList!.length ~/ 2
-                              : snapshot.data!.applyResponseList!.length ~/ 2 +
-                                  1,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    MachineCard(
-                                        streamController:
-                                            applyResponseController,
-                                        index: snapshot
-                                            .data!
-                                            .applyResponseList![index * 2]
-                                            .deviceId,
-                                        isEnableNotification: false,
-                                        isWoman: snapshot
-                                                    .data!
-                                                    .applyResponseList![
-                                                        index * 2]
-                                                    .deviceId >
-                                                31
-                                            ? true
-                                            : false,
-                                        machine: machine[snapshot
-                                            .data!
-                                            .applyResponseList![index * 2]
-                                            .deviceType],
-                                        status: Status.working),
-                                    index * 2 + 1 <
-                                            snapshot
-                                                .data!.applyResponseList!.length
-                                        ? MachineCard(
-                                            streamController:
-                                                applyResponseController,
-                                            index: snapshot
-                                                .data!
-                                                .applyResponseList![
-                                                    index * 2 + 1]
-                                                .deviceId,
-                                            isEnableNotification: false,
-                                            isWoman: snapshot
-                                                        .data!
-                                                        .applyResponseList![
-                                                            index * 2 + 1]
-                                                        .deviceId >
-                                                    31
-                                                ? true
-                                                : false,
-                                            machine: machine[snapshot
-                                                .data!
-                                                .applyResponseList![
-                                                    index * 2 + 1]
-                                                .deviceType],
-                                            status: Status.working)
-                                        : SizedBox(
-                                            width: 185.0.w,
-                                            height: 256.0.h,
-                                          ),
-                                  ],
-                                ),
-                                SizedBox(height: 10.0.h),
-                              ],
-                            );
-                          });
+                      return ScrollConfiguration(
+                        behavior:
+                            const ScrollBehavior().copyWith(overscroll: false),
+                        child: ListView.builder(
+                            itemCount: snapshot
+                                    .data!.applyResponseList!.length.isEven
+                                ? snapshot.data!.applyResponseList!.length ~/ 2
+                                : snapshot.data!.applyResponseList!.length ~/
+                                        2 +
+                                    1,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      MachineCard(
+                                          streamController:
+                                              applyResponseController,
+                                          index: snapshot
+                                              .data!
+                                              .applyResponseList![index * 2]
+                                              .deviceId,
+                                          isEnableNotification: false,
+                                          isWoman: snapshot
+                                                      .data!
+                                                      .applyResponseList![
+                                                          index * 2]
+                                                      .deviceId >
+                                                  31
+                                              ? true
+                                              : false,
+                                          machine: machine[snapshot
+                                              .data!
+                                              .applyResponseList![index * 2]
+                                              .deviceType],
+                                          status: Status.working),
+                                      index * 2 + 1 <
+                                              snapshot.data!.applyResponseList!
+                                                  .length
+                                          ? MachineCard(
+                                              streamController:
+                                                  applyResponseController,
+                                              index: snapshot
+                                                  .data!
+                                                  .applyResponseList![
+                                                      index * 2 + 1]
+                                                  .deviceId,
+                                              isEnableNotification: false,
+                                              isWoman: snapshot
+                                                          .data!
+                                                          .applyResponseList![
+                                                              index * 2 + 1]
+                                                          .deviceId >
+                                                      31
+                                                  ? true
+                                                  : false,
+                                              machine: machine[snapshot
+                                                  .data!
+                                                  .applyResponseList![
+                                                      index * 2 + 1]
+                                                  .deviceType],
+                                              status: Status.working)
+                                          : SizedBox(
+                                              width: 185.0.w,
+                                              height: 256.0.h,
+                                            ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10.0.h),
+                                ],
+                              );
+                            }),
+                      );
                     }
                     return const Center(
                       child: CircularProgressIndicator(),
