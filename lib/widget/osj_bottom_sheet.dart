@@ -48,11 +48,41 @@ class OSJBottomSheet extends StatelessWidget {
     Machine.DRY: "건조기",
   };
 
+  String text(bool isEnableNotification, isWoman, Status status) {
+    if (isEnableNotification) {
+      if (isWoman) {
+        switch (status) {
+          case Status.working:
+            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?";
+          case Status.available:
+            return "사용 가능, 여자 층, 알림 신청 불가능";
+          case Status.breakdown:
+            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
+        }
+      } else {
+        switch (status) {
+          case Status.working:
+            return "$index번 ${machineText[machine]}를\n알림 설정 하실건가요?";
+          case Status.available:
+            return "사용 가능, 남자 층, 알림 신청 불가능";
+          case Status.breakdown:
+            return "$index번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
+        }
+      }
+    } else {
+      if (isWoman) {
+        return "여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?";
+      } else {
+        return "$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?";
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 220.0.h,
+      height: status == Status.working ? 220.0.h : 347.0.h,
       child: Padding(
         padding: EdgeInsets.only(
           left: 24.0.w,
@@ -62,15 +92,10 @@ class OSJBottomSheet extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              isWoman && isEnableNotification
-                  ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : !isWoman && isEnableNotification
-                      ? '$index번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                      : isWoman && !isEnableNotification
-                          ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?'
-                          : '$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
+              text(isEnableNotification, isWoman, status),
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 22.0.sp,
