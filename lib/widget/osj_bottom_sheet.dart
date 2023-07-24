@@ -48,11 +48,41 @@ class OSJBottomSheet extends StatelessWidget {
     Machine.DRY: "건조기",
   };
 
+  String text(bool isEnableNotification, isWoman, Status status) {
+    if (isEnableNotification) {
+      if (isWoman) {
+        switch (status) {
+          case Status.working:
+            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?";
+          case Status.available:
+            return "사용 가능, 여자 층, 알림 신청 불가능";
+          case Status.breakdown:
+            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
+        }
+      } else {
+        switch (status) {
+          case Status.working:
+            return "$index번 ${machineText[machine]}를\n알림 설정 하실건가요?";
+          case Status.available:
+            return "사용 가능, 남자 층, 알림 신청 불가능";
+          case Status.breakdown:
+            return "$index번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
+        }
+      }
+    } else {
+      if (isWoman) {
+        return "여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?";
+      } else {
+        return "$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?";
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 220.0.h,
+      height: status == Status.working ? 220.0.h : 268.0.h,
       child: Padding(
         padding: EdgeInsets.only(
           left: 24.0.w,
@@ -63,47 +93,65 @@ class OSJBottomSheet extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              isWoman && isEnableNotification
-                  ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                  : !isWoman && isEnableNotification
-                      ? '$index번 ${machineText[machine]}를\n알림 설정 하실건가요?'
-                      : isWoman && !isEnableNotification
-                          ? '여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?'
-                          : '$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 22.0.sp,
-                fontWeight: FontWeight.w600,
+            status == Status.working
+                ? const SizedBox.shrink()
+                : Icon(
+                    statusIcon[status],
+                    size: 24.0.r,
+                    color: status == Status.available
+                        ? OsjColor.green700
+                        : OsjColor.red700,
+                  ),
+            Padding(
+              padding: status == Status.working
+                  ? EdgeInsets.only(bottom: 24.0.h)
+                  : EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
+              child: Text(
+                text(isEnableNotification, isWoman, status),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22.0.sp,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-            SizedBox(height: 24.0.h),
-            Row(
-              children: [
-                OSJTextButton(
-                    function: () => Navigator.of(context).pop(),
-                    width: 185.0.w,
-                    height: 56.0.h,
-                    fontSize: 16.0.h,
-                    color: OsjColor.gray100,
-                    fontColor: OsjColor.black,
-                    text: "취소"),
-                SizedBox(width: 12.0.w),
-                OSJTextButton(
-                    function: () {
-                      isEnableNotification
-                          ? sendFcmInfo(index.toString())
-                          : applyCancle(streamController!, index);
-                      Navigator.pop(context);
-                    },
-                    width: 185.0.w,
-                    height: 56.0.h,
-                    fontSize: 16.0.h,
-                    color: OsjColor.primary700,
-                    fontColor: OsjColor.white,
-                    text: isEnableNotification ? "알림 설정" : "알림 해제"),
-              ],
-            ),
+            status == Status.working
+                ? Row(
+                    children: [
+                      OSJTextButton(
+                          function: () => Navigator.of(context).pop(),
+                          width: 185.0.w,
+                          height: 56.0.h,
+                          fontSize: 16.0.h,
+                          color: OsjColor.gray100,
+                          fontColor: OsjColor.black,
+                          text: "취소"),
+                      SizedBox(width: 12.0.w),
+                      OSJTextButton(
+                          function: () {
+                            isEnableNotification
+                                ? sendFcmInfo(index.toString())
+                                : applyCancle(streamController!, index);
+                            Navigator.pop(context);
+                          },
+                          width: 185.0.w,
+                          height: 56.0.h,
+                          fontSize: 16.0.h,
+                          color: OsjColor.primary700,
+                          fontColor: OsjColor.white,
+                          text: isEnableNotification ? "알림 설정" : "알림 해제"),
+                    ],
+                  )
+                : Center(
+                    child: OSJTextButton(
+                        function: () => Navigator.of(context).pop(),
+                        width: 382.0.w,
+                        height: 56.0.h,
+                        fontSize: 16.0.h,
+                        color: OsjColor.gray100,
+                        fontColor: OsjColor.black,
+                        text: "확인"),
+                  ),
           ],
         ),
       ),
