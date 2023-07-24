@@ -82,7 +82,7 @@ class OSJBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: status == Status.working ? 220.0.h : 347.0.h,
+      height: status == Status.working ? 220.0.h : 268.0.h,
       child: Padding(
         padding: EdgeInsets.only(
           left: 24.0.w,
@@ -90,47 +90,97 @@ class OSJBottomSheet extends StatelessWidget {
           top: 32.0.h,
           bottom: 12.0.h,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              text(isEnableNotification, isWoman, status),
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 22.0.sp,
-                fontWeight: FontWeight.w600,
+        child: status == Status.working
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    text(isEnableNotification, isWoman, status),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22.0.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 24.0.h),
+                  Row(
+                    children: [
+                      OSJTextButton(
+                          function: () => Navigator.of(context).pop(),
+                          width: 185.0.w,
+                          height: 56.0.h,
+                          fontSize: 16.0.h,
+                          color: OsjColor.gray100,
+                          fontColor: OsjColor.black,
+                          text: "취소"),
+                      SizedBox(width: 12.0.w),
+                      OSJTextButton(
+                          function: () {
+                            isEnableNotification
+                                ? sendFcmInfo(index.toString())
+                                : applyCancle(streamController!, index);
+                            Navigator.pop(context);
+                          },
+                          width: 185.0.w,
+                          height: 56.0.h,
+                          fontSize: 16.0.h,
+                          color: OsjColor.primary700,
+                          fontColor: OsjColor.white,
+                          text: isEnableNotification ? "알림 설정" : "알림 해제"),
+                    ],
+                  ),
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(
+                    statusIcon[status],
+                    size: 24.0.r,
+                    color: status == Status.available
+                        ? OsjColor.green700
+                        : OsjColor.red700,
+                  ),
+                  SizedBox(height: 24.0.h),
+                  Text(
+                    text(isEnableNotification, isWoman, status),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22.0.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(height: 24.0.h),
+                  Row(
+                    children: [
+                      OSJTextButton(
+                          function: () => Navigator.of(context).pop(),
+                          width: 185.0.w,
+                          height: 56.0.h,
+                          fontSize: 16.0.h,
+                          color: OsjColor.gray100,
+                          fontColor: OsjColor.black,
+                          text: "취소"),
+                      SizedBox(width: 12.0.w),
+                      OSJTextButton(
+                          function: () {
+                            isEnableNotification
+                                ? sendFcmInfo(index.toString())
+                                : applyCancle(streamController!, index);
+                            Navigator.pop(context);
+                          },
+                          width: 185.0.w,
+                          height: 56.0.h,
+                          fontSize: 16.0.h,
+                          color: OsjColor.primary700,
+                          fontColor: OsjColor.white,
+                          text: isEnableNotification ? "알림 설정" : "알림 해제"),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            SizedBox(height: 24.0.h),
-            Row(
-              children: [
-                OSJTextButton(
-                    function: () => Navigator.of(context).pop(),
-                    width: 185.0.w,
-                    height: 56.0.h,
-                    fontSize: 16.0.h,
-                    color: OsjColor.gray100,
-                    fontColor: OsjColor.black,
-                    text: "취소"),
-                SizedBox(width: 12.0.w),
-                OSJTextButton(
-                    function: () {
-                      isEnableNotification
-                          ? sendFcmInfo(index.toString())
-                          : applyCancle(streamController!, index);
-                      Navigator.pop(context);
-                    },
-                    width: 185.0.w,
-                    height: 56.0.h,
-                    fontSize: 16.0.h,
-                    color: OsjColor.primary700,
-                    fontColor: OsjColor.white,
-                    text: isEnableNotification ? "알림 설정" : "알림 해제"),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }
