@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/model/apply_response_list.dart';
 import 'package:lotura/model/osj_list.dart';
+import 'package:lotura/screen/setting_page.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -74,7 +75,8 @@ class _MainPageState extends State<MainPage> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const SettingPage())),
               icon: Icon(
                 Icons.settings,
                 color: OsjColor.black,
