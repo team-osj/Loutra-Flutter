@@ -90,70 +90,33 @@ class OSJBottomSheet extends StatelessWidget {
           top: 32.0.h,
           bottom: 12.0.h,
         ),
-        child: status == Status.working
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    text(isEnableNotification, isWoman, status),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22.0.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(height: 24.0.h),
-                  Row(
-                    children: [
-                      OSJTextButton(
-                          function: () => Navigator.of(context).pop(),
-                          width: 185.0.w,
-                          height: 56.0.h,
-                          fontSize: 16.0.h,
-                          color: OsjColor.gray100,
-                          fontColor: OsjColor.black,
-                          text: "취소"),
-                      SizedBox(width: 12.0.w),
-                      OSJTextButton(
-                          function: () {
-                            isEnableNotification
-                                ? sendFcmInfo(index.toString())
-                                : applyCancle(streamController!, index);
-                            Navigator.pop(context);
-                          },
-                          width: 185.0.w,
-                          height: 56.0.h,
-                          fontSize: 16.0.h,
-                          color: OsjColor.primary700,
-                          fontColor: OsjColor.white,
-                          text: isEnableNotification ? "알림 설정" : "알림 해제"),
-                    ],
-                  ),
-                ],
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Icon(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            status == Status.working
+                ? const SizedBox.shrink()
+                : Icon(
                     statusIcon[status],
                     size: 24.0.r,
                     color: status == Status.available
                         ? OsjColor.green700
                         : OsjColor.red700,
                   ),
-                  SizedBox(height: 24.0.h),
-                  Text(
-                    text(isEnableNotification, isWoman, status),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22.0.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(height: 24.0.h),
-                  Row(
+            Padding(
+              padding: status == Status.working
+                  ? EdgeInsets.only(bottom: 24.0.h)
+                  : EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
+              child: Text(
+                text(isEnableNotification, isWoman, status),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22.0.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            status == Status.working
+                ? Row(
                     children: [
                       OSJTextButton(
                           function: () => Navigator.of(context).pop(),
@@ -178,9 +141,19 @@ class OSJBottomSheet extends StatelessWidget {
                           fontColor: OsjColor.white,
                           text: isEnableNotification ? "알림 설정" : "알림 해제"),
                     ],
+                  )
+                : Center(
+                    child: OSJTextButton(
+                        function: () => Navigator.of(context).pop(),
+                        width: 382.0.w,
+                        height: 56.0.h,
+                        fontSize: 16.0.h,
+                        color: OsjColor.gray100,
+                        fontColor: OsjColor.black,
+                        text: "확인"),
                   ),
-                ],
-              ),
+          ],
+        ),
       ),
     );
   }
