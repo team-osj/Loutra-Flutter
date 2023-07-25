@@ -58,6 +58,7 @@ class SettingPage extends StatelessWidget {
                             top: Radius.circular(24.r),
                           ),
                         ),
+                        backgroundColor: OsjColor.white,
                         builder: (context) => SettingPageBottomSheet()),
                     child: Row(
                       children: [
