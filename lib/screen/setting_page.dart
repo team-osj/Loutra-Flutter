@@ -53,6 +53,11 @@ class SettingPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
                         context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(24.r),
+                          ),
+                        ),
                         builder: (context) => SettingPageBottomSheet()),
                     child: Row(
                       children: [
