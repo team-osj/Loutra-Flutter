@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/widget/custom_colors.dart';
 
-class SettingPageBottomSheet extends StatelessWidget {
+class SettingPageBottomSheet extends StatefulWidget {
   const SettingPageBottomSheet({super.key});
+
+  @override
+  State<SettingPageBottomSheet> createState() => _SettingPageBottomSheetState();
+}
+
+class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,91 +39,106 @@ class SettingPageBottomSheet extends StatelessWidget {
               style: TextStyle(fontSize: 16.0.sp, color: OsjColor.black),
             ),
             SizedBox(height: 24.0.h),
-            Container(
-              width: 382.0.w,
-              height: 48.0.h,
-              decoration: BoxDecoration(
-                color: OsjColor.gray100,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              padding: EdgeInsets.all(12.0.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "남자 기숙사측",
-                    style: TextStyle(
-                      fontSize: 16.0.sp,
-                      color: OsjColor.black,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = 0;
+                });
+              },
+              child: Container(
+                width: 382.0.w,
+                height: 48.0.h,
+                decoration: BoxDecoration(
+                  color: selectedIndex == 0 ? OsjColor.gray100 : OsjColor.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.all(12.0.r),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "남자 기숙사측",
+                      style: TextStyle(
+                        fontSize: 16.0.sp,
+                        color: OsjColor.black,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: Icon(
+                    Icon(
                       Icons.check,
                       size: 24.0.r,
+                      color:
+                          selectedIndex == 0 ? OsjColor.black : OsjColor.white,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            Container(
-              width: 382.0.w,
-              height: 48.0.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              padding: EdgeInsets.all(12.0.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "남자 학교측",
-                    style: TextStyle(
-                      fontSize: 16.0.sp,
-                      color: OsjColor.black,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = 1;
+                });
+              },
+              child: Container(
+                width: 382.0.w,
+                height: 48.0.h,
+                decoration: BoxDecoration(
+                  color: selectedIndex == 1 ? OsjColor.gray100 : OsjColor.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.all(12.0.r),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "남자 학교측",
+                      style: TextStyle(
+                        fontSize: 16.0.sp,
+                        color: OsjColor.black,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: Icon(
+                    Icon(
                       Icons.check,
                       size: 24.0.r,
-                      color: OsjColor.gray100,
+                      color:
+                          selectedIndex == 1 ? OsjColor.black : OsjColor.white,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-            Container(
-              width: 382.0.w,
-              height: 48.0.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              padding: EdgeInsets.all(12.0.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "여자",
-                    style: TextStyle(
-                      fontSize: 16.0.sp,
-                      color: OsjColor.black,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = 2;
+                });
+              },
+              child: Container(
+                width: 382.0.w,
+                height: 48.0.h,
+                decoration: BoxDecoration(
+                  color: selectedIndex == 2 ? OsjColor.gray100 : OsjColor.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.all(12.0.r),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "여자",
+                      style: TextStyle(
+                        fontSize: 16.0.sp,
+                        color: OsjColor.black,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    icon: Icon(
+                    Icon(
                       Icons.check,
                       size: 24.0.r,
-                      color: OsjColor.gray100,
+                      color:
+                          selectedIndex == 2 ? OsjColor.black : OsjColor.white,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
