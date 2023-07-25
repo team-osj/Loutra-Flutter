@@ -31,6 +31,93 @@ class SettingPage extends StatelessWidget {
           ],
         ),
       ),
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: 24.0.w,
+          right: 24.0.w,
+          top: 12.0.h,
+          bottom: 12.0.h,
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(12.0.r),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "화면 테마",
+                    style: TextStyle(fontSize: 16.0.sp),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "밝은 모드",
+                        style: TextStyle(
+                          fontSize: 16.0.sp,
+                          color: OsjColor.primary700,
+                        ),
+                      ),
+                      SizedBox(width: 12.0.w),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        color: OsjColor.gray300,
+                        size: 24.0.r,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(12.0.r),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "메인 세탁실 설정",
+                    style: TextStyle(fontSize: 16.0.sp),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "남자 기숙사측",
+                        style: TextStyle(
+                          fontSize: 16.0.sp,
+                          color: OsjColor.primary700,
+                        ),
+                      ),
+                      SizedBox(width: 12.0.w),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        color: OsjColor.gray300,
+                        size: 24.0.r,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(12.0.r),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "문의하기",
+                    style: TextStyle(fontSize: 16.0.sp),
+                  ),
+                  Icon(
+                    Icons.keyboard_arrow_right,
+                    color: OsjColor.gray300,
+                    size: 24.0.r,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
