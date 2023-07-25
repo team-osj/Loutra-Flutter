@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/model/osj_list.dart';
+import 'package:lotura/screen/setting_page.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/osj_icons.dart';
@@ -58,7 +59,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SettingPage())),
             icon: Icon(Icons.settings, color: OsjColor.black),
           ),
           SizedBox(width: 24.0.w),
