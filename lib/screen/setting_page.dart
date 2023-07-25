@@ -69,6 +69,7 @@ class SettingPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 12.0.h),
             Padding(
               padding: EdgeInsets.all(12.0.r),
               child: Row(
@@ -98,6 +99,7 @@ class SettingPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 12.0.h),
             Padding(
               padding: EdgeInsets.all(12.0.r),
               child: Row(
