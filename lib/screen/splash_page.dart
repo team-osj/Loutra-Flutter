@@ -6,7 +6,7 @@ import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/widget/bottom_navi.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OsjColor.gray100,
+      backgroundColor: OSJColors.gray100,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +52,7 @@ class _SplashPageState extends State<SplashPage> {
             Text(
               'OSJ',
               style: TextStyle(
-                color: OsjColor.primary700,
+                color: OSJColors.primary700,
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
               ),
