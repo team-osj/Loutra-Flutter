@@ -21,8 +21,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
   int isSelectedIcon = 1, isSelectedPlace = 0;
 
   Map place = <int, String>{
-    0: "남자 기숙사측 세탁실",
-    1: "남자 학교측 세탁실",
+    0: "남자 학교측 세탁실",
+    1: "남자 기숙사측 세탁실",
     2: "여자 세탁실",
   };
 
@@ -88,7 +88,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     fontColor: isSelectedPlace == 0
                         ? OSJColors.primary700
                         : OSJColors.gray300,
-                    text: "남자 기숙사측",
+                    text: "남자 학교측",
                     radius: 8.0,
                   ),
                   SizedBox(width: 8.0.w),
@@ -103,7 +103,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     fontColor: isSelectedPlace == 1
                         ? OSJColors.primary700
                         : OSJColors.gray300,
-                    text: "남자 학교측",
+                    text: "남자 기숙사측",
                     radius: 8.0,
                   ),
                   SizedBox(width: 8.0.w),

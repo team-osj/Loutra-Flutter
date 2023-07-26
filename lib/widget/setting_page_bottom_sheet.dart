@@ -22,9 +22,9 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref = await SharedPreferences.getInstance();
     if (index == 0) {
-      widget.mainLaundryRoom = "남자 기숙사측";
-    } else if (index == 1) {
       widget.mainLaundryRoom = "남자 학교측";
+    } else if (index == 1) {
+      widget.mainLaundryRoom = "남자 기숙사측";
     } else {
       widget.mainLaundryRoom = "여자";
     }
@@ -85,7 +85,7 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "남자 기숙사측",
+                      "남자 학교측",
                       style: TextStyle(
                         fontSize: 16.0.sp,
                         color: OSJColors.black,
@@ -122,7 +122,7 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "남자 학교측",
+                      "남자 기숙사측",
                       style: TextStyle(
                         fontSize: 16.0.sp,
                         color: OSJColors.black,
