@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/setting_page_bottom_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,9 +33,9 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     initSharedPreferences();
     return Scaffold(
-      backgroundColor: OsjColor.gray100,
+      backgroundColor: OSJColors.gray100,
       appBar: AppBar(
-        backgroundColor: OsjColor.gray100,
+        backgroundColor: OSJColors.gray100,
         elevation: 0.0,
         leadingWidth: 300.0.w,
         leading: Row(
@@ -45,13 +45,13 @@ class _SettingPageState extends State<SettingPage> {
               onPressed: () => Navigator.pop(context),
               icon: Icon(
                 Icons.keyboard_arrow_left,
-                color: OsjColor.black,
+                color: OSJColors.black,
                 size: 24.0.w,
               ),
             ),
             Text(
               "설정",
-              style: TextStyle(fontSize: 24.0.sp, color: OsjColor.black),
+              style: TextStyle(fontSize: 24.0.sp, color: OSJColors.black),
             ),
           ],
         ),
@@ -82,7 +82,7 @@ class _SettingPageState extends State<SettingPage> {
                             top: Radius.circular(24.r),
                           ),
                         ),
-                        backgroundColor: OsjColor.white,
+                        backgroundColor: OSJColors.white,
                         builder: (context) => SettingPageBottomSheet(
                               mainLaundryRoom: mainLaundryRoom,
                               selectedIndex: selectedIndex,
@@ -93,13 +93,13 @@ class _SettingPageState extends State<SettingPage> {
                           mainLaundryRoom,
                           style: TextStyle(
                             fontSize: 16.0.sp,
-                            color: OsjColor.primary700,
+                            color: OSJColors.primary700,
                           ),
                         ),
                         SizedBox(width: 12.0.w),
                         Icon(
                           Icons.keyboard_arrow_right,
-                          color: OsjColor.gray300,
+                          color: OSJColors.gray300,
                           size: 24.0.r,
                         ),
                       ],
@@ -120,7 +120,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   Icon(
                     Icons.keyboard_arrow_right,
-                    color: OsjColor.gray300,
+                    color: OSJColors.gray300,
                     size: 24.0.r,
                   ),
                 ],
