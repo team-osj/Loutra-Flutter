@@ -18,7 +18,7 @@ class _SettingPageState extends State<SettingPage> {
 
   Future<void> initSharedPreferences() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    mainLaundryRoom = pref.getString('mainLaundryRoom') ?? "남자 기숙사측";
+    mainLaundryRoom = pref.getString('mainLaundryRoom') ?? "남자 학교측";
     selectedIndex = pref.getInt('selectedIndex') ?? 0;
     setState(() {});
   }

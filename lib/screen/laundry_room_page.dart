@@ -7,6 +7,7 @@ import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_text_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LaundryRoomPage extends StatefulWidget {
   LaundryRoomPage({super.key, required this.osjList});
@@ -20,9 +21,16 @@ class LaundryRoomPage extends StatefulWidget {
 class _LaundryRoomPageState extends State<LaundryRoomPage> {
   int isSelectedIcon = 1, isSelectedPlace = 0;
 
+  Future<void> initSharedPreferences() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    int selectedIndex = pref.getInt('selectedIndex') ?? 0;
+    isSelectedPlace = selectedIndex;
+    setState(() {});
+  }
+
   Map place = <int, String>{
-    0: "남자 기숙사측 세탁실",
-    1: "남자 학교측 세탁실",
+    0: "남자 학교측 세탁실",
+    1: "남자 기숙사측 세탁실",
     2: "여자 세탁실",
   };
 
@@ -35,6 +43,12 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
   };
 
   Map machine = <String, Machine>{"WASH": Machine.WASH, "DRY": Machine.DRY};
+
+  @override
+  void initState() {
+    super.initState();
+    initSharedPreferences();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +102,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     fontColor: isSelectedPlace == 0
                         ? OSJColors.primary700
                         : OSJColors.gray300,
-                    text: "남자 기숙사측",
+                    text: "남자 학교측",
                     radius: 8.0,
                   ),
                   SizedBox(width: 8.0.w),
@@ -103,7 +117,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     fontColor: isSelectedPlace == 1
                         ? OSJColors.primary700
                         : OSJColors.gray300,
-                    text: "남자 학교측",
+                    text: "남자 기숙사측",
                     radius: 8.0,
                   ),
                   SizedBox(width: 8.0.w),
