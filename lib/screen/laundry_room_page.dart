@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/screen/setting_page.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_text_button.dart';
@@ -39,9 +39,9 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OsjColor.gray100,
+      backgroundColor: OSJColors.gray100,
       appBar: AppBar(
-        backgroundColor: OsjColor.gray100,
+        backgroundColor: OSJColors.gray100,
         elevation: 0.0,
         leadingWidth: 300.0.w,
         leading: Row(
@@ -50,7 +50,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
             Text(
               place[isSelectedPlace],
               style: TextStyle(
-                color: OsjColor.black,
+                color: OSJColors.black,
                 fontSize: 24.0.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -61,7 +61,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
           IconButton(
             onPressed: () => Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SettingPage())),
-            icon: Icon(Icons.settings, color: OsjColor.black),
+            icon: Icon(Icons.settings, color: OSJColors.black),
           ),
           SizedBox(width: 24.0.w),
         ],
@@ -83,11 +83,11 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     height: 32.0.h,
                     fontSize: 16.0.sp,
                     color: isSelectedPlace == 0
-                        ? OsjColor.white
-                        : OsjColor.gray100,
+                        ? OSJColors.white
+                        : OSJColors.gray100,
                     fontColor: isSelectedPlace == 0
-                        ? OsjColor.primary700
-                        : OsjColor.gray300,
+                        ? OSJColors.primary700
+                        : OSJColors.gray300,
                     text: "남자 기숙사측",
                     radius: 8.0,
                   ),
@@ -98,11 +98,11 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     height: 32.0.h,
                     fontSize: 16.0.sp,
                     color: isSelectedPlace == 1
-                        ? OsjColor.white
-                        : OsjColor.gray100,
+                        ? OSJColors.white
+                        : OSJColors.gray100,
                     fontColor: isSelectedPlace == 1
-                        ? OsjColor.primary700
-                        : OsjColor.gray300,
+                        ? OSJColors.primary700
+                        : OSJColors.gray300,
                     text: "남자 학교측",
                     radius: 8.0,
                   ),
@@ -113,11 +113,11 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     height: 32.0.h,
                     fontSize: 16.0.sp,
                     color: isSelectedPlace == 2
-                        ? OsjColor.white
-                        : OsjColor.gray100,
+                        ? OSJColors.white
+                        : OSJColors.gray100,
                     fontColor: isSelectedPlace == 2
-                        ? OsjColor.primary700
-                        : OsjColor.gray300,
+                        ? OSJColors.primary700
+                        : OSJColors.gray300,
                     text: "여자",
                     radius: 8.0,
                   ),
@@ -136,8 +136,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                   icon: Icon(OSJIcons.grid,
                       size: 18.0.r,
                       color: isSelectedIcon == 0
-                          ? OsjColor.black
-                          : OsjColor.gray300),
+                          ? OSJColors.black
+                          : OSJColors.gray300),
                 ),
                 IconButton(
                     onPressed: () {
@@ -149,8 +149,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                       OSJIcons.list,
                       size: 18.0.r,
                       color: isSelectedIcon == 1
-                          ? OsjColor.black
-                          : OsjColor.gray300,
+                          ? OSJColors.black
+                          : OSJColors.gray300,
                     )),
               ],
             ),
