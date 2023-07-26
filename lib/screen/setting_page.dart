@@ -4,9 +4,10 @@ import 'package:lotura/main.dart';
 import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/setting_page_bottom_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatefulWidget {
-  SettingPage({super.key});
+  const SettingPage({super.key});
 
   @override
   State<SettingPage> createState() => _SettingPageState();
@@ -118,10 +119,17 @@ class _SettingPageState extends State<SettingPage> {
                     "문의하기",
                     style: TextStyle(fontSize: 16.0.sp),
                   ),
-                  Icon(
-                    Icons.keyboard_arrow_right,
-                    color: OSJColors.gray300,
-                    size: 24.0.r,
+                  GestureDetector(
+                    onTap: () async {
+                      await launchUrl(
+                          Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
+                          mode: LaunchMode.externalApplication);
+                    },
+                    child: Icon(
+                      Icons.keyboard_arrow_right,
+                      color: OSJColors.gray300,
+                      size: 24.0.r,
+                    ),
                   ),
                 ],
               ),
