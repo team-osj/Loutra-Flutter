@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/service/apply_cancle.dart';
 import 'package:lotura/service/send_fcm_info.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/osj_icons.dart';
 import 'package:lotura/widget/osj_text_button.dart';
 
@@ -27,9 +27,9 @@ class OSJBottomSheet extends StatelessWidget {
   StreamController? streamController;
 
   final Map statusColor = <Status, Color>{
-    Status.available: OsjColor.green50,
-    Status.working: OsjColor.primary50,
-    Status.breakdown: OsjColor.red50,
+    Status.available: OSJColors.green50,
+    Status.working: OSJColors.primary50,
+    Status.breakdown: OSJColors.red50,
   };
 
   final Map statusIcon = <Status, IconData>{
@@ -99,8 +99,8 @@ class OSJBottomSheet extends StatelessWidget {
                     statusIcon[status],
                     size: 24.0.r,
                     color: status == Status.available
-                        ? OsjColor.green700
-                        : OsjColor.red700,
+                        ? OSJColors.green700
+                        : OSJColors.red700,
                   ),
             Padding(
               padding: status == Status.working
@@ -123,8 +123,8 @@ class OSJBottomSheet extends StatelessWidget {
                           width: 185.0.w,
                           height: 56.0.h,
                           fontSize: 16.0.h,
-                          color: OsjColor.gray100,
-                          fontColor: OsjColor.black,
+                          color: OSJColors.gray100,
+                          fontColor: OSJColors.black,
                           text: "취소"),
                       SizedBox(width: 12.0.w),
                       OSJTextButton(
@@ -137,8 +137,8 @@ class OSJBottomSheet extends StatelessWidget {
                           width: 185.0.w,
                           height: 56.0.h,
                           fontSize: 16.0.h,
-                          color: OsjColor.primary700,
-                          fontColor: OsjColor.white,
+                          color: OSJColors.primary700,
+                          fontColor: OSJColors.white,
                           text: isEnableNotification ? "알림 설정" : "알림 해제"),
                     ],
                   )
@@ -148,8 +148,8 @@ class OSJBottomSheet extends StatelessWidget {
                         width: 382.0.w,
                         height: 56.0.h,
                         fontSize: 16.0.h,
-                        color: OsjColor.gray100,
-                        fontColor: OsjColor.black,
+                        color: OSJColors.gray100,
+                        fontColor: OSJColors.black,
                         text: "확인"),
                   ),
           ],
