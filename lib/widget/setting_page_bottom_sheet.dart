@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/widget/custom_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingPageBottomSheet extends StatefulWidget {
-  const SettingPageBottomSheet({super.key});
+  SettingPageBottomSheet({
+    super.key,
+    required this.mainLaundryRoom,
+    required this.selectedIndex,
+  });
+
+  String mainLaundryRoom;
+  int selectedIndex;
 
   @override
   State<SettingPageBottomSheet> createState() => _SettingPageBottomSheetState();
 }
 
 class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
-  int selectedIndex = 0;
+  void changeMainLaundryRoom(int index) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref = await SharedPreferences.getInstance();
+    if (index == 0) {
+      widget.mainLaundryRoom = "남자 기숙사측";
+    } else if (index == 1) {
+      widget.mainLaundryRoom = "남자 학교측";
+    } else {
+      widget.mainLaundryRoom = "여자";
+    }
+    pref.setString('mainLaundryRoom', widget.mainLaundryRoom);
+    pref.setInt('selectedIndex', widget.selectedIndex);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    changeMainLaundryRoom(widget.selectedIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +68,16 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedIndex = 0;
+                  widget.selectedIndex = 0;
                 });
               },
               child: Container(
                 width: 382.0.w,
                 height: 48.0.h,
                 decoration: BoxDecoration(
-                  color: selectedIndex == 0 ? OsjColor.gray100 : OsjColor.white,
+                  color: widget.selectedIndex == 0
+                      ? OsjColor.gray100
+                      : OsjColor.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: EdgeInsets.all(12.0.r),
@@ -66,8 +94,9 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                     Icon(
                       Icons.check,
                       size: 24.0.r,
-                      color:
-                          selectedIndex == 0 ? OsjColor.black : OsjColor.white,
+                      color: widget.selectedIndex == 0
+                          ? OsjColor.black
+                          : OsjColor.white,
                     ),
                   ],
                 ),
@@ -76,14 +105,16 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedIndex = 1;
+                  widget.selectedIndex = 1;
                 });
               },
               child: Container(
                 width: 382.0.w,
                 height: 48.0.h,
                 decoration: BoxDecoration(
-                  color: selectedIndex == 1 ? OsjColor.gray100 : OsjColor.white,
+                  color: widget.selectedIndex == 1
+                      ? OsjColor.gray100
+                      : OsjColor.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: EdgeInsets.all(12.0.r),
@@ -100,8 +131,9 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                     Icon(
                       Icons.check,
                       size: 24.0.r,
-                      color:
-                          selectedIndex == 1 ? OsjColor.black : OsjColor.white,
+                      color: widget.selectedIndex == 1
+                          ? OsjColor.black
+                          : OsjColor.white,
                     ),
                   ],
                 ),
@@ -110,14 +142,16 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedIndex = 2;
+                  widget.selectedIndex = 2;
                 });
               },
               child: Container(
                 width: 382.0.w,
                 height: 48.0.h,
                 decoration: BoxDecoration(
-                  color: selectedIndex == 2 ? OsjColor.gray100 : OsjColor.white,
+                  color: widget.selectedIndex == 2
+                      ? OsjColor.gray100
+                      : OsjColor.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: EdgeInsets.all(12.0.r),
@@ -134,8 +168,9 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                     Icon(
                       Icons.check,
                       size: 24.0.r,
-                      color:
-                          selectedIndex == 2 ? OsjColor.black : OsjColor.white,
+                      color: widget.selectedIndex == 2
+                          ? OsjColor.black
+                          : OsjColor.white,
                     ),
                   ],
                 ),
