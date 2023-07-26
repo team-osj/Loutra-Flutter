@@ -1,13 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/main.dart';
 import 'package:lotura/widget/custom_colors.dart';
 import 'package:lotura/widget/setting_page_bottom_sheet.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+class SettingPage extends StatefulWidget {
+  SettingPage({super.key});
+
+  @override
+  State<SettingPage> createState() => _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
+  String mainLaundryRoom = "";
+  int selectedIndex = 0;
+
+  Future<void> initSharedPreferences() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    mainLaundryRoom = pref.getString('mainLaundryRoom') ?? "남자 기숙사측";
+    selectedIndex = pref.getInt('selectedIndex') ?? 0;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initSharedPreferences();
+  }
 
   @override
   Widget build(BuildContext context) {
+    initSharedPreferences();
     return Scaffold(
       backgroundColor: OsjColor.gray100,
       appBar: AppBar(
@@ -53,11 +77,20 @@ class SettingPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => showModalBottomSheet(
                         context: context,
-                        builder: (context) => SettingPageBottomSheet()),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(24.r),
+                          ),
+                        ),
+                        backgroundColor: OsjColor.white,
+                        builder: (context) => SettingPageBottomSheet(
+                              mainLaundryRoom: mainLaundryRoom,
+                              selectedIndex: selectedIndex,
+                            )),
                     child: Row(
                       children: [
                         Text(
-                          "남자 기숙사측",
+                          mainLaundryRoom,
                           style: TextStyle(
                             fontSize: 16.0.sp,
                             color: OsjColor.primary700,

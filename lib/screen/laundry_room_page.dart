@@ -60,7 +60,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
         actions: [
           IconButton(
             onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SettingPage())),
+                MaterialPageRoute(builder: (context) => SettingPage())),
             icon: Icon(Icons.settings, color: OsjColor.black),
           ),
           SizedBox(width: 24.0.w),

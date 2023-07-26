@@ -76,7 +76,7 @@ class _MainPageState extends State<MainPage> {
         actions: [
           IconButton(
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SettingPage())),
+                  MaterialPageRoute(builder: (context) => SettingPage())),
               icon: Icon(
                 Icons.settings,
                 color: OsjColor.black,
