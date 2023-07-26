@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/main.dart';
 import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/setting_page_bottom_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';

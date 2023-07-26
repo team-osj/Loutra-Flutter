@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/model/osj_list.dart';
-import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/widget/bottom_navi.dart';
 import 'package:lotura/widget/osj_colors.dart';
 
