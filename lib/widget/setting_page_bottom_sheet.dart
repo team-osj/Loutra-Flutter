@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingPageBottomSheet extends StatefulWidget {
@@ -55,14 +55,14 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
             Text(
               "메인 세탁실 설정",
               style: TextStyle(
-                  color: OsjColor.black,
+                  color: OSJColors.black,
                   fontWeight: FontWeight.w600,
                   fontSize: 20.0.sp),
             ),
             SizedBox(height: 4.0.h),
             Text(
               "세탁실 탭에서 처음에 보여질 세탁실을 선택해보세요.",
-              style: TextStyle(fontSize: 16.0.sp, color: OsjColor.black),
+              style: TextStyle(fontSize: 16.0.sp, color: OSJColors.black),
             ),
             SizedBox(height: 24.0.h),
             GestureDetector(
@@ -76,8 +76,8 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                 height: 48.0.h,
                 decoration: BoxDecoration(
                   color: widget.selectedIndex == 0
-                      ? OsjColor.gray100
-                      : OsjColor.white,
+                      ? OSJColors.gray100
+                      : OSJColors.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: EdgeInsets.all(12.0.r),
@@ -88,15 +88,15 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                       "남자 기숙사측",
                       style: TextStyle(
                         fontSize: 16.0.sp,
-                        color: OsjColor.black,
+                        color: OSJColors.black,
                       ),
                     ),
                     Icon(
                       Icons.check,
                       size: 24.0.r,
                       color: widget.selectedIndex == 0
-                          ? OsjColor.black
-                          : OsjColor.white,
+                          ? OSJColors.black
+                          : OSJColors.white,
                     ),
                   ],
                 ),
@@ -113,8 +113,8 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                 height: 48.0.h,
                 decoration: BoxDecoration(
                   color: widget.selectedIndex == 1
-                      ? OsjColor.gray100
-                      : OsjColor.white,
+                      ? OSJColors.gray100
+                      : OSJColors.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: EdgeInsets.all(12.0.r),
@@ -125,15 +125,15 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                       "남자 학교측",
                       style: TextStyle(
                         fontSize: 16.0.sp,
-                        color: OsjColor.black,
+                        color: OSJColors.black,
                       ),
                     ),
                     Icon(
                       Icons.check,
                       size: 24.0.r,
                       color: widget.selectedIndex == 1
-                          ? OsjColor.black
-                          : OsjColor.white,
+                          ? OSJColors.black
+                          : OSJColors.white,
                     ),
                   ],
                 ),
@@ -150,8 +150,8 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                 height: 48.0.h,
                 decoration: BoxDecoration(
                   color: widget.selectedIndex == 2
-                      ? OsjColor.gray100
-                      : OsjColor.white,
+                      ? OSJColors.gray100
+                      : OSJColors.white,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: EdgeInsets.all(12.0.r),
@@ -162,15 +162,15 @@ class _SettingPageBottomSheetState extends State<SettingPageBottomSheet> {
                       "여자",
                       style: TextStyle(
                         fontSize: 16.0.sp,
-                        color: OsjColor.black,
+                        color: OSJColors.black,
                       ),
                     ),
                     Icon(
                       Icons.check,
                       size: 24.0.r,
                       color: widget.selectedIndex == 2
-                          ? OsjColor.black
-                          : OsjColor.white,
+                          ? OSJColors.black
+                          : OSJColors.white,
                     ),
                   ],
                 ),
