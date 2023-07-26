@@ -8,13 +8,12 @@ import 'package:lotura/screen/setting_page.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/machine_card.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({super.key, required this.osjList});
+  const MainPage({super.key, required this.osjList});
 
-  OsjList osjList;
+  final OsjList osjList;
 
   @override
   State<MainPage> createState() => _MainPageState();
