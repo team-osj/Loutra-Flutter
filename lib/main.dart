@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/fcm_init.dart';
-import 'package:lotura/screen/main_page.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:lotura/screen/splash_page.dart';
-import 'package:lotura/widget/bottom_navi.dart';
-import 'package:lotura/widget/custom_colors.dart';
-import 'package:lotura/widget/machine_card.dart';
+import 'package:lotura/widget/osj_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +14,7 @@ Future<void> main() async {
   );
   fcmInit();
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: OsjColor.gray100
-    ),
+    SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
