@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/screen/laundry_room_page.dart';
 import 'package:lotura/screen/main_page.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/osj_icon_button.dart';
 import 'package:lotura/widget/osj_image_button.dart';
 
@@ -41,7 +41,7 @@ class _BottomNaviState extends State<BottomNavi>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OsjColor.gray100,
+      backgroundColor: OSJColors.gray100,
       body: StreamBuilder(
           stream: widget.osjStreamController.stream,
           builder: (context, snapshot) {
@@ -69,15 +69,16 @@ class _BottomNaviState extends State<BottomNavi>
               width: 185.0.w,
               height: 48.0.h,
               iconSize: 24.0.r,
-              color: controller.index == 0 ? OsjColor.white : OsjColor.gray100,
+              color:
+                  controller.index == 0 ? OSJColors.white : OSJColors.gray100,
               iconColor: controller.index == 0
-                  ? OsjColor.primary700
-                  : OsjColor.gray300,
+                  ? OSJColors.primary700
+                  : OSJColors.gray300,
               iconData: Icons.home),
           OSJImageButton(
             width: 185.0.w,
             height: 48.0.h,
-            color: controller.index == 1 ? OsjColor.white : OsjColor.gray100,
+            color: controller.index == 1 ? OSJColors.white : OSJColors.gray100,
             imagePath: controller.index == 1
                 ? "assets/applogo.jpeg"
                 : "assets/applogo_unselected.jpeg",

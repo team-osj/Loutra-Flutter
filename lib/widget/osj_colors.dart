@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class OsjColor {
+class OSJColors {
   static Color customGreen = const Color(0xFF7DB45A);
   static Color customRed = const Color(0xFFDA6156);
 

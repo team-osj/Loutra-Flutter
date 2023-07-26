@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/osj_bottom_sheet.dart';
 import 'package:lotura/widget/osj_icons.dart';
 
@@ -25,15 +25,15 @@ class MachineButton extends StatelessWidget {
   StreamController? osjStreamController;
 
   final Map statusColor = <Status, Color>{
-    Status.available: OsjColor.green50,
-    Status.working: OsjColor.primary50,
-    Status.breakdown: OsjColor.red50,
+    Status.available: OSJColors.green50,
+    Status.working: OSJColors.primary50,
+    Status.breakdown: OSJColors.red50,
   };
 
   final Map statusIconColor = <Status, Color>{
-    Status.available: OsjColor.green700,
-    Status.working: OsjColor.primary700,
-    Status.breakdown: OsjColor.red700,
+    Status.available: OSJColors.green700,
+    Status.working: OSJColors.primary700,
+    Status.breakdown: OSJColors.red700,
   };
 
   final Map statusIcon = <Status, IconData>{
@@ -90,7 +90,7 @@ class MachineButton extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Icon(machineIcon[machine],
-                        size: 24.0.r, color: OsjColor.gray300),
+                        size: 24.0.r, color: OSJColors.gray300),
                     SizedBox(height: 12.0.h),
                     Row(
                       children: [

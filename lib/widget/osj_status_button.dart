@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/widget/custom_colors.dart';
+import 'package:lotura/widget/osj_colors.dart';
 
 class OSJStatusButton extends StatelessWidget {
   OSJStatusButton({
@@ -18,17 +18,16 @@ class OSJStatusButton extends StatelessWidget {
   };
 
   final Map statusColor = <Status, Color>{
-    Status.available: OsjColor.green100,
-    Status.working: OsjColor.primary100,
-    Status.breakdown: OsjColor.red100,
+    Status.available: OSJColors.green100,
+    Status.working: OSJColors.primary100,
+    Status.breakdown: OSJColors.red100,
   };
 
   final Map statusTextColor = <Status, Color>{
-    Status.available: OsjColor.green700,
-    Status.working: OsjColor.primary700,
-    Status.breakdown: OsjColor.red700,
+    Status.available: OSJColors.green700,
+    Status.working: OSJColors.primary700,
+    Status.breakdown: OSJColors.red700,
   };
-
 
   @override
   Widget build(BuildContext context) {
