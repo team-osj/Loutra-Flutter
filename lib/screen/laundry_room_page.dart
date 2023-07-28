@@ -93,7 +93,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                 children: [
                   OSJTextButton(
                     function: () => setState(() => isSelectedPlace = 0),
-                    width: 111.0.w,
+                    width: 99.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
                     color: isSelectedPlace == 0
@@ -108,7 +108,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                   SizedBox(width: 8.0.w),
                   OSJTextButton(
                     function: () => setState(() => isSelectedPlace = 1),
-                    width: 99.0.w,
+                    width: 111.0.w,
                     height: 32.0.h,
                     fontSize: 16.0.sp,
                     color: isSelectedPlace == 1
