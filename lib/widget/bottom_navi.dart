@@ -10,9 +10,9 @@ import 'package:lotura/widget/osj_icon_button.dart';
 import 'package:lotura/widget/osj_image_button.dart';
 
 class BottomNavi extends StatefulWidget {
-  BottomNavi({super.key, required this.osjStreamController});
+  const BottomNavi({super.key, required this.osjStreamController});
 
-  StreamController<OsjList> osjStreamController;
+  final StreamController<OsjList> osjStreamController;
 
   @override
   State<BottomNavi> createState() => _BottomNaviState();
