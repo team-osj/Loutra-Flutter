@@ -29,7 +29,45 @@ class _BottomNaviState extends State<BottomNavi>
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this)
-      ..animation?.addListener(() {});
+      ..animation?.addListener(() {
+        if (controller.offset >= 0.5 &&
+            controller.offset < 1.0 &&
+            isChange == false) {
+          setState(() {
+            isChange = true;
+            selectedIndex = 1;
+          });
+        }
+        if (controller.offset < 0.5 &&
+            controller.offset > 0.0 &&
+            isChange == true) {
+          setState(() {
+            isChange = false;
+            selectedIndex = 0;
+          });
+        }
+        if (controller.offset >= -0.5 &&
+            controller.offset < 0.0 &&
+            isChange == false) {
+          setState(() {
+            isChange = true;
+            selectedIndex = 1;
+          });
+        }
+        if (controller.offset < -0.5 &&
+            controller.offset > -1.0 &&
+            isChange == true) {
+          setState(() {
+            isChange = false;
+            selectedIndex = 0;
+          });
+        }
+        if (controller.offset == 1.0 || controller.offset == 0.0) {
+          setState(() {
+            isChange = false;
+          });
+        }
+      });
   }
 
   @override
