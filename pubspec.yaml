@@ -47,6 +47,7 @@ dependencies:
   url_launcher: ^6.1.7
   flutter_launcher_icons: ^0.11.0
   socket_io_client: ^2.0.1
+  shared_preferences: ^2.2.0
 
 
 dev_dependencies:
@@ -66,11 +67,11 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/applogo.jpeg
+    - assets/
   fonts:
-    - family: CustomIcons
+    - family: OSJIcons
       fonts:
-        - asset: assets/fonts/CustomIcons.ttf
+        - asset: assets/fonts/OSJIcons.ttf
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter-Medium.ttf

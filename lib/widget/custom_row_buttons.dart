@@ -1,81 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:lotura/Widget/custom_icons.dart';
-import 'package:lotura/Widget/show_popup.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/widget/icon_func.dart';
-import 'package:lotura/widget/color_func.dart';
+import 'package:lotura/widget/machine_button.dart';
+import 'package:lotura/main.dart';
+import 'package:lotura/widget/machine_card.dart';
+import 'package:lotura/widget/osj_icons.dart';
 
-customRowButtons(BuildContext context, String a, String aDeviceType, int aState,
-    int aAlive, String b, String bDeviceType, int bState, int bAlive) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: [
-      GestureDetector(
-        onTap: () {
-          showPopup(context, a, aAlive, aState, a);
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Colors.grey),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          width: 110.0.w,
-          height: 60.0.h,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                a.toString(),
-                style: TextStyle(fontSize: 20.0.sp, fontFamily: 'Inter'),
-              ),
-              IconButton(
-                onPressed: () {
-                  showPopup(context, a, aAlive, aState, aDeviceType);
-                },
-                icon: iconFunc(aDeviceType, aAlive),
-                iconSize: 40.0.r,
-                color: colorFunc(aState, aAlive),
-              ),
-            ],
-          ),
-        ),
-      ),
-      const Icon(CustomIcons.triangleUp, color: Colors.grey),
-      GestureDetector(
-        onTap: () {
-          showPopup(context, b, bAlive, bState, bDeviceType);
-        },
-        child: b == 'null'
-            ? SizedBox(
-                width: 110.0.w,
-                height: 60.0.h,
+class CustomRowButton extends StatelessWidget {
+  const CustomRowButton({
+    super.key,
+    required this.isSelectedIcon,
+    required this.isWoman,
+    required this.leftIndex,
+    required this.rightIndex,
+    required this.leftStatus,
+    required this.rightStatus,
+    required this.leftMachine,
+    required this.rightMachine,
+  });
+
+  final int leftIndex, rightIndex, isSelectedIcon;
+  final Status leftStatus, rightStatus;
+  final Machine leftMachine, rightMachine;
+  final bool isWoman;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        isSelectedIcon == 0
+            ? MachineCard(
+                index: leftIndex,
+                isWoman: isWoman,
+                isEnableNotification: true,
+                machine: leftMachine,
+                status: leftStatus,
               )
-            : Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.grey),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                width: 110.0.w,
-                height: 60.0.h,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      b.toString(),
-                      style: TextStyle(fontSize: 20.0.sp, fontFamily: 'Inter'),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        showPopup(context, b, bAlive, bState, bDeviceType);
-                      },
-                      icon: iconFunc(bDeviceType, bAlive),
-                      iconSize: 40.0.r,
-                      color: colorFunc(bState, bAlive),
-                    ),
-                  ],
-                ),
+            : MachineButton(
+                index: leftIndex,
+                isWoman: isWoman,
+                isEnableNotification: true,
+                status: leftStatus,
+                machine: leftMachine),
+        isSelectedIcon == 0
+            ? const SizedBox.shrink()
+            : const Icon(OSJIcons.triangleUp, color: Colors.grey),
+        isSelectedIcon == 0
+            ? MachineCard(
+                index: rightIndex,
+                isWoman: isWoman,
+                isEnableNotification: true,
+                machine: rightMachine,
+                status: rightStatus,
+              )
+            : MachineButton(
+                index: rightIndex,
+                isWoman: isWoman,
+                isEnableNotification: true,
+                status: rightStatus,
+                machine: rightMachine,
               ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
