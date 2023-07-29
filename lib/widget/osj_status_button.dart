@@ -11,7 +11,7 @@ class OSJStatusButton extends StatelessWidget {
 
   final Status status;
 
-  Map map = <Status, String>{
+  final Map map = <Status, String>{
     Status.available: "사용 가능",
     Status.working: "작동중",
     Status.breakdown: "고장",

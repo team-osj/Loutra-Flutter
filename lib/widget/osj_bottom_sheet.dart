@@ -24,7 +24,7 @@ class OSJBottomSheet extends StatelessWidget {
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
-  StreamController? streamController;
+  final StreamController? streamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,

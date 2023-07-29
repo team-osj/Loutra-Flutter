@@ -28,21 +28,24 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     setState(() {});
   }
 
-  Map place = <int, String>{
+  final Map place = <int, String>{
     0: "남자 학교측 세탁실",
     1: "남자 기숙사측 세탁실",
     2: "여자 세탁실",
   };
 
-  Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
+  final Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
 
-  Map status = <int, Status>{
+  final Map status = <int, Status>{
     0: Status.working,
     1: Status.available,
     2: Status.breakdown
   };
 
-  Map machine = <String, Machine>{"WASH": Machine.WASH, "DRY": Machine.DRY};
+  final Map machine = <String, Machine>{
+    "WASH": Machine.WASH,
+    "DRY": Machine.DRY
+  };
 
   @override
   void initState() {
