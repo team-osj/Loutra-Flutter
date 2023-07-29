@@ -23,12 +23,13 @@ class _BottomNaviState extends State<BottomNavi>
   late TabController controller;
 
   int selectedIndex = 0;
+  bool isChange = false;
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this)
-      ..addListener(() => setState(() => selectedIndex = controller.index));
+      ..animation?.addListener(() {});
   }
 
   @override
@@ -47,7 +48,6 @@ class _BottomNaviState extends State<BottomNavi>
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
                 controller: controller,
                 children: [
                   MainPage(osjList: snapshot.data!),
@@ -69,17 +69,15 @@ class _BottomNaviState extends State<BottomNavi>
               width: 185.0.w,
               height: 48.0.h,
               iconSize: 24.0.r,
-              color:
-                  controller.index == 0 ? OSJColors.white : OSJColors.gray100,
-              iconColor: controller.index == 0
-                  ? OSJColors.primary700
-                  : OSJColors.gray300,
+              color: selectedIndex == 0 ? OSJColors.white : OSJColors.gray100,
+              iconColor:
+                  selectedIndex == 0 ? OSJColors.primary700 : OSJColors.gray300,
               iconData: Icons.home),
           OSJImageButton(
             width: 185.0.w,
             height: 48.0.h,
-            color: controller.index == 1 ? OSJColors.white : OSJColors.gray100,
-            imagePath: controller.index == 1
+            color: selectedIndex == 1 ? OSJColors.white : OSJColors.gray100,
+            imagePath: selectedIndex == 1
                 ? "assets/applogo.jpeg"
                 : "assets/applogo_unselected.jpeg",
           ),
