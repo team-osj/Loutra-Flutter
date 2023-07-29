@@ -10,9 +10,9 @@ import 'package:lotura/widget/osj_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LaundryRoomPage extends StatefulWidget {
-  LaundryRoomPage({super.key, required this.osjList});
+  const LaundryRoomPage({super.key, required this.osjList});
 
-  OsjList osjList;
+  final OsjList osjList;
 
   @override
   State<LaundryRoomPage> createState() => _LaundryRoomPageState();
