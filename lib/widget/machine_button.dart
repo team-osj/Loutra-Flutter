@@ -88,10 +88,10 @@ class MachineButton extends StatelessWidget {
                     EdgeInsets.only(top: 12.0.h, bottom: 12.0.h, left: 24.0.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(machineIcon[machine],
                         size: 24.0.r, color: OSJColors.gray300),
-                    SizedBox(height: 12.0.h),
                     Row(
                       children: [
                         Text("${isWoman ? index - 31 : index}번",
