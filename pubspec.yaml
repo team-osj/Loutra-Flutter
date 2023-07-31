@@ -72,9 +72,6 @@ flutter:
     - family: OSJIcons
       fonts:
         - asset: assets/fonts/OSJIcons.ttf
-    - family: Inter
-      fonts:
-        - asset: assets/fonts/Inter-Medium.ttf
 
 
   # The following line ensures that the Material Icons font is
@@ -92,8 +89,8 @@ flutter:
 
     # To add custom fonts to your application, add a fonts section here,
     # in this "flutter" section. Each entry in this list should have a
-    # "family" key with the font family name, and a "fonts" key with a
-    # list giving the asset and other descriptors for the font. For
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
   # example:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
