@@ -1,16 +1,9 @@
-# lotura
+### Lotura-Flutter 레포지토리 커밋 규칙입니다.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- feat: 새로운 기능을 구현 및 추가한 경우
+- fix: 버그를 수정한 경우
+- docs: readme파일과 같이 문서를 수정한 경우
+- style: 코드 포맷 변경, 세미콜론 누락 또는 변수명이 바뀌었거나 오타를 수정한 경우
+- refactor: 코드를 리팩토링한 경우
+- test: 테스트 추가, 테스트 코드 리팩터링 (프로덕션 코드에는 변경이 없어야 함)
+- chore: 빌드 테스크 업데이트, 패키지 매니저 등의 환경설정
