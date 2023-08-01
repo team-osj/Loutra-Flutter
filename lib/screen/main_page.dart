@@ -10,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/widget/machine_card.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({super.key, required this.applyStreamController});
+
+  final StreamController<ApplyResponseList> applyStreamController;
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -18,30 +20,28 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
-  late StreamController<ApplyResponseList> applyResponseController;
 
-  @override
-  void initState() {
-    super.initState();
-    applyResponseController = StreamController<ApplyResponseList>();
-    receiveApplyList(applyResponseController);
-  }
-
-  TextStyle bigStyle = TextStyle(
+  final TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
     color: OSJColors.black,
     fontWeight: FontWeight.bold,
   );
 
-  TextStyle smallStyle = TextStyle(
+  final TextStyle smallStyle = TextStyle(
     fontSize: 16.0.sp,
     color: OSJColors.gray500,
   );
 
-  Map machine = <String, Machine>{
+  final Map machine = <String, Machine>{
     "WASH": Machine.WASH,
     "DRY": Machine.DRY,
   };
+
+  @override
+  void initState() {
+    super.initState();
+    receiveApplyList(widget.applyStreamController);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 20.0.h),
             Expanded(
               child: StreamBuilder(
-                  stream: applyResponseController.stream,
+                  stream: widget.applyStreamController.stream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ScrollConfiguration(
@@ -121,7 +121,7 @@ class _MainPageState extends State<MainPage> {
                                     children: [
                                       MachineCard(
                                           streamController:
-                                              applyResponseController,
+                                              widget.applyStreamController,
                                           index: snapshot
                                               .data!
                                               .applyResponseList![index * 2]
@@ -145,7 +145,7 @@ class _MainPageState extends State<MainPage> {
                                                   .length
                                           ? MachineCard(
                                               streamController:
-                                                  applyResponseController,
+                                                  widget.applyStreamController,
                                               index: snapshot
                                                   .data!
                                                   .applyResponseList![
