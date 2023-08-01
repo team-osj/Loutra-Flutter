@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/model/apply_response_list.dart';
-import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/screen/setting_page.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/osj_colors.dart';
@@ -11,9 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/widget/machine_card.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.osjList});
-
-  final OsjList osjList;
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
