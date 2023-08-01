@@ -15,19 +15,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  late StreamController<OsjList> controller;
+  late StreamController<OsjList> osjStreamController;
 
   @override
   void initState() {
     super.initState();
-    controller = StreamController();
-    socketInit(controller);
+    osjStreamController = StreamController<OsjList>();
+    socketInit(osjStreamController);
     Future.delayed(const Duration(milliseconds: 1100)).then(
       (value) => Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => BottomNavi(
-              osjStreamController: controller,
+              osjStreamController: osjStreamController,
             ),
           ),
           (route) => false),
