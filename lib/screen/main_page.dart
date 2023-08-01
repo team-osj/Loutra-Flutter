@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/model/apply_response_list.dart';
-import 'package:lotura/model/osj_list.dart';
 import 'package:lotura/screen/setting_page.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/osj_colors.dart';
@@ -11,40 +10,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/widget/machine_card.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.osjList});
-
-  final OsjList osjList;
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
+  late StreamController<ApplyResponseList> applyStreamController;
   int selectedIndex = 0;
-  late StreamController<ApplyResponseList> applyResponseController;
 
-  @override
-  void initState() {
-    super.initState();
-    applyResponseController = StreamController<ApplyResponseList>();
-    receiveApplyList(applyResponseController);
-  }
-
-  TextStyle bigStyle = TextStyle(
+  final TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
     color: OSJColors.black,
     fontWeight: FontWeight.bold,
   );
 
-  TextStyle smallStyle = TextStyle(
+  final TextStyle smallStyle = TextStyle(
     fontSize: 16.0.sp,
     color: OSJColors.gray500,
   );
 
-  Map machine = <String, Machine>{
+  final Map machine = <String, Machine>{
     "WASH": Machine.WASH,
     "DRY": Machine.DRY,
   };
+
+  @override
+  void initState() {
+    super.initState();
+    applyStreamController = StreamController<ApplyResponseList>();
+    receiveApplyList(applyStreamController);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +99,7 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 20.0.h),
             Expanded(
               child: StreamBuilder(
-                  stream: applyResponseController.stream,
+                  stream: applyStreamController.stream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ScrollConfiguration(
@@ -124,7 +121,7 @@ class _MainPageState extends State<MainPage> {
                                     children: [
                                       MachineCard(
                                           streamController:
-                                              applyResponseController,
+                                              applyStreamController,
                                           index: snapshot
                                               .data!
                                               .applyResponseList![index * 2]
@@ -148,7 +145,7 @@ class _MainPageState extends State<MainPage> {
                                                   .length
                                           ? MachineCard(
                                               streamController:
-                                                  applyResponseController,
+                                                  applyStreamController,
                                               index: snapshot
                                                   .data!
                                                   .applyResponseList![

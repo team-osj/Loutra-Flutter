@@ -22,13 +22,14 @@ class _BottomNaviState extends State<BottomNavi>
     with SingleTickerProviderStateMixin {
   late TabController controller;
 
-  int selectedIndex = 0;
+  int selectedIndex = 1;
   bool isChange = false;
 
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 2, vsync: this)
+      ..index = 1
       ..animation?.addListener(() {
         if (controller.offset >= 0.5 &&
             controller.offset < 1.0 &&
@@ -88,7 +89,7 @@ class _BottomNaviState extends State<BottomNavi>
               return TabBarView(
                 controller: controller,
                 children: [
-                  MainPage(osjList: snapshot.data!),
+                  const MainPage(),
                   LaundryRoomPage(osjList: snapshot.data!),
                 ],
               );
