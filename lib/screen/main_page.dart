@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/model/apply_response_list.dart';
+import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:lotura/screen/setting_page.dart';
 import 'package:lotura/service/receive_apply_list.dart';
 import 'package:lotura/widget/osj_colors.dart';
