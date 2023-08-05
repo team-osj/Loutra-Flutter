@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:lotura/global/socket.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:lotura/model/apply_response_list.dart';
+import 'package:lotura/domain/model/apply_response_list.dart';
 
 void receiveApplyList(StreamController streamController) async {
   var token = await FirebaseMessaging.instance.getToken();

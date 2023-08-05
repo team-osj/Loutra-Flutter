@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/setting_page_bottom_sheet.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/setting_page/ui/widget/setting_page_bottom_sheet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/socket_init.dart';
-import 'package:lotura/model/osj_list.dart';
-import 'package:lotura/widget/bottom_navi.dart';
-import 'package:lotura/widget/osj_colors.dart';
+import 'package:lotura/domain/model/osj_list.dart';
+import 'package:lotura/presentation/utils/bottom_navi.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

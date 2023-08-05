@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/osj_bottom_sheet.dart';
-import 'package:lotura/widget/osj_icons.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
+import 'package:lotura/presentation/utils/osj_icons.dart';
 
 class MachineButton extends StatelessWidget {
   MachineButton({
