@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/domain/model/osj_list.dart';
-import 'package:lotura/screen/setting_page.dart';
+import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/widget/osj_colors.dart';
 import 'package:lotura/widget/custom_row_buttons.dart';
 import 'package:lotura/widget/osj_icons.dart';
