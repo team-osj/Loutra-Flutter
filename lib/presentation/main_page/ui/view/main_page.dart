@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
-import 'package:lotura/service/receive_apply_list.dart';
+import 'package:lotura/data/repository/receive_apply_list.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
