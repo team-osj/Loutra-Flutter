@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/domain/model/osj_list.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
 import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/osj_icon_button.dart';
-import 'package:lotura/widget/osj_image_button.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_icon_button.dart';
+import 'package:lotura/presentation/utils/osj_image_button.dart';
 
 class BottomNavi extends StatefulWidget {
   const BottomNavi({super.key, required this.osjStreamController});
