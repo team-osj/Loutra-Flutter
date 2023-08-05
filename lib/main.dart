@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
-import 'package:lotura/widget/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

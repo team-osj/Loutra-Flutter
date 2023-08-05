@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lotura/widget/machine_button.dart';
+import 'package:lotura/presentation/utils/machine_button.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/widget/machine_card.dart';
-import 'package:lotura/widget/osj_icons.dart';
+import 'package:lotura/presentation/utils/machine_card.dart';
+import 'package:lotura/presentation/utils/osj_icons.dart';
 
 class CustomRowButton extends StatelessWidget {
   const CustomRowButton({

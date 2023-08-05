@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/service/apply_cancle.dart';
 import 'package:lotura/service/send_fcm_info.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/osj_icons.dart';
-import 'package:lotura/widget/osj_text_button.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_icons.dart';
+import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class OSJBottomSheet extends StatelessWidget {
   OSJBottomSheet({
