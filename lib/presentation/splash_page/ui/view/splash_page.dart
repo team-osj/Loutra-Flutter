@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/init/socket_init.dart';
 import 'package:lotura/domain/model/osj_list.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
 import 'package:lotura/presentation/splash_page/bloc/osj_event.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
@@ -24,6 +26,7 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(const Duration(milliseconds: 1100)).then(
       (value) {
         context.read<OSJBloc>().add(GetOSJEvent());
+        context.read<ApplyBloc>().add(GetApplyListEvent());
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
