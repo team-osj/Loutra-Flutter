@@ -85,27 +85,13 @@ class _BottomNaviState extends State<BottomNavi>
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: BlocBuilder<OSJBloc, OSJState>(builder: (context, state) {
-          if (state is Empty) {
-            return Center(child: Text("비어있음"));
-          } else if (state is Loading) {
-            return Center(child: Text("로딩중"));
-          } else if (state is Error) {
-            return Center(child: Text(state.message));
-          } else if (state is Loaded) {
-            return TabBarView(
-              controller: controller,
-              children: [
-                const MainPage(),
-                LaundryRoomPage(osjList: state.osjList),
-              ],
-            );
-          } else {
-            return Center(
-              child: Text("몰루~"),
-            );
-          }
-        }),
+        child: TabBarView(
+          controller: controller,
+          children: const [
+            MainPage(),
+            LaundryRoomPage(),
+          ],
+        ),
       ),
       bottomNavigationBar: TabBar(
         padding: EdgeInsets.only(top: 10.0.h, bottom: 10.0.h),
