@@ -15,6 +15,6 @@ class OSJRepository {
   void init() {
     socket.onConnect((data) => debugPrint("연결 성공"));
     socket.on(
-        'update', (data) => _streamController.add(OsjList.fromJson(data)));
+        'update', (data) => _streamController.sink.add(OsjList.fromJson(data)));
   }
 }
