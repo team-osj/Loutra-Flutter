@@ -37,9 +37,11 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<OSJRepository>(
+            lazy: false,
             create: (context) =>
                 OSJRepository(StreamController<OsjList>.broadcast())),
         RepositoryProvider<ApplyRepository>(
+            lazy: false,
             create: (context) => ApplyRepository(
                 StreamController<ApplyResponseList>.broadcast())),
       ],

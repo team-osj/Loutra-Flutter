@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/domain/model/osj_list.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
+import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/osj_state.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/custom_row_buttons.dart';
 import 'package:lotura/presentation/utils/osj_icons.dart';
@@ -10,9 +12,7 @@ import 'package:lotura/presentation/utils/osj_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LaundryRoomPage extends StatefulWidget {
-  const LaundryRoomPage({super.key, required this.osjList});
-
-  final OsjList osjList;
+  const LaundryRoomPage({super.key});
 
   @override
   State<LaundryRoomPage> createState() => _LaundryRoomPageState();
@@ -172,65 +172,87 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               ],
             ),
             Expanded(
-              child: ScrollConfiguration(
-                behavior: const ScrollBehavior().copyWith(overscroll: false),
-                child: ListView.builder(
-                  itemCount: isSelectedPlace == 2 ? 10 : 8,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        CustomRowButton(
-                          isSelectedIcon: isSelectedIcon,
-                          isWoman: isSelectedPlace == 2 ? true : false,
-                          leftIndex: widget.osjList
-                              .tests![placeIndex[isSelectedPlace] + index].id,
-                          leftStatus: status[widget
-                              .osjList
-                              .tests![placeIndex[isSelectedPlace] + index]
-                              .state],
-                          leftMachine: machine[widget
-                              .osjList
-                              .tests![placeIndex[isSelectedPlace] + index]
-                              .deviceType],
-                          rightIndex: placeIndex[isSelectedPlace] +
-                                      index +
-                                      (isSelectedPlace == 2 ? 10 : 8) <
-                                  44
-                              ? widget
-                                  .osjList
-                                  .tests![placeIndex[isSelectedPlace] +
-                                      index +
-                                      (isSelectedPlace == 2 ? 10 : 8)]
-                                  .id
-                              : -1,
-                          rightStatus: placeIndex[isSelectedPlace] +
-                                      index +
-                                      (isSelectedPlace == 2 ? 10 : 8) <
-                                  44
-                              ? status[widget
-                                  .osjList
-                                  .tests![placeIndex[isSelectedPlace] +
-                                      index +
-                                      (isSelectedPlace == 2 ? 10 : 8)]
-                                  .state]
-                              : Status.breakdown,
-                          rightMachine: placeIndex[isSelectedPlace] +
-                                      index +
-                                      (isSelectedPlace == 2 ? 10 : 8) <
-                                  44
-                              ? machine[widget
-                                  .osjList
-                                  .tests![placeIndex[isSelectedPlace] +
-                                      index +
-                                      (isSelectedPlace == 2 ? 10 : 8)]
-                                  .deviceType]
-                              : Machine.DRY,
-                        ),
-                        SizedBox(height: 10.0.h),
-                      ],
+              child: BlocBuilder<OSJBloc, OSJState>(
+                builder: (context, state) {
+                  if (state is Empty) {
+                    return Center(child: Text("비어있음"));
+                  } else if (state is Loading) {
+                    return Center(child: Text("로딩중"));
+                  } else if (state is Error) {
+                    return Center(child: Text(state.message));
+                  } else if (state is Loaded) {
+                    return ScrollConfiguration(
+                      behavior:
+                          const ScrollBehavior().copyWith(overscroll: false),
+                      child: ListView.builder(
+                        itemCount: isSelectedPlace == 2 ? 10 : 8,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              CustomRowButton(
+                                isSelectedIcon: isSelectedIcon,
+                                isWoman: isSelectedPlace == 2 ? true : false,
+                                leftIndex: state
+                                    .osjList
+                                    .tests![
+                                        placeIndex[isSelectedPlace] + index]
+                                    .id,
+                                leftStatus: status[state
+                                    .osjList
+                                    .tests![
+                                        placeIndex[isSelectedPlace] + index]
+                                    .state],
+                                leftMachine: machine[state
+                                    .osjList
+                                    .tests![
+                                        placeIndex[isSelectedPlace] + index]
+                                    .deviceType],
+                                rightIndex: placeIndex[isSelectedPlace] +
+                                            index +
+                                            (isSelectedPlace == 2 ? 10 : 8) <
+                                        44
+                                    ? state
+                                        .osjList
+                                        .tests![placeIndex[isSelectedPlace] +
+                                            index +
+                                            (isSelectedPlace == 2 ? 10 : 8)]
+                                        .id
+                                    : -1,
+                                rightStatus: placeIndex[isSelectedPlace] +
+                                            index +
+                                            (isSelectedPlace == 2 ? 10 : 8) <
+                                        44
+                                    ? status[state
+                                        .osjList
+                                        .tests![placeIndex[isSelectedPlace] +
+                                            index +
+                                            (isSelectedPlace == 2 ? 10 : 8)]
+                                        .state]
+                                    : Status.breakdown,
+                                rightMachine: placeIndex[isSelectedPlace] +
+                                            index +
+                                            (isSelectedPlace == 2 ? 10 : 8) <
+                                        44
+                                    ? machine[state
+                                        .osjList
+                                        .tests![placeIndex[isSelectedPlace] +
+                                            index +
+                                            (isSelectedPlace == 2 ? 10 : 8)]
+                                        .deviceType]
+                                    : Machine.DRY,
+                              ),
+                              SizedBox(height: 10.0.h),
+                            ],
+                          );
+                        },
+                      ),
                     );
-                  },
-                ),
+                  } else {
+                    return Center(
+                      child: Text("몰루~"),
+                    );
+                  }
+                },
               ),
             ),
           ],

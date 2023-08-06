@@ -1,13 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/data/repository/osj_repository.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
 import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
-import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
-import 'package:lotura/presentation/splash_page/bloc/osj_state.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_icon_button.dart';
 import 'package:lotura/presentation/utils/osj_image_button.dart';
@@ -82,16 +76,12 @@ class _BottomNaviState extends State<BottomNavi>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OSJColors.gray100,
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: TabBarView(
-          controller: controller,
-          children: const [
-            MainPage(),
-            LaundryRoomPage(),
-          ],
-        ),
+      body: TabBarView(
+        controller: controller,
+        children: [
+          MainPage(),
+          const LaundryRoomPage(),
+        ],
       ),
       bottomNavigationBar: TabBar(
         padding: EdgeInsets.only(top: 10.0.h, bottom: 10.0.h),
