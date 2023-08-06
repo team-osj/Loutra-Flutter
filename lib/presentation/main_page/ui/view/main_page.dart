@@ -1,23 +1,16 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
-import 'package:lotura/data/repository/receive_apply_list.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_state.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MainPage extends StatelessWidget {
+  MainPage({super.key});
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  late StreamController<ApplyResponseList> applyStreamController;
   int selectedIndex = 0;
 
   final TextStyle bigStyle = TextStyle(
@@ -35,13 +28,6 @@ class _MainPageState extends State<MainPage> {
     "WASH": Machine.WASH,
     "DRY": Machine.DRY,
   };
-
-  @override
-  void initState() {
-    super.initState();
-    applyStreamController = StreamController<ApplyResponseList>();
-    receiveApplyList(applyStreamController);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,90 +84,92 @@ class _MainPageState extends State<MainPage> {
             ),
             SizedBox(height: 20.0.h),
             Expanded(
-              child: StreamBuilder(
-                  stream: applyStreamController.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return ScrollConfiguration(
-                        behavior:
-                            const ScrollBehavior().copyWith(overscroll: false),
-                        child: ListView.builder(
-                            itemCount: snapshot
-                                    .data!.applyResponseList!.length.isEven
-                                ? snapshot.data!.applyResponseList!.length ~/ 2
-                                : snapshot.data!.applyResponseList!.length ~/
-                                        2 +
-                                    1,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      MachineCard(
-                                          streamController:
-                                              applyStreamController,
-                                          index: snapshot
-                                              .data!
-                                              .applyResponseList![index * 2]
-                                              .deviceId,
-                                          isEnableNotification: false,
-                                          isWoman: snapshot
-                                                      .data!
-                                                      .applyResponseList![
-                                                          index * 2]
-                                                      .deviceId >
-                                                  31
-                                              ? true
-                                              : false,
-                                          machine: machine[snapshot
-                                              .data!
-                                              .applyResponseList![index * 2]
-                                              .deviceType],
-                                          status: Status.working),
-                                      index * 2 + 1 <
-                                              snapshot.data!.applyResponseList!
-                                                  .length
-                                          ? MachineCard(
-                                              streamController:
-                                                  applyStreamController,
-                                              index: snapshot
-                                                  .data!
-                                                  .applyResponseList![
-                                                      index * 2 + 1]
-                                                  .deviceId,
-                                              isEnableNotification: false,
-                                              isWoman: snapshot
-                                                          .data!
-                                                          .applyResponseList![
-                                                              index * 2 + 1]
-                                                          .deviceId >
-                                                      31
-                                                  ? true
-                                                  : false,
-                                              machine: machine[snapshot
-                                                  .data!
-                                                  .applyResponseList![
-                                                      index * 2 + 1]
-                                                  .deviceType],
-                                              status: Status.working)
-                                          : SizedBox(
-                                              width: 185.0.w,
-                                              height: 256.0.h,
-                                            ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10.0.h),
-                                ],
-                              );
-                            }),
-                      );
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
+              child: BlocBuilder<ApplyBloc, ApplyState>(
+                builder: (context, state) {
+                  if (state is Empty) {
+                    return Center(child: Text("비어있음"));
+                  } else if (state is Loading) {
+                    return Center(child: Text("로딩중"));
+                  } else if (state is Error) {
+                    return Center(child: Text(state.message));
+                  } else if (state is Loaded) {
+                    return ScrollConfiguration(
+                      behavior:
+                          const ScrollBehavior().copyWith(overscroll: false),
+                      child: ListView.builder(
+                          itemCount: state
+                                  .applyList.applyResponseList!.length.isEven
+                              ? state.applyList.applyResponseList!.length ~/ 2
+                              : state.applyList.applyResponseList!.length ~/ 2 +
+                                  1,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    MachineCard(
+                                        index: state
+                                            .applyList
+                                            .applyResponseList![index * 2]
+                                            .deviceId,
+                                        isEnableNotification: false,
+                                        isWoman: state
+                                                    .applyList
+                                                    .applyResponseList![
+                                                        index * 2]
+                                                    .deviceId >
+                                                31
+                                            ? true
+                                            : false,
+                                        machine: machine[state
+                                            .applyList
+                                            .applyResponseList![index * 2]
+                                            .deviceType],
+                                        status: Status.working),
+                                    index * 2 + 1 <
+                                            state.applyList.applyResponseList!
+                                                .length
+                                        ? MachineCard(
+                                            index: state
+                                                .applyList
+                                                .applyResponseList![
+                                                    index * 2 + 1]
+                                                .deviceId,
+                                            isEnableNotification: false,
+                                            isWoman: state
+                                                        .applyList
+                                                        .applyResponseList![
+                                                            index * 2 + 1]
+                                                        .deviceId >
+                                                    31
+                                                ? true
+                                                : false,
+                                            machine: machine[state
+                                                .applyList
+                                                .applyResponseList![
+                                                    index * 2 + 1]
+                                                .deviceType],
+                                            status: Status.working)
+                                        : SizedBox(
+                                            width: 185.0.w,
+                                            height: 256.0.h,
+                                          ),
+                                  ],
+                                ),
+                                SizedBox(height: 10.0.h),
+                              ],
+                            );
+                          }),
                     );
-                  }),
+                  } else {
+                    return Center(
+                      child: Text("몰루~"),
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
