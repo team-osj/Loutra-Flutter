@@ -20,7 +20,7 @@ class ApplyRepository {
   }
 
   void init() {
-    socket.emit(sendRequestApplyList, _getToken());
+    _getToken().then((value) => socket.emit(sendRequestApplyList, value));
     socket.on(receiveResponseApplyList,
         (data) => _streamController.add(ApplyResponseList.fromJson(data)));
   }
