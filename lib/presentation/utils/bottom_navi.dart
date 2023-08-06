@@ -1,18 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/model/osj_list.dart';
+import 'package:lotura/data/repository/osj_repository.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
 import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
+import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/osj_state.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_icon_button.dart';
 import 'package:lotura/presentation/utils/osj_image_button.dart';
 
 class BottomNavi extends StatefulWidget {
-  const BottomNavi({super.key, required this.osjStreamController});
-
-  final StreamController<OsjList> osjStreamController;
+  const BottomNavi({super.key});
 
   @override
   State<BottomNavi> createState() => _BottomNaviState();
@@ -75,30 +76,37 @@ class _BottomNaviState extends State<BottomNavi>
   void dispose() {
     super.dispose();
     controller.dispose();
-    widget.osjStreamController.close();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OSJColors.gray100,
-      body: StreamBuilder(
-          stream: widget.osjStreamController.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return TabBarView(
-                controller: controller,
-                children: [
-                  const MainPage(),
-                  LaundryRoomPage(osjList: snapshot.data!),
-                ],
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: BlocBuilder<OSJBloc, OSJState>(builder: (context, state) {
+          if (state is Empty) {
+            return Center(child: Text("비어있음"));
+          } else if (state is Loading) {
+            return Center(child: Text("로딩중"));
+          } else if (state is Error) {
+            return Center(child: Text(state.message));
+          } else if (state is Loaded) {
+            return TabBarView(
+              controller: controller,
+              children: [
+                const MainPage(),
+                LaundryRoomPage(osjList: state.osjList),
+              ],
+            );
+          } else {
+            return Center(
+              child: Text("몰루~"),
+            );
+          }
+        }),
+      ),
       bottomNavigationBar: TabBar(
         padding: EdgeInsets.only(top: 10.0.h, bottom: 10.0.h),
         controller: controller,
