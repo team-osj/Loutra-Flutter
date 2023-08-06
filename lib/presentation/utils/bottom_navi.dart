@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/data/repository/osj_repository.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
 import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
 import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
@@ -95,9 +92,9 @@ class _BottomNaviState extends State<BottomNavi>
           } else if (state is Loaded) {
             return TabBarView(
               controller: controller,
-              children: [
-                const MainPage(),
-                LaundryRoomPage(osjList: state.osjList),
+              children: const [
+                MainPage(),
+                LaundryRoomPage(),
               ],
             );
           } else {
