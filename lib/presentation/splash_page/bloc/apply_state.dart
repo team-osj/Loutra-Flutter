@@ -34,8 +34,3 @@ class Loaded extends ApplyState {
   @override
   List<Object> get props => [applyList];
 }
-
-class SendCompletion extends ApplyState {
-  @override
-  List<Object?> get props => [];
-}

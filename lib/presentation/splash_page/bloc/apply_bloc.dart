@@ -27,7 +27,6 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
         _repository.sendFCMInfo(event.deviceId);
         Future.delayed(const Duration(milliseconds: 500))
             .then((value) => _repository.applyListRequest());
-        emit(SendCompletion());
       } catch (e) {
         emit(Error(message: e.toString()));
       }
