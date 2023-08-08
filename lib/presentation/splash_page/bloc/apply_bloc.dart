@@ -32,5 +32,15 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
         emit(Error(message: e.toString()));
       }
     });
+    on<ApplyCancelEvent>((event, emit) async {
+      try {
+        emit(Loading());
+        _repository.applyCancel(event.deviceId);
+        Future.delayed(const Duration(milliseconds: 500))
+            .then((value) => _repository.applyListRequest());
+      } catch (e) {
+        emit(Error(message: e.toString()));
+      }
+    });
   }
 }
