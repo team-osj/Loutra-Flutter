@@ -130,7 +130,13 @@ class OSJBottomSheet extends StatelessWidget {
                       SizedBox(width: 12.0.w),
                       OSJTextButton(
                           function: () {
-                            context.read<ApplyBloc>().add(SendFCMEvent(index));
+                            isEnableNotification
+                                ? context
+                                    .read<ApplyBloc>()
+                                    .add(SendFCMEvent(index))
+                                : context
+                                    .read<ApplyBloc>()
+                                    .add(ApplyCancelEvent(index));
                             Navigator.pop(context);
                           },
                           width: 185.0.w,
