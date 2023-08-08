@@ -175,9 +175,9 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               child: BlocBuilder<OSJBloc, OSJState>(
                 builder: (context, state) {
                   if (state is Empty) {
-                    return Center(child: Text("비어있음"));
+                    return const Center(child: Text("비어있음"));
                   } else if (state is Loading) {
-                    return Center(child: Text("로딩중"));
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is Error) {
                     return Center(child: Text(state.message));
                   } else if (state is Loaded) {
@@ -248,9 +248,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                       ),
                     );
                   } else {
-                    return Center(
-                      child: Text("몰루~"),
-                    );
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),
