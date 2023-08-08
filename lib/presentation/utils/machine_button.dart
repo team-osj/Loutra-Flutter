@@ -15,14 +15,12 @@ class MachineButton extends StatelessWidget {
     required this.isWoman,
     required this.status,
     required this.machine,
-    this.osjStreamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
-  StreamController? osjStreamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
@@ -71,8 +69,6 @@ class MachineButton extends StatelessWidget {
                   isWoman: isWoman,
                   status: status,
                   machine: machine,
-                  streamController:
-                      isEnableNotification ? null : osjStreamController,
                 ),
               );
             },

@@ -8,6 +8,19 @@ class GetApplyListEvent extends ApplyEvent {
 }
 
 class ApplyCancelEvent extends ApplyEvent {
+  final int deviceId;
+
+  ApplyCancelEvent(this.deviceId);
+
+  @override
+  List<Object?> get props => [deviceId];
+}
+
+class SendFCMEvent extends ApplyEvent {
+  final int deviceId;
+
+  SendFCMEvent(this.deviceId);
+
   @override
   List<Object?> get props => [];
 }

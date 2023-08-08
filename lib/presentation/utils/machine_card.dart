@@ -42,8 +42,6 @@ class MachineCard extends StatelessWidget {
                 isWoman: isWoman,
                 status: status,
                 machine: machine,
-                streamController:
-                    isEnableNotification ? null : streamController,
               ),
             ),
             child: Container(
