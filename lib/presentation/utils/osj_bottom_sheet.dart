@@ -1,11 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/data/repository/apply_cancle.dart';
-import 'package:lotura/data/repository/send_fcm_info.dart';
 import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/splash_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';

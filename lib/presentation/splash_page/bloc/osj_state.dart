@@ -1,4 +1,3 @@
-import 'package:lotura/domain/model/osj.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lotura/domain/model/osj_list.dart';
 
