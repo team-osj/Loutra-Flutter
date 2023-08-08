@@ -10,11 +10,11 @@ import 'package:lotura/domain/model/osj_list.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/domain/model/apply_response_list.dart';
-import 'package:lotura/data/repository/apply_repository.dart';
-import 'package:lotura/data/repository/laundry_repository.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
+import 'package:lotura/data/repository/apply_repository_impl.dart';
 import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
+import 'package:lotura/data/repository/laundry_repository_impl.dart';
 import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
 
