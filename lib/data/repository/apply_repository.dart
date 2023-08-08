@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:lotura/secret.dart';
-import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:lotura/global/socket.dart';
-import 'package:socket_io_client/socket_io_client.dart';
+import 'package:lotura/domain/model/apply_response_list.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class ApplyRepository {
   final StreamController<ApplyResponseList> _streamController;
