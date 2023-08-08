@@ -1,18 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/model/osj_list.dart';
-import 'package:lotura/screen/laundry_room_page.dart';
-import 'package:lotura/screen/main_page.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/osj_icon_button.dart';
-import 'package:lotura/widget/osj_image_button.dart';
+import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
+import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_icon_button.dart';
+import 'package:lotura/presentation/utils/osj_image_button.dart';
 
 class BottomNavi extends StatefulWidget {
-  const BottomNavi({super.key, required this.osjStreamController});
-
-  final StreamController<OsjList> osjStreamController;
+  const BottomNavi({super.key});
 
   @override
   State<BottomNavi> createState() => _BottomNaviState();
@@ -75,30 +70,19 @@ class _BottomNaviState extends State<BottomNavi>
   void dispose() {
     super.dispose();
     controller.dispose();
-    widget.osjStreamController.close();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OSJColors.gray100,
-      body: StreamBuilder(
-          stream: widget.osjStreamController.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return TabBarView(
-                controller: controller,
-                children: [
-                  const MainPage(),
-                  LaundryRoomPage(osjList: snapshot.data!),
-                ],
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+      body: TabBarView(
+        controller: controller,
+        children: [
+          MainPage(),
+          const LaundryRoomPage(),
+        ],
+      ),
       bottomNavigationBar: TabBar(
         padding: EdgeInsets.only(top: 10.0.h, bottom: 10.0.h),
         controller: controller,

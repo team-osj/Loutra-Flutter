@@ -1,4 +1,4 @@
-import 'package:lotura/model/apply_response.dart';
+import 'package:lotura/domain/model/apply_response.dart';
 
 class ApplyResponseList {
   final List<ApplyResponse>? applyResponseList;

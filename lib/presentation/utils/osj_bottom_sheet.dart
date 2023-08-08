@@ -1,13 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/service/apply_cancle.dart';
-import 'package:lotura/service/send_fcm_info.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/osj_icons.dart';
-import 'package:lotura/widget/osj_text_button.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_icons.dart';
+import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class OSJBottomSheet extends StatelessWidget {
   OSJBottomSheet({
@@ -17,14 +16,12 @@ class OSJBottomSheet extends StatelessWidget {
     required this.isWoman,
     required this.status,
     required this.machine,
-    this.streamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
-  final StreamController? streamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
@@ -130,8 +127,12 @@ class OSJBottomSheet extends StatelessWidget {
                       OSJTextButton(
                           function: () {
                             isEnableNotification
-                                ? sendFcmInfo(index.toString())
-                                : applyCancle(streamController!, index);
+                                ? context
+                                    .read<ApplyBloc>()
+                                    .add(SendFCMEvent(index))
+                                : context
+                                    .read<ApplyBloc>()
+                                    .add(ApplyCancelEvent(index));
                             Navigator.pop(context);
                           },
                           width: 185.0.w,

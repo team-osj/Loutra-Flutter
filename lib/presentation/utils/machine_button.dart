@@ -1,11 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/widget/osj_colors.dart';
-import 'package:lotura/widget/osj_bottom_sheet.dart';
-import 'package:lotura/widget/osj_icons.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
+import 'package:lotura/presentation/utils/osj_icons.dart';
 
 class MachineButton extends StatelessWidget {
   MachineButton({
@@ -15,14 +13,12 @@ class MachineButton extends StatelessWidget {
     required this.isWoman,
     required this.status,
     required this.machine,
-    this.osjStreamController,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
   final Status status;
   final Machine machine;
-  StreamController? osjStreamController;
 
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
@@ -71,8 +67,6 @@ class MachineButton extends StatelessWidget {
                   isWoman: isWoman,
                   status: status,
                   machine: machine,
-                  streamController:
-                      isEnableNotification ? null : osjStreamController,
                 ),
               );
             },

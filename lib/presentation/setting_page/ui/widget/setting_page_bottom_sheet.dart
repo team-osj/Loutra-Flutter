@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/widget/osj_colors.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingPageBottomSheet extends StatefulWidget {

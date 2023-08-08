@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/init/socket_init.dart';
-import 'package:lotura/model/osj_list.dart';
-import 'package:lotura/widget/bottom_navi.dart';
-import 'package:lotura/widget/osj_colors.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
+import 'package:lotura/presentation/splash_page/bloc/osj_event.dart';
+import 'package:lotura/presentation/utils/bottom_navi.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -15,22 +18,20 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  late StreamController<OsjList> osjStreamController;
-
   @override
   void initState() {
     super.initState();
-    osjStreamController = StreamController<OsjList>();
-    socketInit(osjStreamController);
+    context.read<OSJBloc>().add(GetOSJEvent());
+    context.read<ApplyBloc>().add(GetApplyListEvent());
     Future.delayed(const Duration(milliseconds: 1100)).then(
-      (value) => Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BottomNavi(
-              osjStreamController: osjStreamController,
+      (value) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BottomNavi(),
             ),
-          ),
-          (route) => false),
+            (route) => false);
+      },
     );
   }
 
