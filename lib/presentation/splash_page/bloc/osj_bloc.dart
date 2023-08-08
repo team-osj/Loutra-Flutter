@@ -1,10 +1,10 @@
+import 'package:lotura/data/repository/laundry_repository.dart';
 import 'package:lotura/presentation/splash_page/bloc/osj_event.dart';
 import 'package:lotura/presentation/splash_page/bloc/osj_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/data/repository/osj_repository.dart';
 
 class OSJBloc extends Bloc<OSJEvent, OSJState> {
-  final OSJRepository _repository;
+  final LaundryRepository _repository;
 
   OSJBloc(this._repository) : super(Empty()) {
     on<GetOSJEvent>((event, emit) async {

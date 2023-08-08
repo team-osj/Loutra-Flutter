@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/data/repository/apply_repository.dart';
-import 'package:lotura/data/repository/osj_repository.dart';
+import 'package:lotura/data/repository/laundry_repository.dart';
 import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:lotura/domain/model/osj_list.dart';
 import 'package:lotura/init/fcm_init.dart';
@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<OSJRepository>(
+        RepositoryProvider<LaundryRepository>(
             lazy: false,
             create: (context) =>
-                OSJRepository(StreamController<OsjList>.broadcast())),
+                LaundryRepository(StreamController<OsjList>.broadcast())),
         RepositoryProvider<ApplyRepository>(
             lazy: false,
             create: (context) => ApplyRepository(
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<OSJBloc>(
               lazy: false,
-              create: (context) => OSJBloc(context.read<OSJRepository>())),
+              create: (context) => OSJBloc(context.read<LaundryRepository>())),
           BlocProvider<ApplyBloc>(
               lazy: false,
               create: (context) => ApplyBloc(context.read<ApplyRepository>())),
