@@ -43,4 +43,10 @@ class ApplyRepository {
       });
     });
   }
+
+  void applyCancel(int deviceId) =>
+      _getToken().then((value) => socket.emit(sendRequestApplyCancel, {
+            'token': value,
+            'device_id': deviceId,
+          }));
 }
