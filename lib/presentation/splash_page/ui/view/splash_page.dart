@@ -23,10 +23,10 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    context.read<OSJBloc>().add(GetOSJEvent());
+    context.read<ApplyBloc>().add(GetApplyListEvent());
     Future.delayed(const Duration(milliseconds: 1100)).then(
       (value) {
-        context.read<OSJBloc>().add(GetOSJEvent());
-        context.read<ApplyBloc>().add(GetApplyListEvent());
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
