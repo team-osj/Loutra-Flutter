@@ -164,9 +164,7 @@ class MainPage extends StatelessWidget {
                           }),
                     );
                   } else {
-                    return Center(
-                      child: Text("몰루~"),
-                    );
+                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),
