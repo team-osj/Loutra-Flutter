@@ -87,9 +87,9 @@ class MainPage extends StatelessWidget {
               child: BlocBuilder<ApplyBloc, ApplyState>(
                 builder: (context, state) {
                   if (state is Empty) {
-                    return Center(child: Text("비어있음"));
+                    return const Center(child: Text("비어있음"));
                   } else if (state is Loading) {
-                    return Center(child: Text("로딩중"));
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is Error) {
                     return Center(child: Text(state.message));
                   } else if (state is Loaded) {
