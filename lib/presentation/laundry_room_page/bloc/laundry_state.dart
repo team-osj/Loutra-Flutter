@@ -1,19 +1,19 @@
 import 'package:equatable/equatable.dart';
 import 'package:lotura/domain/model/osj_list.dart';
 
-abstract class OSJState extends Equatable {}
+abstract class LaundryState extends Equatable {}
 
-class Empty extends OSJState {
+class Empty extends LaundryState {
   @override
   List<Object> get props => [];
 }
 
-class Loading extends OSJState {
+class Loading extends LaundryState {
   @override
   List<Object> get props => [];
 }
 
-class Error extends OSJState {
+class Error extends LaundryState {
   final String message;
 
   Error({
@@ -24,7 +24,7 @@ class Error extends OSJState {
   List<Object> get props => [message];
 }
 
-class Loaded extends OSJState {
+class Loaded extends LaundryState {
   final OsjList osjList;
 
   Loaded({

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-abstract class OSJEvent extends Equatable {}
+abstract class LaundryEvent extends Equatable {}
 
-class GetOSJEvent extends OSJEvent {
+class GetLaundryEvent extends LaundryEvent {
   @override
   List<Object?> get props => [];
 }
