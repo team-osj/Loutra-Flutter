@@ -49,9 +49,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<OSJBloc>(
+          BlocProvider<LaundryBloc>(
               lazy: false,
-              create: (context) => OSJBloc(context.read<LaundryRepository>())),
+              create: (context) =>
+                  LaundryBloc(context.read<LaundryRepository>())),
           BlocProvider<ApplyBloc>(
               lazy: false,
               create: (context) => ApplyBloc(context.read<ApplyRepository>())),
