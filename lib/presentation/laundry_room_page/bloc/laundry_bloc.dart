@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
-import 'package:lotura/presentation/splash_page/bloc/laundry_event.dart';
-import 'package:lotura/presentation/splash_page/bloc/laundry_state.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
 
 class OSJBloc extends Bloc<OSJEvent, OSJState> {
   final LaundryRepository _repository;
