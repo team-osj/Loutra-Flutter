@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
-import 'package:lotura/presentation/splash_page/bloc/apply_event.dart';
-import 'package:lotura/presentation/splash_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
 
 class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
   final ApplyRepository _repository;
