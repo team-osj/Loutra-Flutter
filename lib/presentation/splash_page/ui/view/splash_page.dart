@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
-import 'package:lotura/presentation/splash_page/bloc/apply_event.dart';
-import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
-import 'package:lotura/presentation/splash_page/bloc/osj_event.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    context.read<OSJBloc>().add(GetOSJEvent());
+    context.read<LaundryBloc>().add(GetLaundryEvent());
     context.read<ApplyBloc>().add(GetApplyListEvent());
     Future.delayed(const Duration(milliseconds: 1100)).then(
       (value) {

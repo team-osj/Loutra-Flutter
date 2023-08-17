@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
-import 'package:lotura/presentation/splash_page/bloc/apply_bloc.dart';
-import 'package:lotura/presentation/splash_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';

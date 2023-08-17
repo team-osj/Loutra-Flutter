@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
-import 'package:lotura/presentation/splash_page/bloc/osj_bloc.dart';
-import 'package:lotura/presentation/splash_page/bloc/osj_state.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/custom_row_buttons.dart';
 import 'package:lotura/presentation/utils/osj_icons.dart';
@@ -172,7 +172,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
               ],
             ),
             Expanded(
-              child: BlocBuilder<OSJBloc, OSJState>(
+              child: BlocBuilder<LaundryBloc, LaundryState>(
                 builder: (context, state) {
                   if (state is Empty) {
                     return const Center(child: Text("비어있음"));
@@ -194,18 +194,15 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                 isWoman: isSelectedPlace == 2 ? true : false,
                                 leftIndex: state
                                     .osjList
-                                    .tests![
-                                        placeIndex[isSelectedPlace] + index]
+                                    .tests![placeIndex[isSelectedPlace] + index]
                                     .id,
                                 leftStatus: status[state
                                     .osjList
-                                    .tests![
-                                        placeIndex[isSelectedPlace] + index]
+                                    .tests![placeIndex[isSelectedPlace] + index]
                                     .state],
                                 leftMachine: machine[state
                                     .osjList
-                                    .tests![
-                                        placeIndex[isSelectedPlace] + index]
+                                    .tests![placeIndex[isSelectedPlace] + index]
                                     .deviceType],
                                 rightIndex: placeIndex[isSelectedPlace] +
                                             index +
