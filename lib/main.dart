@@ -23,7 +23,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  fcmInit();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
   );
@@ -60,6 +59,7 @@ class MyApp extends StatelessWidget {
         child: ScreenUtilInit(
           designSize: const Size(430, 932),
           builder: (context, child) {
+            fcmInit(context);
             return MaterialApp(
               theme: ThemeData(
                 splashColor: Colors.transparent,
