@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
@@ -22,7 +23,9 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     context.read<LaundryBloc>().add(GetLaundryEvent());
-    context.read<ApplyBloc>().add(GetApplyListEvent());
+    context
+        .read<ApplyBloc>()
+        .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
     Future.delayed(const Duration(milliseconds: 1100)).then(
       (value) {
         Navigator.pushAndRemoveUntil(

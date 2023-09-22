@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:lotura/data/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
@@ -31,10 +31,14 @@ class ApplyRepositoryImpl implements ApplyRepository {
   }
 
   @override
-  void applyListRequest() => _getToken().then((value) => socket.emit(
-        sendRequestApplyList,
-        {'token': value},
-      ));
+  void getApplyList(GetApplyListRequest getApplyListRequest) =>
+      _getToken().then((value) {
+        getApplyListRequest.token = value;
+        socket.emit(
+          sendRequestApplyList,
+          getApplyListRequest,
+        );
+      });
 
   @override
   void response() => socket.on(receiveResponseApplyList, (data) {
