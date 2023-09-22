@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
@@ -35,7 +36,11 @@ class ApplyRepositoryImpl implements ApplyRepository {
 
   @override
   void response() => socket.on(receiveResponseApplyList, (data) {
-        _streamController.sink.add(ApplyResponseList.fromJson(data));
+        List<ApplyResponse> applyResponseList = List.empty(growable: true);
+        applyResponseList = (data as List<dynamic>)
+            .map((i) => ApplyResponse.fromJson(i))
+            .toList();
+        _streamController.sink.add(applyResponseList);
       });
 
   @override
