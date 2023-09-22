@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
 
@@ -38,7 +39,8 @@ void fcmInit(BuildContext context) async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen(
     (RemoteMessage message) {
-      BlocProvider.of<ApplyBloc>(context).add(GetApplyListEvent());
+      BlocProvider.of<ApplyBloc>(context)
+          .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {

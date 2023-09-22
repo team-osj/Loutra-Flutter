@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
@@ -12,7 +13,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
     on<GetApplyListEvent>((event, emit) async {
       try {
         emit(Loading());
-        _repository.applyListRequest();
+        _repository.getApplyList(event.getApplyListRequest);
         _repository.response();
         await for (var value in _repository.applyStream) {
           emit(Loaded(applyList: value));
@@ -24,9 +25,9 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
     on<SendFCMEvent>((event, emit) async {
       try {
         emit(Loading());
-        _repository.sendFCMInfo(event.deviceId);
+        _repository.sendFCMInfo(event.sendFCMInfoRequest);
         Future.delayed(const Duration(milliseconds: 500))
-            .then((value) => _repository.applyListRequest());
+            .then((value) => _repository.getApplyList(GetApplyListRequest()));
       } catch (e) {
         emit(Error(message: e.toString()));
       }
@@ -34,9 +35,9 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
     on<ApplyCancelEvent>((event, emit) async {
       try {
         emit(Loading());
-        _repository.applyCancel(event.deviceId);
+        _repository.applyCancel(event.applyCancelRequest);
         Future.delayed(const Duration(milliseconds: 500))
-            .then((value) => _repository.applyListRequest());
+            .then((value) => _repository.getApplyList(GetApplyListRequest()));
       } catch (e) {
         emit(Error(message: e.toString()));
       }

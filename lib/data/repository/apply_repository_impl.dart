@@ -1,13 +1,16 @@
 import 'dart:async';
 
+import 'package:lotura/data/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 
 class ApplyRepositoryImpl implements ApplyRepository {
-  final StreamController<ApplyResponseList> _streamController;
+  final StreamController<List<ApplyResponse>> _streamController;
 
   IO.Socket socket = IO.io(
       '$baseurl/application',
@@ -17,7 +20,7 @@ class ApplyRepositoryImpl implements ApplyRepository {
           .build());
 
   @override
-  Stream<ApplyResponseList> get applyStream =>
+  Stream<List<ApplyResponse>> get applyStream =>
       _streamController.stream.asBroadcastStream();
 
   ApplyRepositoryImpl(this._streamController);
@@ -28,28 +31,35 @@ class ApplyRepositoryImpl implements ApplyRepository {
   }
 
   @override
-  void applyListRequest() => _getToken().then((value) => socket.emit(
-        sendRequestApplyList,
-        {'token': value},
-      ));
-
-  @override
-  void response() => socket.on(receiveResponseApplyList, (data) {
-        _streamController.sink.add(ApplyResponseList.fromJson(data));
+  void getApplyList(GetApplyListRequest getApplyListRequest) =>
+      _getToken().then((value) {
+        getApplyListRequest.token = value;
+        socket.emit(
+          sendRequestApplyList,
+          getApplyListRequest,
+        );
       });
 
   @override
-  void sendFCMInfo(int deviceId) =>
-      _getToken().then((value) => socket.emit(sendFCM, {
-            'token': value,
-            'device_id': deviceId,
-            'expect_state': '1',
-          }));
+  void response() => socket.on(receiveResponseApplyList, (data) {
+        List<ApplyResponse> applyResponseList = List.empty(growable: true);
+        applyResponseList = (data as List<dynamic>)
+            .map((i) => ApplyResponse.fromJson(i))
+            .toList();
+        _streamController.sink.add(applyResponseList);
+      });
 
   @override
-  void applyCancel(int deviceId) =>
-      _getToken().then((value) => socket.emit(sendRequestApplyCancel, {
-            'token': value,
-            'device_id': deviceId,
-          }));
+  void sendFCMInfo(SendFCMInfoRequest sendFCMInfoRequest) =>
+      _getToken().then((value) {
+        sendFCMInfoRequest.token = value;
+        socket.emit(sendFCM, sendFCMInfoRequest);
+      });
+
+  @override
+  void applyCancel(ApplyCancelRequest applyCancelRequest) =>
+      _getToken().then((value) {
+        applyCancelRequest.token = value;
+        socket.emit(sendRequestApplyCancel, applyCancelRequest);
+      });
 }

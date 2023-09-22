@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:lotura/data/dto/response/laundry_response.dart';
 import 'package:lotura/secret.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lotura/domain/model/osj_list.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:lotura/domain/repository/laundry_repository.dart';
 
 class LaundryRepositoryImpl implements LaundryRepository {
-  final StreamController<OsjList> _streamController;
+  final StreamController<List<LaundryResponse>> _streamController;
 
   IO.Socket socket = IO.io(
       '$baseurl/application',
@@ -17,14 +17,20 @@ class LaundryRepositoryImpl implements LaundryRepository {
           .build());
 
   @override
-  Stream<OsjList> get osjStream => _streamController.stream.asBroadcastStream();
+  Stream<List<LaundryResponse>> get laundryList =>
+      _streamController.stream.asBroadcastStream();
 
   LaundryRepositoryImpl(this._streamController);
 
   @override
   void init() {
     socket.onConnect((data) => debugPrint("연결 성공"));
-    socket.on(
-        'update', (data) => _streamController.sink.add(OsjList.fromJson(data)));
+    socket.on('update', (data) {
+      List<LaundryResponse> laundryList = List.empty(growable: true);
+      laundryList = (data as List<dynamic>)
+          .map((i) => LaundryResponse.fromJson(i))
+          .toList();
+      _streamController.sink.add(laundryList);
+    });
   }
 }

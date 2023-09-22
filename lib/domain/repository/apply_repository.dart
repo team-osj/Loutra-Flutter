@@ -1,20 +1,17 @@
 import 'dart:async';
-import 'package:lotura/domain/model/apply_response_list.dart';
+import 'package:lotura/data/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/data/dto/response/apply_response.dart';
 
 abstract class ApplyRepository {
-  final StreamController<ApplyResponseList> _streamController;
+  Stream<List<ApplyResponse>> get applyStream;
 
-  ApplyRepository(this._streamController);
-
-  Future<String> _getToken();
-
-  Stream<ApplyResponseList> get applyStream;
-
-  void applyListRequest();
+  void getApplyList(GetApplyListRequest getApplyListRequest);
 
   void response();
 
-  void sendFCMInfo(int deviceId);
+  void sendFCMInfo(SendFCMInfoRequest sendFCMInfoRequest);
 
-  void applyCancel(int deviceId);
+  void applyCancel(ApplyCancelRequest applyCancelRequest);
 }
