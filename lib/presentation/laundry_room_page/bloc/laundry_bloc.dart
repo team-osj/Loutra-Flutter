@@ -11,8 +11,8 @@ class LaundryBloc extends Bloc<LaundryEvent, LaundryState> {
       try {
         _repository.init();
         emit(Loading());
-        await for (var value in _repository.osjStream) {
-          emit(Loaded(osjList: value));
+        await for (var value in _repository.laundryList) {
+          emit(Loaded(laundryResponseList: value));
         }
       } catch (e) {
         emit(Error(message: e.toString()));

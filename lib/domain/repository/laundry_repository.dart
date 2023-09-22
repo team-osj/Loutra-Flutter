@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'package:lotura/domain/model/osj_list.dart';
+
+import 'package:lotura/data/dto/response/laundry_response.dart';
 
 abstract class LaundryRepository {
-  final StreamController<OsjList> _streamController;
-
-  LaundryRepository(this._streamController);
-
-  Stream<OsjList> get osjStream;
+  Stream<List<LaundryResponse>> get laundryList;
 
   void init();
 }

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lotura/domain/model/osj_list.dart';
+import 'package:lotura/data/dto/response/laundry_response.dart';
 
 abstract class LaundryState extends Equatable {}
 
@@ -25,12 +25,12 @@ class Error extends LaundryState {
 }
 
 class Loaded extends LaundryState {
-  final OsjList osjList;
+  final List<LaundryResponse> laundryResponseList;
 
   Loaded({
-    required this.osjList,
+    required this.laundryResponseList,
   });
 
   @override
-  List<Object> get props => [osjList];
+  List<Object> get props => [laundryResponseList];
 }

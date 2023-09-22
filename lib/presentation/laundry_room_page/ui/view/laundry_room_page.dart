@@ -193,26 +193,26 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                 isSelectedIcon: isSelectedIcon,
                                 isWoman: isSelectedPlace == 2 ? true : false,
                                 leftIndex: state
-                                    .osjList
-                                    .tests![placeIndex[isSelectedPlace] + index]
+                                    .laundryResponseList[
+                                        placeIndex[isSelectedPlace] + index]
                                     .id,
                                 leftStatus: status[state
-                                    .osjList
-                                    .tests![placeIndex[isSelectedPlace] + index]
+                                    .laundryResponseList[
+                                        placeIndex[isSelectedPlace] + index]
                                     .state],
                                 leftMachine: machine[state
-                                    .osjList
-                                    .tests![placeIndex[isSelectedPlace] + index]
+                                    .laundryResponseList[
+                                        placeIndex[isSelectedPlace] + index]
                                     .deviceType],
                                 rightIndex: placeIndex[isSelectedPlace] +
                                             index +
                                             (isSelectedPlace == 2 ? 10 : 8) <
                                         44
                                     ? state
-                                        .osjList
-                                        .tests![placeIndex[isSelectedPlace] +
-                                            index +
-                                            (isSelectedPlace == 2 ? 10 : 8)]
+                                        .laundryResponseList[
+                                            placeIndex[isSelectedPlace] +
+                                                index +
+                                                (isSelectedPlace == 2 ? 10 : 8)]
                                         .id
                                     : -1,
                                 rightStatus: placeIndex[isSelectedPlace] +
@@ -220,10 +220,10 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                             (isSelectedPlace == 2 ? 10 : 8) <
                                         44
                                     ? status[state
-                                        .osjList
-                                        .tests![placeIndex[isSelectedPlace] +
-                                            index +
-                                            (isSelectedPlace == 2 ? 10 : 8)]
+                                        .laundryResponseList[
+                                            placeIndex[isSelectedPlace] +
+                                                index +
+                                                (isSelectedPlace == 2 ? 10 : 8)]
                                         .state]
                                     : Status.breakdown,
                                 rightMachine: placeIndex[isSelectedPlace] +
@@ -231,10 +231,10 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                             (isSelectedPlace == 2 ? 10 : 8) <
                                         44
                                     ? machine[state
-                                        .osjList
-                                        .tests![placeIndex[isSelectedPlace] +
-                                            index +
-                                            (isSelectedPlace == 2 ? 10 : 8)]
+                                        .laundryResponseList[
+                                            placeIndex[isSelectedPlace] +
+                                                index +
+                                                (isSelectedPlace == 2 ? 10 : 8)]
                                         .deviceType]
                                     : Machine.DRY,
                               ),

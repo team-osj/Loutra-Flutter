@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
+import 'package:lotura/data/dto/response/laundry_response.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lotura/domain/model/osj_list.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider<LaundryRepository>(
             lazy: false,
-            create: (context) =>
-                LaundryRepositoryImpl(StreamController<OsjList>.broadcast())),
+            create: (context) => LaundryRepositoryImpl(
+                StreamController<List<LaundryResponse>>.broadcast())),
         RepositoryProvider<ApplyRepository>(
             lazy: false,
             create: (context) => ApplyRepositoryImpl(
