@@ -97,11 +97,9 @@ class MainPage extends StatelessWidget {
                       behavior:
                           const ScrollBehavior().copyWith(overscroll: false),
                       child: ListView.builder(
-                          itemCount: state
-                                  .applyList.applyResponseList!.length.isEven
-                              ? state.applyList.applyResponseList!.length ~/ 2
-                              : state.applyList.applyResponseList!.length ~/ 2 +
-                                  1,
+                          itemCount: state.applyList.length.isEven
+                              ? state.applyList.length ~/ 2
+                              : state.applyList.length ~/ 2 + 1,
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
@@ -110,46 +108,31 @@ class MainPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     MachineCard(
-                                        index: state
-                                            .applyList
-                                            .applyResponseList![index * 2]
-                                            .deviceId,
+                                        index:
+                                            state.applyList[index * 2].deviceId,
                                         isEnableNotification: false,
-                                        isWoman: state
-                                                    .applyList
-                                                    .applyResponseList![
-                                                        index * 2]
+                                        isWoman: state.applyList[index * 2]
                                                     .deviceId >
                                                 31
                                             ? true
                                             : false,
                                         machine: machine[state
-                                            .applyList
-                                            .applyResponseList![index * 2]
-                                            .deviceType],
+                                            .applyList[index * 2].deviceType],
                                         status: Status.working),
-                                    index * 2 + 1 <
-                                            state.applyList.applyResponseList!
-                                                .length
+                                    index * 2 + 1 < state.applyList.length
                                         ? MachineCard(
                                             index: state
-                                                .applyList
-                                                .applyResponseList![
-                                                    index * 2 + 1]
+                                                .applyList[index * 2 + 1]
                                                 .deviceId,
                                             isEnableNotification: false,
-                                            isWoman: state
-                                                        .applyList
-                                                        .applyResponseList![
-                                                            index * 2 + 1]
-                                                        .deviceId >
-                                                    31
-                                                ? true
-                                                : false,
+                                            isWoman:
+                                                state.applyList[index * 2 + 1]
+                                                            .deviceId >
+                                                        31
+                                                    ? true
+                                                    : false,
                                             machine: machine[state
-                                                .applyList
-                                                .applyResponseList![
-                                                    index * 2 + 1]
+                                                .applyList[index * 2 + 1]
                                                 .deviceType],
                                             status: Status.working)
                                         : SizedBox(
