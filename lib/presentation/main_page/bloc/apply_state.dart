@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lotura/domain/model/apply_response_list.dart';
+import 'package:lotura/data/dto/response/apply_response.dart';
 
 abstract class ApplyState extends Equatable {}
 
@@ -25,7 +25,7 @@ class Error extends ApplyState {
 }
 
 class Loaded extends ApplyState {
-  final ApplyResponseList applyList;
+  final List<ApplyResponse> applyList;
 
   Loaded({
     required this.applyList,

@@ -1,14 +1,8 @@
 import 'dart:async';
-import 'package:lotura/domain/model/apply_response_list.dart';
+import 'package:lotura/data/dto/response/apply_response.dart';
 
 abstract class ApplyRepository {
-  final StreamController<ApplyResponseList> _streamController;
-
-  ApplyRepository(this._streamController);
-
-  Future<String> _getToken();
-
-  Stream<ApplyResponseList> get applyStream;
+  Stream<List<ApplyResponse>> get applyStream;
 
   void applyListRequest();
 

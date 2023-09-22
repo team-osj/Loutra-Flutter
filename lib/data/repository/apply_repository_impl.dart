@@ -1,13 +1,13 @@
 import 'dart:async';
 
+import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:lotura/domain/model/apply_response_list.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 
 class ApplyRepositoryImpl implements ApplyRepository {
-  final StreamController<ApplyResponseList> _streamController;
+  final StreamController<List<ApplyResponse>> _streamController;
 
   IO.Socket socket = IO.io(
       '$baseurl/application',
@@ -17,7 +17,7 @@ class ApplyRepositoryImpl implements ApplyRepository {
           .build());
 
   @override
-  Stream<ApplyResponseList> get applyStream =>
+  Stream<List<ApplyResponse>> get applyStream =>
       _streamController.stream.asBroadcastStream();
 
   ApplyRepositoryImpl(this._streamController);
