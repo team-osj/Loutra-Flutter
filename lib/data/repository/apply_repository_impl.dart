@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:lotura/data/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
@@ -52,9 +53,9 @@ class ApplyRepositoryImpl implements ApplyRepository {
       });
 
   @override
-  void applyCancel(int deviceId) =>
-      _getToken().then((value) => socket.emit(sendRequestApplyCancel, {
-            'token': value,
-            'device_id': deviceId,
-          }));
+  void applyCancel(ApplyCancelRequest applyCancelRequest) =>
+      _getToken().then((value) {
+        applyCancelRequest.token = value;
+        socket.emit(sendRequestApplyCancel, applyCancelRequest);
+      });
 }

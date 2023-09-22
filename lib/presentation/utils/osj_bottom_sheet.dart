@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/data/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
@@ -131,9 +132,10 @@ class OSJBottomSheet extends StatelessWidget {
                                 ? context.read<ApplyBloc>().add(SendFCMEvent(
                                     sendFCMInfoRequest: SendFCMInfoRequest(
                                         deviceId: index, expectState: '1')))
-                                : context
-                                    .read<ApplyBloc>()
-                                    .add(ApplyCancelEvent(index));
+                                : context.read<ApplyBloc>().add(
+                                    ApplyCancelEvent(
+                                        applyCancelRequest: ApplyCancelRequest(
+                                            deviceId: index)));
                             Navigator.pop(context);
                           },
                           width: 185.0.w,

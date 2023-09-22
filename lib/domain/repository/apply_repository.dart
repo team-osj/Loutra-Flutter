@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:lotura/data/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 
@@ -11,5 +12,5 @@ abstract class ApplyRepository {
 
   void sendFCMInfo(SendFCMInfoRequest sendFCMInfoRequest);
 
-  void applyCancel(int deviceId);
+  void applyCancel(ApplyCancelRequest applyCancelRequest);
 }

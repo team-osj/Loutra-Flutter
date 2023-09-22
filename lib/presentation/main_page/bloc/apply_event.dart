@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:lotura/data/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 
 abstract class ApplyEvent extends Equatable {}
@@ -9,12 +10,12 @@ class GetApplyListEvent extends ApplyEvent {
 }
 
 class ApplyCancelEvent extends ApplyEvent {
-  final int deviceId;
+  final ApplyCancelRequest applyCancelRequest;
 
-  ApplyCancelEvent(this.deviceId);
+  ApplyCancelEvent({required this.applyCancelRequest});
 
   @override
-  List<Object?> get props => [deviceId];
+  List<Object?> get props => [applyCancelRequest];
 }
 
 class SendFCMEvent extends ApplyEvent {

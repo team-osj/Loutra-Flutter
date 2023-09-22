@@ -34,7 +34,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
     on<ApplyCancelEvent>((event, emit) async {
       try {
         emit(Loading());
-        _repository.applyCancel(event.deviceId);
+        _repository.applyCancel(event.applyCancelRequest);
         Future.delayed(const Duration(milliseconds: 500))
             .then((value) => _repository.applyListRequest());
       } catch (e) {
