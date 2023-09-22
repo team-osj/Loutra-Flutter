@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -44,12 +45,11 @@ class ApplyRepositoryImpl implements ApplyRepository {
       });
 
   @override
-  void sendFCMInfo(int deviceId) =>
-      _getToken().then((value) => socket.emit(sendFCM, {
-            'token': value,
-            'device_id': deviceId,
-            'expect_state': '1',
-          }));
+  void sendFCMInfo(SendFCMInfoRequest sendFCMInfoRequest) =>
+      _getToken().then((value) {
+        sendFCMInfoRequest.token = value;
+        socket.emit(sendFCM, sendFCMInfoRequest);
+      });
 
   @override
   void applyCancel(int deviceId) =>
