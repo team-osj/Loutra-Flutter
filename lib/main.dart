@@ -2,20 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lotura/data/dto/response/apply_response.dart';
-import 'package:lotura/data/dto/response/laundry_response.dart';
+import 'package:lotura/di/di.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/repository/apply_repository.dart';
-import 'package:lotura/domain/repository/laundry_repository.dart';
-import 'package:lotura/data/repository/apply_repository_impl.dart';
-import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
-import 'package:lotura/data/repository/laundry_repository_impl.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
 
 Future<void> main() async {
@@ -27,49 +20,30 @@ Future<void> main() async {
     SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const MyApp());
+  runApp(MyApp(blocList: di()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.blocList}) : super(key: key);
+  final List<BlocProvider> blocList;
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<LaundryRepository>(
-            lazy: false,
-            create: (context) => LaundryRepositoryImpl(
-                StreamController<List<LaundryResponse>>.broadcast())),
-        RepositoryProvider<ApplyRepository>(
-            lazy: false,
-            create: (context) => ApplyRepositoryImpl(
-                StreamController<List<ApplyResponse>>.broadcast())),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<LaundryBloc>(
-              lazy: false,
-              create: (context) =>
-                  LaundryBloc(context.read<LaundryRepository>())),
-          BlocProvider<ApplyBloc>(
-              lazy: false,
-              create: (context) => ApplyBloc(context.read<ApplyRepository>())),
-        ],
-        child: ScreenUtilInit(
-          designSize: const Size(430, 932),
-          builder: (context, child) {
-            fcmInit(context);
-            return MaterialApp(
-              theme: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-              debugShowCheckedModeBanner: false,
-              home: const SplashPage(),
-            );
-          },
-        ),
+    return MultiBlocProvider(
+      providers: blocList,
+      child: ScreenUtilInit(
+        designSize: const Size(430, 932),
+        builder: (context, child) {
+          fcmInit(context);
+          return MaterialApp(
+            theme: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            debugShowCheckedModeBanner: false,
+            home: const SplashPage(),
+          );
+        },
       ),
     );
   }
