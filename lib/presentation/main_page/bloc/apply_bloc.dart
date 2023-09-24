@@ -1,46 +1,64 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
-import 'package:lotura/domain/repository/apply_repository.dart';
+import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
+import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
+import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
 
 class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
-  final ApplyRepository _repository;
+  final GetApplyListUseCase _getApplyListUseCase;
+  final SendFCMInfoUseCase _sendFCMInfoUseCase;
+  final ApplyCancelUseCase _applyCancelUseCase;
 
-  ApplyBloc(this._repository) : super(Empty()) {
-    on<GetApplyListEvent>((event, emit) async {
-      try {
-        emit(Loading());
-        _repository.getApplyList(event.getApplyListRequest);
-        _repository.response();
-        await for (var value in _repository.applyStream) {
-          emit(Loaded(applyList: value));
-        }
-      } catch (e) {
-        emit(Error(message: e.toString()));
+  ApplyBloc(
+      {required GetApplyListUseCase getApplyListUseCase,
+      required SendFCMInfoUseCase sendFCMInfoUseCase,
+      required ApplyCancelUseCase applyCancelUseCase})
+      : _getApplyListUseCase = getApplyListUseCase,
+        _sendFCMInfoUseCase = sendFCMInfoUseCase,
+        _applyCancelUseCase = applyCancelUseCase,
+        super(Empty()) {
+    on<GetApplyListEvent>(_getApplyListEventHandler);
+    on<SendFCMEvent>(_sendFCMEventHandler);
+    on<ApplyCancelEvent>(_applyCancelEventHandler);
+  }
+
+  void _getApplyListEventHandler(
+      GetApplyListEvent event, Emitter<ApplyState> emit) async {
+    try {
+      emit(Loading());
+      _getApplyListUseCase.execute();
+      await for (var value in _getApplyListUseCase.applyList) {
+        emit(Loaded(applyList: value));
       }
-    });
-    on<SendFCMEvent>((event, emit) async {
-      try {
-        emit(Loading());
-        _repository.sendFCMInfo(event.sendFCMInfoRequest);
-        Future.delayed(const Duration(milliseconds: 500))
-            .then((value) => _repository.getApplyList(GetApplyListRequest()));
-      } catch (e) {
-        emit(Error(message: e.toString()));
-      }
-    });
-    on<ApplyCancelEvent>((event, emit) async {
-      try {
-        emit(Loading());
-        _repository.applyCancel(event.applyCancelRequest);
-        Future.delayed(const Duration(milliseconds: 500))
-            .then((value) => _repository.getApplyList(GetApplyListRequest()));
-      } catch (e) {
-        emit(Error(message: e.toString()));
-      }
-    });
+    } catch (e) {
+      emit(Error(message: e.toString()));
+    }
+  }
+
+  void _sendFCMEventHandler(
+      SendFCMEvent event, Emitter<ApplyState> emit) async {
+    try {
+      emit(Loading());
+      _sendFCMInfoUseCase.execute(event.sendFCMInfoRequest);
+      Future.delayed(const Duration(milliseconds: 400))
+          .then((value) => _getApplyListUseCase.execute());
+    } catch (e) {
+      emit(Error(message: e.toString()));
+    }
+  }
+
+  void _applyCancelEventHandler(
+      ApplyCancelEvent event, Emitter<ApplyState> emit) async {
+    try {
+      emit(Loading());
+      _applyCancelUseCase.execute(event.applyCancelRequest);
+      Future.delayed(const Duration(milliseconds: 400))
+          .then((value) => _getApplyListUseCase.execute());
+    } catch (e) {
+      emit(Error(message: e.toString()));
+    }
   }
 }
