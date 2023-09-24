@@ -7,6 +7,7 @@ import 'package:lotura/data/repository/apply_repository_impl.dart';
 import 'package:lotura/data/repository/laundry_repository_impl.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
+import 'package:lotura/domain/use_case/get_laundry_status_use_case.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 
@@ -17,9 +18,13 @@ List<BlocProvider> di() {
   LaundryRepository laundryRepository = LaundryRepositoryImpl(
       StreamController<List<LaundryResponse>>.broadcast());
 
+  GetLaundryStatusUseCase getLaundryStatusUseCase =
+      GetLaundryStatusUseCase(laundryRepository: laundryRepository);
+
   return [
     BlocProvider<ApplyBloc>(create: (context) => ApplyBloc(applyRepository)),
     BlocProvider<LaundryBloc>(
-        create: (context) => LaundryBloc(laundryRepository)),
+        create: (context) =>
+            LaundryBloc(getLaundryStatusUseCase: getLaundryStatusUseCase)),
   ];
 }
