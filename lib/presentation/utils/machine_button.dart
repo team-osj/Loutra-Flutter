@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_icons.dart';
 
 class MachineButton extends StatelessWidget {
@@ -39,13 +39,13 @@ class MachineButton extends StatelessWidget {
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.WASH: OSJIcons.laundry,
-    Machine.DRY: OSJIcons.dry,
+    Machine.wash: OSJIcons.laundry,
+    Machine.dry: OSJIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
-    Machine.WASH: "세탁기",
-    Machine.DRY: "건조기",
+    Machine.wash: "세탁기",
+    Machine.dry: "건조기",
   };
 
   @override
