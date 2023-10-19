@@ -28,12 +28,16 @@ class OSJBottomSheet extends StatelessWidget {
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
     Status.working: OSJColors.primary50,
+    Status.disconnected: OSJColors.black,
     Status.breakdown: OSJColors.red50,
   };
 
   final Map statusIcon = <Status, IconData>{
     Status.available: OSJIcons.checkCircle,
     Status.working: OSJIcons.working,
+
+    /// 아이콘 바꿔야됨
+    Status.disconnected: Icons.not_interested,
     Status.breakdown: OSJIcons.breakdown,
   };
 
@@ -103,7 +107,9 @@ class OSJBottomSheet extends StatelessWidget {
                     size: 24.0.r,
                     color: status == Status.available
                         ? OSJColors.green700
-                        : OSJColors.red700,
+                        : status == Status.disconnected
+                            ? OSJColors.black
+                            : OSJColors.red700,
                   ),
             Padding(
               padding: status == Status.working
