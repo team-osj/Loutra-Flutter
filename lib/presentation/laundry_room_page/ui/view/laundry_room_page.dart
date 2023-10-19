@@ -237,7 +237,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                                 index +
                                                 (isSelectedPlace == 2 ? 10 : 8)]
                                         .deviceType]
-                                    : Machine.DRY,
+                                    : Machine.dry,
                               ),
                               SizedBox(height: 10.0.h),
                             ],
