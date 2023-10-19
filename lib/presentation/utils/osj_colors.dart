@@ -17,7 +17,7 @@ class OSJColors {
 
   static Color red700 = const Color(0xffD91F1F);
   static Color red100 = const Color(0xffFFEBEB);
-  static Color red50 = const Color(0xffFFFDFD);
+  static Color red50 = const Color(0xffFFFAFA);
 
   static Color black = const Color(0xff000000);
   static Color gray900 = const Color(0xff1D1F22);
