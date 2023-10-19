@@ -56,4 +56,4 @@ enum Status {
   breakdown,
 }
 
-enum Machine { WASH, DRY }
+enum Machine { wash, dry }
