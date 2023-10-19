@@ -23,18 +23,21 @@ class MachineButton extends StatelessWidget {
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
     Status.working: OSJColors.primary50,
+    Status.disconnected: OSJColors.gray500,
     Status.breakdown: OSJColors.red50,
   };
 
   final Map statusIconColor = <Status, Color>{
     Status.available: OSJColors.green700,
     Status.working: OSJColors.primary700,
+    Status.disconnected: OSJColors.black,
     Status.breakdown: OSJColors.red700,
   };
 
   final Map statusIcon = <Status, IconData>{
     Status.available: OSJIcons.checkCircle,
     Status.working: OSJIcons.working,
+    Status.disconnected: Icons.signal_wifi_connected_no_internet_4,
     Status.breakdown: OSJIcons.breakdown,
   };
 
