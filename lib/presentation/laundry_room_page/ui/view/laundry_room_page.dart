@@ -5,8 +5,8 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/custom_row_buttons.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_icons.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,12 +39,13 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
   final Map status = <int, Status>{
     0: Status.working,
     1: Status.available,
-    2: Status.breakdown
+    2: Status.disconnected,
+    3: Status.breakdown
   };
 
   final Map machine = <String, Machine>{
-    "WASH": Machine.WASH,
-    "DRY": Machine.DRY
+    "WASH": Machine.wash,
+    "DRY": Machine.dry
   };
 
   @override
