@@ -14,18 +14,21 @@ class OSJStatusButton extends StatelessWidget {
   final Map map = <Status, String>{
     Status.available: "사용 가능",
     Status.working: "작동중",
+    Status.disconnected: "연결 끊김",
     Status.breakdown: "고장",
   };
 
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green100,
     Status.working: OSJColors.primary100,
+    Status.disconnected: OSJColors.gray300,
     Status.breakdown: OSJColors.red100,
   };
 
   final Map statusTextColor = <Status, Color>{
     Status.available: OSJColors.green700,
     Status.working: OSJColors.primary700,
+    Status.disconnected: OSJColors.black,
     Status.breakdown: OSJColors.red700,
   };
 
