@@ -6,8 +6,8 @@ import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
-import 'package:lotura/presentation/utils/osj_icons.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class OSJBottomSheet extends StatelessWidget {
@@ -33,17 +33,15 @@ class OSJBottomSheet extends StatelessWidget {
   };
 
   final Map statusIcon = <Status, IconData>{
-    Status.available: OSJIcons.checkCircle,
-    Status.working: OSJIcons.working,
-
-    /// 아이콘 바꿔야됨
-    Status.disconnected: Icons.not_interested,
-    Status.breakdown: OSJIcons.breakdown,
+    Status.available: LoturaIcons.checkCircle,
+    Status.working: LoturaIcons.working,
+    Status.disconnected: LoturaIcons.disconnected,
+    Status.breakdown: LoturaIcons.cancelCircle,
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.wash: OSJIcons.laundry,
-    Machine.dry: OSJIcons.dry,
+    Machine.wash: LoturaIcons.laundry,
+    Machine.dry: LoturaIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
