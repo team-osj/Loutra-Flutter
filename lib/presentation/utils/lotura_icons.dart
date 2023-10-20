@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-class OSJIcons {
-  OSJIcons._();
+class LoturaIcons {
+  LoturaIcons._();
 
-  static const _kFontFam = 'OSJIcons';
+  static const _kFontFam = 'LoturaIcons';
   static const String? _kFontPkg = null;
 
   static const IconData list =
@@ -16,10 +16,12 @@ class OSJIcons {
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData working =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData breakdown =
-      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData checkCircle =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData disconnected =
+      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cancelCircle =
+      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData triangleUp =
       IconData(0xf311, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

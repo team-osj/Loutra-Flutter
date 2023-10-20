@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
-import 'package:lotura/presentation/utils/osj_icons.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 
 class MachineButton extends StatelessWidget {
   MachineButton({
@@ -23,29 +23,32 @@ class MachineButton extends StatelessWidget {
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
     Status.working: OSJColors.primary50,
+    Status.disconnected: OSJColors.white,
     Status.breakdown: OSJColors.red50,
   };
 
   final Map statusIconColor = <Status, Color>{
     Status.available: OSJColors.green700,
     Status.working: OSJColors.primary700,
+    Status.disconnected: OSJColors.black,
     Status.breakdown: OSJColors.red700,
   };
 
   final Map statusIcon = <Status, IconData>{
-    Status.available: OSJIcons.checkCircle,
-    Status.working: OSJIcons.working,
-    Status.breakdown: OSJIcons.breakdown,
+    Status.available: LoturaIcons.checkCircle,
+    Status.working: LoturaIcons.working,
+    Status.disconnected: LoturaIcons.disconnected,
+    Status.breakdown: LoturaIcons.cancelCircle,
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.WASH: OSJIcons.laundry,
-    Machine.DRY: OSJIcons.dry,
+    Machine.wash: LoturaIcons.laundry,
+    Machine.dry: LoturaIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
-    Machine.WASH: "세탁기",
-    Machine.DRY: "건조기",
+    Machine.wash: "세탁기",
+    Machine.dry: "건조기",
   };
 
   @override

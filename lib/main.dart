@@ -1,15 +1,15 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lotura/di/di.dart';
-import 'package:lotura/init/fcm_init.dart';
-import 'package:lotura/firebase_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/di/di.dart';
+import 'package:lotura/firebase_options.dart';
+import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +52,8 @@ class MyApp extends StatelessWidget {
 enum Status {
   available,
   working,
+  disconnected,
   breakdown,
 }
 
-enum Machine { WASH, DRY }
+enum Machine { wash, dry }

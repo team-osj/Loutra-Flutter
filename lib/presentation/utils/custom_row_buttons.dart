@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lotura/presentation/utils/machine_button.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
+import 'package:lotura/presentation/utils/machine_button.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
-import 'package:lotura/presentation/utils/osj_icons.dart';
 
 class CustomRowButton extends StatelessWidget {
   const CustomRowButton({
@@ -43,7 +43,7 @@ class CustomRowButton extends StatelessWidget {
                 machine: leftMachine),
         isSelectedIcon == 0
             ? const SizedBox.shrink()
-            : const Icon(OSJIcons.triangleUp, color: Colors.grey),
+            : const Icon(LoturaIcons.triangleUp, color: Colors.grey),
         isSelectedIcon == 0
             ? MachineCard(
                 index: rightIndex,

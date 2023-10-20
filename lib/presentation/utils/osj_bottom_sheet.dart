@@ -6,8 +6,8 @@ import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
-import 'package:lotura/presentation/utils/osj_icons.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class OSJBottomSheet extends StatelessWidget {
@@ -28,23 +28,25 @@ class OSJBottomSheet extends StatelessWidget {
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
     Status.working: OSJColors.primary50,
+    Status.disconnected: OSJColors.black,
     Status.breakdown: OSJColors.red50,
   };
 
   final Map statusIcon = <Status, IconData>{
-    Status.available: OSJIcons.checkCircle,
-    Status.working: OSJIcons.working,
-    Status.breakdown: OSJIcons.breakdown,
+    Status.available: LoturaIcons.checkCircle,
+    Status.working: LoturaIcons.working,
+    Status.disconnected: LoturaIcons.disconnected,
+    Status.breakdown: LoturaIcons.cancelCircle,
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.WASH: OSJIcons.laundry,
-    Machine.DRY: OSJIcons.dry,
+    Machine.wash: LoturaIcons.laundry,
+    Machine.dry: LoturaIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
-    Machine.WASH: "세탁기",
-    Machine.DRY: "건조기",
+    Machine.wash: "세탁기",
+    Machine.dry: "건조기",
   };
 
   String text(bool isEnableNotification, isWoman, Status status) {
@@ -55,6 +57,8 @@ class OSJBottomSheet extends StatelessWidget {
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?";
           case Status.available:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
+          case Status.disconnected:
+            return "여자층 ${index - 31}번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case Status.breakdown:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
         }
@@ -64,6 +68,8 @@ class OSJBottomSheet extends StatelessWidget {
             return "$index번 ${machineText[machine]}를\n알림 설정 하실건가요?";
           case Status.available:
             return "$index번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
+          case Status.disconnected:
+            return "$index번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case Status.breakdown:
             return "$index번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
         }
@@ -99,7 +105,9 @@ class OSJBottomSheet extends StatelessWidget {
                     size: 24.0.r,
                     color: status == Status.available
                         ? OSJColors.green700
-                        : OSJColors.red700,
+                        : status == Status.disconnected
+                            ? OSJColors.black
+                            : OSJColors.red700,
                   ),
             Padding(
               padding: status == Status.working
