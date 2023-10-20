@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
-import 'package:lotura/presentation/utils/osj_icons.dart';
 
 class MachineButton extends StatelessWidget {
   MachineButton({
@@ -35,17 +35,17 @@ class MachineButton extends StatelessWidget {
   };
 
   final Map statusIcon = <Status, IconData>{
-    Status.available: OSJIcons.checkCircle,
-    Status.working: OSJIcons.working,
+    Status.available: LoturaIcons.checkCircle,
+    Status.working: LoturaIcons.working,
 
     ///아이콘 바꿔야됨
-    Status.disconnected: Icons.signal_wifi_connected_no_internet_4,
-    Status.breakdown: OSJIcons.breakdown,
+    Status.disconnected: Icons.signal_cellular_connected_no_internet_4_bar,
+    Status.breakdown: LoturaIcons.cancelCircle,
   };
 
   final Map machineIcon = <Machine, IconData>{
-    Machine.wash: OSJIcons.laundry,
-    Machine.dry: OSJIcons.dry,
+    Machine.wash: LoturaIcons.laundry,
+    Machine.dry: LoturaIcons.dry,
   };
 
   final Map machineText = <Machine, String>{
