@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-class Lotura {
-  Lotura._();
+class LoturaIcons {
+  LoturaIcons._();
 
   static const _kFontFam = 'Lotura';
   static const String? _kFontPkg = null;
