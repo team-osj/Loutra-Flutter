@@ -6,8 +6,8 @@ import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/custom_row_buttons.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
-import 'package:lotura/presentation/utils/osj_icons.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -151,7 +151,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                       isSelectedIcon = 0;
                     });
                   },
-                  icon: Icon(OSJIcons.grid,
+                  icon: Icon(LoturaIcons.grid,
                       size: 18.0.r,
                       color: isSelectedIcon == 0
                           ? OSJColors.black
@@ -164,7 +164,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                       });
                     },
                     icon: Icon(
-                      OSJIcons.list,
+                      LoturaIcons.list,
                       size: 18.0.r,
                       color: isSelectedIcon == 1
                           ? OSJColors.black
