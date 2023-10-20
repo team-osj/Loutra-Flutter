@@ -37,9 +37,7 @@ class MachineButton extends StatelessWidget {
   final Map statusIcon = <Status, IconData>{
     Status.available: LoturaIcons.checkCircle,
     Status.working: LoturaIcons.working,
-
-    ///아이콘 바꿔야됨
-    Status.disconnected: Icons.signal_cellular_connected_no_internet_4_bar,
+    Status.disconnected: LoturaIcons.disconnected,
     Status.breakdown: LoturaIcons.cancelCircle,
   };
 
