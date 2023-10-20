@@ -58,7 +58,7 @@ class OSJBottomSheet extends StatelessWidget {
           case Status.available:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
           case Status.disconnected:
-            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}의 장치 연결이 끊겨서\n상태를 확인할 수 없어요";
+            return "여자층 ${index - 31}번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case Status.breakdown:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
         }
@@ -69,7 +69,7 @@ class OSJBottomSheet extends StatelessWidget {
           case Status.available:
             return "$index번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
           case Status.disconnected:
-            return "$index번 ${machineText[machine]}의 장치 연결이 끊겨서\n상태를 확인할 수 없어요";
+            return "$index번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case Status.breakdown:
             return "$index번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
         }
