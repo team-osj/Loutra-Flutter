@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 class LoturaIcons {
   LoturaIcons._();
 
-  static const _kFontFam = 'Lotura';
+  static const _kFontFam = 'LoturaIcons';
   static const String? _kFontPkg = null;
 
   static const IconData list =
