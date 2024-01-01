@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
-class MainPage extends StatelessWidget {
-  MainPage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   int selectedIndex = 0;
 
   final TextStyle bigStyle = TextStyle(
@@ -28,6 +35,31 @@ class MainPage extends StatelessWidget {
     "WASH": Machine.wash,
     "DRY": Machine.dry,
   };
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        BlocProvider.of<ApplyBloc>(context)
+            .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
