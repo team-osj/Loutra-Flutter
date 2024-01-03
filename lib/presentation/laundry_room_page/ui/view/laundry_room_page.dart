@@ -55,21 +55,19 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
 
   Widget machineWidget(
           {required int index,
-          required bool isEnableNotification,
-          required bool isWoman,
           required Status status,
           required Machine machine}) =>
       isSelectedIcon == 0
           ? MachineCard(
               index: index,
-              isEnableNotification: isEnableNotification,
-              isWoman: isWoman,
+              isEnableNotification: true,
+              isWoman: isSelectedPlace == 2 ? true : false,
               status: status,
               machine: machine)
           : MachineButton(
               index: index,
-              isEnableNotification: isEnableNotification,
-              isWoman: isWoman,
+              isEnableNotification: true,
+              isWoman: isSelectedPlace == 2 ? true : false,
               status: status,
               machine: machine);
 
@@ -225,9 +223,6 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                               placeIndex[isSelectedPlace] +
                                                   index]
                                           .id,
-                                      isEnableNotification: true,
-                                      isWoman:
-                                          isSelectedPlace == 2 ? true : false,
                                       machine: machine[state
                                           .laundryResponseList[
                                               placeIndex[isSelectedPlace] +
@@ -255,9 +250,6 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                                         : 8)]
                                             .id
                                         : -1,
-                                    isEnableNotification: true,
-                                    isWoman:
-                                        isSelectedPlace == 2 ? true : false,
                                     machine: placeIndex[isSelectedPlace] +
                                                 index +
                                                 (isSelectedPlace == 2
