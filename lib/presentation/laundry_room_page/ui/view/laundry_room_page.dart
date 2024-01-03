@@ -49,6 +49,10 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     "DRY": Machine.dry
   };
 
+  Widget get triangle => isSelectedIcon == 0
+      ? const SizedBox.shrink()
+      : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
+
   @override
   void initState() {
     super.initState();
@@ -238,10 +242,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                                       index]
                                               .state],
                                         ),
-                                  isSelectedIcon == 0
-                                      ? const SizedBox.shrink()
-                                      : const Icon(LoturaIcons.triangleUp,
-                                          color: Colors.grey),
+                                  triangle,
                                   isSelectedIcon == 0
                                       ? MachineCard(
                                           index: placeIndex[isSelectedPlace] +
