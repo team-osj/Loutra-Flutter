@@ -1,49 +1,31 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
+import 'package:lotura/presentation/utils/machine.dart';
 import 'package:lotura/presentation/utils/osj_status_button.dart';
 
-class MachineCard extends StatelessWidget {
-  MachineCard({
+class MachineCard extends MachineWidget {
+  const MachineCard({
     super.key,
-    required this.index,
-    required this.isEnableNotification,
-    required this.isWoman,
-    required this.machine,
-    required this.status,
-    this.streamController,
-  });
-
-  final int index;
-  final bool isEnableNotification, isWoman;
-  final Machine machine;
-  final Status status;
-  StreamController? streamController;
+    required int index,
+    required bool isEnableNotification,
+    required bool isWoman,
+    required Machine machine,
+    required Status status,
+  }) : super(
+          index: index,
+          isEnableNotification: isEnableNotification,
+          isWoman: isWoman,
+          machine: machine,
+          status: status,
+        );
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 32 && isEnableNotification) ||
-            (isWoman && index == -1)
+    return isEmptyContainer
         ? SizedBox(width: 185.0.w, height: 256.0.h)
         : GestureDetector(
-            onTap: () => showModalBottomSheet(
-              context: context,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(25.r),
-                ),
-              ),
-              builder: (context) => OSJBottomSheet(
-                index: index,
-                isEnableNotification: isEnableNotification,
-                isWoman: isWoman,
-                status: status,
-                machine: machine,
-              ),
-            ),
+            onTap: () => showModalOSJBottomSheet(context: context),
             child: Container(
               width: 185.0.w,
               height: 256.0.h,
