@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
-import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
+import 'package:lotura/presentation/utils/machine_widget.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
-class MachineButton extends StatelessWidget {
+class MachineButton extends MachineWidget {
   MachineButton({
     super.key,
-    required this.index,
-    required this.isEnableNotification,
-    required this.isWoman,
-    required this.status,
-    required this.machine,
-  });
-
-  final int index;
-  final bool isEnableNotification, isWoman;
-  final Status status;
-  final Machine machine;
+    required int index,
+    required bool isEnableNotification,
+    required bool isWoman,
+    required Status status,
+    required Machine machine,
+  }) : super(
+          index: index,
+          isEnableNotification: isEnableNotification,
+          isWoman: isWoman,
+          status: status,
+          machine: machine,
+        );
 
   final Map statusColor = <Status, Color>{
     Status.available: OSJColors.green50,
@@ -53,26 +54,10 @@ class MachineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (!isWoman && index == 32) || (isWoman && index == -1)
+    return isEmptyContainer
         ? SizedBox(width: 154.0.w, height: 84.0.h)
         : GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(25.r),
-                  ),
-                ),
-                builder: (context) => OSJBottomSheet(
-                  index: index,
-                  isEnableNotification: isEnableNotification,
-                  isWoman: isWoman,
-                  status: status,
-                  machine: machine,
-                ),
-              );
-            },
+            onTap: () => showModalOSJBottomSheet(context: context),
             child: Container(
               width: 154.0.w,
               height: 84.0.h,
