@@ -53,6 +53,26 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
       ? const SizedBox.shrink()
       : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
 
+  Widget machineWidget(
+          {required int index,
+          required bool isEnableNotification,
+          required bool isWoman,
+          required Status status,
+          required Machine machine}) =>
+      isSelectedIcon == 0
+          ? MachineCard(
+              index: index,
+              isEnableNotification: isEnableNotification,
+              isWoman: isWoman,
+              status: status,
+              machine: machine)
+          : MachineButton(
+              index: index,
+              isEnableNotification: isEnableNotification,
+              isWoman: isWoman,
+              status: status,
+              machine: machine);
+
   @override
   void initState() {
     super.initState();
@@ -199,159 +219,76 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  isSelectedIcon == 0
-                                      ? MachineCard(
-                                          index: state
-                                              .laundryResponseList[
-                                                  placeIndex[isSelectedPlace] +
-                                                      index]
-                                              .id,
-                                          isEnableNotification: true,
-                                          isWoman: isSelectedPlace == 2
-                                              ? true
-                                              : false,
-                                          machine: machine[state
-                                              .laundryResponseList[
-                                                  placeIndex[isSelectedPlace] +
-                                                      index]
-                                              .deviceType],
-                                          status: status[state
-                                              .laundryResponseList[
-                                                  placeIndex[isSelectedPlace] +
-                                                      index]
-                                              .state],
-                                        )
-                                      : MachineButton(
-                                          index: state
-                                              .laundryResponseList[
-                                                  placeIndex[isSelectedPlace] +
-                                                      index]
-                                              .id,
-                                          isEnableNotification: true,
-                                          isWoman: isSelectedPlace == 2
-                                              ? true
-                                              : false,
-                                          machine: machine[state
-                                              .laundryResponseList[
-                                                  placeIndex[isSelectedPlace] +
-                                                      index]
-                                              .deviceType],
-                                          status: status[state
-                                              .laundryResponseList[
-                                                  placeIndex[isSelectedPlace] +
-                                                      index]
-                                              .state],
-                                        ),
+                                  machineWidget(
+                                      index: state
+                                          .laundryResponseList[
+                                              placeIndex[isSelectedPlace] +
+                                                  index]
+                                          .id,
+                                      isEnableNotification: true,
+                                      isWoman:
+                                          isSelectedPlace == 2 ? true : false,
+                                      machine: machine[state
+                                          .laundryResponseList[
+                                              placeIndex[isSelectedPlace] +
+                                                  index]
+                                          .deviceType],
+                                      status: status[state
+                                          .laundryResponseList[
+                                              placeIndex[isSelectedPlace] +
+                                                  index]
+                                          .state]),
                                   triangle,
-                                  isSelectedIcon == 0
-                                      ? MachineCard(
-                                          index: placeIndex[isSelectedPlace] +
-                                                      index +
-                                                      (isSelectedPlace == 2
-                                                          ? 10
-                                                          : 8) <
-                                                  44
-                                              ? state
-                                                  .laundryResponseList[
-                                                      placeIndex[
-                                                              isSelectedPlace] +
-                                                          index +
-                                                          (isSelectedPlace == 2
-                                                              ? 10
-                                                              : 8)]
-                                                  .id
-                                              : -1,
-                                          isEnableNotification: true,
-                                          isWoman: isSelectedPlace == 2
-                                              ? true
-                                              : false,
-                                          machine: placeIndex[isSelectedPlace] +
-                                                      index +
-                                                      (isSelectedPlace == 2
-                                                          ? 10
-                                                          : 8) <
-                                                  44
-                                              ? machine[state
-                                                  .laundryResponseList[
-                                                      placeIndex[
-                                                              isSelectedPlace] +
-                                                          index +
-                                                          (isSelectedPlace == 2
-                                                              ? 10
-                                                              : 8)]
-                                                  .deviceType]
-                                              : Machine.dry,
-                                          status: placeIndex[isSelectedPlace] +
-                                                      index +
-                                                      (isSelectedPlace == 2
-                                                          ? 10
-                                                          : 8) <
-                                                  44
-                                              ? status[state
-                                                  .laundryResponseList[
-                                                      placeIndex[
-                                                              isSelectedPlace] +
-                                                          index +
-                                                          (isSelectedPlace == 2
-                                                              ? 10
-                                                              : 8)]
-                                                  .state]
-                                              : Status.breakdown,
-                                        )
-                                      : MachineButton(
-                                          index: placeIndex[isSelectedPlace] +
-                                                      index +
-                                                      (isSelectedPlace == 2
-                                                          ? 10
-                                                          : 8) <
-                                                  44
-                                              ? state
-                                                  .laundryResponseList[
-                                                      placeIndex[
-                                                              isSelectedPlace] +
-                                                          index +
-                                                          (isSelectedPlace == 2
-                                                              ? 10
-                                                              : 8)]
-                                                  .id
-                                              : -1,
-                                          isEnableNotification: true,
-                                          isWoman: isSelectedPlace == 2
-                                              ? true
-                                              : false,
-                                          machine: placeIndex[isSelectedPlace] +
-                                                      index +
-                                                      (isSelectedPlace == 2
-                                                          ? 10
-                                                          : 8) <
-                                                  44
-                                              ? machine[state
-                                                  .laundryResponseList[
-                                                      placeIndex[
-                                                              isSelectedPlace] +
-                                                          index +
-                                                          (isSelectedPlace == 2
-                                                              ? 10
-                                                              : 8)]
-                                                  .deviceType]
-                                              : Machine.dry,
-                                          status: placeIndex[isSelectedPlace] +
-                                                      index +
-                                                      (isSelectedPlace == 2
-                                                          ? 10
-                                                          : 8) <
-                                                  44
-                                              ? status[state
-                                                  .laundryResponseList[
-                                                      placeIndex[
-                                                              isSelectedPlace] +
-                                                          index +
-                                                          (isSelectedPlace == 2
-                                                              ? 10
-                                                              : 8)]
-                                                  .state]
-                                              : Status.breakdown,
-                                        ),
+                                  machineWidget(
+                                    index: placeIndex[isSelectedPlace] +
+                                                index +
+                                                (isSelectedPlace == 2
+                                                    ? 10
+                                                    : 8) <
+                                            44
+                                        ? state
+                                            .laundryResponseList[
+                                                placeIndex[isSelectedPlace] +
+                                                    index +
+                                                    (isSelectedPlace == 2
+                                                        ? 10
+                                                        : 8)]
+                                            .id
+                                        : -1,
+                                    isEnableNotification: true,
+                                    isWoman:
+                                        isSelectedPlace == 2 ? true : false,
+                                    machine: placeIndex[isSelectedPlace] +
+                                                index +
+                                                (isSelectedPlace == 2
+                                                    ? 10
+                                                    : 8) <
+                                            44
+                                        ? machine[state
+                                            .laundryResponseList[
+                                                placeIndex[isSelectedPlace] +
+                                                    index +
+                                                    (isSelectedPlace == 2
+                                                        ? 10
+                                                        : 8)]
+                                            .deviceType]
+                                        : Machine.dry,
+                                    status: placeIndex[isSelectedPlace] +
+                                                index +
+                                                (isSelectedPlace == 2
+                                                    ? 10
+                                                    : 8) <
+                                            44
+                                        ? status[state
+                                            .laundryResponseList[
+                                                placeIndex[isSelectedPlace] +
+                                                    index +
+                                                    (isSelectedPlace == 2
+                                                        ? 10
+                                                        : 8)]
+                                            .state]
+                                        : Status.breakdown,
+                                  ),
                                 ],
                               ),
                               SizedBox(height: 10.0.h),
