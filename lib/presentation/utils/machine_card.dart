@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/utils/machine.dart';
+import 'package:lotura/presentation/utils/machine_widget.dart';
 import 'package:lotura/presentation/utils/osj_status_button.dart';
 
 class MachineCard extends MachineWidget {
