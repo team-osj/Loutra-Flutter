@@ -9,5 +9,5 @@ abstract class LaundryRepository {
 
   Future<void> setValue<V>({required String key, required V value});
 
-  V getValue<V>({required String key});
+  V? getValue<V>({required String key});
 }

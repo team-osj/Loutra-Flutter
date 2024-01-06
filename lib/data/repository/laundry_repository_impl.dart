@@ -37,7 +37,7 @@ class LaundryRepositoryImpl implements LaundryRepository {
   }
 
   @override
-  V getValue<V>({required String key}) =>
+  V? getValue<V>({required String key}) =>
       _localLaundryDataSource.getValue(key: key);
 
   @override
