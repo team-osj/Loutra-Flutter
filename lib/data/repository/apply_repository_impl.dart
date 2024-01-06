@@ -1,65 +1,34 @@
 import 'dart:async';
 
+import 'package:lotura/data/data_source/apply/remote/remote_apply_data_source.dart';
 import 'package:lotura/data/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
-import 'package:lotura/secret.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 
 class ApplyRepositoryImpl implements ApplyRepository {
-  final StreamController<List<ApplyResponse>> _streamController;
+  final RemoteApplyDataSource _remoteApplyDataSource;
 
-  IO.Socket socket = IO.io(
-      '$baseurl/application',
-      IO.OptionBuilder()
-          .setTransports(['websocket'])
-          .enableForceNewConnection()
-          .build());
+  ApplyRepositoryImpl({required RemoteApplyDataSource remoteApplyDataSource})
+      : _remoteApplyDataSource = remoteApplyDataSource;
 
   @override
   Stream<List<ApplyResponse>> get applyStream =>
-      _streamController.stream.asBroadcastStream();
-
-  ApplyRepositoryImpl(this._streamController);
-
-  Future<String> _getToken() async {
-    var token = await FirebaseMessaging.instance.getToken();
-    return token.toString();
-  }
+      _remoteApplyDataSource.applyStream.asBroadcastStream();
 
   @override
   void getApplyList(GetApplyListRequest getApplyListRequest) =>
-      _getToken().then((value) {
-        getApplyListRequest.token = value;
-        socket.emit(
-          sendRequestApplyList,
-          getApplyListRequest,
-        );
-      });
+      _remoteApplyDataSource.getApplyList(getApplyListRequest);
 
   @override
-  void response() => socket.on(receiveResponseApplyList, (data) {
-        List<ApplyResponse> applyResponseList = List.empty(growable: true);
-        applyResponseList = (data as List<dynamic>)
-            .map((i) => ApplyResponse.fromJson(i))
-            .toList();
-        _streamController.sink.add(applyResponseList);
-      });
+  void response() => _remoteApplyDataSource.response();
 
   @override
   void sendFCMInfo(SendFCMInfoRequest sendFCMInfoRequest) =>
-      _getToken().then((value) {
-        sendFCMInfoRequest.token = value;
-        socket.emit(sendFCM, sendFCMInfoRequest);
-      });
+      _remoteApplyDataSource.sendFCMInfo(sendFCMInfoRequest);
 
   @override
   void applyCancel(ApplyCancelRequest applyCancelRequest) =>
-      _getToken().then((value) {
-        applyCancelRequest.token = value;
-        socket.emit(sendRequestApplyCancel, applyCancelRequest);
-      });
+      _remoteApplyDataSource.applyCancel(applyCancelRequest);
 }
