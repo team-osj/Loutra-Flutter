@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:lotura/data/data_source/laundry/local/local_laundry_data_source.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/data/dto/response/laundry_response.dart';
 import 'package:lotura/data/repository/apply_repository_impl.dart';
@@ -18,8 +20,13 @@ List<BlocProvider> di() {
   ApplyRepository applyRepository =
       ApplyRepositoryImpl(StreamController<List<ApplyResponse>>.broadcast());
 
+  late final Box localDatabase;
+  Hive.openBox("Lotura").then((value) => localDatabase = value);
+  LocalLaundryDataSource localLaundryDataSource =
+      LocalLaundryDataSource(localDatabase: localDatabase);
   LaundryRepository laundryRepository = LaundryRepositoryImpl(
-      StreamController<List<LaundryResponse>>.broadcast());
+      StreamController<List<LaundryResponse>>.broadcast(),
+      localLaundryDataSource);
 
   GetLaundryStatusUseCase getLaundryStatusUseCase =
       GetLaundryStatusUseCase(laundryRepository: laundryRepository);
