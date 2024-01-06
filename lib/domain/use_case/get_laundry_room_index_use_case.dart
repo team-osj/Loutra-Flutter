@@ -1,10 +1,12 @@
 import 'package:lotura/domain/repository/laundry_repository.dart';
 
 class GetLaundryRoomIndexUseCase {
-  final LaundryRepository laundryRepository;
+  final LaundryRepository _laundryRepository;
 
-  const GetLaundryRoomIndexUseCase({required this.laundryRepository});
+  const GetLaundryRoomIndexUseCase(
+      {required LaundryRepository laundryRepository})
+      : _laundryRepository = laundryRepository;
 
-  int execute({required String key}) =>
-      laundryRepository.getValue<int>(key: key) ?? 0;
+  int get execute =>
+      _laundryRepository.getValue<int>(key: "laundryRoomIndex") ?? 0;
 }
