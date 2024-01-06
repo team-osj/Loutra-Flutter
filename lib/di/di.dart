@@ -11,8 +11,10 @@ import 'package:lotura/domain/repository/apply_repository.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
 import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
 import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
+import 'package:lotura/domain/use_case/get_laundry_room_index_use_case.dart';
 import 'package:lotura/domain/use_case/get_laundry_status_use_case.dart';
 import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
+import 'package:lotura/domain/use_case/update_laundry_room_index_use_case.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 
@@ -21,7 +23,9 @@ List<BlocProvider> di() {
       ApplyRepositoryImpl(StreamController<List<ApplyResponse>>.broadcast());
 
   late final Box localDatabase;
+
   Hive.openBox("Lotura").then((value) => localDatabase = value);
+
   LocalLaundryDataSource localLaundryDataSource =
       LocalLaundryDataSource(localDatabase: localDatabase);
   LaundryRepository laundryRepository = LaundryRepositoryImpl(
@@ -39,6 +43,13 @@ List<BlocProvider> di() {
 
   ApplyCancelUseCase applyCancelUseCase =
       ApplyCancelUseCase(applyRepository: applyRepository);
+
+  GetLaundryRoomIndexUseCase getLaundryRoomIndexUseCase =
+      GetLaundryRoomIndexUseCase(laundryRepository: laundryRepository);
+
+  UpdateLaundryRoomIndexUseCase updateLaundryRoomIndexUseCase =
+      UpdateLaundryRoomIndexUseCase(laundryRepository: laundryRepository);
+
   return [
     BlocProvider<ApplyBloc>(
         create: (context) => ApplyBloc(
