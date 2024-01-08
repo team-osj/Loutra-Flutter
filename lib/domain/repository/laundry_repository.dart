@@ -7,7 +7,7 @@ abstract class LaundryRepository {
 
   void init();
 
-  Future<void> setValue<V>({required String key, required V value});
+  Future<void> setValue({required String key, required int value});
 
-  V? getValue<V>({required String key});
+  int? getValue({required String key});
 }

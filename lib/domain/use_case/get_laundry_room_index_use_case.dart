@@ -7,6 +7,5 @@ class GetLaundryRoomIndexUseCase {
       {required LaundryRepository laundryRepository})
       : _laundryRepository = laundryRepository;
 
-  int get execute =>
-      _laundryRepository.getValue<int>(key: "laundryRoomIndex") ?? 0;
+  int get execute => _laundryRepository.getValue(key: "laundryRoomIndex") ?? 0;
 }

@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
 
 class LocalLaundryDataSource {
-  final Box _box;
+  final Box<int> _box;
 
-  const LocalLaundryDataSource({required Box localDatabase})
+  const LocalLaundryDataSource({required Box<int> localDatabase})
       : _box = localDatabase;
 
-  Future<void> setValue<V>({required String key, required V value}) =>
+  Future<void> setValue({required String key, required int value}) =>
       _box.put(key, value);
 
-  V getValue<V>({required String key}) => _box.get(key) as V;
+  int? getValue({required String key}) => _box.get(key);
 }
