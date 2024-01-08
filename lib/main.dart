@@ -1,17 +1,16 @@
-import 'dart:async';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lotura/di/di.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -20,11 +19,13 @@ Future<void> main() async {
     SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(MyApp(blocList: di()));
+  await Hive.initFlutter();
+  runApp(MyApp(blocList: await di()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key, required this.blocList}) : super(key: key);
+  const MyApp({super.key, required this.blocList});
+
   final List<BlocProvider> blocList;
 
   @override
