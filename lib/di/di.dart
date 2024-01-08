@@ -22,11 +22,7 @@ import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-List<BlocProvider> di() {
-  late final Box localDatabase;
-
-  Hive.openBox("Lotura").then((value) => localDatabase = value);
-
+Future<List<BlocProvider>> di() async {
   IO.Socket socket = IO.io(
       '$baseurl/application',
       IO.OptionBuilder()
@@ -34,8 +30,10 @@ List<BlocProvider> di() {
           .enableForceNewConnection()
           .build());
 
+  final box = await Hive.openBox<int>("Lotura");
+
   LocalLaundryDataSource localLaundryDataSource =
-      LocalLaundryDataSource(localDatabase: localDatabase);
+      LocalLaundryDataSource(localDatabase: box);
 
   RemoteLaundryDataSource remoteLaundryDataSource = RemoteLaundryDataSource(
       streamController: StreamController<List<LaundryResponse>>.broadcast(),
