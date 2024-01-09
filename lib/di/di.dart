@@ -19,6 +19,7 @@ import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
 import 'package:lotura/domain/use_case/update_laundry_room_index_use_case.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -77,5 +78,10 @@ Future<List<BlocProvider>> di() async {
     BlocProvider<LaundryBloc>(
         create: (context) =>
             LaundryBloc(getLaundryStatusUseCase: getLaundryStatusUseCase)),
+    BlocProvider<RoomBloc>(
+      create: (context) => RoomBloc(
+          getLaundryRoomIndexUseCase: getLaundryRoomIndexUseCase,
+          updateLaundryRoomIndexUseCase: updateLaundryRoomIndexUseCase),
+    ),
   ];
 }
