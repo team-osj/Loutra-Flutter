@@ -19,14 +19,11 @@ import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
 import 'package:lotura/domain/use_case/update_laundry_room_index_use_case.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-List<BlocProvider> di() {
-  late final Box localDatabase;
-
-  Hive.openBox("Lotura").then((value) => localDatabase = value);
-
+Future<List<BlocProvider>> di() async {
   IO.Socket socket = IO.io(
       '$baseurl/application',
       IO.OptionBuilder()
@@ -34,8 +31,10 @@ List<BlocProvider> di() {
           .enableForceNewConnection()
           .build());
 
+  final box = await Hive.openBox<int>("Lotura");
+
   LocalLaundryDataSource localLaundryDataSource =
-      LocalLaundryDataSource(localDatabase: localDatabase);
+      LocalLaundryDataSource(localDatabase: box);
 
   RemoteLaundryDataSource remoteLaundryDataSource = RemoteLaundryDataSource(
       streamController: StreamController<List<LaundryResponse>>.broadcast(),
@@ -79,5 +78,10 @@ List<BlocProvider> di() {
     BlocProvider<LaundryBloc>(
         create: (context) =>
             LaundryBloc(getLaundryStatusUseCase: getLaundryStatusUseCase)),
+    BlocProvider<RoomBloc>(
+      create: (context) => RoomBloc(
+          getLaundryRoomIndexUseCase: getLaundryRoomIndexUseCase,
+          updateLaundryRoomIndexUseCase: updateLaundryRoomIndexUseCase),
+    ),
   ];
 }

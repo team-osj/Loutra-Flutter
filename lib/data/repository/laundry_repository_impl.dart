@@ -23,10 +23,10 @@ class LaundryRepositoryImpl implements LaundryRepository {
   void init() => _remoteLaundryDataSource.init();
 
   @override
-  V? getValue<V>({required String key}) =>
+  int? getValue({required String key}) =>
       _localLaundryDataSource.getValue(key: key);
 
   @override
-  Future<void> setValue<V>({required String key, required V value}) =>
+  Future<void> setValue({required String key, required int value}) =>
       _localLaundryDataSource.setValue(key: key, value: value);
 }

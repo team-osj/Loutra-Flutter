@@ -7,6 +7,6 @@ class UpdateLaundryRoomIndexUseCase {
       {required LaundryRepository laundryRepository})
       : _laundryRepository = laundryRepository;
 
-  Future<void> execute<V>({required V value}) =>
+  Future<void> execute({required int value}) =>
       _laundryRepository.setValue(key: 'laundryRoomIndex', value: value);
 }

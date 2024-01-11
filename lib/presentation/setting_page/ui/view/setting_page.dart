@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
+import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
+import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 import 'package:lotura/presentation/setting_page/ui/widget/setting_page_bottom_sheet.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatefulWidget {
@@ -14,24 +17,23 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   String mainLaundryRoom = "";
-  int selectedIndex = 0;
 
-  Future<void> initSharedPreferences() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    mainLaundryRoom = pref.getString('mainLaundryRoom') ?? "남자 학교측";
-    selectedIndex = pref.getInt('selectedIndex') ?? 0;
-    setState(() {});
-  }
+  final Map place = <int, String>{
+    0: "남자 학교측 세탁실",
+    1: "남자 기숙사측 세탁실",
+    2: "여자 세탁실",
+  };
 
   @override
   void initState() {
     super.initState();
-    initSharedPreferences();
+    context.read<RoomBloc>().add(GetRoomIndexEvent());
+    //initSharedPreferences();
   }
 
   @override
   Widget build(BuildContext context) {
-    initSharedPreferences();
+    //initSharedPreferences();
     return Scaffold(
       backgroundColor: OSJColors.gray100,
       appBar: AppBar(
@@ -74,36 +76,45 @@ class _SettingPageState extends State<SettingPage> {
                     "메인 세탁실 설정",
                     style: TextStyle(fontSize: 16.0.sp),
                   ),
-                  GestureDetector(
-                    onTap: () => showModalBottomSheet(
-                        context: context,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(24.r),
-                          ),
-                        ),
-                        backgroundColor: OSJColors.white,
-                        builder: (context) => SettingPageBottomSheet(
-                              mainLaundryRoom: mainLaundryRoom,
-                              selectedIndex: selectedIndex,
-                            )),
-                    child: Row(
-                      children: [
-                        Text(
-                          mainLaundryRoom,
-                          style: TextStyle(
-                            fontSize: 16.0.sp,
-                            color: OSJColors.primary700,
-                          ),
-                        ),
-                        SizedBox(width: 12.0.w),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: OSJColors.gray300,
-                          size: 24.0.r,
-                        ),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      BlocBuilder<RoomBloc, RoomState>(
+                        builder: (context, state) {
+                          if (state is Initial) {
+                            return const SizedBox.shrink();
+                          } else if (state is Changed) {
+                            return GestureDetector(
+                              onTap: () => showModalBottomSheet(
+                                  context: context,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(24.r),
+                                    ),
+                                  ),
+                                  backgroundColor: OSJColors.white,
+                                  builder: (context) => SettingPageBottomSheet(
+                                        initialIndex: state.index,
+                                      )),
+                              child: Text(
+                                place[state.index],
+                                style: TextStyle(
+                                  fontSize: 16.0.sp,
+                                  color: OSJColors.primary700,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        },
+                      ),
+                      SizedBox(width: 12.0.w),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        color: OSJColors.gray300,
+                        size: 24.0.r,
+                      ),
+                    ],
                   ),
                 ],
               ),
