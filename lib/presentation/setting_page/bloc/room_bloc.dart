@@ -20,12 +20,12 @@ class RoomBloc extends Bloc<RoomEvent, RoomState> {
 
   void _updateRoomIndexEventHandler(
       UpdateRoomIndexEvent event, Emitter<RoomState> emit) {
+    emit(Changed(index: event.value));
     _updateLaundryRoomIndexUseCase.execute(value: event.value);
   }
 
   void _getRoomIndexEventHandler(
       GetRoomIndexEvent event, Emitter<RoomState> emit) {
-    int index = _getLaundryRoomIndexUseCase.execute;
-    emit(Changed(index: index));
+    emit(Changed(index: _getLaundryRoomIndexUseCase.execute));
   }
 }
