@@ -122,26 +122,31 @@ class _SettingPageState extends State<SettingPage> {
             SizedBox(height: 12.0.h),
             Padding(
               padding: EdgeInsets.all(12.0.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "문의하기",
-                    style: TextStyle(fontSize: 16.0.sp),
+              child: GestureDetector(
+                onTap: () async {
+                  await launchUrl(
+                      Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
+                      mode: LaunchMode.externalApplication);
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 30.0.r,
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "문의하기",
+                        style: TextStyle(fontSize: 16.0.sp),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        color: OSJColors.gray300,
+                        size: 24.0.r,
+                      ),
+                    ],
                   ),
-                  GestureDetector(
-                    onTap: () async {
-                      await launchUrl(
-                          Uri.parse('https://open.kakao.com/o/sHjnH1Se'),
-                          mode: LaunchMode.externalApplication);
-                    },
-                    child: Icon(
-                      Icons.keyboard_arrow_right,
-                      color: OSJColors.gray300,
-                      size: 24.0.r,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
