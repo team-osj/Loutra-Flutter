@@ -18,12 +18,11 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   String mainLaundryRoom = "";
 
-  // Future<void> initSharedPreferences() async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   mainLaundryRoom = pref.getString('mainLaundryRoom') ?? "남자 학교측";
-  //   selectedIndex = pref.getInt('selectedIndex') ?? 0;
-  //   setState(() {});
-  // }
+  final Map place = <int, String>{
+    0: "남자 학교측 세탁실",
+    1: "남자 기숙사측 세탁실",
+    2: "여자 세탁실",
+  };
 
   @override
   void initState() {
@@ -97,7 +96,7 @@ class _SettingPageState extends State<SettingPage> {
                                         initialIndex: state.index,
                                       )),
                               child: Text(
-                                state.index.toString(),
+                                place[state.index],
                                 style: TextStyle(
                                   fontSize: 16.0.sp,
                                   color: OSJColors.primary700,
