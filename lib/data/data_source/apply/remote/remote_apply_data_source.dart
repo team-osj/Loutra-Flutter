@@ -27,9 +27,9 @@ class RemoteApplyDataSource {
 
   Future<List<ApplyResponse>> getApplyList() async {
     final response = await http.post(Uri.parse("$baseurl/push_list"),
-        body: jsonEncode({"token": await _getToken()}));
+        body: {"token": await _getToken()});
     if (response.statusCode != 200) throw Exception(response.body);
-    return (response.body as List<dynamic>)
+    return (jsonDecode(response.body) as List<dynamic>)
         .map((i) => ApplyResponse.fromJson(i))
         .toList();
   }
