@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:lotura/data/data_source/apply/remote/remote_apply_data_source.dart';
 import 'package:lotura/data/dto/request/apply_cancel_request.dart';
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
@@ -18,8 +17,8 @@ class ApplyRepositoryImpl implements ApplyRepository {
       _remoteApplyDataSource.applyStream.asBroadcastStream();
 
   @override
-  void getApplyList(GetApplyListRequest getApplyListRequest) =>
-      _remoteApplyDataSource.getApplyList(getApplyListRequest);
+  Future<List<ApplyResponse>> getApplyList() async =>
+      _remoteApplyDataSource.getApplyList();
 
   @override
   void response() => _remoteApplyDataSource.response();
