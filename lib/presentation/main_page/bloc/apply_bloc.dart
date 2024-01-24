@@ -39,9 +39,9 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
       SendFCMEvent event, Emitter<ApplyState> emit) async {
     try {
       emit(Loading());
-      _sendFCMInfoUseCase.execute(event.sendFCMInfoRequest);
-      Future.delayed(const Duration(milliseconds: 400))
-          .then((value) => _getApplyListUseCase.execute());
+      final applyList = await _sendFCMInfoUseCase.execute(
+          sendFCMInfoRequest: event.sendFCMInfoRequest);
+      emit(Loaded(applyList: applyList));
     } catch (e) {
       emit(Error(message: e.toString()));
     }
