@@ -22,7 +22,7 @@ class RemoteApplyDataSource {
       _streamController.stream.asBroadcastStream();
 
   Future<String> _getToken() async =>
-      FirebaseMessaging.instance.getToken().toString();
+      await FirebaseMessaging.instance.getToken() ?? "whatThe";
 
   void getApplyList(GetApplyListRequest getApplyListRequest) =>
       _getToken().then((value) {
