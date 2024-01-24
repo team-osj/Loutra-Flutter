@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:http/http.dart' as http;
 import 'package:lotura/data/dto/request/apply_cancel_request.dart';
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/secret.dart';
@@ -24,14 +25,14 @@ class RemoteApplyDataSource {
   Future<String> _getToken() async =>
       await FirebaseMessaging.instance.getToken() ?? "whatThe";
 
-  void getApplyList(GetApplyListRequest getApplyListRequest) =>
-      _getToken().then((value) {
-        getApplyListRequest.token = value;
-        _socket.emit(
-          sendRequestApplyList,
-          getApplyListRequest,
-        );
-      });
+  Future<List<ApplyResponse>> getApplyList() async {
+    final response = await http.post(Uri.parse("$baseurl/push_list"),
+        body: jsonEncode({"token": await _getToken()}));
+    if (response.statusCode != 200) throw Exception(response.body);
+    return (response.body as List<dynamic>)
+        .map((i) => ApplyResponse.fromJson(i))
+        .toList();
+  }
 
   void response() => _socket.on(receiveResponseApplyList, (data) {
         List<ApplyResponse> applyResponseList = List.empty(growable: true);
