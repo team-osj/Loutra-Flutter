@@ -34,18 +34,22 @@ class RemoteApplyDataSource {
         .toList();
   }
 
+  Future<void> sendFCMInfo(
+      {required SendFCMInfoRequest sendFCMInfoRequest}) async {
+    sendFCMInfoRequest.token = await _getToken();
+    final response = await http.post(Uri.parse("$baseurl/push_request"),
+        body: sendFCMInfoRequest.toJson());
+    if (response.statusCode != 200 && response.statusCode != 304) {
+      throw Exception(response.body);
+    }
+  }
+
   void response() => _socket.on(receiveResponseApplyList, (data) {
         List<ApplyResponse> applyResponseList = List.empty(growable: true);
         applyResponseList = (data as List<dynamic>)
             .map((i) => ApplyResponse.fromJson(i))
             .toList();
         _streamController.sink.add(applyResponseList);
-      });
-
-  void sendFCMInfo(SendFCMInfoRequest sendFCMInfoRequest) =>
-      _getToken().then((value) {
-        sendFCMInfoRequest.token = value;
-        _socket.emit(sendFCM, sendFCMInfoRequest);
       });
 
   void applyCancel(ApplyCancelRequest applyCancelRequest) =>
