@@ -29,10 +29,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
       GetApplyListEvent event, Emitter<ApplyState> emit) async {
     try {
       emit(Loading());
-      _getApplyListUseCase.execute();
-      await for (var value in _getApplyListUseCase.applyList) {
-        emit(Loaded(applyList: value));
-      }
+      emit(Loaded(applyList: await _getApplyListUseCase.execute()));
     } catch (e) {
       emit(Error(message: e.toString()));
     }
