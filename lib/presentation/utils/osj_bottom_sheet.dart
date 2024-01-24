@@ -139,7 +139,8 @@ class OSJBottomSheet extends StatelessWidget {
                             isEnableNotification
                                 ? context.read<ApplyBloc>().add(SendFCMEvent(
                                     sendFCMInfoRequest: SendFCMInfoRequest(
-                                        deviceId: index, expectState: '1')))
+                                        deviceId: index.toString(),
+                                        expectState: '1')))
                                 : context.read<ApplyBloc>().add(
                                     ApplyCancelEvent(
                                         applyCancelRequest: ApplyCancelRequest(
