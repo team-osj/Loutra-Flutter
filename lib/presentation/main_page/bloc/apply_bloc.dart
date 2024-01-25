@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
 import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
@@ -29,10 +27,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
       GetApplyListEvent event, Emitter<ApplyState> emit) async {
     try {
       emit(Loading());
-      _getApplyListUseCase.execute();
-      await for (var value in _getApplyListUseCase.applyList) {
-        emit(Loaded(applyList: value));
-      }
+      emit(Loaded(applyList: await _getApplyListUseCase.execute()));
     } catch (e) {
       emit(Error(message: e.toString()));
     }
@@ -42,9 +37,9 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
       SendFCMEvent event, Emitter<ApplyState> emit) async {
     try {
       emit(Loading());
-      _sendFCMInfoUseCase.execute(event.sendFCMInfoRequest);
-      Future.delayed(const Duration(milliseconds: 400))
-          .then((value) => _getApplyListUseCase.execute());
+      final applyList = await _sendFCMInfoUseCase.execute(
+          sendFCMInfoRequest: event.sendFCMInfoRequest);
+      emit(Loaded(applyList: applyList));
     } catch (e) {
       emit(Error(message: e.toString()));
     }
@@ -54,9 +49,9 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState> {
       ApplyCancelEvent event, Emitter<ApplyState> emit) async {
     try {
       emit(Loading());
-      _applyCancelUseCase.execute(event.applyCancelRequest);
-      Future.delayed(const Duration(milliseconds: 400))
-          .then((value) => _getApplyListUseCase.execute());
+      final applyList = await _applyCancelUseCase.execute(
+          applyCancelRequest: event.applyCancelRequest);
+      emit(Loaded(applyList: applyList));
     } catch (e) {
       emit(Error(message: e.toString()));
     }
