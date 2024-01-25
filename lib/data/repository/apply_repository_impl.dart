@@ -13,15 +13,8 @@ class ApplyRepositoryImpl implements ApplyRepository {
       : _remoteApplyDataSource = remoteApplyDataSource;
 
   @override
-  Stream<List<ApplyResponse>> get applyStream =>
-      _remoteApplyDataSource.applyStream.asBroadcastStream();
-
-  @override
   Future<List<ApplyResponse>> getApplyList() async =>
       _remoteApplyDataSource.getApplyList();
-
-  @override
-  void response() => _remoteApplyDataSource.response();
 
   @override
   Future<void> sendFCMInfo(
