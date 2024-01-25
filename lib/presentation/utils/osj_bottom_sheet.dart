@@ -144,7 +144,7 @@ class OSJBottomSheet extends StatelessWidget {
                                 : context.read<ApplyBloc>().add(
                                     ApplyCancelEvent(
                                         applyCancelRequest: ApplyCancelRequest(
-                                            deviceId: index)));
+                                            deviceId: index.toString())));
                             Navigator.pop(context);
                           },
                           width: 185.0.w,

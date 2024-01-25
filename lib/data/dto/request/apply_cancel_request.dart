@@ -1,6 +1,6 @@
 class ApplyCancelRequest {
   String? token;
-  int deviceId;
+  String deviceId;
 
   ApplyCancelRequest({this.token, required this.deviceId});
 
