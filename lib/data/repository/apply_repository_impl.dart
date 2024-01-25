@@ -30,6 +30,8 @@ class ApplyRepositoryImpl implements ApplyRepository {
           sendFCMInfoRequest: sendFCMInfoRequest);
 
   @override
-  void applyCancel(ApplyCancelRequest applyCancelRequest) =>
-      _remoteApplyDataSource.applyCancel(applyCancelRequest);
+  Future<List<ApplyResponse>> applyCancel(
+          {required ApplyCancelRequest applyCancelRequest}) async =>
+      _remoteApplyDataSource.applyCancel(
+          applyCancelRequest: applyCancelRequest);
 }

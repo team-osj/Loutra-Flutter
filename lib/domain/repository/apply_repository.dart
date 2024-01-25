@@ -13,5 +13,6 @@ abstract class ApplyRepository {
 
   Future<void> sendFCMInfo({required SendFCMInfoRequest sendFCMInfoRequest});
 
-  void applyCancel(ApplyCancelRequest applyCancelRequest);
+  Future<List<ApplyResponse>> applyCancel(
+      {required ApplyCancelRequest applyCancelRequest});
 }
