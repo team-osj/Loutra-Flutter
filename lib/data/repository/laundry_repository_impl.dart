@@ -29,4 +29,8 @@ class LaundryRepositoryImpl implements LaundryRepository {
   @override
   Future<void> setValue({required String key, required int value}) =>
       _localLaundryDataSource.setValue(key: key, value: value);
+
+  @override
+  Future<List<LaundryResponse>> getAllLaundryList() =>
+      _remoteLaundryDataSource.getAllLaundryList();
 }
