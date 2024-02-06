@@ -11,6 +11,7 @@ import 'package:lotura/data/repository/laundry_repository_impl.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
 import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
+import 'package:lotura/domain/use_case/get_all_laundry_list_use_case.dart';
 import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
 import 'package:lotura/domain/use_case/get_laundry_room_index_use_case.dart';
 import 'package:lotura/domain/use_case/get_laundry_status_use_case.dart';
@@ -59,6 +60,9 @@ Future<List<BlocProvider>> di() async {
   GetLaundryRoomIndexUseCase getLaundryRoomIndexUseCase =
       GetLaundryRoomIndexUseCase(laundryRepository: laundryRepository);
 
+  GetAllLaundryListUseCase getAllLaundryListUseCase =
+      GetAllLaundryListUseCase(laundryRepository: laundryRepository);
+
   UpdateLaundryRoomIndexUseCase updateLaundryRoomIndexUseCase =
       UpdateLaundryRoomIndexUseCase(laundryRepository: laundryRepository);
 
@@ -69,8 +73,9 @@ Future<List<BlocProvider>> di() async {
             applyCancelUseCase: applyCancelUseCase,
             sendFCMInfoUseCase: sendFCMInfoUseCase)),
     BlocProvider<LaundryBloc>(
-        create: (context) =>
-            LaundryBloc(getLaundryStatusUseCase: getLaundryStatusUseCase)),
+        create: (context) => LaundryBloc(
+            getLaundryStatusUseCase: getLaundryStatusUseCase,
+            getAllLaundryListUseCase: getAllLaundryListUseCase)),
     BlocProvider<RoomBloc>(
       create: (context) => RoomBloc(
           getLaundryRoomIndexUseCase: getLaundryRoomIndexUseCase,
