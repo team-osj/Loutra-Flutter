@@ -20,22 +20,24 @@ class LaundryBloc
     on<GetAllLaundryListEvent>(_getAllLaundryListEventHandler);
   }
 
-  void _getLaundryEventHandler(
-      GetLaundryEvent event, Emitter<LaundryState> emit) async {
+  void _getLaundryEventHandler(GetLaundryEvent event,
+      Emitter<LaundryState<List<LaundryResponse>>> emit) async {
     try {
-      _getLaundryStatusUseCase.execute();
       emit(Loading());
+      _getLaundryStatusUseCase.execute();
+      emit(state);
     } catch (e) {
       emit(Error(error: e));
     }
   }
 
-  void _getAllLaundryListEventHandler(
-      GetAllLaundryListEvent event, Emitter<LaundryState> emit) async {
+  void _getAllLaundryListEventHandler(GetAllLaundryListEvent event,
+      Emitter<LaundryState<List<LaundryResponse>>> emit) async {
     try {
       emit(Loading());
-      final laundryList = await _getAllLaundryListEventUseCase.execute();
-      emit(Loaded(data: laundryList));
+      final newState =
+          Loaded(data: await _getAllLaundryListEventUseCase.execute());
+      emit(newState);
     } catch (e) {
       emit(Error(error: e));
     }
