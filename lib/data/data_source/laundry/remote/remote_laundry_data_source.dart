@@ -21,7 +21,8 @@ class RemoteLaundryDataSource {
 
   void webSocketInit() {
     _channel.stream.listen((data) {
-      _streamController.sink.add(LaundryResponse.fromJson(data));
+      _streamController.sink.add(
+          LaundryResponse.fromJson(jsonDecode(data) as Map<String, dynamic>));
     });
   }
 
