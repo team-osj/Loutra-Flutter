@@ -1,30 +1,24 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:lotura/data/dto/response/laundry_response.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class RemoteLaundryDataSource {
-  final StreamController<List<LaundryResponse>> _streamController;
-  final IO.Socket _socket;
+  final StreamController<LaundryResponse> _streamController;
+  final WebSocketChannel _channel;
 
   RemoteLaundryDataSource(
-      {required StreamController<List<LaundryResponse>> streamController,
-      required IO.Socket socket})
+      {required StreamController<LaundryResponse> streamController,
+      required WebSocketChannel channel})
       : _streamController = streamController,
-        _socket = socket;
+        _channel = channel;
 
-  Stream<List<LaundryResponse>> get laundryList =>
+  Stream<LaundryResponse> get laundryList =>
       _streamController.stream.asBroadcastStream();
 
-  void init() {
-    _socket.onConnect((data) => debugPrint("연결 성공"));
-    _socket.on('update', (data) {
-      List<LaundryResponse> laundryList = List.empty(growable: true);
-      laundryList = (data as List<dynamic>)
-          .map((i) => LaundryResponse.fromJson(i))
-          .toList();
-      _streamController.sink.add(laundryList);
+  void webSocketInit() {
+    _channel.stream.listen((data) {
+      _streamController.sink.add(LaundryResponse.fromJson(data));
     });
   }
 }
