@@ -7,6 +7,8 @@ abstract class LaundryRepository {
 
   void webSocketInit();
 
+  Future<List<LaundryResponse>> getAllLaundryList();
+
   Future<void> setValue({required String key, required int value});
 
   int? getValue({required String key});
