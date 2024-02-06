@@ -21,8 +21,11 @@ import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/secret.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 Future<List<BlocProvider>> di() async {
+  final channel = WebSocketChannel.connect(Uri.parse(webSocketUrl));
+  await channel.ready;
   IO.Socket socket = IO.io(
       '$baseurl/application',
       IO.OptionBuilder()
@@ -36,8 +39,8 @@ Future<List<BlocProvider>> di() async {
       LocalLaundryDataSource(localDatabase: box);
 
   RemoteLaundryDataSource remoteLaundryDataSource = RemoteLaundryDataSource(
-      streamController: StreamController<List<LaundryResponse>>.broadcast(),
-      socket: socket);
+      streamController: StreamController<LaundryResponse>.broadcast(),
+      channel: channel);
 
   RemoteApplyDataSource remoteApplyDataSource = RemoteApplyDataSource();
 
