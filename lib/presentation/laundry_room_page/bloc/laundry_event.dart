@@ -1,8 +1,5 @@
-import 'package:equatable/equatable.dart';
+abstract class LaundryEvent {}
 
-abstract class LaundryEvent extends Equatable {}
+class GetLaundryEvent extends LaundryEvent {}
 
-class GetLaundryEvent extends LaundryEvent {
-  @override
-  List<Object?> get props => [];
-}
+class GetAllLaundryListEvent extends LaundryEvent {}
