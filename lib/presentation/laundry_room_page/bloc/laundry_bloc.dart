@@ -25,7 +25,18 @@ class LaundryBloc
     try {
       emit(Loading());
       _getLaundryStatusUseCase.execute();
-      emit(state);
+      await for (var data in _getLaundryStatusUseCase.laundryList) {
+        final newState = Loaded(
+            data: state.valueOrNull!
+                .map((e) => e.id == data.id
+                    ? LaundryResponse(
+                        id: data.id,
+                        state: data.state,
+                        deviceType: data.deviceType)
+                    : e)
+                .toList());
+        emit(newState);
+      }
     } catch (e) {
       emit(Error(error: e));
     }
