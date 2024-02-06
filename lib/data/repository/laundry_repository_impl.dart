@@ -16,11 +16,11 @@ class LaundryRepositoryImpl implements LaundryRepository {
         _remoteLaundryDataSource = remoteLaundryDataSource;
 
   @override
-  Stream<List<LaundryResponse>> get laundryList =>
+  Stream<LaundryResponse> get laundryList =>
       _remoteLaundryDataSource.laundryList.asBroadcastStream();
 
   @override
-  void init() => _remoteLaundryDataSource.init();
+  void webSocketInit() => _remoteLaundryDataSource.webSocketInit();
 
   @override
   int? getValue({required String key}) =>

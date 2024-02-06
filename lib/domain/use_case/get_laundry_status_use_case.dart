@@ -7,10 +7,9 @@ class GetLaundryStatusUseCase {
   GetLaundryStatusUseCase({required LaundryRepository laundryRepository})
       : _laundryRepository = laundryRepository;
 
-  Stream<List<LaundryResponse>> get laundryList =>
-      _laundryRepository.laundryList;
+  Stream<LaundryResponse> get laundryList => _laundryRepository.laundryList;
 
   void execute() {
-    _laundryRepository.init();
+    _laundryRepository.webSocketInit();
   }
 }
