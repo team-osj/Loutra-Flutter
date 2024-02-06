@@ -18,7 +18,7 @@ class Loading<T> extends LaundryState<T> {
   Loading() : super(laundryState: LaundryStateEnum.loading);
 }
 
-class Error extends LaundryState {
+class Error<T> extends LaundryState<T> {
   final Object error;
 
   Error({required this.error})
