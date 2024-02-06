@@ -23,6 +23,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     context.read<LaundryBloc>().add(GetAllLaundryListEvent());
+    context.read<LaundryBloc>().add(GetLaundryEvent());
     context
         .read<ApplyBloc>()
         .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
