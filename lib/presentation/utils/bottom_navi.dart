@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_icon_button.dart';
@@ -14,7 +20,7 @@ class BottomNavi extends StatefulWidget {
 }
 
 class _BottomNaviState extends State<BottomNavi>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late TabController controller;
 
   int selectedIndex = 1;
@@ -23,6 +29,7 @@ class _BottomNaviState extends State<BottomNavi>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     controller = TabController(length: 2, vsync: this)
       ..index = 1
       ..animation?.addListener(() {
@@ -67,9 +74,23 @@ class _BottomNaviState extends State<BottomNavi>
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        BlocProvider.of<LaundryBloc>(context).add(GetAllLaundryListEvent());
+        BlocProvider.of<LaundryBloc>(context).add(GetLaundryEvent());
+        BlocProvider.of<ApplyBloc>(context)
+            .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
+      default:
+    }
+  }
+
+  @override
   void dispose() {
     super.dispose();
     controller.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
@@ -78,9 +99,9 @@ class _BottomNaviState extends State<BottomNavi>
       backgroundColor: OSJColors.gray100,
       body: TabBarView(
         controller: controller,
-        children: [
+        children: const [
           MainPage(),
-          const LaundryRoomPage(),
+          LaundryRoomPage(),
         ],
       ),
       bottomNavigationBar: TabBar(

@@ -23,7 +23,6 @@ class LaundryBloc
   void _getLaundryEventHandler(GetLaundryEvent event,
       Emitter<LaundryState<List<LaundryResponse>>> emit) async {
     try {
-      emit(Loading());
       _getLaundryStatusUseCase.execute();
       await for (var data in _getLaundryStatusUseCase.laundryList) {
         final newState = Loaded(
