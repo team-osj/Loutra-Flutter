@@ -20,21 +20,15 @@ import 'package:lotura/domain/use_case/update_laundry_room_index_use_case.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
-import 'package:lotura/secret.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 Future<List<BlocProvider>> di() async {
-  final channel = WebSocketChannel.connect(Uri.parse(webSocketUrl));
-  await channel.ready;
-
   final box = await Hive.openBox<int>("Lotura");
 
   LocalLaundryDataSource localLaundryDataSource =
       LocalLaundryDataSource(localDatabase: box);
 
   RemoteLaundryDataSource remoteLaundryDataSource = RemoteLaundryDataSource(
-      streamController: StreamController<LaundryResponse>.broadcast(),
-      channel: channel);
+      streamController: StreamController<LaundryResponse>.broadcast());
 
   RemoteApplyDataSource remoteApplyDataSource = RemoteApplyDataSource();
 

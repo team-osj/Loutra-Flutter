@@ -8,19 +8,18 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 class RemoteLaundryDataSource {
   final StreamController<LaundryResponse> _streamController;
-  final WebSocketChannel _channel;
 
   RemoteLaundryDataSource(
-      {required StreamController<LaundryResponse> streamController,
-      required WebSocketChannel channel})
-      : _streamController = streamController,
-        _channel = channel;
+      {required StreamController<LaundryResponse> streamController})
+      : _streamController = streamController;
 
   Stream<LaundryResponse> get laundryList =>
       _streamController.stream.asBroadcastStream();
 
-  void webSocketInit() {
-    _channel.stream.listen((data) {
+  void webSocketInit() async {
+    final channel = WebSocketChannel.connect(Uri.parse(webSocketUrl));
+    await channel.ready;
+    channel.stream.listen((data) {
       _streamController.sink.add(
           LaundryResponse.fromJson(jsonDecode(data) as Map<String, dynamic>));
     });
