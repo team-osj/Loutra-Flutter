@@ -33,7 +33,7 @@ class MainActivity : FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
-            CHANNEL
+            "com.osj.lotura/nfc_info"
         ).setMethodCallHandler { call, result ->
             when (call.method) {
                 "getNFCInfo" -> {
