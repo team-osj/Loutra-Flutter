@@ -8,13 +8,12 @@ import android.nfc.NdefRecord
 import android.nfc.NfcAdapter
 import android.os.Bundle
 import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.android.KeyData.CHANNEL
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
     private lateinit var nfcAdapter: NfcAdapter
-    private var returnData = "untagged"
+    private var returnData = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
@@ -25,7 +24,7 @@ class MainActivity : FlutterActivity() {
             val record = message.records[0] as NdefRecord
             val byteArr = record.payload
 
-            returnData = String(byteArr)
+            returnData = String(byteArr).toInt()
         }
     }
 
@@ -37,7 +36,7 @@ class MainActivity : FlutterActivity() {
         ).setMethodCallHandler { call, result ->
             when (call.method) {
                 "getNFCInfo" -> {
-                    result.success(returnData)
+                    result.success("{\"index\" : $returnData}")
                 }
             }
         }
@@ -51,7 +50,7 @@ class MainActivity : FlutterActivity() {
             val record = message.records[0] as NdefRecord
             val byteArr = record.payload
 
-            returnData = String(byteArr)
+            returnData = String(byteArr).toInt()
         }
     }
 
