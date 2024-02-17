@@ -37,6 +37,7 @@ class MainActivity : FlutterActivity() {
             when (call.method) {
                 "getNFCInfo" -> {
                     result.success("{\"index\" : $returnData}")
+                    returnData = -1
                 }
             }
         }
