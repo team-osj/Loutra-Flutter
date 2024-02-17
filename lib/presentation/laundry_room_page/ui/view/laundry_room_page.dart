@@ -211,7 +211,9 @@ class _LaundryRoomPageState extends State<LaundryRoomPage>
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => context
+                            .read<RoomBloc>()
+                            .add(ModifyPlaceIconIndexEvent(placeIconIndex: 0)),
                         icon: Icon(LoturaIcons.grid,
                             size: 18.0.r,
                             color: roomBlocState.value.placeIconIndex == 0
@@ -219,7 +221,8 @@ class _LaundryRoomPageState extends State<LaundryRoomPage>
                                 : OSJColors.gray300),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () => context.read<RoomBloc>().add(
+                              ModifyPlaceIconIndexEvent(placeIconIndex: 1)),
                           icon: Icon(
                             LoturaIcons.list,
                             size: 18.0.r,
