@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -13,7 +14,8 @@ class SettingPageBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomBloc, RoomState>(builder: (context, state) {
+    return BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
+        builder: (context, state) {
       if (state is Initial) {
         context.read<RoomBloc>().add(GetRoomIndexEvent());
         return const SizedBox.shrink();
@@ -46,12 +48,12 @@ class SettingPageBottomSheet extends StatelessWidget {
                 GestureDetector(
                   onTap: () => context
                       .read<RoomBloc>()
-                      .add(UpdateRoomIndexEvent(value: 0)),
+                      .add(UpdateRoomIndexEvent(roomIndex: 0)),
                   child: Container(
                     width: 382.0.w,
                     height: 48.0.h,
                     decoration: BoxDecoration(
-                      color: state.index == 0
+                      color: state.value.roomIndex == 0
                           ? OSJColors.gray100
                           : OSJColors.white,
                       borderRadius: BorderRadius.circular(8.0),
@@ -70,7 +72,7 @@ class SettingPageBottomSheet extends StatelessWidget {
                         Icon(
                           Icons.check,
                           size: 24.0.r,
-                          color: state.index == 0
+                          color: state.value.roomIndex == 0
                               ? OSJColors.black
                               : OSJColors.white,
                         ),
@@ -81,12 +83,12 @@ class SettingPageBottomSheet extends StatelessWidget {
                 GestureDetector(
                   onTap: () => context
                       .read<RoomBloc>()
-                      .add(UpdateRoomIndexEvent(value: 1)),
+                      .add(UpdateRoomIndexEvent(roomIndex: 1)),
                   child: Container(
                     width: 382.0.w,
                     height: 48.0.h,
                     decoration: BoxDecoration(
-                      color: state.index == 1
+                      color: state.value.roomIndex == 1
                           ? OSJColors.gray100
                           : OSJColors.white,
                       borderRadius: BorderRadius.circular(8.0),
@@ -105,7 +107,7 @@ class SettingPageBottomSheet extends StatelessWidget {
                         Icon(
                           Icons.check,
                           size: 24.0.r,
-                          color: state.index == 1
+                          color: state.value.roomIndex == 1
                               ? OSJColors.black
                               : OSJColors.white,
                         ),
@@ -116,12 +118,12 @@ class SettingPageBottomSheet extends StatelessWidget {
                 GestureDetector(
                   onTap: () => context
                       .read<RoomBloc>()
-                      .add(UpdateRoomIndexEvent(value: 2)),
+                      .add(UpdateRoomIndexEvent(roomIndex: 2)),
                   child: Container(
                     width: 382.0.w,
                     height: 48.0.h,
                     decoration: BoxDecoration(
-                      color: state.index == 2
+                      color: state.value.roomIndex == 2
                           ? OSJColors.gray100
                           : OSJColors.white,
                       borderRadius: BorderRadius.circular(8.0),
@@ -140,7 +142,7 @@ class SettingPageBottomSheet extends StatelessWidget {
                         Icon(
                           Icons.check,
                           size: 24.0.r,
-                          color: state.index == 2
+                          color: state.value.roomIndex == 2
                               ? OSJColors.black
                               : OSJColors.white,
                         ),
