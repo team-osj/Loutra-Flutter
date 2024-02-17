@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -78,7 +79,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   Row(
                     children: [
-                      BlocBuilder<RoomBloc, RoomState>(
+                      BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
                         builder: (context, state) {
                           if (state is Initial) {
                             return const SizedBox.shrink();
@@ -93,10 +94,10 @@ class _SettingPageState extends State<SettingPage> {
                                   ),
                                   backgroundColor: OSJColors.white,
                                   builder: (context) => SettingPageBottomSheet(
-                                        initialIndex: state.index,
+                                        initialIndex: state.value.roomIndex,
                                       )),
                               child: Text(
-                                place[state.index],
+                                place[state.value.roomIndex],
                                 style: TextStyle(
                                   fontSize: 16.0.sp,
                                   color: OSJColors.primary700,

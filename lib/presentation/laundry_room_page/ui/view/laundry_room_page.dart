@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/data/dto/response/laundry_response.dart';
+import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
@@ -12,20 +16,22 @@ import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_button.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
+import 'package:lotura/presentation/utils/machine_widget.dart';
+import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class LaundryRoomPage extends StatefulWidget {
-  const LaundryRoomPage({super.key});
+  LaundryRoomPage({super.key, required this.nfcTagData});
+
+  int nfcTagData;
 
   @override
   State<LaundryRoomPage> createState() => _LaundryRoomPageState();
 }
 
-class _LaundryRoomPageState extends State<LaundryRoomPage> {
-  int isSelectedIcon = 1, isSelectedPlace = 0;
-  bool isClick = false;
-
+class _LaundryRoomPageState extends State<LaundryRoomPage>
+    with WidgetsBindingObserver {
   final Map place = <int, String>{
     0: "남자 학교측 세탁실",
     1: "남자 기숙사측 세탁실",
@@ -46,43 +52,66 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
     "DRY": Machine.dry
   };
 
-  Widget get triangle => isSelectedIcon == 0
-      ? const SizedBox.shrink()
-      : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
+  Widget triangle({required RoomEntity roomEntity}) =>
+      roomEntity.placeIconIndex == 0
+          ? const SizedBox.shrink()
+          : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
 
-  Widget machineWidget(
-          {required int index,
+  MachineWidget machineWidget(
+          {required RoomEntity roomState,
+          required int index,
           required Status status,
           required Machine machine}) =>
-      isSelectedIcon == 0
+      roomState.placeIconIndex == 0
           ? MachineCard(
               index: index,
               isEnableNotification: true,
-              isWoman: isSelectedPlace == 2 ? true : false,
+              isWoman: roomState.roomIndex == 2 ? true : false,
               status: status,
               machine: machine)
           : MachineButton(
               index: index,
               isEnableNotification: true,
-              isWoman: isSelectedPlace == 2 ? true : false,
+              isWoman: roomState.roomIndex == 2 ? true : false,
               status: status,
               machine: machine);
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     context.read<RoomBloc>().add(GetRoomIndexEvent());
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  void func() {
+    const platformMsg = MethodChannel('com.osj.lotura/nfc_info');
+    platformMsg.invokeMethod("getNFCInfo").then((value) {
+      print("------------$value");
+      widget.nfcTagData = (jsonDecode(value))['index'] as int;
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        func();
+      default:
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomBloc, RoomState>(
+    return BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
       builder: (context, roomBlocState) {
         if (roomBlocState is Changed) {
-          if (!isClick) {
-            isSelectedPlace = roomBlocState.index;
-            isClick = true;
-          }
           return Scaffold(
             backgroundColor: OSJColors.gray100,
             appBar: AppBar(
@@ -93,7 +122,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                 children: [
                   SizedBox(width: 24.0.w),
                   Text(
-                    place[isSelectedPlace],
+                    place[roomBlocState.value.roomIndex],
                     style: TextStyle(
                       color: OSJColors.black,
                       fontSize: 24.0.sp,
@@ -126,14 +155,16 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     child: Row(
                       children: [
                         OSJTextButton(
-                          function: () => setState(() => isSelectedPlace = 0),
+                          function: () => context
+                              .read<RoomBloc>()
+                              .add(ModifyRoomIndexEvent(roomIndex: 0)),
                           width: 99.0.w,
                           height: 32.0.h,
                           fontSize: 16.0.sp,
-                          color: isSelectedPlace == 0
+                          color: roomBlocState.value.roomIndex == 0
                               ? OSJColors.white
                               : OSJColors.gray100,
-                          fontColor: isSelectedPlace == 0
+                          fontColor: roomBlocState.value.roomIndex == 0
                               ? OSJColors.primary700
                               : OSJColors.gray300,
                           text: "남자 학교측",
@@ -141,14 +172,16 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                         ),
                         SizedBox(width: 8.0.w),
                         OSJTextButton(
-                          function: () => setState(() => isSelectedPlace = 1),
+                          function: () => context
+                              .read<RoomBloc>()
+                              .add(ModifyRoomIndexEvent(roomIndex: 1)),
                           width: 111.0.w,
                           height: 32.0.h,
                           fontSize: 16.0.sp,
-                          color: isSelectedPlace == 1
+                          color: roomBlocState.value.roomIndex == 1
                               ? OSJColors.white
                               : OSJColors.gray100,
-                          fontColor: isSelectedPlace == 1
+                          fontColor: roomBlocState.value.roomIndex == 1
                               ? OSJColors.primary700
                               : OSJColors.gray300,
                           text: "남자 기숙사측",
@@ -156,14 +189,16 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                         ),
                         SizedBox(width: 8.0.w),
                         OSJTextButton(
-                          function: () => setState(() => isSelectedPlace = 2),
+                          function: () => context
+                              .read<RoomBloc>()
+                              .add(ModifyRoomIndexEvent(roomIndex: 2)),
                           width: 53.0.w,
                           height: 32.0.h,
                           fontSize: 16.0.sp,
-                          color: isSelectedPlace == 2
+                          color: roomBlocState.value.roomIndex == 2
                               ? OSJColors.white
                               : OSJColors.gray100,
-                          fontColor: isSelectedPlace == 2
+                          fontColor: roomBlocState.value.roomIndex == 2
                               ? OSJColors.primary700
                               : OSJColors.gray300,
                           text: "여자",
@@ -176,27 +211,22 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isSelectedIcon = 0;
-                          });
-                        },
+                        onPressed: () => context
+                            .read<RoomBloc>()
+                            .add(ModifyPlaceIconIndexEvent(placeIconIndex: 0)),
                         icon: Icon(LoturaIcons.grid,
                             size: 18.0.r,
-                            color: isSelectedIcon == 0
+                            color: roomBlocState.value.placeIconIndex == 0
                                 ? OSJColors.black
                                 : OSJColors.gray300),
                       ),
                       IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isSelectedIcon = 1;
-                            });
-                          },
+                          onPressed: () => context.read<RoomBloc>().add(
+                              ModifyPlaceIconIndexEvent(placeIconIndex: 1)),
                           icon: Icon(
                             LoturaIcons.list,
                             size: 18.0.r,
-                            color: isSelectedIcon == 1
+                            color: roomBlocState.value.placeIconIndex == 1
                                 ? OSJColors.black
                                 : OSJColors.gray300,
                           )),
@@ -216,8 +246,39 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                               behavior: const ScrollBehavior()
                                   .copyWith(overscroll: false),
                               child: ListView.builder(
-                                itemCount: isSelectedPlace == 2 ? 10 : 8,
+                                itemCount:
+                                    roomBlocState.value.roomIndex == 2 ? 10 : 8,
                                 itemBuilder: (context, index) {
+                                  Future.delayed(Duration.zero).then((value) {
+                                    if (widget.nfcTagData != -1 &&
+                                        roomBlocState
+                                                .value.isNFCShowBottomSheet ==
+                                            false) {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(25.r),
+                                          ),
+                                        ),
+                                        builder: (context) => OSJBottomSheet(
+                                          index: widget.nfcTagData,
+                                          isEnableNotification: true,
+                                          isWoman: widget.nfcTagData > 31
+                                              ? true
+                                              : false,
+                                          status: status[state
+                                              .data[widget.nfcTagData - 1]
+                                              .state],
+                                          machine: machine[state
+                                              .data[widget.nfcTagData - 1]
+                                              .deviceType],
+                                        ),
+                                      );
+                                      roomBlocState.value
+                                          .copyWith(isNFCShowBottomSheet: true);
+                                    }
+                                  });
                                   return Column(
                                     children: [
                                       Row(
@@ -225,66 +286,85 @@ class _LaundryRoomPageState extends State<LaundryRoomPage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           machineWidget(
+                                              roomState: roomBlocState.value,
                                               index: state
-                                                  .data[placeIndex[
-                                                          isSelectedPlace] +
+                                                  .data[placeIndex[roomBlocState
+                                                          .value.roomIndex] +
                                                       index]
                                                   .id,
                                               machine: machine[state
-                                                  .data[placeIndex[
-                                                          isSelectedPlace] +
+                                                  .data[placeIndex[roomBlocState
+                                                          .value.roomIndex] +
                                                       index]
                                                   .deviceType],
                                               status: status[state
-                                                  .data[placeIndex[
-                                                          isSelectedPlace] +
+                                                  .data[placeIndex[roomBlocState
+                                                          .value.roomIndex] +
                                                       index]
                                                   .state]),
-                                          triangle,
+                                          triangle(
+                                              roomEntity: roomBlocState.value),
                                           machineWidget(
-                                            index: placeIndex[isSelectedPlace] +
+                                            roomState: roomBlocState.value,
+                                            index: placeIndex[roomBlocState
+                                                            .value.roomIndex] +
                                                         index +
-                                                        (isSelectedPlace == 2
+                                                        (roomBlocState.value
+                                                                    .roomIndex ==
+                                                                2
                                                             ? 10
                                                             : 8) <
                                                     44
                                                 ? state
                                                     .data[placeIndex[
-                                                            isSelectedPlace] +
+                                                            roomBlocState.value
+                                                                .roomIndex] +
                                                         index +
-                                                        (isSelectedPlace == 2
+                                                        (roomBlocState.value
+                                                                    .roomIndex ==
+                                                                2
                                                             ? 10
                                                             : 8)]
                                                     .id
                                                 : -1,
-                                            machine: placeIndex[
-                                                            isSelectedPlace] +
+                                            machine: placeIndex[roomBlocState
+                                                            .value.roomIndex] +
                                                         index +
-                                                        (isSelectedPlace == 2
+                                                        (roomBlocState.value
+                                                                    .roomIndex ==
+                                                                2
                                                             ? 10
                                                             : 8) <
                                                     44
                                                 ? machine[state
                                                     .data[placeIndex[
-                                                            isSelectedPlace] +
+                                                            roomBlocState.value
+                                                                .roomIndex] +
                                                         index +
-                                                        (isSelectedPlace == 2
+                                                        (roomBlocState.value
+                                                                    .roomIndex ==
+                                                                2
                                                             ? 10
                                                             : 8)]
                                                     .deviceType]
                                                 : Machine.dry,
-                                            status: placeIndex[
-                                                            isSelectedPlace] +
+                                            status: placeIndex[roomBlocState
+                                                            .value.roomIndex] +
                                                         index +
-                                                        (isSelectedPlace == 2
+                                                        (roomBlocState.value
+                                                                    .roomIndex ==
+                                                                2
                                                             ? 10
                                                             : 8) <
                                                     44
                                                 ? status[state
                                                     .data[placeIndex[
-                                                            isSelectedPlace] +
+                                                            roomBlocState.value
+                                                                .roomIndex] +
                                                         index +
-                                                        (isSelectedPlace == 2
+                                                        (roomBlocState.value
+                                                                    .roomIndex ==
+                                                                2
                                                             ? 10
                                                             : 8)]
                                                     .state]
