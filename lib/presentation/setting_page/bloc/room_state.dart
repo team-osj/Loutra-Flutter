@@ -1,17 +1,23 @@
-import 'package:equatable/equatable.dart';
+enum RoomStateEnum { initial, changed }
 
-abstract class RoomState extends Equatable {}
+sealed class RoomState<T> {
+  RoomState({required this.roomState, required this.value, this.error});
 
-class Initial extends RoomState {
-  @override
-  List<Object> get props => [];
+  T value;
+  Object? error;
+  RoomStateEnum roomState;
 }
 
-class Changed extends RoomState {
-  final int index;
+class Initial<T> extends RoomState<T> {
+  final T data;
 
-  Changed({required this.index});
+  Initial({required this.data})
+      : super(roomState: RoomStateEnum.initial, value: data);
+}
 
-  @override
-  List<Object> get props => [index];
+class Changed<T> extends RoomState<T> {
+  final T data;
+
+  Changed({required this.data})
+      : super(roomState: RoomStateEnum.changed, value: data);
 }
