@@ -13,3 +13,9 @@ class ModifyRoomIndexEvent extends RoomEvent {
 
   ModifyRoomIndexEvent({required this.roomIndex});
 }
+
+class ModifyPlaceIconIndexEvent extends RoomEvent {
+  final int placeIconIndex;
+
+  ModifyPlaceIconIndexEvent({required this.placeIconIndex});
+}
