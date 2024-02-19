@@ -19,3 +19,7 @@ class ModifyPlaceIconIndexEvent extends RoomEvent {
 
   ModifyPlaceIconIndexEvent({required this.placeIconIndex});
 }
+
+class ShowBottomSheetEvent extends RoomEvent {}
+
+class InitialShowBottomSheetEvent extends RoomEvent {}
