@@ -18,24 +18,18 @@ import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
-class LaundryRoomPage extends StatefulWidget {
+class LaundryRoomPage extends StatelessWidget {
   LaundryRoomPage({super.key, required this.nfcTagData});
 
-  int nfcTagData;
+  final int nfcTagData;
 
-  @override
-  State<LaundryRoomPage> createState() => _LaundryRoomPageState();
-}
-
-class _LaundryRoomPageState extends State<LaundryRoomPage>
-    with WidgetsBindingObserver {
   final Map place = <int, String>{
     0: "남자 학교측 세탁실",
     1: "남자 기숙사측 세탁실",
     2: "여자 세탁실",
   };
 
-  final Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
+  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
 
   final Map status = <int, Status>{
     0: Status.working,
@@ -74,12 +68,6 @@ class _LaundryRoomPageState extends State<LaundryRoomPage>
               machine: machine);
 
   @override
-  void initState() {
-    super.initState();
-    context.read<RoomBloc>().add(GetRoomIndexEvent());
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
       builder: (context, roomBlocState) {
@@ -105,11 +93,10 @@ class _LaundryRoomPageState extends State<LaundryRoomPage>
               ),
               actions: [
                 IconButton(
-                  onPressed: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                    context.read<RoomBloc>().add(GetRoomIndexEvent());
-                    return const SettingPage();
-                  })),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingPage())),
                   icon: Icon(Icons.settings, color: OSJColors.black),
                 ),
                 SizedBox(width: 24.0.w),
@@ -217,7 +204,7 @@ class _LaundryRoomPageState extends State<LaundryRoomPage>
                           Loaded() => LaundryList(
                               list: state.data,
                               roomEntity: roomBlocState.value,
-                              nfcData: widget.nfcTagData,
+                              nfcData: nfcTagData,
                             ),
                         };
                       },
@@ -236,26 +223,27 @@ class _LaundryRoomPageState extends State<LaundryRoomPage>
 }
 
 class LaundryList extends StatelessWidget {
-  LaundryList(
-      {super.key,
-      required this.list,
-      required this.roomEntity,
-      required this.nfcData});
+  LaundryList({
+    super.key,
+    required this.list,
+    required this.roomEntity,
+    required this.nfcData,
+  });
 
   final List<LaundryResponse> list;
   final RoomEntity roomEntity;
   final int nfcData;
 
-  final Map placeIndex = <int, int>{0: 0, 1: 16, 2: 31};
+  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
 
-  final Map status = <int, Status>{
+  final Map<int, Status> status = {
     0: Status.working,
     1: Status.available,
     2: Status.disconnected,
     3: Status.breakdown
   };
 
-  final Map machine = <String, Machine>{
+  final Map<String, Machine> machine = {
     "WASH": Machine.wash,
     "DRY": Machine.dry
   };
@@ -286,26 +274,28 @@ class LaundryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (nfcData != -1 && roomEntity.isNFCShowBottomSheet == false) {
-        context.read<RoomBloc>().add(ShowBottomSheetEvent());
-        showModalBottomSheet(
-          context: context,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.r),
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (nfcData != -1 && roomEntity.isNFCShowBottomSheet == false) {
+          context.read<RoomBloc>().add(ShowBottomSheetEvent());
+          showModalBottomSheet(
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(25.r),
+              ),
             ),
-          ),
-          builder: (context) => OSJBottomSheet(
-            index: nfcData,
-            isEnableNotification: true,
-            isWoman: nfcData > 31 ? true : false,
-            status: status[list[nfcData - 1].state],
-            machine: machine[list[nfcData - 1].deviceType],
-          ),
-        );
-      }
-    });
+            builder: (context) => OSJBottomSheet(
+              index: nfcData,
+              isEnableNotification: true,
+              isWoman: nfcData > 31 ? true : false,
+              status: status[list[nfcData - 1].state]!,
+              machine: machine[list[nfcData - 1].deviceType]!,
+            ),
+          );
+        }
+      },
+    );
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(overscroll: false),
       child: ListView.builder(
@@ -318,42 +308,42 @@ class LaundryList extends StatelessWidget {
                 children: [
                   machineWidget(
                       roomState: roomEntity,
-                      index: list[placeIndex[roomEntity.roomIndex] + index].id,
+                      index: list[placeIndex[roomEntity.roomIndex]! + index].id,
                       machine: machine[
-                          list[placeIndex[roomEntity.roomIndex] + index]
-                              .deviceType],
+                          list[placeIndex[roomEntity.roomIndex]! + index]
+                              .deviceType]!,
                       status: status[
-                          list[placeIndex[roomEntity.roomIndex] + index]
-                              .state]),
+                          list[placeIndex[roomEntity.roomIndex]! + index]
+                              .state]!),
                   triangle(roomEntity: roomEntity),
                   machineWidget(
                     roomState: roomEntity,
-                    index: placeIndex[roomEntity.roomIndex] +
+                    index: placeIndex[roomEntity.roomIndex]! +
                                 index +
                                 (roomEntity.roomIndex == 2 ? 10 : 8) <
                             44
-                        ? list[placeIndex[roomEntity.roomIndex] +
+                        ? list[placeIndex[roomEntity.roomIndex]! +
                                 index +
                                 (roomEntity.roomIndex == 2 ? 10 : 8)]
                             .id
                         : -1,
-                    machine: placeIndex[roomEntity.roomIndex] +
+                    machine: placeIndex[roomEntity.roomIndex]! +
                                 index +
                                 (roomEntity.roomIndex == 2 ? 10 : 8) <
                             44
-                        ? machine[list[placeIndex[roomEntity.roomIndex] +
+                        ? machine[list[placeIndex[roomEntity.roomIndex]! +
                                 index +
                                 (roomEntity.roomIndex == 2 ? 10 : 8)]
-                            .deviceType]
+                            .deviceType]!
                         : Machine.dry,
-                    status: placeIndex[roomEntity.roomIndex] +
+                    status: placeIndex[roomEntity.roomIndex]! +
                                 index +
                                 (roomEntity.roomIndex == 2 ? 10 : 8) <
                             44
-                        ? status[list[placeIndex[roomEntity.roomIndex] +
+                        ? status[list[placeIndex[roomEntity.roomIndex]! +
                                 index +
                                 (roomEntity.roomIndex == 2 ? 10 : 8)]
-                            .state]
+                            .state]!
                         : Status.breakdown,
                   ),
                 ],

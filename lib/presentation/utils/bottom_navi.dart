@@ -35,10 +35,24 @@ class _BottomNaviState extends State<BottomNavi>
   int selectedIndex = 1;
   bool isChange = false;
 
+  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31, 3: 44};
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    if (widget.nfcTagData != -1) {
+      for (var i in placeIndex.entries) {
+        if (i.value > widget.nfcTagData - 1) {
+          context
+              .read<RoomBloc>()
+              .add(ModifyRoomIndexEvent(roomIndex: i.key - 1));
+          break;
+        }
+      }
+    } else {
+      context.read<RoomBloc>().add(GetRoomIndexEvent());
+    }
     controller = TabController(length: 2, vsync: this)
       ..index = 1
       ..animation?.addListener(() {
@@ -99,11 +113,19 @@ class _BottomNaviState extends State<BottomNavi>
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.resumed:
-        selectedIndex = 1;
-        controller.index = 1;
         platformMsg.invokeMethod("getNFCInfo").then((value) {
           widget.nfcTagData = (jsonDecode(value)['index'] as int);
           if (widget.nfcTagData != -1) {
+            selectedIndex = 1;
+            controller.index = 1;
+            for (var i in placeIndex.entries) {
+              if (i.value > widget.nfcTagData - 1) {
+                context
+                    .read<RoomBloc>()
+                    .add(ModifyRoomIndexEvent(roomIndex: i.key - 1));
+                break;
+              }
+            }
             BlocProvider.of<RoomBloc>(context)
                 .add(InitialShowBottomSheetEvent());
             setState(() {});
