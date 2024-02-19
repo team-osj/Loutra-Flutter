@@ -17,9 +17,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  String mainLaundryRoom = "";
-
-  final Map place = <int, String>{
+  final Map<int, String> place = {
     0: "남자 학교측 세탁실",
     1: "남자 기숙사측 세탁실",
     2: "여자 세탁실",
@@ -29,12 +27,10 @@ class _SettingPageState extends State<SettingPage> {
   void initState() {
     super.initState();
     context.read<RoomBloc>().add(GetRoomIndexEvent());
-    //initSharedPreferences();
   }
 
   @override
   Widget build(BuildContext context) {
-    //initSharedPreferences();
     return Scaffold(
       backgroundColor: OSJColors.gray100,
       appBar: AppBar(
@@ -97,7 +93,7 @@ class _SettingPageState extends State<SettingPage> {
                                         initialIndex: state.value.roomIndex,
                                       )),
                               child: Text(
-                                place[state.value.roomIndex],
+                                place[state.value.roomIndex]!,
                                 style: TextStyle(
                                   fontSize: 16.0.sp,
                                   color: OSJColors.primary700,
