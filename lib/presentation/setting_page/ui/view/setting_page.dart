@@ -77,32 +77,30 @@ class _SettingPageState extends State<SettingPage> {
                     children: [
                       BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
                         builder: (context, state) {
-                          if (state is Initial) {
-                            return const SizedBox.shrink();
-                          } else if (state is Changed) {
-                            return GestureDetector(
-                              onTap: () => showModalBottomSheet(
-                                  context: context,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(24.r),
+                          return switch (state) {
+                            Initial() => const SizedBox.shrink(),
+                            Changed() => GestureDetector(
+                                onTap: () => showModalBottomSheet(
+                                    context: context,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(24.r),
+                                      ),
                                     ),
+                                    backgroundColor: OSJColors.white,
+                                    builder: (context) =>
+                                        SettingPageBottomSheet(
+                                          initialIndex: state.value.roomIndex,
+                                        )),
+                                child: Text(
+                                  place[state.value.roomIndex]!,
+                                  style: TextStyle(
+                                    fontSize: 16.0.sp,
+                                    color: OSJColors.primary700,
                                   ),
-                                  backgroundColor: OSJColors.white,
-                                  builder: (context) => SettingPageBottomSheet(
-                                        initialIndex: state.value.roomIndex,
-                                      )),
-                              child: Text(
-                                place[state.value.roomIndex]!,
-                                style: TextStyle(
-                                  fontSize: 16.0.sp,
-                                  color: OSJColors.primary700,
                                 ),
                               ),
-                            );
-                          } else {
-                            return const SizedBox.shrink();
-                          }
+                          };
                         },
                       ),
                       SizedBox(width: 12.0.w),
