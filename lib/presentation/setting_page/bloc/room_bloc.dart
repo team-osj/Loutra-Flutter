@@ -24,6 +24,8 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
     on<GetRoomIndexEvent>(_getRoomIndexEventHandler);
     on<ModifyRoomIndexEvent>(_modifyRoomIndexEventHandler);
     on<ModifyPlaceIconIndexEvent>(_modifyPlaceIconIndexEventHandler);
+    on<ShowBottomSheetEvent>(_showBottomSheetEventHandler);
+    on<InitialShowBottomSheetEvent>(_initialShowBottomSheetEventHandler);
   }
 
   void _updateRoomIndexEventHandler(
@@ -48,5 +50,15 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
       ModifyPlaceIconIndexEvent event, Emitter<RoomState<RoomEntity>> emit) {
     emit(Changed(
         data: state.value.copyWith(placeIconIndex: event.placeIconIndex)));
+  }
+
+  void _showBottomSheetEventHandler(
+      ShowBottomSheetEvent event, Emitter<RoomState<RoomEntity>> emit) {
+    emit(Changed(data: state.value.copyWith(isNFCShowBottomSheet: true)));
+  }
+
+  void _initialShowBottomSheetEventHandler(
+      InitialShowBottomSheetEvent event, Emitter<RoomState<RoomEntity>> emit) {
+    emit(Changed(data: state.value.copyWith(isNFCShowBottomSheet: false)));
   }
 }
