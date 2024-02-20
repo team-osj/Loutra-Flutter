@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/domain/entity/room_entity.dart';
+import 'package:lotura/main.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -46,14 +47,14 @@ class SettingPageBottomSheet extends StatelessWidget {
                 ),
                 SizedBox(height: 24.0.h),
                 GestureDetector(
-                  onTap: () => context
-                      .read<RoomBloc>()
-                      .add(UpdateRoomIndexEvent(roomIndex: 0)),
+                  onTap: () => context.read<RoomBloc>().add(
+                      UpdateRoomIndexEvent(
+                          roomLocation: RoomLocation.schoolSide)),
                   child: Container(
                     width: 382.0.w,
                     height: 48.0.h,
                     decoration: BoxDecoration(
-                      color: state.value.roomIndex == 0
+                      color: state.value.roomLocation == RoomLocation.schoolSide
                           ? OSJColors.gray100
                           : OSJColors.white,
                       borderRadius: BorderRadius.circular(8.0),
@@ -72,7 +73,8 @@ class SettingPageBottomSheet extends StatelessWidget {
                         Icon(
                           Icons.check,
                           size: 24.0.r,
-                          color: state.value.roomIndex == 0
+                          color: state.value.roomLocation ==
+                                  RoomLocation.schoolSide
                               ? OSJColors.black
                               : OSJColors.white,
                         ),
@@ -81,16 +83,17 @@ class SettingPageBottomSheet extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => context
-                      .read<RoomBloc>()
-                      .add(UpdateRoomIndexEvent(roomIndex: 1)),
+                  onTap: () => context.read<RoomBloc>().add(
+                      UpdateRoomIndexEvent(
+                          roomLocation: RoomLocation.dormitorySide)),
                   child: Container(
                     width: 382.0.w,
                     height: 48.0.h,
                     decoration: BoxDecoration(
-                      color: state.value.roomIndex == 1
-                          ? OSJColors.gray100
-                          : OSJColors.white,
+                      color:
+                          state.value.roomLocation == RoomLocation.dormitorySide
+                              ? OSJColors.gray100
+                              : OSJColors.white,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     padding: EdgeInsets.all(12.0.r),
@@ -107,7 +110,8 @@ class SettingPageBottomSheet extends StatelessWidget {
                         Icon(
                           Icons.check,
                           size: 24.0.r,
-                          color: state.value.roomIndex == 1
+                          color: state.value.roomLocation ==
+                                  RoomLocation.dormitorySide
                               ? OSJColors.black
                               : OSJColors.white,
                         ),
@@ -116,14 +120,14 @@ class SettingPageBottomSheet extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => context
-                      .read<RoomBloc>()
-                      .add(UpdateRoomIndexEvent(roomIndex: 2)),
+                  onTap: () => context.read<RoomBloc>().add(
+                      UpdateRoomIndexEvent(
+                          roomLocation: RoomLocation.womanRoom)),
                   child: Container(
                     width: 382.0.w,
                     height: 48.0.h,
                     decoration: BoxDecoration(
-                      color: state.value.roomIndex == 2
+                      color: state.value.roomLocation == RoomLocation.womanRoom
                           ? OSJColors.gray100
                           : OSJColors.white,
                       borderRadius: BorderRadius.circular(8.0),
@@ -142,9 +146,10 @@ class SettingPageBottomSheet extends StatelessWidget {
                         Icon(
                           Icons.check,
                           size: 24.0.r,
-                          color: state.value.roomIndex == 2
-                              ? OSJColors.black
-                              : OSJColors.white,
+                          color:
+                              state.value.roomLocation == RoomLocation.womanRoom
+                                  ? OSJColors.black
+                                  : OSJColors.white,
                         ),
                       ],
                     ),
