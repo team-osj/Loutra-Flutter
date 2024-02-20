@@ -16,8 +16,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int selectedIndex = 0;
-
   final TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
     color: OSJColors.black,
@@ -63,7 +61,7 @@ class _MainPageState extends State<MainPage> {
         actions: [
           IconButton(
               onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingPage())),
+                  MaterialPageRoute(builder: (context) => const SettingPage())),
               icon: Icon(
                 Icons.settings,
                 color: OSJColors.black,
