@@ -12,7 +12,9 @@ import 'package:lotura/presentation/utils/bottom_navi.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+  const SplashPage({super.key, required this.nfcTagData});
+
+  final int nfcTagData;
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -32,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => BottomNavi(),
+              builder: (context) => BottomNavi(nfcTagData: widget.nfcTagData),
             ),
             (route) => false);
       },

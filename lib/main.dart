@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,13 +22,19 @@ void main() async {
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
-  runApp(MyApp(blocList: await di()));
+  const platformMsg = MethodChannel('com.osj.lotura/nfc_info');
+  final data = await platformMsg.invokeMethod("getNFCInfo");
+  runApp(MyApp(
+    blocList: await di(),
+    nfcTagData: (jsonDecode(data)['index'] as int),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.blocList});
+  const MyApp({super.key, required this.blocList, required this.nfcTagData});
 
   final List<BlocProvider> blocList;
+  final int nfcTagData;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,7 @@ class MyApp extends StatelessWidget {
               highlightColor: Colors.transparent,
             ),
             debugShowCheckedModeBanner: false,
-            home: const SplashPage(),
+            home: SplashPage(nfcTagData: nfcTagData),
           );
         },
       ),

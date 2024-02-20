@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -16,9 +17,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  String mainLaundryRoom = "";
-
-  final Map place = <int, String>{
+  final Map<int, String> place = {
     0: "남자 학교측 세탁실",
     1: "남자 기숙사측 세탁실",
     2: "여자 세탁실",
@@ -28,12 +27,10 @@ class _SettingPageState extends State<SettingPage> {
   void initState() {
     super.initState();
     context.read<RoomBloc>().add(GetRoomIndexEvent());
-    //initSharedPreferences();
   }
 
   @override
   Widget build(BuildContext context) {
-    //initSharedPreferences();
     return Scaffold(
       backgroundColor: OSJColors.gray100,
       appBar: AppBar(
@@ -78,34 +75,32 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   Row(
                     children: [
-                      BlocBuilder<RoomBloc, RoomState>(
+                      BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
                         builder: (context, state) {
-                          if (state is Initial) {
-                            return const SizedBox.shrink();
-                          } else if (state is Changed) {
-                            return GestureDetector(
-                              onTap: () => showModalBottomSheet(
-                                  context: context,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(24.r),
+                          return switch (state) {
+                            Initial() => const SizedBox.shrink(),
+                            Changed() => GestureDetector(
+                                onTap: () => showModalBottomSheet(
+                                    context: context,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(24.r),
+                                      ),
                                     ),
+                                    backgroundColor: OSJColors.white,
+                                    builder: (context) =>
+                                        SettingPageBottomSheet(
+                                          initialIndex: state.value.roomIndex,
+                                        )),
+                                child: Text(
+                                  place[state.value.roomIndex]!,
+                                  style: TextStyle(
+                                    fontSize: 16.0.sp,
+                                    color: OSJColors.primary700,
                                   ),
-                                  backgroundColor: OSJColors.white,
-                                  builder: (context) => SettingPageBottomSheet(
-                                        initialIndex: state.index,
-                                      )),
-                              child: Text(
-                                place[state.index],
-                                style: TextStyle(
-                                  fontSize: 16.0.sp,
-                                  color: OSJColors.primary700,
                                 ),
                               ),
-                            );
-                          } else {
-                            return const SizedBox.shrink();
-                          }
+                          };
                         },
                       ),
                       SizedBox(width: 12.0.w),
