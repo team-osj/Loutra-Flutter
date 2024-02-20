@@ -10,6 +10,7 @@ import 'package:lotura/di/di.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
 void main() async {
@@ -75,4 +76,13 @@ enum RoomLocation {
   const RoomLocation({required this.roomName});
 
   final String roomName;
+}
+
+enum ButtonView {
+  image,
+  icon;
+
+  Widget get triangle => this == ButtonView.image
+      ? const SizedBox.shrink()
+      : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
 }
