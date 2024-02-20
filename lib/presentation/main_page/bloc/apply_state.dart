@@ -1,36 +1,33 @@
-import 'package:equatable/equatable.dart';
-import 'package:lotura/data/dto/response/apply_response.dart';
+enum ApplyStateEnum { empty, loading, error, loaded }
 
-abstract class ApplyState extends Equatable {}
+sealed class ApplyState<T> {
+  ApplyState({required this.applyStateEnum, this.error, this.valueOrNull});
 
-class Empty extends ApplyState {
-  @override
-  List<Object> get props => [];
+  T? valueOrNull;
+  Object? error;
+  ApplyStateEnum applyStateEnum;
+
+  T get value => valueOrNull!;
 }
 
-class Loading extends ApplyState {
-  @override
-  List<Object> get props => [];
+class Empty<T> extends ApplyState<T> {
+  Empty() : super(applyStateEnum: ApplyStateEnum.empty);
 }
 
-class Error extends ApplyState {
-  final String message;
-
-  Error({
-    required this.message,
-  });
-
-  @override
-  List<Object> get props => [message];
+class Loading<T> extends ApplyState<T> {
+  Loading() : super(applyStateEnum: ApplyStateEnum.loading);
 }
 
-class Loaded extends ApplyState {
-  final List<ApplyResponse> applyList;
+class Error<T> extends ApplyState<T> {
+  final Object errorMessage;
 
-  Loaded({
-    required this.applyList,
-  });
+  Error({required this.errorMessage})
+      : super(applyStateEnum: ApplyStateEnum.error, error: errorMessage);
+}
 
-  @override
-  List<Object> get props => [applyList];
+class Loaded<T> extends ApplyState<T> {
+  final T data;
+
+  Loaded({required this.data})
+      : super(applyStateEnum: ApplyStateEnum.loaded, valueOrNull: data);
 }
