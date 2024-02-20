@@ -95,18 +95,6 @@ class _BottomNaviState extends State<BottomNavi>
       });
   }
 
-  final Map status = <int, Status>{
-    0: Status.working,
-    1: Status.available,
-    2: Status.disconnected,
-    3: Status.breakdown
-  };
-
-  final Map machine = <String, Machine>{
-    "WASH": Machine.wash,
-    "DRY": Machine.dry
-  };
-
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);

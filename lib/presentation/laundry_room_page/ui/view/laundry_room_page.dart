@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/data/dto/response/laundry_response.dart';
+import 'package:lotura/domain/entity/laundry_entity.dart';
 import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
@@ -30,13 +30,6 @@ class LaundryRoomPage extends StatelessWidget {
   };
 
   final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
-
-  final Map status = <int, Status>{
-    0: Status.working,
-    1: Status.available,
-    2: Status.disconnected,
-    3: Status.breakdown
-  };
 
   final Map machine = <String, Machine>{
     "WASH": Machine.wash,
@@ -178,7 +171,7 @@ class LaundryRoomPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: BlocBuilder<LaundryBloc,
-                        LaundryState<List<LaundryResponse>>>(
+                        LaundryState<List<LaundryEntity>>>(
                       builder: (context, state) {
                         return switch (state) {
                           Empty() => const Center(child: Text("비어있음")),
@@ -215,41 +208,29 @@ class LaundryList extends StatelessWidget {
     required this.nfcData,
   });
 
-  final List<LaundryResponse> list;
+  final List<LaundryEntity> list;
   final LaundryRoomEntity roomEntity;
   final int nfcData;
 
   final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
 
-  final Map<int, Status> status = {
-    0: Status.working,
-    1: Status.available,
-    2: Status.disconnected,
-    3: Status.breakdown
-  };
-
-  final Map<String, Machine> machine = {
-    "WASH": Machine.wash,
-    "DRY": Machine.dry
-  };
-
   MachineWidget machineWidget(
           {required LaundryRoomEntity roomState,
           required int index,
-          required Status status,
+          required CurrentState state,
           required Machine machine}) =>
       roomState.buttonView == ButtonView.image
           ? MachineCard(
               index: index,
               isEnableNotification: true,
               isWoman: roomState.roomLocation == RoomLocation.womanRoom,
-              status: status,
+              state: state,
               machine: machine)
           : MachineButton(
               index: index,
               isEnableNotification: true,
               isWoman: roomState.roomLocation == RoomLocation.womanRoom,
-              status: status,
+              state: state,
               machine: machine);
 
   @override
@@ -269,8 +250,8 @@ class LaundryList extends StatelessWidget {
               index: nfcData,
               isEnableNotification: true,
               isWoman: nfcData > 31 ? true : false,
-              status: status[list[nfcData - 1].state]!,
-              machine: machine[list[nfcData - 1].deviceType]!,
+              state: list[nfcData - 1].state,
+              machine: list[nfcData - 1].deviceType,
             ),
           );
         }
@@ -291,14 +272,12 @@ class LaundryList extends StatelessWidget {
                       index: list[placeIndex[roomEntity.roomLocation.index]! +
                               index]
                           .id,
-                      machine: machine[list[
-                              placeIndex[roomEntity.roomLocation.index]! +
-                                  index]
-                          .deviceType]!,
-                      status: status[list[
-                              placeIndex[roomEntity.roomLocation.index]! +
-                                  index]
-                          .state]!),
+                      machine: list[placeIndex[roomEntity.roomLocation.index]! +
+                              index]
+                          .deviceType,
+                      state: list[placeIndex[roomEntity.roomLocation.index]! +
+                              index]
+                          .state),
                   roomEntity.buttonView.triangle,
                   machineWidget(
                     roomState: roomEntity,
@@ -324,31 +303,29 @@ class LaundryList extends StatelessWidget {
                                     ? 10
                                     : 8) <
                             44
-                        ? machine[list[
-                                placeIndex[roomEntity.roomLocation.index]! +
-                                    index +
-                                    (roomEntity.roomLocation ==
-                                            RoomLocation.womanRoom
-                                        ? 10
-                                        : 8)]
-                            .deviceType]!
+                        ? list[placeIndex[roomEntity.roomLocation.index]! +
+                                index +
+                                (roomEntity.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8)]
+                            .deviceType
                         : Machine.dry,
-                    status: placeIndex[roomEntity.roomLocation.index]! +
+                    state: placeIndex[roomEntity.roomLocation.index]! +
                                 index +
                                 (roomEntity.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8) <
                             44
-                        ? status[list[
-                                placeIndex[roomEntity.roomLocation.index]! +
-                                    index +
-                                    (roomEntity.roomLocation ==
-                                            RoomLocation.womanRoom
-                                        ? 10
-                                        : 8)]
-                            .state]!
-                        : Status.breakdown,
+                        ? list[placeIndex[roomEntity.roomLocation.index]! +
+                                index +
+                                (roomEntity.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8)]
+                            .state
+                        : CurrentState.breakdown,
                   ),
                 ],
               ),
