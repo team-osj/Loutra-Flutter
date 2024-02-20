@@ -45,7 +45,7 @@ class LaundryRoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
+    return BlocBuilder<RoomBloc, RoomState<LaundryRoomEntity>>(
       builder: (context, roomBlocState) {
         if (roomBlocState is Changed) {
           return Scaffold(
@@ -216,7 +216,7 @@ class LaundryList extends StatelessWidget {
   });
 
   final List<LaundryResponse> list;
-  final RoomEntity roomEntity;
+  final LaundryRoomEntity roomEntity;
   final int nfcData;
 
   final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
@@ -234,7 +234,7 @@ class LaundryList extends StatelessWidget {
   };
 
   MachineWidget machineWidget(
-          {required RoomEntity roomState,
+          {required LaundryRoomEntity roomState,
           required int index,
           required Status status,
           required Machine machine}) =>
