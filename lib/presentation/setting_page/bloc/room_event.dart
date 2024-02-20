@@ -17,9 +17,9 @@ class ModifyRoomIndexEvent extends RoomEvent {
 }
 
 class ModifyPlaceIconIndexEvent extends RoomEvent {
-  final int placeIconIndex;
+  final ButtonView buttonView;
 
-  ModifyPlaceIconIndexEvent({required this.placeIconIndex});
+  ModifyPlaceIconIndexEvent({required this.buttonView});
 }
 
 class ShowBottomSheetEvent extends RoomEvent {}
