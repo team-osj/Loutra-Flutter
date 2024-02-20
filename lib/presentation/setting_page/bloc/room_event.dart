@@ -1,17 +1,19 @@
+import 'package:lotura/main.dart';
+
 abstract class RoomEvent {}
 
 class GetRoomIndexEvent extends RoomEvent {}
 
 class UpdateRoomIndexEvent extends RoomEvent {
-  final int roomIndex;
+  final RoomLocation roomLocation;
 
-  UpdateRoomIndexEvent({required this.roomIndex});
+  UpdateRoomIndexEvent({required this.roomLocation});
 }
 
 class ModifyRoomIndexEvent extends RoomEvent {
-  final int roomIndex;
+  final RoomLocation roomLocation;
 
-  ModifyRoomIndexEvent({required this.roomIndex});
+  ModifyRoomIndexEvent({required this.roomLocation});
 }
 
 class ModifyPlaceIconIndexEvent extends RoomEvent {

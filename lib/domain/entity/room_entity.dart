@@ -1,21 +1,24 @@
+import 'package:lotura/main.dart';
+
 class RoomEntity {
-  final int roomIndex, placeIconIndex;
+  final RoomLocation roomLocation;
+  final int placeIconIndex;
   final bool isClick, isNFCShowBottomSheet;
 
   const RoomEntity({
-    required this.roomIndex,
+    required this.roomLocation,
     required this.placeIconIndex,
     required this.isClick,
     required this.isNFCShowBottomSheet,
   });
 
   RoomEntity copyWith(
-      {int? roomIndex,
+      {RoomLocation? roomLocation,
       int? placeIconIndex,
       bool? isClick,
       bool? isNFCShowBottomSheet}) {
     return RoomEntity(
-        roomIndex: roomIndex ?? this.roomIndex,
+        roomLocation: roomLocation ?? this.roomLocation,
         placeIconIndex: placeIconIndex ?? this.placeIconIndex,
         isClick: isClick ?? this.isClick,
         isNFCShowBottomSheet:

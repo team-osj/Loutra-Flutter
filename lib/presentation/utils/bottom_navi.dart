@@ -44,9 +44,8 @@ class _BottomNaviState extends State<BottomNavi>
     if (widget.nfcTagData != -1) {
       for (var i in placeIndex.entries) {
         if (i.value > widget.nfcTagData - 1) {
-          context
-              .read<RoomBloc>()
-              .add(ModifyRoomIndexEvent(roomIndex: i.key - 1));
+          context.read<RoomBloc>().add(ModifyRoomIndexEvent(
+              roomLocation: RoomLocation.values.elementAt(i.key - 1)));
           break;
         }
       }
@@ -120,9 +119,8 @@ class _BottomNaviState extends State<BottomNavi>
             controller.index = 1;
             for (var i in placeIndex.entries) {
               if (i.value > widget.nfcTagData - 1) {
-                context
-                    .read<RoomBloc>()
-                    .add(ModifyRoomIndexEvent(roomIndex: i.key - 1));
+                context.read<RoomBloc>().add(ModifyRoomIndexEvent(
+                    roomLocation: RoomLocation.values.elementAt(i.key - 1)));
                 break;
               }
             }
