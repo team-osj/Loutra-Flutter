@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/data/dto/response/apply_response.dart';
+import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
@@ -22,11 +22,6 @@ class ApplyPage extends StatelessWidget {
     fontSize: 16.0.sp,
     color: OSJColors.gray500,
   );
-
-  final Map machine = <String, Machine>{
-    "WASH": Machine.wash,
-    "DRY": Machine.dry,
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +78,7 @@ class ApplyPage extends StatelessWidget {
             ),
             SizedBox(height: 20.0.h),
             Expanded(
-              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyResponse>>>(
+              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyEntity>>>(
                 builder: (context, state) {
                   return switch (state) {
                     Empty() => const Center(child: Text("비어있음")),
@@ -111,8 +106,7 @@ class ApplyPage extends StatelessWidget {
                                             state.value[index * 2].deviceId > 31
                                                 ? true
                                                 : false,
-                                        machine: machine[
-                                            state.value[index * 2].deviceType],
+                                        machine: state.value[index * 2].machine,
                                         status: Status.working),
                                     index * 2 + 1 < state.value.length
                                         ? MachineCard(
@@ -124,9 +118,8 @@ class ApplyPage extends StatelessWidget {
                                                     31
                                                 ? true
                                                 : false,
-                                            machine: machine[state
-                                                .value[index * 2 + 1]
-                                                .deviceType],
+                                            machine: state
+                                                .value[index * 2 + 1].machine,
                                             status: Status.working)
                                         : SizedBox(
                                             width: 185.0.w,

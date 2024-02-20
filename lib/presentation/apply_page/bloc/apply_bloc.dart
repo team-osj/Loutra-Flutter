@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/data/dto/response/apply_response.dart';
+import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
 import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
 import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
 
-class ApplyBloc extends Bloc<ApplyEvent, ApplyState<List<ApplyResponse>>> {
+class ApplyBloc extends Bloc<ApplyEvent, ApplyState<List<ApplyEntity>>> {
   final GetApplyListUseCase _getApplyListUseCase;
   final SendFCMInfoUseCase _sendFCMInfoUseCase;
   final ApplyCancelUseCase _applyCancelUseCase;
@@ -25,7 +25,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<List<ApplyResponse>>> {
   }
 
   void _getApplyListEventHandler(GetApplyListEvent event,
-      Emitter<ApplyState<List<ApplyResponse>>> emit) async {
+      Emitter<ApplyState<List<ApplyEntity>>> emit) async {
     try {
       emit(Loading());
       emit(Loaded(data: await _getApplyListUseCase.execute()));
@@ -35,7 +35,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<List<ApplyResponse>>> {
   }
 
   void _sendFCMEventHandler(
-      SendFCMEvent event, Emitter<ApplyState<List<ApplyResponse>>> emit) async {
+      SendFCMEvent event, Emitter<ApplyState<List<ApplyEntity>>> emit) async {
     try {
       emit(Loading());
       final applyList = await _sendFCMInfoUseCase.execute(
@@ -47,7 +47,7 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<List<ApplyResponse>>> {
   }
 
   void _applyCancelEventHandler(ApplyCancelEvent event,
-      Emitter<ApplyState<List<ApplyResponse>>> emit) async {
+      Emitter<ApplyState<List<ApplyEntity>>> emit) async {
     try {
       emit(Loading());
       final applyList = await _applyCancelUseCase.execute(
