@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 

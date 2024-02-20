@@ -3,8 +3,8 @@ import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
 import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
 import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
 
 class ApplyBloc extends Bloc<ApplyEvent, ApplyState<List<ApplyResponse>>> {
   final GetApplyListUseCase _getApplyListUseCase;
