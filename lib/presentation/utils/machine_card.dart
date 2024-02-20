@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 import 'package:lotura/presentation/utils/osj_status_button.dart';
 
 class MachineCard extends MachineWidget {
   const MachineCard({
     super.key,
-    required int index,
-    required bool isEnableNotification,
-    required bool isWoman,
-    required Machine machine,
-    required Status status,
-  }) : super(
-          index: index,
-          isEnableNotification: isEnableNotification,
-          isWoman: isWoman,
-          machine: machine,
-          status: status,
-        );
+    required super.index,
+    required super.isEnableNotification,
+    required super.isWoman,
+    required super.machine,
+    required super.state,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +54,9 @@ class MachineCard extends MachineWidget {
                     ],
                   ),
                   SizedBox(height: 12.0.h),
-                  OSJStatusButton(status: status),
+                  OSJStatusButton(
+                    state: state,
+                  ),
                 ],
               ),
             ),
