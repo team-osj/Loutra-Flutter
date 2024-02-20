@@ -151,7 +151,7 @@ class _BottomNaviState extends State<BottomNavi>
       body: TabBarView(
         controller: controller,
         children: [
-          const MainPage(),
+          MainPage(),
           LaundryRoomPage(nfcTagData: widget.nfcTagData),
         ],
       ),

@@ -9,14 +9,9 @@ import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MainPage extends StatelessWidget {
+  MainPage({super.key});
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
   final TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
     color: OSJColors.black,
