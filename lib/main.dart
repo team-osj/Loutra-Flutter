@@ -66,3 +66,13 @@ enum Status {
 }
 
 enum Machine { wash, dry }
+
+enum RoomLocation {
+  schoolSide("남자 학교측 세탁실"),
+  dormitorySide("남자 기숙사측 세탁실"),
+  womanRoom("여자 세탁실");
+
+  const RoomLocation(this.roomName);
+
+  final String roomName;
+}
