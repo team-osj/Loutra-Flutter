@@ -1,4 +1,4 @@
-import 'package:lotura/data/dto/response/apply_response.dart';
+import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 
 class GetApplyListUseCase {
@@ -7,5 +7,5 @@ class GetApplyListUseCase {
   GetApplyListUseCase({required ApplyRepository applyRepository})
       : _applyRepository = applyRepository;
 
-  Future<List<ApplyResponse>> execute() => _applyRepository.getApplyList();
+  Future<List<ApplyEntity>> execute() => _applyRepository.getApplyList();
 }
