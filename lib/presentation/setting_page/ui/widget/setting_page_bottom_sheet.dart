@@ -15,7 +15,7 @@ class SettingPageBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
+    return BlocBuilder<RoomBloc, RoomState<LaundryRoomEntity>>(
         builder: (context, state) {
       if (state is Initial) {
         context.read<RoomBloc>().add(GetRoomIndexEvent());

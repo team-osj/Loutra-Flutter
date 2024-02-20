@@ -6,7 +6,7 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 
-class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
+class RoomBloc extends Bloc<RoomEvent, RoomState<LaundryRoomEntity>> {
   final GetLaundryRoomIndexUseCase _getLaundryRoomIndexUseCase;
   final UpdateLaundryRoomIndexUseCase _updateLaundryRoomIndexUseCase;
 
@@ -16,7 +16,7 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
       : _getLaundryRoomIndexUseCase = getLaundryRoomIndexUseCase,
         _updateLaundryRoomIndexUseCase = updateLaundryRoomIndexUseCase,
         super(Initial(
-            data: const RoomEntity(
+            data: const LaundryRoomEntity(
                 roomLocation: RoomLocation.schoolSide,
                 buttonView: ButtonView.icon,
                 isClick: false,
@@ -30,13 +30,13 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
   }
 
   void _updateRoomIndexEventHandler(
-      UpdateRoomIndexEvent event, Emitter<RoomState<RoomEntity>> emit) {
+      UpdateRoomIndexEvent event, Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(roomLocation: event.roomLocation)));
     _updateLaundryRoomIndexUseCase.execute(value: event.roomLocation.index);
   }
 
   void _getRoomIndexEventHandler(
-      GetRoomIndexEvent event, Emitter<RoomState<RoomEntity>> emit) {
+      GetRoomIndexEvent event, Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(
         data: state.value.copyWith(
             roomLocation: RoomLocation.values
@@ -44,22 +44,22 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
   }
 
   void _modifyRoomIndexEventHandler(
-      ModifyRoomIndexEvent event, Emitter<RoomState<RoomEntity>> emit) {
+      ModifyRoomIndexEvent event, Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(roomLocation: event.roomLocation)));
   }
 
   void _modifyPlaceIconIndexEventHandler(
-      ModifyButtonViewEvent event, Emitter<RoomState<RoomEntity>> emit) {
+      ModifyButtonViewEvent event, Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(buttonView: event.buttonView)));
   }
 
   void _showBottomSheetEventHandler(
-      ShowBottomSheetEvent event, Emitter<RoomState<RoomEntity>> emit) {
+      ShowBottomSheetEvent event, Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(isNFCShowBottomSheet: true)));
   }
 
-  void _initialShowBottomSheetEventHandler(
-      InitialShowBottomSheetEvent event, Emitter<RoomState<RoomEntity>> emit) {
+  void _initialShowBottomSheetEventHandler(InitialShowBottomSheetEvent event,
+      Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(isNFCShowBottomSheet: false)));
   }
 }

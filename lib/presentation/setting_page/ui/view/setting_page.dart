@@ -69,7 +69,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   Row(
                     children: [
-                      BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
+                      BlocBuilder<RoomBloc, RoomState<LaundryRoomEntity>>(
                         builder: (context, state) {
                           return switch (state) {
                             Initial() => const SizedBox.shrink(),
