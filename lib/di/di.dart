@@ -5,9 +5,9 @@ import 'package:hive/hive.dart';
 import 'package:lotura/data/data_source/apply/remote/remote_apply_data_source.dart';
 import 'package:lotura/data/data_source/laundry/local/local_laundry_data_source.dart';
 import 'package:lotura/data/data_source/laundry/remote/remote_laundry_data_source.dart';
-import 'package:lotura/data/dto/response/laundry_response.dart';
 import 'package:lotura/data/repository/apply_repository_impl.dart';
 import 'package:lotura/data/repository/laundry_repository_impl.dart';
+import 'package:lotura/domain/entity/laundry_entity.dart';
 import 'package:lotura/domain/repository/apply_repository.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
 import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
@@ -28,7 +28,7 @@ Future<List<BlocProvider>> di() async {
       LocalLaundryDataSource(localDatabase: box);
 
   RemoteLaundryDataSource remoteLaundryDataSource = RemoteLaundryDataSource(
-      streamController: StreamController<LaundryResponse>.broadcast());
+      streamController: StreamController<LaundryEntity>.broadcast());
 
   RemoteApplyDataSource remoteApplyDataSource = RemoteApplyDataSource();
 
