@@ -24,7 +24,7 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
     on<UpdateRoomIndexEvent>(_updateRoomIndexEventHandler);
     on<GetRoomIndexEvent>(_getRoomIndexEventHandler);
     on<ModifyRoomIndexEvent>(_modifyRoomIndexEventHandler);
-    on<ModifyPlaceIconIndexEvent>(_modifyPlaceIconIndexEventHandler);
+    on<ModifyButtonViewEvent>(_modifyPlaceIconIndexEventHandler);
     on<ShowBottomSheetEvent>(_showBottomSheetEventHandler);
     on<InitialShowBottomSheetEvent>(_initialShowBottomSheetEventHandler);
   }
@@ -49,7 +49,7 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<RoomEntity>> {
   }
 
   void _modifyPlaceIconIndexEventHandler(
-      ModifyPlaceIconIndexEvent event, Emitter<RoomState<RoomEntity>> emit) {
+      ModifyButtonViewEvent event, Emitter<RoomState<RoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(buttonView: event.buttonView)));
   }
 

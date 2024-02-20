@@ -153,7 +153,7 @@ class LaundryRoomPage extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () => context.read<RoomBloc>().add(
-                            ModifyPlaceIconIndexEvent(
+                            ModifyButtonViewEvent(
                                 buttonView: ButtonView.image)),
                         icon: Icon(LoturaIcons.grid,
                             size: 18.0.r,
@@ -164,7 +164,7 @@ class LaundryRoomPage extends StatelessWidget {
                       ),
                       IconButton(
                           onPressed: () => context.read<RoomBloc>().add(
-                              ModifyPlaceIconIndexEvent(
+                              ModifyButtonViewEvent(
                                   buttonView: ButtonView.icon)),
                           icon: Icon(
                             LoturaIcons.list,
