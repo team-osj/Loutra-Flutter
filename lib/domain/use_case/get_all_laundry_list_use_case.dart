@@ -1,4 +1,4 @@
-import 'package:lotura/data/dto/response/laundry_response.dart';
+import 'package:lotura/domain/entity/laundry_entity.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
 
 class GetAllLaundryListUseCase {
@@ -7,6 +7,6 @@ class GetAllLaundryListUseCase {
   GetAllLaundryListUseCase({required LaundryRepository laundryRepository})
       : _laundryRepository = laundryRepository;
 
-  Future<List<LaundryResponse>> execute() =>
+  Future<List<LaundryEntity>> execute() =>
       _laundryRepository.getAllLaundryList();
 }

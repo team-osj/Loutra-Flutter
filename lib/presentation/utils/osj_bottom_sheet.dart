@@ -16,27 +16,27 @@ class OSJBottomSheet extends StatelessWidget {
     required this.index,
     required this.isEnableNotification,
     required this.isWoman,
-    required this.status,
+    required this.state,
     required this.machine,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
-  final Status status;
+  final CurrentState state;
   final Machine machine;
 
-  final Map statusColor = <Status, Color>{
-    Status.available: OSJColors.green50,
-    Status.working: OSJColors.primary50,
-    Status.disconnected: OSJColors.black,
-    Status.breakdown: OSJColors.red50,
+  final Map statusColor = <CurrentState, Color>{
+    CurrentState.available: OSJColors.green50,
+    CurrentState.working: OSJColors.primary50,
+    CurrentState.disconnected: OSJColors.black,
+    CurrentState.breakdown: OSJColors.red50,
   };
 
-  final Map statusIcon = <Status, IconData>{
-    Status.available: LoturaIcons.checkCircle,
-    Status.working: LoturaIcons.working,
-    Status.disconnected: LoturaIcons.disconnected,
-    Status.breakdown: LoturaIcons.cancelCircle,
+  final Map statusIcon = <CurrentState, IconData>{
+    CurrentState.available: LoturaIcons.checkCircle,
+    CurrentState.working: LoturaIcons.working,
+    CurrentState.disconnected: LoturaIcons.disconnected,
+    CurrentState.breakdown: LoturaIcons.cancelCircle,
   };
 
   final Map machineIcon = <Machine, IconData>{
@@ -49,28 +49,28 @@ class OSJBottomSheet extends StatelessWidget {
     Machine.dry: "건조기",
   };
 
-  String text(bool isEnableNotification, isWoman, Status status) {
+  String text(bool isEnableNotification, isWoman, CurrentState state) {
     if (isEnableNotification) {
       if (isWoman) {
-        switch (status) {
-          case Status.working:
+        switch (state) {
+          case CurrentState.working:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?";
-          case Status.available:
+          case CurrentState.available:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
-          case Status.disconnected:
+          case CurrentState.disconnected:
             return "여자층 ${index - 31}번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
-          case Status.breakdown:
+          case CurrentState.breakdown:
             return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
         }
       } else {
-        switch (status) {
-          case Status.working:
+        switch (state) {
+          case CurrentState.working:
             return "$index번 ${machineText[machine]}를\n알림 설정 하실건가요?";
-          case Status.available:
+          case CurrentState.available:
             return "$index번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
-          case Status.disconnected:
+          case CurrentState.disconnected:
             return "$index번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
-          case Status.breakdown:
+          case CurrentState.breakdown:
             return "$index번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
         }
       }
@@ -87,7 +87,7 @@ class OSJBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: status == Status.working ? 220.0.h : 268.0.h,
+      height: state == CurrentState.working ? 220.0.h : 268.0.h,
       child: Padding(
         padding: EdgeInsets.only(
           left: 24.0.w,
@@ -98,23 +98,23 @@ class OSJBottomSheet extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            status == Status.working
+            state == CurrentState.working
                 ? const SizedBox.shrink()
                 : Icon(
-                    statusIcon[status],
+                    statusIcon[state],
                     size: 24.0.r,
-                    color: status == Status.available
+                    color: state == CurrentState.available
                         ? OSJColors.green700
-                        : status == Status.disconnected
+                        : state == CurrentState.disconnected
                             ? OSJColors.black
                             : OSJColors.red700,
                   ),
             Padding(
-              padding: status == Status.working
+              padding: state == CurrentState.working
                   ? EdgeInsets.only(bottom: 24.0.h)
                   : EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
               child: Text(
-                text(isEnableNotification, isWoman, status),
+                text(isEnableNotification, isWoman, state),
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 22.0.sp,
@@ -122,7 +122,7 @@ class OSJBottomSheet extends StatelessWidget {
                 ),
               ),
             ),
-            status == Status.working
+            state == CurrentState.working
                 ? Row(
                     children: [
                       OSJTextButton(

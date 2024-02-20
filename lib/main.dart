@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-enum Status {
+enum CurrentState {
   available,
   working,
   disconnected,
