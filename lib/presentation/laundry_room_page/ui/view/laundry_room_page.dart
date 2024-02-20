@@ -57,13 +57,13 @@ class LaundryRoomPage extends StatelessWidget {
           ? MachineCard(
               index: index,
               isEnableNotification: true,
-              isWoman: roomState.roomIndex == 2 ? true : false,
+              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               status: status,
               machine: machine)
           : MachineButton(
               index: index,
               isEnableNotification: true,
-              isWoman: roomState.roomIndex == 2 ? true : false,
+              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               status: status,
               machine: machine);
 
@@ -82,7 +82,7 @@ class LaundryRoomPage extends StatelessWidget {
                 children: [
                   SizedBox(width: 24.0.w),
                   Text(
-                    place[roomBlocState.value.roomIndex],
+                    roomBlocState.value.roomLocation.roomName,
                     style: TextStyle(
                       color: OSJColors.black,
                       fontSize: 24.0.sp,
@@ -120,10 +120,12 @@ class LaundryRoomPage extends StatelessWidget {
                           width: 99.0.w,
                           height: 32.0.h,
                           fontSize: 16.0.sp,
-                          color: roomBlocState.value.roomIndex == 0
+                          color: roomBlocState.value.roomLocation ==
+                                  RoomLocation.schoolSide
                               ? OSJColors.white
                               : OSJColors.gray100,
-                          fontColor: roomBlocState.value.roomIndex == 0
+                          fontColor: roomBlocState.value.roomLocation ==
+                                  RoomLocation.schoolSide
                               ? OSJColors.primary700
                               : OSJColors.gray300,
                           text: "남자 학교측",
@@ -137,10 +139,12 @@ class LaundryRoomPage extends StatelessWidget {
                           width: 111.0.w,
                           height: 32.0.h,
                           fontSize: 16.0.sp,
-                          color: roomBlocState.value.roomIndex == 1
+                          color: roomBlocState.value.roomLocation ==
+                                  RoomLocation.dormitorySide
                               ? OSJColors.white
                               : OSJColors.gray100,
-                          fontColor: roomBlocState.value.roomIndex == 1
+                          fontColor: roomBlocState.value.roomLocation ==
+                                  RoomLocation.dormitorySide
                               ? OSJColors.primary700
                               : OSJColors.gray300,
                           text: "남자 기숙사측",
@@ -154,10 +158,12 @@ class LaundryRoomPage extends StatelessWidget {
                           width: 53.0.w,
                           height: 32.0.h,
                           fontSize: 16.0.sp,
-                          color: roomBlocState.value.roomIndex == 2
+                          color: roomBlocState.value.roomLocation ==
+                                  RoomLocation.womanRoom
                               ? OSJColors.white
                               : OSJColors.gray100,
-                          fontColor: roomBlocState.value.roomIndex == 2
+                          fontColor: roomBlocState.value.roomLocation ==
+                                  RoomLocation.womanRoom
                               ? OSJColors.primary700
                               : OSJColors.gray300,
                           text: "여자",
@@ -262,13 +268,13 @@ class LaundryList extends StatelessWidget {
           ? MachineCard(
               index: index,
               isEnableNotification: true,
-              isWoman: roomState.roomIndex == 2 ? true : false,
+              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               status: status,
               machine: machine)
           : MachineButton(
               index: index,
               isEnableNotification: true,
-              isWoman: roomState.roomIndex == 2 ? true : false,
+              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               status: status,
               machine: machine);
 
@@ -299,7 +305,7 @@ class LaundryList extends StatelessWidget {
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(overscroll: false),
       child: ListView.builder(
-        itemCount: roomEntity.roomIndex == 2 ? 10 : 8,
+        itemCount: roomEntity.roomLocation == RoomLocation.womanRoom ? 10 : 8,
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -308,41 +314,65 @@ class LaundryList extends StatelessWidget {
                 children: [
                   machineWidget(
                       roomState: roomEntity,
-                      index: list[placeIndex[roomEntity.roomIndex]! + index].id,
-                      machine: machine[
-                          list[placeIndex[roomEntity.roomIndex]! + index]
-                              .deviceType]!,
-                      status: status[
-                          list[placeIndex[roomEntity.roomIndex]! + index]
-                              .state]!),
+                      index: list[placeIndex[roomEntity.roomLocation.index]! +
+                              index]
+                          .id,
+                      machine: machine[list[
+                              placeIndex[roomEntity.roomLocation.index]! +
+                                  index]
+                          .deviceType]!,
+                      status: status[list[
+                              placeIndex[roomEntity.roomLocation.index]! +
+                                  index]
+                          .state]!),
                   triangle(roomEntity: roomEntity),
                   machineWidget(
                     roomState: roomEntity,
-                    index: placeIndex[roomEntity.roomIndex]! +
+                    index: placeIndex[roomEntity.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomIndex == 2 ? 10 : 8) <
+                                (roomEntity.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8) <
                             44
-                        ? list[placeIndex[roomEntity.roomIndex]! +
+                        ? list[placeIndex[roomEntity.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomIndex == 2 ? 10 : 8)]
+                                (roomEntity.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8)]
                             .id
                         : -1,
-                    machine: placeIndex[roomEntity.roomIndex]! +
+                    machine: placeIndex[roomEntity.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomIndex == 2 ? 10 : 8) <
+                                (roomEntity.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8) <
                             44
-                        ? machine[list[placeIndex[roomEntity.roomIndex]! +
-                                index +
-                                (roomEntity.roomIndex == 2 ? 10 : 8)]
+                        ? machine[list[
+                                placeIndex[roomEntity.roomLocation.index]! +
+                                    index +
+                                    (roomEntity.roomLocation ==
+                                            RoomLocation.womanRoom
+                                        ? 10
+                                        : 8)]
                             .deviceType]!
                         : Machine.dry,
-                    status: placeIndex[roomEntity.roomIndex]! +
+                    status: placeIndex[roomEntity.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomIndex == 2 ? 10 : 8) <
+                                (roomEntity.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8) <
                             44
-                        ? status[list[placeIndex[roomEntity.roomIndex]! +
-                                index +
-                                (roomEntity.roomIndex == 2 ? 10 : 8)]
+                        ? status[list[
+                                placeIndex[roomEntity.roomLocation.index]! +
+                                    index +
+                                    (roomEntity.roomLocation ==
+                                            RoomLocation.womanRoom
+                                        ? 10
+                                        : 8)]
                             .state]!
                         : Status.breakdown,
                   ),
