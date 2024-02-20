@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:lotura/data/data_source/laundry/local/local_laundry_data_source.dart';
 import 'package:lotura/data/data_source/laundry/remote/remote_laundry_data_source.dart';
-import 'package:lotura/data/dto/response/laundry_response.dart';
+import 'package:lotura/domain/entity/laundry_entity.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
 
 class LaundryRepositoryImpl implements LaundryRepository {
@@ -16,7 +16,7 @@ class LaundryRepositoryImpl implements LaundryRepository {
         _remoteLaundryDataSource = remoteLaundryDataSource;
 
   @override
-  Stream<LaundryResponse> get laundryList =>
+  Stream<LaundryEntity> get laundryList =>
       _remoteLaundryDataSource.laundryList.asBroadcastStream();
 
   @override
@@ -31,6 +31,6 @@ class LaundryRepositoryImpl implements LaundryRepository {
       _localLaundryDataSource.setValue(key: key, value: value);
 
   @override
-  Future<List<LaundryResponse>> getAllLaundryList() =>
+  Future<List<LaundryEntity>> getAllLaundryList() =>
       _remoteLaundryDataSource.getAllLaundryList();
 }
