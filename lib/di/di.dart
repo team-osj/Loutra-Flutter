@@ -17,8 +17,8 @@ import 'package:lotura/domain/use_case/get_laundry_room_index_use_case.dart';
 import 'package:lotura/domain/use_case/get_laundry_status_use_case.dart';
 import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
 import 'package:lotura/domain/use_case/update_laundry_room_index_use_case.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 
 Future<List<BlocProvider>> di() async {

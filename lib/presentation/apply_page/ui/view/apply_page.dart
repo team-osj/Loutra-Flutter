@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/data/dto/response/apply_response.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class ApplyPage extends StatelessWidget {
+  ApplyPage({super.key});
 
-  @override
-  State<MainPage> createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
   final TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
     color: OSJColors.black,
@@ -87,22 +83,20 @@ class _MainPageState extends State<MainPage> {
             ),
             SizedBox(height: 20.0.h),
             Expanded(
-              child: BlocBuilder<ApplyBloc, ApplyState>(
+              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyResponse>>>(
                 builder: (context, state) {
-                  if (state is Empty) {
-                    return const Center(child: Text("비어있음"));
-                  } else if (state is Loading) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (state is Error) {
-                    return Center(child: Text(state.message));
-                  } else if (state is Loaded) {
-                    return ScrollConfiguration(
-                      behavior:
-                          const ScrollBehavior().copyWith(overscroll: false),
-                      child: ListView.builder(
-                          itemCount: state.applyList.length.isEven
-                              ? state.applyList.length ~/ 2
-                              : state.applyList.length ~/ 2 + 1,
+                  return switch (state) {
+                    Empty() => const Center(child: Text("비어있음")),
+                    Loading() =>
+                      const Center(child: CircularProgressIndicator()),
+                    Error() => Center(child: Text(state.error.toString())),
+                    Loaded() => ScrollConfiguration(
+                        behavior:
+                            const ScrollBehavior().copyWith(overscroll: false),
+                        child: ListView.builder(
+                          itemCount: state.value.length.isEven
+                              ? state.value.length ~/ 2
+                              : state.value.length ~/ 2 + 1,
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
@@ -111,31 +105,27 @@ class _MainPageState extends State<MainPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     MachineCard(
-                                        index:
-                                            state.applyList[index * 2].deviceId,
+                                        index: state.value[index * 2].deviceId,
                                         isEnableNotification: false,
-                                        isWoman: state.applyList[index * 2]
-                                                    .deviceId >
-                                                31
-                                            ? true
-                                            : false,
-                                        machine: machine[state
-                                            .applyList[index * 2].deviceType],
+                                        isWoman:
+                                            state.value[index * 2].deviceId > 31
+                                                ? true
+                                                : false,
+                                        machine: machine[
+                                            state.value[index * 2].deviceType],
                                         status: Status.working),
-                                    index * 2 + 1 < state.applyList.length
+                                    index * 2 + 1 < state.value.length
                                         ? MachineCard(
                                             index: state
-                                                .applyList[index * 2 + 1]
-                                                .deviceId,
+                                                .value[index * 2 + 1].deviceId,
                                             isEnableNotification: false,
-                                            isWoman:
-                                                state.applyList[index * 2 + 1]
-                                                            .deviceId >
-                                                        31
-                                                    ? true
-                                                    : false,
+                                            isWoman: state.value[index * 2 + 1]
+                                                        .deviceId >
+                                                    31
+                                                ? true
+                                                : false,
                                             machine: machine[state
-                                                .applyList[index * 2 + 1]
+                                                .value[index * 2 + 1]
                                                 .deviceType],
                                             status: Status.working)
                                         : SizedBox(
@@ -147,11 +137,10 @@ class _MainPageState extends State<MainPage> {
                                 SizedBox(height: 10.0.h),
                               ],
                             );
-                          }),
-                    );
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+                          },
+                        ),
+                      ),
+                  };
                 },
               ),
             ),

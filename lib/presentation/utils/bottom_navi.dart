@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
+import 'package:lotura/presentation/apply_page/ui/view/apply_page.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_bloc.dart';
-import 'package:lotura/presentation/main_page/bloc/apply_event.dart';
-import 'package:lotura/presentation/main_page/ui/view/main_page.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/utils/osj_colors.dart';
@@ -151,7 +151,7 @@ class _BottomNaviState extends State<BottomNavi>
       body: TabBarView(
         controller: controller,
         children: [
-          const MainPage(),
+          ApplyPage(),
           LaundryRoomPage(nfcTagData: widget.nfcTagData),
         ],
       ),
