@@ -17,12 +17,6 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  final Map<int, String> place = {
-    0: "남자 학교측 세탁실",
-    1: "남자 기숙사측 세탁실",
-    2: "여자 세탁실",
-  };
-
   @override
   void initState() {
     super.initState();
@@ -90,10 +84,11 @@ class _SettingPageState extends State<SettingPage> {
                                     backgroundColor: OSJColors.white,
                                     builder: (context) =>
                                         SettingPageBottomSheet(
-                                          initialIndex: state.value.roomIndex,
+                                          initialIndex:
+                                              state.value.roomLocation.index,
                                         )),
                                 child: Text(
-                                  place[state.value.roomIndex]!,
+                                  state.value.roomLocation.roomName,
                                   style: TextStyle(
                                     fontSize: 16.0.sp,
                                     color: OSJColors.primary700,
