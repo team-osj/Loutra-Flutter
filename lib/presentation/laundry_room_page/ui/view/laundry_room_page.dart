@@ -43,30 +43,6 @@ class LaundryRoomPage extends StatelessWidget {
     "DRY": Machine.dry
   };
 
-  Widget triangle({required RoomEntity roomEntity}) =>
-      roomEntity.placeIconIndex == 0
-          ? const SizedBox.shrink()
-          : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
-
-  MachineWidget machineWidget(
-          {required RoomEntity roomState,
-          required int index,
-          required Status status,
-          required Machine machine}) =>
-      roomState.placeIconIndex == 0
-          ? MachineCard(
-              index: index,
-              isEnableNotification: true,
-              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
-              status: status,
-              machine: machine)
-          : MachineButton(
-              index: index,
-              isEnableNotification: true,
-              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
-              status: status,
-              machine: machine);
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RoomBloc, RoomState<RoomEntity>>(
@@ -176,22 +152,25 @@ class LaundryRoomPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       IconButton(
-                        onPressed: () => context
-                            .read<RoomBloc>()
-                            .add(ModifyPlaceIconIndexEvent(placeIconIndex: 0)),
+                        onPressed: () => context.read<RoomBloc>().add(
+                            ModifyPlaceIconIndexEvent(
+                                buttonView: ButtonView.image)),
                         icon: Icon(LoturaIcons.grid,
                             size: 18.0.r,
-                            color: roomBlocState.value.placeIconIndex == 0
+                            color: roomBlocState.value.buttonView ==
+                                    ButtonView.image
                                 ? OSJColors.black
                                 : OSJColors.gray300),
                       ),
                       IconButton(
                           onPressed: () => context.read<RoomBloc>().add(
-                              ModifyPlaceIconIndexEvent(placeIconIndex: 1)),
+                              ModifyPlaceIconIndexEvent(
+                                  buttonView: ButtonView.icon)),
                           icon: Icon(
                             LoturaIcons.list,
                             size: 18.0.r,
-                            color: roomBlocState.value.placeIconIndex == 1
+                            color: roomBlocState.value.buttonView ==
+                                    ButtonView.icon
                                 ? OSJColors.black
                                 : OSJColors.gray300,
                           )),
@@ -254,17 +233,12 @@ class LaundryList extends StatelessWidget {
     "DRY": Machine.dry
   };
 
-  Widget triangle({required RoomEntity roomEntity}) =>
-      roomEntity.placeIconIndex == 0
-          ? const SizedBox.shrink()
-          : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
-
   MachineWidget machineWidget(
           {required RoomEntity roomState,
           required int index,
           required Status status,
           required Machine machine}) =>
-      roomState.placeIconIndex == 0
+      roomState.buttonView == ButtonView.image
           ? MachineCard(
               index: index,
               isEnableNotification: true,
@@ -325,7 +299,7 @@ class LaundryList extends StatelessWidget {
                               placeIndex[roomEntity.roomLocation.index]! +
                                   index]
                           .state]!),
-                  triangle(roomEntity: roomEntity),
+                  roomEntity.buttonView.triangle,
                   machineWidget(
                     roomState: roomEntity,
                     index: placeIndex[roomEntity.roomLocation.index]! +
