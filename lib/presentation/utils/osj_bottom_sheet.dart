@@ -25,20 +25,6 @@ class OSJBottomSheet extends StatelessWidget {
   final CurrentState state;
   final Machine machine;
 
-  final Map statusColor = <CurrentState, Color>{
-    CurrentState.available: OSJColors.green50,
-    CurrentState.working: OSJColors.primary50,
-    CurrentState.disconnected: OSJColors.black,
-    CurrentState.breakdown: OSJColors.red50,
-  };
-
-  final Map statusIcon = <CurrentState, IconData>{
-    CurrentState.available: LoturaIcons.checkCircle,
-    CurrentState.working: LoturaIcons.working,
-    CurrentState.disconnected: LoturaIcons.disconnected,
-    CurrentState.breakdown: LoturaIcons.cancelCircle,
-  };
-
   final Map machineIcon = <Machine, IconData>{
     Machine.wash: LoturaIcons.laundry,
     Machine.dry: LoturaIcons.dry,
@@ -101,7 +87,7 @@ class OSJBottomSheet extends StatelessWidget {
             state == CurrentState.working
                 ? const SizedBox.shrink()
                 : Icon(
-                    statusIcon[state],
+                    state.icon,
                     size: 24.0.r,
                     color: state == CurrentState.available
                         ? OSJColors.green700

@@ -15,27 +15,6 @@ class MachineButton extends MachineWidget {
     required super.machine,
   });
 
-  final Map statusColor = <CurrentState, Color>{
-    CurrentState.available: OSJColors.green50,
-    CurrentState.working: OSJColors.primary50,
-    CurrentState.disconnected: OSJColors.white,
-    CurrentState.breakdown: OSJColors.red50,
-  };
-
-  final Map statusIconColor = <CurrentState, Color>{
-    CurrentState.available: OSJColors.green700,
-    CurrentState.working: OSJColors.primary700,
-    CurrentState.disconnected: OSJColors.black,
-    CurrentState.breakdown: OSJColors.red700,
-  };
-
-  final Map statusIcon = <CurrentState, IconData>{
-    CurrentState.available: LoturaIcons.checkCircle,
-    CurrentState.working: LoturaIcons.working,
-    CurrentState.disconnected: LoturaIcons.disconnected,
-    CurrentState.breakdown: LoturaIcons.cancelCircle,
-  };
-
   final Map machineIcon = <Machine, IconData>{
     Machine.wash: LoturaIcons.laundry,
     Machine.dry: LoturaIcons.dry,
@@ -56,7 +35,7 @@ class MachineButton extends MachineWidget {
               width: 154.0.w,
               height: 84.0.h,
               decoration: BoxDecoration(
-                color: statusColor[state],
+                color: state.color,
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Padding(
@@ -80,9 +59,9 @@ class MachineButton extends MachineWidget {
                             style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(width: 8.0.w),
                         Icon(
-                          statusIcon[state],
+                          state.icon,
                           size: 18.0.r,
-                          color: statusIconColor[state],
+                          color: state.deepColor,
                         ),
                       ],
                     ),
