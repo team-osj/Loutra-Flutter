@@ -6,7 +6,7 @@ import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 import 'package:lotura/presentation/setting_page/ui/widget/setting_page_bottom_sheet.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingPage extends StatefulWidget {
@@ -26,9 +26,9 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OSJColors.gray100,
+      backgroundColor: LoturaColors.gray100,
       appBar: AppBar(
-        backgroundColor: OSJColors.gray100,
+        backgroundColor: LoturaColors.gray100,
         elevation: 0.0,
         leadingWidth: 300.0.w,
         leading: Row(
@@ -38,13 +38,13 @@ class _SettingPageState extends State<SettingPage> {
               onPressed: () => Navigator.pop(context),
               icon: Icon(
                 Icons.keyboard_arrow_left,
-                color: OSJColors.black,
+                color: LoturaColors.black,
                 size: 24.0.w,
               ),
             ),
             Text(
               "설정",
-              style: TextStyle(fontSize: 24.0.sp, color: OSJColors.black),
+              style: TextStyle(fontSize: 24.0.sp, color: LoturaColors.black),
             ),
           ],
         ),
@@ -81,7 +81,7 @@ class _SettingPageState extends State<SettingPage> {
                                         top: Radius.circular(24.r),
                                       ),
                                     ),
-                                    backgroundColor: OSJColors.white,
+                                    backgroundColor: LoturaColors.white,
                                     builder: (context) =>
                                         SettingPageBottomSheet(
                                           initialIndex:
@@ -91,7 +91,7 @@ class _SettingPageState extends State<SettingPage> {
                                   state.value.roomLocation.roomName,
                                   style: TextStyle(
                                     fontSize: 16.0.sp,
-                                    color: OSJColors.primary700,
+                                    color: LoturaColors.primary700,
                                   ),
                                 ),
                               ),
@@ -101,7 +101,7 @@ class _SettingPageState extends State<SettingPage> {
                       SizedBox(width: 12.0.w),
                       Icon(
                         Icons.keyboard_arrow_right,
-                        color: OSJColors.gray300,
+                        color: LoturaColors.gray300,
                         size: 24.0.r,
                       ),
                     ],
@@ -131,7 +131,7 @@ class _SettingPageState extends State<SettingPage> {
                       ),
                       Icon(
                         Icons.keyboard_arrow_right,
-                        color: OSJColors.gray300,
+                        color: LoturaColors.gray300,
                         size: 24.0.r,
                       ),
                     ],

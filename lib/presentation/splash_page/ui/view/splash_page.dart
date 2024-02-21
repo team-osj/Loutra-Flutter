@@ -9,7 +9,7 @@ import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key, required this.nfcTagData});
@@ -44,7 +44,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OSJColors.gray100,
+      backgroundColor: LoturaColors.gray100,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,10 +55,10 @@ class _SplashPageState extends State<SplashPage> {
               height: 100.0.r,
             ),
             SizedBox(height: 12.0.h),
-            Text(
+            const Text(
               'OSJ',
               style: TextStyle(
-                color: OSJColors.primary700,
+                color: LoturaColors.primary700,
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
               ),

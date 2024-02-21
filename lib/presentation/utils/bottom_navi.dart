@@ -14,7 +14,7 @@ import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
 import 'package:lotura/presentation/laundry_room_page/ui/view/laundry_room_page.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/osj_icon_button.dart';
 import 'package:lotura/presentation/utils/osj_image_button.dart';
 
@@ -135,7 +135,7 @@ class _BottomNaviState extends State<BottomNavi>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OSJColors.gray100,
+      backgroundColor: LoturaColors.gray100,
       body: TabBarView(
         controller: controller,
         children: [
@@ -152,14 +152,18 @@ class _BottomNaviState extends State<BottomNavi>
               width: 185.0.w,
               height: 48.0.h,
               iconSize: 24.0.r,
-              color: selectedIndex == 0 ? OSJColors.white : OSJColors.gray100,
-              iconColor:
-                  selectedIndex == 0 ? OSJColors.primary700 : OSJColors.gray300,
+              color: selectedIndex == 0
+                  ? LoturaColors.white
+                  : LoturaColors.gray100,
+              iconColor: selectedIndex == 0
+                  ? LoturaColors.primary700
+                  : LoturaColors.gray300,
               iconData: Icons.home),
           OSJImageButton(
             width: 185.0.w,
             height: 48.0.h,
-            color: selectedIndex == 1 ? OSJColors.white : OSJColors.gray100,
+            color:
+                selectedIndex == 1 ? LoturaColors.white : LoturaColors.gray100,
             imagePath: selectedIndex == 1
                 ? "assets/applogo.jpeg"
                 : "assets/applogo_unselected.jpeg",

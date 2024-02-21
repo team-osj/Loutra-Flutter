@@ -6,29 +6,29 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 
 class ApplyPage extends StatelessWidget {
   ApplyPage({super.key});
 
   final TextStyle bigStyle = TextStyle(
     fontSize: 40.0.sp,
-    color: OSJColors.black,
+    color: LoturaColors.black,
     fontWeight: FontWeight.bold,
   );
 
   final TextStyle smallStyle = TextStyle(
     fontSize: 16.0.sp,
-    color: OSJColors.gray500,
+    color: LoturaColors.gray500,
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OSJColors.gray100,
+      backgroundColor: LoturaColors.gray100,
       appBar: AppBar(
-        backgroundColor: OSJColors.gray100,
+        backgroundColor: LoturaColors.gray100,
         elevation: 0.0,
         leadingWidth: 200.0.w,
         leading: Row(
@@ -44,7 +44,7 @@ class ApplyPage extends StatelessWidget {
               "OSJ",
               style: TextStyle(
                   fontSize: 20.0.sp,
-                  color: OSJColors.primary700,
+                  color: LoturaColors.primary700,
                   fontWeight: FontWeight.bold),
             ),
           ],
@@ -53,9 +53,9 @@ class ApplyPage extends StatelessWidget {
           IconButton(
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const SettingPage())),
-              icon: Icon(
+              icon: const Icon(
                 Icons.settings,
-                color: OSJColors.black,
+                color: LoturaColors.black,
               )),
           SizedBox(width: 24.0.w),
         ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 
 class MachineButton extends MachineWidget {
   MachineButton({
@@ -46,7 +46,7 @@ class MachineButton extends MachineWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(machineIcon[machine],
-                        size: 24.0.r, color: OSJColors.gray300),
+                        size: 24.0.r, color: LoturaColors.gray300),
                     Row(
                       children: [
                         Text("${isWoman ? index - 31 : index}번",
