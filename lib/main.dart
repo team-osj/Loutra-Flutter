@@ -19,7 +19,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
+    const SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
@@ -60,10 +60,37 @@ class MyApp extends StatelessWidget {
 }
 
 enum CurrentState {
-  available,
-  working,
-  disconnected,
-  breakdown,
+  available(
+      icon: LoturaIcons.checkCircle,
+      color: OSJColors.green50,
+      deepColor: OSJColors.green700,
+      text: "사용 가능"),
+  working(
+      icon: LoturaIcons.working,
+      color: OSJColors.primary50,
+      deepColor: OSJColors.primary700,
+      text: "작동중"),
+  disconnected(
+      icon: LoturaIcons.disconnected,
+      color: OSJColors.white,
+      deepColor: OSJColors.black,
+      text: "연결 끊김"),
+  breakdown(
+      icon: LoturaIcons.cancelCircle,
+      color: OSJColors.red50,
+      deepColor: OSJColors.red700,
+      text: "고장");
+
+  final IconData icon;
+  final Color color, deepColor;
+  final String text;
+
+  const CurrentState({
+    required this.icon,
+    required this.color,
+    required this.deepColor,
+    required this.text,
+  });
 }
 
 enum Machine { wash, dry }
