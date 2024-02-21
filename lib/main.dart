@@ -93,7 +93,15 @@ enum CurrentState {
   });
 }
 
-enum Machine { wash, dry }
+enum Machine {
+  wash(text: "세탁기", icon: LoturaIcons.laundry),
+  dry(text: "건조기", icon: LoturaIcons.dry);
+
+  final String text;
+  final IconData icon;
+
+  const Machine({required this.text, required this.icon});
+}
 
 enum RoomLocation {
   schoolSide(roomName: "남자 학교측 세탁실"),

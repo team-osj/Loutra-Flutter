@@ -31,11 +31,6 @@ class LaundryRoomPage extends StatelessWidget {
 
   final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
 
-  final Map machine = <String, Machine>{
-    "WASH": Machine.wash,
-    "DRY": Machine.dry
-  };
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RoomBloc, RoomState<LaundryRoomEntity>>(

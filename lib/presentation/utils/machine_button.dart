@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
-import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 
 class MachineButton extends MachineWidget {
-  MachineButton({
+  const MachineButton({
     super.key,
     required super.index,
     required super.isEnableNotification,
@@ -14,16 +12,6 @@ class MachineButton extends MachineWidget {
     required super.state,
     required super.machine,
   });
-
-  final Map machineIcon = <Machine, IconData>{
-    Machine.wash: LoturaIcons.laundry,
-    Machine.dry: LoturaIcons.dry,
-  };
-
-  final Map machineText = <Machine, String>{
-    Machine.wash: "세탁기",
-    Machine.dry: "건조기",
-  };
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +33,7 @@ class MachineButton extends MachineWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(machineIcon[machine],
+                    Icon(machine.icon,
                         size: 24.0.r, color: LoturaColors.gray300),
                     Row(
                       children: [
@@ -55,8 +43,7 @@ class MachineButton extends MachineWidget {
                             width: (isWoman ? index - 31 : index) < 10
                                 ? 10.2.w
                                 : 5.0.w),
-                        Text(machineText[machine],
-                            style: TextStyle(fontSize: 16.0.sp)),
+                        Text(machine.text, style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(width: 8.0.w),
                         Icon(
                           state.icon,
