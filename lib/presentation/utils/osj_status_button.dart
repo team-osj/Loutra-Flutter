@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 
 class OSJStatusButton extends StatelessWidget {
   OSJStatusButton({
@@ -12,10 +12,10 @@ class OSJStatusButton extends StatelessWidget {
   final CurrentState state;
 
   final Map<CurrentState, Color> stateColor = {
-    CurrentState.available: OSJColors.green100,
-    CurrentState.working: OSJColors.primary100,
-    CurrentState.disconnected: OSJColors.gray300,
-    CurrentState.breakdown: OSJColors.red100,
+    CurrentState.available: LoturaColors.green100,
+    CurrentState.working: LoturaColors.primary100,
+    CurrentState.disconnected: LoturaColors.gray300,
+    CurrentState.breakdown: LoturaColors.red100,
   };
 
   @override

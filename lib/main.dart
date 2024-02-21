@@ -10,8 +10,8 @@ import 'package:lotura/di/di.dart';
 import 'package:lotura/firebase_options.dart';
 import 'package:lotura/init/fcm_init.dart';
 import 'package:lotura/presentation/splash_page/ui/view/splash_page.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(statusBarColor: OSJColors.gray100),
+    const SystemUiOverlayStyle(statusBarColor: LoturaColors.gray100),
   );
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
@@ -62,23 +62,23 @@ class MyApp extends StatelessWidget {
 enum CurrentState {
   available(
       icon: LoturaIcons.checkCircle,
-      color: OSJColors.green50,
-      deepColor: OSJColors.green700,
+      color: LoturaColors.green50,
+      deepColor: LoturaColors.green700,
       text: "사용 가능"),
   working(
       icon: LoturaIcons.working,
-      color: OSJColors.primary50,
-      deepColor: OSJColors.primary700,
+      color: LoturaColors.primary50,
+      deepColor: LoturaColors.primary700,
       text: "작동중"),
   disconnected(
       icon: LoturaIcons.disconnected,
-      color: OSJColors.white,
-      deepColor: OSJColors.black,
+      color: LoturaColors.white,
+      deepColor: LoturaColors.black,
       text: "연결 끊김"),
   breakdown(
       icon: LoturaIcons.cancelCircle,
-      color: OSJColors.red50,
-      deepColor: OSJColors.red700,
+      color: LoturaColors.red50,
+      deepColor: LoturaColors.red700,
       text: "고장");
 
   final IconData icon;

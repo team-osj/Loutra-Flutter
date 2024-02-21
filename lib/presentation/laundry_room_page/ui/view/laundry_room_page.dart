@@ -10,12 +10,12 @@ import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_button.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class LaundryRoomPage extends StatelessWidget {
@@ -42,9 +42,9 @@ class LaundryRoomPage extends StatelessWidget {
       builder: (context, roomBlocState) {
         if (roomBlocState is Changed) {
           return Scaffold(
-            backgroundColor: OSJColors.gray100,
+            backgroundColor: LoturaColors.gray100,
             appBar: AppBar(
-              backgroundColor: OSJColors.gray100,
+              backgroundColor: LoturaColors.gray100,
               elevation: 0.0,
               leadingWidth: 300.0.w,
               leading: Row(
@@ -53,7 +53,7 @@ class LaundryRoomPage extends StatelessWidget {
                   Text(
                     roomBlocState.value.roomLocation.roomName,
                     style: TextStyle(
-                      color: OSJColors.black,
+                      color: LoturaColors.black,
                       fontSize: 24.0.sp,
                       fontWeight: FontWeight.w600,
                     ),
@@ -66,7 +66,7 @@ class LaundryRoomPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SettingPage())),
-                  icon: Icon(Icons.settings, color: OSJColors.black),
+                  icon: Icon(Icons.settings, color: LoturaColors.black),
                 ),
                 SizedBox(width: 24.0.w),
               ],
@@ -91,12 +91,12 @@ class LaundryRoomPage extends StatelessWidget {
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.schoolSide
-                              ? OSJColors.white
-                              : OSJColors.gray100,
+                              ? LoturaColors.white
+                              : LoturaColors.gray100,
                           fontColor: roomBlocState.value.roomLocation ==
                                   RoomLocation.schoolSide
-                              ? OSJColors.primary700
-                              : OSJColors.gray300,
+                              ? LoturaColors.primary700
+                              : LoturaColors.gray300,
                           text: "남자 학교측",
                           radius: 8.0,
                         ),
@@ -110,12 +110,12 @@ class LaundryRoomPage extends StatelessWidget {
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.dormitorySide
-                              ? OSJColors.white
-                              : OSJColors.gray100,
+                              ? LoturaColors.white
+                              : LoturaColors.gray100,
                           fontColor: roomBlocState.value.roomLocation ==
                                   RoomLocation.dormitorySide
-                              ? OSJColors.primary700
-                              : OSJColors.gray300,
+                              ? LoturaColors.primary700
+                              : LoturaColors.gray300,
                           text: "남자 기숙사측",
                           radius: 8.0,
                         ),
@@ -129,12 +129,12 @@ class LaundryRoomPage extends StatelessWidget {
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.womanRoom
-                              ? OSJColors.white
-                              : OSJColors.gray100,
+                              ? LoturaColors.white
+                              : LoturaColors.gray100,
                           fontColor: roomBlocState.value.roomLocation ==
                                   RoomLocation.womanRoom
-                              ? OSJColors.primary700
-                              : OSJColors.gray300,
+                              ? LoturaColors.primary700
+                              : LoturaColors.gray300,
                           text: "여자",
                           radius: 8.0,
                         ),
@@ -152,8 +152,8 @@ class LaundryRoomPage extends StatelessWidget {
                             size: 18.0.r,
                             color: roomBlocState.value.buttonView ==
                                     ButtonView.image
-                                ? OSJColors.black
-                                : OSJColors.gray300),
+                                ? LoturaColors.black
+                                : LoturaColors.gray300),
                       ),
                       IconButton(
                           onPressed: () => context.read<RoomBloc>().add(
@@ -164,8 +164,8 @@ class LaundryRoomPage extends StatelessWidget {
                             size: 18.0.r,
                             color: roomBlocState.value.buttonView ==
                                     ButtonView.icon
-                                ? OSJColors.black
-                                : OSJColors.gray300,
+                                ? LoturaColors.black
+                                : LoturaColors.gray300,
                           )),
                     ],
                   ),

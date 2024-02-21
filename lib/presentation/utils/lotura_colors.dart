@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OSJColors {
-  OSJColors._();
+class LoturaColors {
+  LoturaColors._();
 
   static const Color customGreen = Color(0xFF7DB45A);
   static const Color customRed = Color(0xFFDA6156);
