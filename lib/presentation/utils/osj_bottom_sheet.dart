@@ -7,11 +7,10 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
-import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
 class OSJBottomSheet extends StatelessWidget {
-  OSJBottomSheet({
+  const OSJBottomSheet({
     super.key,
     required this.index,
     required this.isEnableNotification,
@@ -25,46 +24,36 @@ class OSJBottomSheet extends StatelessWidget {
   final CurrentState state;
   final Machine machine;
 
-  final Map machineIcon = <Machine, IconData>{
-    Machine.wash: LoturaIcons.laundry,
-    Machine.dry: LoturaIcons.dry,
-  };
-
-  final Map machineText = <Machine, String>{
-    Machine.wash: "세탁기",
-    Machine.dry: "건조기",
-  };
-
   String text(bool isEnableNotification, isWoman, CurrentState state) {
     if (isEnableNotification) {
       if (isWoman) {
         switch (state) {
           case CurrentState.working:
-            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}를\n알림 설정 하실건가요?";
+            return "여자 세탁실 ${index - 31}번 ${machine.text}를\n알림 설정 하실건가요?";
           case CurrentState.available:
-            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
+            return "여자 세탁실 ${index - 31}번 ${machine.text}는\n현재 사용 가능한 상태에요.";
           case CurrentState.disconnected:
-            return "여자층 ${index - 31}번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
+            return "여자층 ${index - 31}번 ${machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case CurrentState.breakdown:
-            return "여자 세탁실 ${index - 31}번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
+            return "여자 세탁실 ${index - 31}번 ${machine.text}는\n고장으로 인해 사용이 불가능해요.";
         }
       } else {
         switch (state) {
           case CurrentState.working:
-            return "$index번 ${machineText[machine]}를\n알림 설정 하실건가요?";
+            return "$index번 ${machine.text}를\n알림 설정 하실건가요?";
           case CurrentState.available:
-            return "$index번 ${machineText[machine]}는\n현재 사용 가능한 상태에요.";
+            return "$index번 ${machine.text}는\n현재 사용 가능한 상태에요.";
           case CurrentState.disconnected:
-            return "$index번 ${machineText[machine]}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
+            return "$index번 ${machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case CurrentState.breakdown:
-            return "$index번 ${machineText[machine]}는\n고장으로 인해 사용이 불가능해요.";
+            return "$index번 ${machine.text}는\n고장으로 인해 사용이 불가능해요.";
         }
       }
     } else {
       if (isWoman) {
-        return "여자 세탁실 ${index - 31}번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?";
+        return "여자 세탁실 ${index - 31}번 ${machine.text}의\n알림 설정을 해제하실건가요?";
       } else {
-        return "$index번 ${machineText[machine]}의\n알림 설정을 해제하실건가요?";
+        return "$index번 ${machine.text}의\n알림 설정을 해제하실건가요?";
       }
     }
   }
