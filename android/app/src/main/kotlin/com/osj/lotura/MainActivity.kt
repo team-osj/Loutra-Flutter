@@ -39,6 +39,10 @@ class MainActivity : FlutterActivity() {
                     result.success("{\"index\" : $returnData}")
                     returnData = -1
                 }
+
+                "nfcIsAvailable" -> {
+                    result.success(nfcAdapter.isEnabled)
+                }
             }
         }
     }
