@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
@@ -41,6 +43,58 @@ class _BottomNaviState extends State<BottomNavi>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    if (Platform.isAndroid) {
+      const MethodChannel('com.osj.lotura/nfc_info')
+          .invokeMethod('nfcIsAvailable')
+          .then(
+        (value) {
+          if (value.toString() == "false") {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                Hive.openBox<int>("Lotura").then(
+                  (value) {
+                    if (value.get('다시 보지 않기') == null) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Center(
+                          child: AlertDialog(
+                            title: Text(
+                              "NFC가 비활성화 되어있습니다.",
+                              style: TextStyle(fontSize: 20.0.sp),
+                            ),
+                            content: Text(
+                              "Lotura 서비스 이용을 위해\n스마트폰의 NFC를 설정해주세요.",
+                              style: TextStyle(fontSize: 18.0.sp),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            actionsAlignment: MainAxisAlignment.spaceEvenly,
+                            actions: [
+                              MaterialButton(
+                                  onPressed: () {
+                                    value.put('다시 보지 않기', 1);
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("다시 보지 않기",
+                                      style: TextStyle(fontSize: 16.0.sp))),
+                              MaterialButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: Text("닫기",
+                                      style: TextStyle(fontSize: 16.0.sp))),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                );
+              },
+            );
+          }
+        },
+      );
+    }
     if (widget.nfcTagData != -1) {
       for (var i in placeIndex.entries) {
         if (i.value > widget.nfcTagData - 1) {
