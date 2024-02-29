@@ -25,3 +25,7 @@ class ModifyButtonViewEvent extends RoomEvent {
 class ShowBottomSheetEvent extends RoomEvent {}
 
 class InitialShowBottomSheetEvent extends RoomEvent {}
+
+class ShowingBottomSheetEvent extends RoomEvent {}
+
+class ClosingBottomSheetEvent extends RoomEvent {}

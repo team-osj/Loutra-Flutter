@@ -20,13 +20,16 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<LaundryRoomEntity>> {
                 roomLocation: RoomLocation.schoolSide,
                 buttonView: ButtonView.icon,
                 isClick: false,
-                isNFCShowBottomSheet: false))) {
+                isNFCShowBottomSheet: false,
+                showingBottomSheet: false))) {
     on<UpdateRoomIndexEvent>(_updateRoomIndexEventHandler);
     on<GetRoomIndexEvent>(_getRoomIndexEventHandler);
     on<ModifyRoomIndexEvent>(_modifyRoomIndexEventHandler);
     on<ModifyButtonViewEvent>(_modifyPlaceIconIndexEventHandler);
     on<ShowBottomSheetEvent>(_showBottomSheetEventHandler);
     on<InitialShowBottomSheetEvent>(_initialShowBottomSheetEventHandler);
+    on<ShowingBottomSheetEvent>(_showingBottomSheetEventHandler);
+    on<ClosingBottomSheetEvent>(_closingBottomSheetEventHandler);
   }
 
   void _updateRoomIndexEventHandler(
@@ -61,5 +64,15 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<LaundryRoomEntity>> {
   void _initialShowBottomSheetEventHandler(InitialShowBottomSheetEvent event,
       Emitter<RoomState<LaundryRoomEntity>> emit) {
     emit(Changed(data: state.value.copyWith(isNFCShowBottomSheet: false)));
+  }
+
+  void _showingBottomSheetEventHandler(ShowingBottomSheetEvent event,
+      Emitter<RoomState<LaundryRoomEntity>> emit) {
+    emit(Changed(data: state.value.copyWith(showingBottomSheet: true)));
+  }
+
+  void _closingBottomSheetEventHandler(ClosingBottomSheetEvent event,
+      Emitter<RoomState<LaundryRoomEntity>> emit) {
+    emit(Changed(data: state.value.copyWith(showingBottomSheet: false)));
   }
 }
