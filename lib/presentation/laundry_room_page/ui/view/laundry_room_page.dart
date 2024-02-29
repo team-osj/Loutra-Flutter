@@ -233,8 +233,14 @@ class LaundryList extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         if (nfcData != -1 && roomEntity.isNFCShowBottomSheet == false) {
+          if (roomEntity.showingBottomSheet == true) {
+            Navigator.of(context).pop();
+          }
           context.read<RoomBloc>().add(ShowBottomSheetEvent());
+          context.read<RoomBloc>().add(ShowingBottomSheetEvent());
           showModalBottomSheet(
+            enableDrag: false,
+            isDismissible: false,
             context: context,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
