@@ -26,6 +26,8 @@ abstract class MachineWidget extends StatelessWidget {
   void showModalOSJBottomSheet({required BuildContext context}) =>
       showModalBottomSheet(
         context: context,
+        enableDrag: false,
+        isDismissible: false,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(25.r),
