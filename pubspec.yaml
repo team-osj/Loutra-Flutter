@@ -52,6 +52,7 @@ dependencies:
   hive_flutter: ^1.1.0
   http: ^1.1.0
   web_socket_channel: ^2.4.0
+  package_info_plus: ^4.2.0
 
 
 dev_dependencies:
