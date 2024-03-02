@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
 import 'package:lotura/data/dto/request/get_apply_list_request.dart';
 import 'package:lotura/presentation/app_update_page/ui/app_update_page.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
+import 'package:lotura/secret.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class SplashPage extends StatefulWidget {
@@ -26,16 +28,15 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   Future<void> checkAppVersion() async {
-    final remoteConfig = FirebaseRemoteConfig.instance;
-    await remoteConfig.fetchAndActivate();
-
-    String firebaseVersion = remoteConfig.getString(
-        Platform.isAndroid ? "ANDROID_APP_VERSION" : "iOS_APP_VERSION");
-
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String appVersion = packageInfo.version;
 
-    if (firebaseVersion != appVersion) {
+    final res = await http.get(Uri.parse(
+        "$baseurl/app_ver_${Platform.isAndroid ? "android" : "ios"}"));
+
+    final newestAppVersion = jsonDecode(res.body)['version'];
+
+    if (newestAppVersion != appVersion) {
       Future.delayed(Duration.zero).then((value) =>
           Navigator.pushAndRemoveUntil(
               context,
