@@ -60,16 +60,16 @@ class MyApp extends StatelessWidget {
 }
 
 enum CurrentState {
-  available(
-      icon: LoturaIcons.checkCircle,
-      color: LoturaColors.green50,
-      deepColor: LoturaColors.green700,
-      text: "사용 가능"),
   working(
       icon: LoturaIcons.working,
       color: LoturaColors.primary50,
       deepColor: LoturaColors.primary700,
       text: "작동중"),
+  available(
+      icon: LoturaIcons.checkCircle,
+      color: LoturaColors.green50,
+      deepColor: LoturaColors.green700,
+      text: "사용 가능"),
   disconnected(
       icon: LoturaIcons.disconnected,
       color: LoturaColors.white,
