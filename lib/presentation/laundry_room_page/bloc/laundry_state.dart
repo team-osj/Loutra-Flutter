@@ -1,36 +1,33 @@
-import 'package:equatable/equatable.dart';
-import 'package:lotura/data/dto/response/laundry_response.dart';
+enum LaundryStateEnum { empty, loading, error, loaded }
 
-abstract class LaundryState extends Equatable {}
+sealed class LaundryState<T> {
+  LaundryState({required this.laundryState, this.error, this.valueOrNull});
 
-class Empty extends LaundryState {
-  @override
-  List<Object> get props => [];
+  T? valueOrNull;
+  Object? error;
+  LaundryStateEnum laundryState;
+
+  T get value => valueOrNull!;
 }
 
-class Loading extends LaundryState {
-  @override
-  List<Object> get props => [];
+class Empty<T> extends LaundryState<T> {
+  Empty() : super(laundryState: LaundryStateEnum.empty);
 }
 
-class Error extends LaundryState {
-  final String message;
-
-  Error({
-    required this.message,
-  });
-
-  @override
-  List<Object> get props => [message];
+class Loading<T> extends LaundryState<T> {
+  Loading() : super(laundryState: LaundryStateEnum.loading);
 }
 
-class Loaded extends LaundryState {
-  final List<LaundryResponse> laundryResponseList;
+class Error<T> extends LaundryState<T> {
+  final Object error;
 
-  Loaded({
-    required this.laundryResponseList,
-  });
+  Error({required this.error})
+      : super(laundryState: LaundryStateEnum.error, error: error);
+}
 
-  @override
-  List<Object> get props => [laundryResponseList];
+class Loaded<T> extends LaundryState<T> {
+  final T data;
+
+  Loaded({required this.data})
+      : super(laundryState: LaundryStateEnum.loaded, valueOrNull: data);
 }

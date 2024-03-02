@@ -1,3 +1,5 @@
+import 'package:lotura/domain/entity/apply_entity.dart';
+
 class ApplyResponse {
   final int deviceId;
   final String deviceType;
@@ -10,4 +12,7 @@ class ApplyResponse {
       deviceType: json['device_type'],
     );
   }
+
+  ApplyEntity toEntity() =>
+      ApplyEntity(deviceId: deviceId, deviceType: deviceType);
 }

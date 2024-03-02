@@ -9,14 +9,14 @@ abstract class MachineWidget extends StatelessWidget {
     required this.index,
     required this.isEnableNotification,
     required this.isWoman,
-    required this.status,
+    required this.state,
     required this.machine,
   });
 
   final int index;
   final bool isEnableNotification, isWoman;
 
-  final Status status;
+  final CurrentState state;
 
   final Machine machine;
 
@@ -35,7 +35,7 @@ abstract class MachineWidget extends StatelessWidget {
           index: index,
           isEnableNotification: isEnableNotification,
           isWoman: isWoman,
-          status: status,
+          state: state,
           machine: machine,
         ),
       );

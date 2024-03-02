@@ -1,35 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/main.dart';
-import 'package:lotura/presentation/utils/osj_colors.dart';
+import 'package:lotura/presentation/utils/lotura_colors.dart';
 
 class OSJStatusButton extends StatelessWidget {
   OSJStatusButton({
     super.key,
-    required this.status,
+    required this.state,
   });
 
-  final Status status;
+  final CurrentState state;
 
-  final Map map = <Status, String>{
-    Status.available: "사용 가능",
-    Status.working: "작동중",
-    Status.disconnected: "연결 끊김",
-    Status.breakdown: "고장",
-  };
-
-  final Map statusColor = <Status, Color>{
-    Status.available: OSJColors.green100,
-    Status.working: OSJColors.primary100,
-    Status.disconnected: OSJColors.gray300,
-    Status.breakdown: OSJColors.red100,
-  };
-
-  final Map statusTextColor = <Status, Color>{
-    Status.available: OSJColors.green700,
-    Status.working: OSJColors.primary700,
-    Status.disconnected: OSJColors.black,
-    Status.breakdown: OSJColors.red700,
+  final Map<CurrentState, Color> stateColor = {
+    CurrentState.available: LoturaColors.green100,
+    CurrentState.working: LoturaColors.primary100,
+    CurrentState.disconnected: LoturaColors.gray300,
+    CurrentState.breakdown: LoturaColors.red100,
   };
 
   @override
@@ -39,13 +25,13 @@ class OSJStatusButton extends StatelessWidget {
       height: 32.0.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100.0),
-        color: statusColor[status],
+        color: stateColor[state],
       ),
       child: Center(
         child: Text(
-          map[status].toString(),
+          state.text,
           style: TextStyle(
-            color: statusTextColor[status],
+            color: state.deepColor,
             fontSize: 14.0.sp,
           ),
         ),

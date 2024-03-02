@@ -1,11 +1,13 @@
 import 'dart:async';
 
-import 'package:lotura/data/dto/response/laundry_response.dart';
+import 'package:lotura/domain/entity/laundry_entity.dart';
 
 abstract class LaundryRepository {
-  Stream<List<LaundryResponse>> get laundryList;
+  Stream<LaundryEntity> get laundryList;
 
-  void init();
+  void webSocketInit();
+
+  Future<List<LaundryEntity>> getAllLaundryList();
 
   Future<void> setValue({required String key, required int value});
 

@@ -1,3 +1,5 @@
+import 'package:lotura/domain/entity/laundry_entity.dart';
+
 class LaundryResponse {
   final int id;
   final int state;
@@ -11,6 +13,14 @@ class LaundryResponse {
       id: json['id'],
       state: json['state'],
       deviceType: json['device_type'],
+    );
+  }
+
+  LaundryEntity toEntity() {
+    return LaundryEntity(
+      id: id,
+      state: state,
+      deviceType: deviceType,
     );
   }
 }

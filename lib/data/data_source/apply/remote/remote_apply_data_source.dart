@@ -6,18 +6,19 @@ import 'package:http/http.dart' as http;
 import 'package:lotura/data/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/data/dto/response/apply_response.dart';
+import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/secret.dart';
 
 class RemoteApplyDataSource {
   Future<String> _getToken() async =>
       await FirebaseMessaging.instance.getToken() ?? "whatThe";
 
-  Future<List<ApplyResponse>> getApplyList() async {
+  Future<List<ApplyEntity>> getApplyList() async {
     final response = await http.post(Uri.parse("$baseurl/push_list"),
         body: {"token": await _getToken()});
     if (response.statusCode != 200) throw Exception(response.body);
     return (jsonDecode(response.body) as List<dynamic>)
-        .map((i) => ApplyResponse.fromJson(i))
+        .map((i) => ApplyResponse.fromJson(i).toEntity())
         .toList();
   }
 
@@ -31,14 +32,14 @@ class RemoteApplyDataSource {
     }
   }
 
-  Future<List<ApplyResponse>> applyCancel(
+  Future<List<ApplyEntity>> applyCancel(
       {required ApplyCancelRequest applyCancelRequest}) async {
     applyCancelRequest.token = await _getToken();
     final response = await http.post(Uri.parse("$baseurl/push_cancel"),
         body: applyCancelRequest.toJson());
     if (response.statusCode != 200) throw Exception(response.body);
     return (jsonDecode(response.body) as List<dynamic>)
-        .map((i) => ApplyResponse.fromJson(i))
+        .map((i) => ApplyResponse.fromJson(i).toEntity())
         .toList();
   }
 }
