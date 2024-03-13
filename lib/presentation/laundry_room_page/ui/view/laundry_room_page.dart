@@ -173,7 +173,7 @@ class LaundryRoomPage extends StatelessWidget {
                           Loading() =>
                             const Center(child: CircularProgressIndicator()),
                           Error() =>
-                            Center(child: Text(state.error.toString())),
+                            const Center(child: Text("인터넷 연결을 확인해주세요")),
                           Loaded() => LaundryList(
                               list: state.data,
                               roomEntity: roomBlocState.value,

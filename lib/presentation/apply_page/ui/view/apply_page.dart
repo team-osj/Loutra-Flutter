@@ -84,7 +84,7 @@ class ApplyPage extends StatelessWidget {
                     Empty() => const Center(child: Text("비어있음")),
                     Loading() =>
                       const Center(child: CircularProgressIndicator()),
-                    Error() => Center(child: Text(state.error.toString())),
+                    Error() => const Center(child: Text("인터넷 연결을 확인해주세요")),
                     Loaded() => ScrollConfiguration(
                         behavior:
                             const ScrollBehavior().copyWith(overscroll: false),
