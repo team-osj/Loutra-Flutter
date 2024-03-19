@@ -1,5 +1,6 @@
 import UIKit
 import Flutter
+import Firebase
 
 @available(iOS 13.0.0, *)
 @UIApplicationMain
@@ -12,6 +13,7 @@ import Flutter
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        FirebaseApp.configure()
         let controller = self.window.rootViewController as! FlutterViewController
         channel = FlutterMethodChannel.init(name: "com.osj.lotura/nfc_info", binaryMessenger: controller as! FlutterBinaryMessenger)
         channel?.setMethodCallHandler { (call, result) in
