@@ -12,19 +12,20 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
-    private lateinit var nfcAdapter: NfcAdapter
+    private var nfcAdapter: NfcAdapter? = null
     private var returnData = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
+        if (nfcAdapter != null) {
+            if (intent.action == NfcAdapter.ACTION_NDEF_DISCOVERED) {
+                val data = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)
+                val message = data?.get(0) as NdefMessage
+                val record = message.records[0] as NdefRecord
+                val byteArr = record.payload
 
-        if (intent.action == NfcAdapter.ACTION_NDEF_DISCOVERED) {
-            val data = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)
-            val message = data?.get(0) as NdefMessage
-            val record = message.records[0] as NdefRecord
-            val byteArr = record.payload
-
-            returnData = String(byteArr).toInt()
+                returnData = String(byteArr).toInt()
+            }
         }
     }
 
@@ -41,7 +42,7 @@ class MainActivity : FlutterActivity() {
                 }
 
                 "nfcIsAvailable" -> {
-                    result.success(nfcAdapter.isEnabled)
+                    result.success(nfcAdapter?.isEnabled)
                 }
             }
         }
@@ -77,10 +78,10 @@ class MainActivity : FlutterActivity() {
         val intentFilters = arrayOf(
             IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED),
         )
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, intentFilters, null)
+        nfcAdapter?.enableForegroundDispatch(this, pendingIntent, intentFilters, null)
     }
 
     private fun disableNfcForegroundDispatch() {
-        nfcAdapter.disableForegroundDispatch(this)
+        nfcAdapter?.disableForegroundDispatch(this)
     }
 }

@@ -35,8 +35,9 @@ class _SplashPageState extends State<SplashPage> {
         "$baseurl/app_ver_${Platform.isAndroid ? "android" : "ios"}"));
 
     final newestAppVersion = jsonDecode(res.body)['version'];
+    final storeState = jsonDecode(res.body)['store_status'];
 
-    if (newestAppVersion != appVersion) {
+    if (newestAppVersion != appVersion && storeState == "1") {
       Future.delayed(Duration.zero).then((value) =>
           Navigator.pushAndRemoveUntil(
               context,
