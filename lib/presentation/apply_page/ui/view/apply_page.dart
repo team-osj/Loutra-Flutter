@@ -86,7 +86,7 @@ class ApplyPage extends StatelessWidget {
                       const Center(child: CircularProgressIndicator()),
                     Error() => const Center(child: Text("인터넷 연결을 확인하세요")),
                     Loaded() => ScrollConfiguration(
-                        behavior세
+                        behavior:
                             const ScrollBehavior().copyWith(overscroll: false),
                         child: ListView.builder(
                           itemCount: state.value.length.isEven
