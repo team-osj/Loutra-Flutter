@@ -5,8 +5,10 @@ import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/notice_page/ui/view/notice_page.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 
 class ApplyPage extends StatelessWidget {
@@ -50,6 +52,12 @@ class ApplyPage extends StatelessWidget {
           ],
         ),
         actions: [
+          IconButton(
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const NoticePage())),
+              icon: const Icon(
+                LoturaIcons.notice,
+              )),
           IconButton(
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const SettingPage())),
