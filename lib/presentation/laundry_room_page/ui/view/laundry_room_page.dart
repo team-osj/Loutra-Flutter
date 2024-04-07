@@ -64,7 +64,6 @@ class LaundryRoomPage extends StatelessWidget {
                             builder: (context) => const NoticePage())),
                     icon: const Icon(
                       LoturaIcons.notice,
-                      color: Colors.black,
                     )),
                 IconButton(
                   onPressed: () => Navigator.push(
