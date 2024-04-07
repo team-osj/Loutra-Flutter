@@ -53,8 +53,6 @@ class _NoticeListTileState extends State<NoticeListTile> {
               decoration: const BoxDecoration(
                   color: LoturaColors.white,
                   borderRadius: BorderRadius.all(Radius.circular(12))),
-              width: 370.0.w,
-              height: 80.0.h,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
