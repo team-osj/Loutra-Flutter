@@ -12,6 +12,8 @@ import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/secret.dart';
@@ -63,6 +65,7 @@ class _SplashPageState extends State<SplashPage> {
     checkAppVersion();
     context.read<LaundryBloc>().add(GetAllLaundryListEvent());
     context.read<LaundryBloc>().add(GetLaundryEvent());
+    context.read<NoticeBloc>().add(GetNoticeEvent());
     context
         .read<ApplyBloc>()
         .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
