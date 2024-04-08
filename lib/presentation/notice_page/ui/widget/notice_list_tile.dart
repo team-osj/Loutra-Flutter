@@ -19,22 +19,21 @@ class _NoticeListTileState extends State<NoticeListTile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => setState(() => _tap = !_tap),
-      child: _tap
-          ? Container(
-              margin: EdgeInsets.symmetric(vertical: 7.5.h),
-              padding: EdgeInsets.all(20.0.r),
-              decoration: const BoxDecoration(
-                  color: LoturaColors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.noticeEntity.title,
-                      style: TextStyle(fontSize: 16.0.sp)),
-                  Text(widget.noticeEntity.date,
-                      style: TextStyle(fontSize: 10.0.sp)),
-                  SizedBox(height: 10.0.r),
-                  ListView(
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 7.5.h),
+        padding: EdgeInsets.all(20.0.r),
+        decoration: const BoxDecoration(
+            color: LoturaColors.white,
+            borderRadius: BorderRadius.all(Radius.circular(12))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(widget.noticeEntity.title,
+                style: TextStyle(fontSize: 16.0.sp)),
+            Text(widget.noticeEntity.date, style: TextStyle(fontSize: 10.0.sp)),
+            _tap
+                ? ListView(
+                    padding: EdgeInsets.only(top: 10.0.r),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
@@ -43,26 +42,11 @@ class _NoticeListTileState extends State<NoticeListTile> {
                         style: TextStyle(fontSize: 16.0.sp),
                       ),
                     ],
-                  ),
-                ],
-              ),
-            )
-          : Container(
-              margin: EdgeInsets.symmetric(vertical: 7.5.h),
-              padding: EdgeInsets.all(20.0.r),
-              decoration: const BoxDecoration(
-                  color: LoturaColors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(12))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.noticeEntity.title,
-                      style: TextStyle(fontSize: 16.0.sp)),
-                  Text(widget.noticeEntity.date,
-                      style: TextStyle(fontSize: 10.0.sp)),
-                ],
-              ),
-            ),
+                  )
+                : const SizedBox.shrink(),
+          ],
+        ),
+      ),
     );
   }
 }
