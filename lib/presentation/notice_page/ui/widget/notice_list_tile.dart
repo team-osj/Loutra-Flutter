@@ -28,9 +28,22 @@ class _NoticeListTileState extends State<NoticeListTile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.noticeEntity.title,
-                style: TextStyle(fontSize: 16.0.sp)),
-            Text(widget.noticeEntity.date, style: TextStyle(fontSize: 10.0.sp)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(widget.noticeEntity.title,
+                        style: TextStyle(fontSize: 16.0.sp)),
+                    Text(widget.noticeEntity.date,
+                        style: TextStyle(fontSize: 10.0.sp)),
+                  ],
+                ),
+                Icon(
+                    _tap ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down),
+              ],
+            ),
             _tap
                 ? ListView(
                     padding: EdgeInsets.only(top: 10.0.r),
