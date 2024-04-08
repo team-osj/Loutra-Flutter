@@ -55,15 +55,17 @@ class ApplyPage extends StatelessWidget {
           IconButton(
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const NoticePage())),
-              icon: const Icon(
+              icon: Icon(
                 LoturaIcons.notice,
+                size: 24.0.r,
               )),
           IconButton(
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const SettingPage())),
-              icon: const Icon(
+              icon: Icon(
                 Icons.settings,
                 color: LoturaColors.black,
+                size: 28.0.r,
               )),
           SizedBox(width: 24.0.w),
         ],
