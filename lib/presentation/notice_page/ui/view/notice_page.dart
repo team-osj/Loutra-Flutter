@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/entity/notice_entity.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_state.dart';
 import 'package:lotura/presentation/notice_page/ui/widget/notice_list_tile.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
@@ -49,18 +49,19 @@ class NoticePage extends StatelessWidget {
         ),
         child: Padding(
           padding: EdgeInsets.all(12.0.r),
-          child: BlocBuilder<NoticeBloc, NoticeState<List<NoticeEntity>>>(
+          child: BlocBuilder<NoticeBloc, NoticeState<NoticeModel>>(
             builder: (context, state) => switch (state) {
               Empty() => const Center(child: Text("비어있음")),
               Loading() => const Center(child: CircularProgressIndicator()),
               Error() => const Center(child: Text("인터넷 연결을 확인해주세요")),
-              Loaded() => SizedBox(
+              Loaded(data: final data) => SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: ListView.builder(
-                    itemCount: state.data.length,
+                    itemCount: data.noticeList.length,
                     itemBuilder: (context, index) {
-                      return NoticeListTile(noticeEntity: state.data[index]);
+                      return NoticeListTile(
+                          noticeEntity: data.noticeList[index]);
                     },
                   ),
                 ),
