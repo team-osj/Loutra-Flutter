@@ -71,9 +71,9 @@ class ApplyPage extends StatelessWidget {
                 Text("알림 설정한", style: bigStyle),
                 Text("세탁기와 건조기", style: bigStyle),
                 SizedBox(height: 24.0.h),
-                Text("알림을 설정하여 세탁기와 건조기를", style: smallStyle),
+                Text("알림을 설정하여 세탁기와 건조기의", style: smallStyle),
                 SizedBox(height: 5.0.h),
-                Text("누구보다 빠르게 사용해보세요.", style: smallStyle),
+                Text("완료 알림을 수신해 보세요", style: smallStyle),
               ],
             ),
             SizedBox(height: 20.0.h),
@@ -84,7 +84,7 @@ class ApplyPage extends StatelessWidget {
                     Empty() => const Center(child: Text("비어있음")),
                     Loading() =>
                       const Center(child: CircularProgressIndicator()),
-                    Error() => const Center(child: Text("인터넷 연결을 확인해주세요")),
+                    Error() => const Center(child: Text("인터넷 연결을 확인하세요")),
                     Loaded() => ScrollConfiguration(
                         behavior:
                             const ScrollBehavior().copyWith(overscroll: false),

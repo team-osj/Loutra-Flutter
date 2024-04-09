@@ -59,11 +59,11 @@ class _BottomNaviState extends State<BottomNavi>
                         builder: (context) => Center(
                           child: AlertDialog(
                             title: Text(
-                              "NFC가 비활성화 되어있습니다.",
+                              "NFC가 꺼져 있어요",
                               style: TextStyle(fontSize: 20.0.sp),
                             ),
                             content: Text(
-                              "Lotura 서비스 이용을 위해\n스마트폰의 NFC를 설정해주세요.",
+                              "Lotura 서비스 이용을 위해\n스마트폰의 NFC를 켜 주세요.",
                               style: TextStyle(fontSize: 18.0.sp),
                             ),
                             shape: RoundedRectangleBorder(

@@ -36,31 +36,31 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
       if (isWoman) {
         switch (state) {
           case CurrentState.working:
-            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
+            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}의\n완료 알림을 설정할까요?";
           case CurrentState.available:
-            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
+            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}는\n사용할 수 있어요.";
           case CurrentState.disconnected:
             return "여자층 ${widget.index - 31}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case CurrentState.breakdown:
-            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
+            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}는\n고장으로 인해 사용할 수 없어요.";
         }
       } else {
         switch (state) {
           case CurrentState.working:
-            return "${widget.index}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
+            return "${widget.index}번 ${widget.machine.text}의\n완료 알림을 설정할까요?";
           case CurrentState.available:
-            return "${widget.index}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
+            return "${widget.index}번 ${widget.machine.text}는\n사용할 수 있어요.";
           case CurrentState.disconnected:
             return "${widget.index}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case CurrentState.breakdown:
-            return "${widget.index}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
+            return "${widget.index}번 ${widget.machine.text}는\n고장으로 인해 사용할 수 없어요.";
         }
       }
     } else {
       if (isWoman) {
-        return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
+        return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}의\n완료 알림을 해제할까요?";
       } else {
-        return "${widget.index}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
+        return "${widget.index}번 ${widget.machine.text}의\n완료 알림을 해제할까요?";
       }
     }
   }

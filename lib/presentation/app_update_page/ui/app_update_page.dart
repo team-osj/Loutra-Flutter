@@ -38,7 +38,7 @@ class AppUpdatePage extends StatelessWidget {
                     SizedBox(height: 10.0.h),
                     const Expanded(
                       child: Text(
-                        "Lotura의 새로운 버전이 출시되었어요!\n지금 바로 업데이트 하러 가기 ⬇️⬇️",
+                        "Lotura의 새로운 버전이 출시되었어요!",
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ),
