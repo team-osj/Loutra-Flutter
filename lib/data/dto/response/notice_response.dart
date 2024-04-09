@@ -24,6 +24,7 @@ class NoticeResponse {
 
   NoticeEntity toEntity() {
     return NoticeEntity(
+      noticeId: id,
       title: title,
       contents: contents,
       date: date,
