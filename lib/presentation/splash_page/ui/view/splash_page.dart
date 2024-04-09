@@ -63,12 +63,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     checkAppVersion();
-    context.read<LaundryBloc>().add(GetAllLaundryListEvent());
-    context.read<LaundryBloc>().add(GetLaundryEvent());
     context.read<NoticeBloc>().add(GetNoticeEvent());
+    context.read<LaundryBloc>().add(GetAllLaundryListEvent());
     context
         .read<ApplyBloc>()
         .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
+    context.read<LaundryBloc>().add(GetLaundryEvent());
   }
 
   @override
