@@ -6,6 +6,10 @@ import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_state.dart' as n;
 import 'package:lotura/presentation/notice_page/ui/view/notice_page.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
@@ -58,15 +62,23 @@ class LaundryRoomPage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                    onPressed: () => Navigator.push(
+                  onPressed: () {
+                    context.read<NoticeBloc>().add(UpdateLastNoticeIdEvent());
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NoticePage())),
-                    icon: Icon(
-                      LoturaIcons.notice,
+                            builder: (context) => const NoticePage()));
+                  },
+                  icon: BlocBuilder<NoticeBloc, n.NoticeState<NoticeModel>>(
+                    builder: (context, state) => Icon(
+                      state.value.isNewNotice
+                          ? LoturaIcons.notice
+                          : Icons.ac_unit,
                       size: 24.0.r,
                       color: LoturaColors.black,
-                    )),
+                    ),
+                  ),
+                ),
                 IconButton(
                   onPressed: () => Navigator.push(
                       context,
