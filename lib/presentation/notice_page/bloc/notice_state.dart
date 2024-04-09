@@ -11,7 +11,9 @@ sealed class NoticeState<T> {
 }
 
 class Empty<T> extends NoticeState<T> {
-  Empty() : super(noticeState: NoticeStateEnum.empty);
+  final T data;
+
+  Empty({required this.data}) : super(noticeState: NoticeStateEnum.empty);
 }
 
 class Loading<T> extends NoticeState<T> {
