@@ -6,6 +6,11 @@ import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_state.dart' as n;
+import 'package:lotura/presentation/notice_page/ui/view/notice_page.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -57,11 +62,50 @@ class LaundryRoomPage extends StatelessWidget {
               ),
               actions: [
                 IconButton(
+                  onPressed: () {
+                    context.read<NoticeBloc>().add(UpdateLastNoticeIdEvent());
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NoticePage()));
+                  },
+                  icon: BlocBuilder<NoticeBloc, n.NoticeState<NoticeModel>>(
+                    builder: (context, state) => state.value.isNewNotice
+                        ? Stack(
+                            alignment: Alignment.topRight,
+                            children: [
+                              Icon(
+                                LoturaIcons.notice,
+                                color: LoturaColors.black,
+                                size: 24.0.r,
+                              ),
+                              Container(
+                                width: 10.0.r,
+                                height: 10.0.r,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blue,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Icon(
+                            LoturaIcons.notice,
+                            color: LoturaColors.black,
+                            size: 24.0.r,
+                          ),
+                  ),
+                ),
+                IconButton(
                   onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const SettingPage())),
-                  icon: Icon(Icons.settings, color: LoturaColors.black),
+                  icon: Icon(
+                    Icons.settings,
+                    color: LoturaColors.black,
+                    size: 28.0.r,
+                  ),
                 ),
                 SizedBox(width: 24.0.w),
               ],
