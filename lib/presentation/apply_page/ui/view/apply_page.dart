@@ -63,11 +63,30 @@ class ApplyPage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const NoticePage()));
             },
             icon: BlocBuilder<NoticeBloc, n.NoticeState<NoticeModel>>(
-              builder: (context, state) => Icon(
-                state.value.isNewNotice ? LoturaIcons.notice : Icons.ac_unit,
-                size: 24.0.r,
-                color: LoturaColors.black,
-              ),
+              builder: (context, state) => state.value.isNewNotice
+                  ? Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Icon(
+                          LoturaIcons.notice,
+                          color: LoturaColors.black,
+                          size: 24.0.r,
+                        ),
+                        Container(
+                          width: 10.0.r,
+                          height: 10.0.r,
+                          decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ],
+                    )
+                  : Icon(
+                      LoturaIcons.notice,
+                      color: LoturaColors.black,
+                      size: 24.0.r,
+                    ),
             ),
           ),
           IconButton(
