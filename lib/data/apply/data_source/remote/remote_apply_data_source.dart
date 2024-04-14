@@ -32,14 +32,11 @@ class RemoteApplyDataSource {
     }
   }
 
-  Future<List<ApplyEntity>> applyCancel(
+  Future<void> applyCancel(
       {required ApplyCancelRequest applyCancelRequest}) async {
     applyCancelRequest.token = await _getToken();
     final response = await http.post(Uri.parse("$baseurl/push_cancel"),
         body: applyCancelRequest.toJson());
     if (response.statusCode != 200) throw Exception(response.body);
-    return (jsonDecode(response.body) as List<dynamic>)
-        .map((i) => ApplyResponse.fromJson(i).toEntity())
-        .toList();
   }
 }

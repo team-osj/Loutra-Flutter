@@ -13,18 +13,16 @@ class ApplyRepositoryImpl implements ApplyRepository {
       : _remoteApplyDataSource = remoteApplyDataSource;
 
   @override
-  Future<List<ApplyEntity>> getApplyList() async =>
+  Future<List<ApplyEntity>> getApplyList() =>
       _remoteApplyDataSource.getApplyList();
 
   @override
-  Future<void> sendFCMInfo(
-          {required SendFCMInfoRequest sendFCMInfoRequest}) async =>
+  Future<void> sendFCMInfo({required SendFCMInfoRequest sendFCMInfoRequest}) =>
       _remoteApplyDataSource.sendFCMInfo(
           sendFCMInfoRequest: sendFCMInfoRequest);
 
   @override
-  Future<List<ApplyEntity>> applyCancel(
-          {required ApplyCancelRequest applyCancelRequest}) async =>
+  Future<void> applyCancel({required ApplyCancelRequest applyCancelRequest}) =>
       _remoteApplyDataSource.applyCancel(
           applyCancelRequest: applyCancelRequest);
 }
