@@ -1,15 +1,15 @@
 import 'package:lotura/domain/entity/laundry_entity.dart';
 
 class LaundryModel {
-  final LaundryEntity laundryEntity;
+  final List<LaundryEntity> laundryList;
 
   const LaundryModel({
-    required this.laundryEntity,
+    required this.laundryList,
   });
 
-  LaundryModel copyWith({LaundryEntity? laundryEntity}) {
+  LaundryModel copyWith({List<LaundryEntity>? laundryList}) {
     return LaundryModel(
-      laundryEntity: laundryEntity ?? this.laundryEntity,
+      laundryList: laundryList ?? this.laundryList,
     );
   }
 }

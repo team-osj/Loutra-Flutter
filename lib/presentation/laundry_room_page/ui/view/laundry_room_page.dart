@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lotura/domain/entity/laundry_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_model.dart';
@@ -209,8 +210,7 @@ class LaundryRoomPage extends StatelessWidget {
                     ],
                   ),
                   Expanded(
-                    child: BlocBuilder<LaundryBloc,
-                        LaundryState<List<LaundryModel>>>(
+                    child: BlocBuilder<LaundryBloc, LaundryState<LaundryModel>>(
                       builder: (context, state) {
                         return switch (state) {
                           Empty() => const Center(child: Text("비어있음")),
@@ -219,7 +219,7 @@ class LaundryRoomPage extends StatelessWidget {
                           Error() =>
                             const Center(child: Text("인터넷 연결을 확인해주세요")),
                           Loaded() => LaundryList(
-                              list: state.data,
+                              list: state.data.laundryList,
                               laundryRoomModel: roomBlocState.value,
                               nfcData: nfcTagData,
                             ),
@@ -247,7 +247,7 @@ class LaundryList extends StatelessWidget {
     required this.nfcData,
   });
 
-  final List<LaundryModel> list;
+  final List<LaundryEntity> list;
   final LaundryRoomModel laundryRoomModel;
   final int nfcData;
 
@@ -293,8 +293,8 @@ class LaundryList extends StatelessWidget {
               index: nfcData,
               isEnableNotification: true,
               isWoman: nfcData > 31 ? true : false,
-              state: list[nfcData - 1].laundryEntity.state,
-              machine: list[nfcData - 1].laundryEntity.deviceType,
+              state: list[nfcData - 1].state,
+              machine: list[nfcData - 1].deviceType,
             ),
           );
         }
@@ -316,17 +316,14 @@ class LaundryList extends StatelessWidget {
                       index: list[
                               placeIndex[laundryRoomModel.roomLocation.index]! +
                                   index]
-                          .laundryEntity
                           .id,
                       machine: list[
                               placeIndex[laundryRoomModel.roomLocation.index]! +
                                   index]
-                          .laundryEntity
                           .deviceType,
                       state: list[
                               placeIndex[laundryRoomModel.roomLocation.index]! +
                                   index]
-                          .laundryEntity
                           .state),
                   laundryRoomModel.buttonView.triangle,
                   machineWidget(
@@ -345,7 +342,6 @@ class LaundryList extends StatelessWidget {
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8)]
-                            .laundryEntity
                             .id
                         : -1,
                     machine: placeIndex[laundryRoomModel.roomLocation.index]! +
@@ -362,7 +358,6 @@ class LaundryList extends StatelessWidget {
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8)]
-                            .laundryEntity
                             .deviceType
                         : Machine.dry,
                     state: placeIndex[laundryRoomModel.roomLocation.index]! +
@@ -379,7 +374,6 @@ class LaundryList extends StatelessWidget {
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8)]
-                            .laundryEntity
                             .state
                         : CurrentState.breakdown,
                   ),
