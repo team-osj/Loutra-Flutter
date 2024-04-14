@@ -140,8 +140,8 @@ class ApplyPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     MachineCard(
-                                        index: state.value.applyList[index * 2]
-                                            .deviceId,
+                                        deviceId: state.value
+                                            .applyList[index * 2].deviceId,
                                         isEnableNotification: false,
                                         isWoman: state
                                                     .value
@@ -155,7 +155,7 @@ class ApplyPage extends StatelessWidget {
                                         state: CurrentState.working),
                                     index * 2 + 1 < state.value.applyList.length
                                         ? MachineCard(
-                                            index: state
+                                            deviceId: state
                                                 .value
                                                 .applyList[index * 2 + 1]
                                                 .deviceId,

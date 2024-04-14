@@ -255,18 +255,18 @@ class LaundryList extends StatelessWidget {
 
   MachineWidget machineWidget(
           {required LaundryRoomModel roomState,
-          required int index,
+          required int deviceId,
           required CurrentState state,
           required Machine machine}) =>
       roomState.buttonView == ButtonView.image
           ? MachineCard(
-              index: index,
+              deviceId: deviceId,
               isEnableNotification: true,
               isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               state: state,
               machine: machine)
           : MachineButton(
-              index: index,
+              deviceId: deviceId,
               isEnableNotification: true,
               isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               state: state,
@@ -290,7 +290,7 @@ class LaundryList extends StatelessWidget {
               ),
             ),
             builder: (context) => OSJBottomSheet(
-              index: nfcData,
+              deviceId: nfcData,
               isEnableNotification: true,
               isWoman: nfcData > 31 ? true : false,
               state: list[nfcData - 1].state,
@@ -313,7 +313,7 @@ class LaundryList extends StatelessWidget {
                 children: [
                   machineWidget(
                       roomState: laundryRoomModel,
-                      index: list[
+                      deviceId: list[
                               placeIndex[laundryRoomModel.roomLocation.index]! +
                                   index]
                           .id,
@@ -328,7 +328,7 @@ class LaundryList extends StatelessWidget {
                   laundryRoomModel.buttonView.triangle,
                   machineWidget(
                     roomState: laundryRoomModel,
-                    index: placeIndex[laundryRoomModel.roomLocation.index]! +
+                    deviceId: placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
                                 (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
