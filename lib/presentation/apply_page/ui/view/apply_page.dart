@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_model.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
@@ -118,7 +118,7 @@ class ApplyPage extends StatelessWidget {
             ),
             SizedBox(height: 20.0.h),
             Expanded(
-              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyEntity>>>(
+              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyModel>>>(
                 builder: (context, state) {
                   return switch (state) {
                     Empty() => const Center(child: Text("비어있음")),
