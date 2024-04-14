@@ -150,8 +150,8 @@ class ApplyPage extends StatelessWidget {
                                                 31
                                             ? true
                                             : false,
-                                        machine: state
-                                            .value.applyList[index * 2].machine,
+                                        deviceType: state.value
+                                            .applyList[index * 2].deviceType,
                                         state: CurrentState.working),
                                     index * 2 + 1 < state.value.applyList.length
                                         ? MachineCard(
@@ -168,10 +168,10 @@ class ApplyPage extends StatelessWidget {
                                                     31
                                                 ? true
                                                 : false,
-                                            machine: state
+                                            deviceType: state
                                                 .value
                                                 .applyList[index * 2 + 1]
-                                                .machine,
+                                                .deviceType,
                                             state: CurrentState.working)
                                         : SizedBox(
                                             width: 185.0.w,

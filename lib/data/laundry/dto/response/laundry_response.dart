@@ -1,12 +1,16 @@
 import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
+import 'package:lotura/main.dart';
 
 class LaundryResponse {
   final int id;
   final int state;
   final String deviceType;
 
-  LaundryResponse(
-      {required this.id, required this.state, required this.deviceType});
+  const LaundryResponse({
+    required this.id,
+    required this.state,
+    required this.deviceType,
+  });
 
   factory LaundryResponse.fromJson(Map<String, dynamic> json) {
     return LaundryResponse(
@@ -19,8 +23,8 @@ class LaundryResponse {
   LaundryEntity toEntity() {
     return LaundryEntity(
       id: id,
-      state: state,
-      deviceType: deviceType,
+      state: CurrentState.values.elementAt(state),
+      deviceType: deviceType == "WASH" ? DeviceType.wash : DeviceType.dry,
     );
   }
 }

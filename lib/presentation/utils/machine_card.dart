@@ -9,7 +9,7 @@ class MachineCard extends MachineWidget {
     required super.deviceId,
     required super.isEnableNotification,
     required super.isWoman,
-    required super.machine,
+    required super.deviceType,
     required super.state,
   });
 
@@ -30,9 +30,7 @@ class MachineCard extends MachineWidget {
                 children: [
                   SizedBox(height: 24.0.h),
                   Image.asset(
-                    machine.index == 0
-                        ? "assets/laundry_image.jpeg"
-                        : "assets/dry_image.jpeg",
+                    deviceType.imagePath,
                     width: 120.0.r,
                     height: 120.0.r,
                   ),
@@ -48,7 +46,7 @@ class MachineCard extends MachineWidget {
                         ),
                       ),
                       Text(
-                        machine.index == 0 ? "세탁기" : "건조기",
+                        deviceType.text,
                         style: TextStyle(fontSize: 16.0.sp),
                       ),
                     ],

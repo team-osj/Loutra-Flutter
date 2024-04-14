@@ -10,7 +10,7 @@ class MachineButton extends MachineWidget {
     required super.isEnableNotification,
     required super.isWoman,
     required super.state,
-    required super.machine,
+    required super.deviceType,
   });
 
   @override
@@ -33,7 +33,7 @@ class MachineButton extends MachineWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(machine.icon,
+                    Icon(deviceType.icon,
                         size: 24.0.r, color: LoturaColors.gray300),
                     Row(
                       children: [
@@ -43,7 +43,8 @@ class MachineButton extends MachineWidget {
                             width: (isWoman ? deviceId - 31 : deviceId) < 10
                                 ? 10.2.w
                                 : 5.0.w),
-                        Text(machine.text, style: TextStyle(fontSize: 16.0.sp)),
+                        Text(deviceType.text,
+                            style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(width: 8.0.w),
                         Icon(
                           state.icon,
