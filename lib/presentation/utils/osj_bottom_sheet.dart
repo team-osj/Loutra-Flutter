@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/data/apply/dto/request/apply_cancel_request.dart';
-import 'package:lotura/data/apply/dto/request/send_fcm_info_request.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
@@ -14,14 +12,14 @@ import 'package:lotura/presentation/utils/osj_text_button.dart';
 class OSJBottomSheet extends StatefulWidget {
   const OSJBottomSheet({
     super.key,
-    required this.index,
+    required this.deviceId,
     required this.isEnableNotification,
     required this.isWoman,
     required this.state,
     required this.machine,
   });
 
-  final int index;
+  final int deviceId;
   final bool isEnableNotification, isWoman;
   final CurrentState state;
   final Machine machine;
@@ -36,31 +34,31 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
       if (isWoman) {
         switch (state) {
           case CurrentState.working:
-            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
+            return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
           case CurrentState.available:
-            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
+            return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
           case CurrentState.disconnected:
-            return "여자층 ${widget.index - 31}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
+            return "여자층 ${widget.deviceId - 31}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case CurrentState.breakdown:
-            return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
+            return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
         }
       } else {
         switch (state) {
           case CurrentState.working:
-            return "${widget.index}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
+            return "${widget.deviceId}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
           case CurrentState.available:
-            return "${widget.index}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
+            return "${widget.deviceId}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
           case CurrentState.disconnected:
-            return "${widget.index}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
+            return "${widget.deviceId}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
           case CurrentState.breakdown:
-            return "${widget.index}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
+            return "${widget.deviceId}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
         }
       }
     } else {
       if (isWoman) {
-        return "여자 세탁실 ${widget.index - 31}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
+        return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
       } else {
-        return "${widget.index}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
+        return "${widget.deviceId}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
       }
     }
   }
@@ -137,15 +135,13 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                             function: () {
                               widget.isEnableNotification
                                   ? context.read<ApplyBloc>().add(SendFCMEvent(
-                                      sendFCMInfoRequest: SendFCMInfoRequest(
-                                          deviceId: widget.index.toString(),
-                                          expectState: '1')))
-                                  : context.read<ApplyBloc>().add(
-                                      ApplyCancelEvent(
-                                          applyCancelRequest:
-                                              ApplyCancelRequest(
-                                                  deviceId: widget.index
-                                                      .toString())));
+                                      deviceId: widget.deviceId,
+                                      deviceType: widget.machine))
+                                  : context
+                                      .read<ApplyBloc>()
+                                      .add(ApplyCancelEvent(
+                                        deviceId: widget.deviceId,
+                                      ));
                               context
                                   .read<RoomBloc>()
                                   .add(ClosingBottomSheetEvent());
