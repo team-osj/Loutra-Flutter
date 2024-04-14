@@ -1,11 +1,11 @@
 import 'package:lotura/main.dart';
 
-class LaundryRoomEntity {
+class LaundryRoomModel {
   final RoomLocation roomLocation;
   final ButtonView buttonView;
   final bool isClick, isNFCShowBottomSheet, showingBottomSheet;
 
-  const LaundryRoomEntity({
+  const LaundryRoomModel({
     required this.roomLocation,
     required this.buttonView,
     required this.isClick,
@@ -13,13 +13,13 @@ class LaundryRoomEntity {
     required this.showingBottomSheet,
   });
 
-  LaundryRoomEntity copyWith(
+  LaundryRoomModel copyWith(
       {RoomLocation? roomLocation,
       ButtonView? buttonView,
       bool? isClick,
       bool? isNFCShowBottomSheet,
       bool? showingBottomSheet}) {
-    return LaundryRoomEntity(
+    return LaundryRoomModel(
         roomLocation: roomLocation ?? this.roomLocation,
         buttonView: buttonView ?? this.buttonView,
         isClick: isClick ?? this.isClick,
