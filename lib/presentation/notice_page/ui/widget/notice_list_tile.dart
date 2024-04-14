@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/entity/notice_entity.dart';
+import 'package:lotura/domain/notice/entity/notice_entity.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 
 class NoticeListTile extends StatefulWidget {

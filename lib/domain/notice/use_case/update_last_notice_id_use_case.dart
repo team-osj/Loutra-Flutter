@@ -1,5 +1,5 @@
-import 'package:lotura/domain/entity/notice_entity.dart';
-import 'package:lotura/domain/repository/notice_repository.dart';
+import 'package:lotura/domain/notice/entity/notice_entity.dart';
+import 'package:lotura/domain/notice/repository/notice_repository.dart';
 
 class UpdateLastNoticeIdUseCase {
   final NoticeRepository _noticeRepository;

@@ -1,7 +1,7 @@
-import 'package:lotura/data/data_source/notice/local/local_notice_data_source.dart';
-import 'package:lotura/data/data_source/notice/remote/remote_notice_data_source.dart';
-import 'package:lotura/domain/entity/notice_entity.dart';
-import 'package:lotura/domain/repository/notice_repository.dart';
+import 'package:lotura/data/notice/data_source/local/local_notice_data_source.dart';
+import 'package:lotura/data/notice/data_source/remote/remote_notice_data_source.dart';
+import 'package:lotura/domain/notice/entity/notice_entity.dart';
+import 'package:lotura/domain/notice/repository/notice_repository.dart';
 
 class NoticeRepositoryImpl implements NoticeRepository {
   final RemoteNoticeDataSource _remoteNoticeDataSource;

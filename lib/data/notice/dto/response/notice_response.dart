@@ -1,4 +1,4 @@
-import 'package:lotura/domain/entity/notice_entity.dart';
+import 'package:lotura/domain/notice/entity/notice_entity.dart';
 
 class NoticeResponse {
   final int id;

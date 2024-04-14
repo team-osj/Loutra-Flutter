@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/domain/entity/notice_entity.dart';
-import 'package:lotura/domain/use_case/get_last_notice_id_use_case.dart';
-import 'package:lotura/domain/use_case/get_notice_use_case.dart';
-import 'package:lotura/domain/use_case/update_last_notice_id_use_case.dart';
+import 'package:lotura/domain/notice/entity/notice_entity.dart';
+import 'package:lotura/domain/notice/use_case/get_last_notice_id_use_case.dart';
+import 'package:lotura/domain/notice/use_case/get_notice_use_case.dart';
+import 'package:lotura/domain/notice/use_case/update_last_notice_id_use_case.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_state.dart';
