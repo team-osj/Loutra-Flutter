@@ -1,7 +1,7 @@
 class SendFCMInfoRequest {
   String? token;
-  String deviceId;
-  String expectState;
+  int deviceId;
+  int expectState;
 
   SendFCMInfoRequest(
       {this.token, required this.deviceId, required this.expectState});

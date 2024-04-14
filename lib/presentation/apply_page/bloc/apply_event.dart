@@ -1,6 +1,5 @@
-import 'package:lotura/data/apply/dto/request/apply_cancel_request.dart';
 import 'package:lotura/data/apply/dto/request/get_apply_list_request.dart';
-import 'package:lotura/data/apply/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/main.dart';
 
 abstract class ApplyEvent {}
 
@@ -11,13 +10,19 @@ class GetApplyListEvent extends ApplyEvent {
 }
 
 class ApplyCancelEvent extends ApplyEvent {
-  final ApplyCancelRequest applyCancelRequest;
+  final int deviceId;
 
-  ApplyCancelEvent({required this.applyCancelRequest});
+  ApplyCancelEvent({
+    required this.deviceId,
+  });
 }
 
 class SendFCMEvent extends ApplyEvent {
-  final SendFCMInfoRequest sendFCMInfoRequest;
+  final int deviceId;
+  final Machine deviceType;
 
-  SendFCMEvent({required this.sendFCMInfoRequest});
+  SendFCMEvent({
+    required this.deviceId,
+    required this.deviceType,
+  });
 }

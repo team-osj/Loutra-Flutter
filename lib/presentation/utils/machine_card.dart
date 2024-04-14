@@ -6,7 +6,7 @@ import 'package:lotura/presentation/utils/osj_status_button.dart';
 class MachineCard extends MachineWidget {
   const MachineCard({
     super.key,
-    required super.index,
+    required super.deviceId,
     required super.isEnableNotification,
     required super.isWoman,
     required super.machine,
@@ -41,7 +41,7 @@ class MachineCard extends MachineWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${isWoman ? index - 31 : index}번 ",
+                        "${isWoman ? deviceId - 31 : deviceId}번 ",
                         style: TextStyle(
                           fontSize: 16.0.sp,
                           fontWeight: FontWeight.w500,

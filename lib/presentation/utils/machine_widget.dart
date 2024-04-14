@@ -6,14 +6,14 @@ import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 abstract class MachineWidget extends StatelessWidget {
   const MachineWidget({
     super.key,
-    required this.index,
+    required this.deviceId,
     required this.isEnableNotification,
     required this.isWoman,
     required this.state,
     required this.machine,
   });
 
-  final int index;
+  final int deviceId;
   final bool isEnableNotification, isWoman;
 
   final CurrentState state;
@@ -21,7 +21,7 @@ abstract class MachineWidget extends StatelessWidget {
   final Machine machine;
 
   bool get isEmptyContainer =>
-      (!isWoman && index == 32) || (isWoman && index == -1);
+      (!isWoman && deviceId == 32) || (isWoman && deviceId == -1);
 
   void showModalOSJBottomSheet({required BuildContext context}) =>
       showModalBottomSheet(
@@ -32,7 +32,7 @@ abstract class MachineWidget extends StatelessWidget {
           ),
         ),
         builder: (context) => OSJBottomSheet(
-          index: index,
+          deviceId: deviceId,
           isEnableNotification: isEnableNotification,
           isWoman: isWoman,
           state: state,

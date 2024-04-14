@@ -26,20 +26,19 @@ class RemoteApplyDataSource {
       {required SendFCMInfoRequest sendFCMInfoRequest}) async {
     sendFCMInfoRequest.token = await _getToken();
     final response = await http.post(Uri.parse("$baseurl/push_request"),
-        body: sendFCMInfoRequest.toJson());
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(sendFCMInfoRequest.toJson()));
     if (response.statusCode != 200 && response.statusCode != 304) {
       throw Exception(response.body);
     }
   }
 
-  Future<List<ApplyEntity>> applyCancel(
+  Future<void> applyCancel(
       {required ApplyCancelRequest applyCancelRequest}) async {
     applyCancelRequest.token = await _getToken();
     final response = await http.post(Uri.parse("$baseurl/push_cancel"),
-        body: applyCancelRequest.toJson());
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(applyCancelRequest.toJson()));
     if (response.statusCode != 200) throw Exception(response.body);
-    return (jsonDecode(response.body) as List<dynamic>)
-        .map((i) => ApplyResponse.fromJson(i).toEntity())
-        .toList();
   }
 }
