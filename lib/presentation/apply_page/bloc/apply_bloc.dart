@@ -1,4 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lotura/data/apply/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/apply/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/domain/apply/entity/apply_entity.dart';
 import 'package:lotura/domain/apply/use_case/apply_cancel_use_case.dart';
 import 'package:lotura/domain/apply/use_case/get_apply_list_use_case.dart';
 import 'package:lotura/domain/apply/use_case/send_fcm_info_use_case.dart';
@@ -39,10 +42,16 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<ApplyModel>> {
   void _sendFCMEventHandler(
       SendFCMEvent event, Emitter<ApplyState<ApplyModel>> emit) async {
     try {
+      List<ApplyEntity> newApplyList = state.value.applyList;
       emit(Loading());
-      final applyList = await _sendFCMInfoUseCase.execute(
-          sendFCMInfoRequest: event.sendFCMInfoRequest);
-      final applyModel = ApplyModel(applyList: applyList);
+      await _sendFCMInfoUseCase.execute(
+          sendFCMInfoRequest:
+              SendFCMInfoRequest(deviceId: event.deviceId, expectState: 1));
+      newApplyList.add(ApplyEntity(
+          deviceId: event.deviceId,
+          deviceType: event.deviceType.text == "세탁기" ? "WASH" : "DRY"));
+      newApplyList.sort((a, b) => a.deviceId.compareTo(b.deviceId));
+      final applyModel = ApplyModel(applyList: newApplyList);
       emit(Loaded(data: applyModel));
     } catch (e) {
       emit(Error(errorMessage: e));
@@ -52,10 +61,12 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<ApplyModel>> {
   void _applyCancelEventHandler(
       ApplyCancelEvent event, Emitter<ApplyState<ApplyModel>> emit) async {
     try {
+      List<ApplyEntity> newApplyList = state.value.applyList;
       emit(Loading());
-      final applyList = await _applyCancelUseCase.execute(
-          applyCancelRequest: event.applyCancelRequest);
-      final applyModel = ApplyModel(applyList: applyList);
+      await _applyCancelUseCase.execute(
+          applyCancelRequest: ApplyCancelRequest(deviceId: event.deviceId));
+      newApplyList.removeWhere((e) => e.deviceId == event.deviceId);
+      final applyModel = ApplyModel(applyList: newApplyList);
       emit(Loaded(data: applyModel));
     } catch (e) {
       emit(Error(errorMessage: e));
