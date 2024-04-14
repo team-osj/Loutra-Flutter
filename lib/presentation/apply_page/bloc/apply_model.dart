@@ -1,21 +1,13 @@
-import 'package:lotura/main.dart';
+import 'package:lotura/domain/entity/apply_entity.dart';
 
 class ApplyModel {
-  final int deviceId;
-  final String deviceType;
-  final Machine machine;
+  final List<ApplyEntity> applyList;
 
-  const ApplyModel({
-    required this.deviceId,
-    required this.deviceType,
-    required this.machine,
+  ApplyModel({
+    required this.applyList,
   });
 
-  ApplyModel copyWith({int? deviceId, String? deviceType, Machine? machine}) {
-    return ApplyModel(
-      deviceId: deviceId ?? this.deviceId,
-      deviceType: deviceType ?? this.deviceType,
-      machine: machine ?? this.machine,
-    );
+  ApplyModel copyWith({List<ApplyEntity>? applyList}) {
+    return ApplyModel(applyList: applyList ?? this.applyList);
   }
 }

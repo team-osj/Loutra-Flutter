@@ -118,7 +118,7 @@ class ApplyPage extends StatelessWidget {
             ),
             SizedBox(height: 20.0.h),
             Expanded(
-              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyModel>>>(
+              child: BlocBuilder<ApplyBloc, ApplyState<ApplyModel>>(
                 builder: (context, state) {
                   return switch (state) {
                     Empty() => const Center(child: Text("비어있음")),
@@ -129,9 +129,9 @@ class ApplyPage extends StatelessWidget {
                         behavior:
                             const ScrollBehavior().copyWith(overscroll: false),
                         child: ListView.builder(
-                          itemCount: state.value.length.isEven
-                              ? state.value.length ~/ 2
-                              : state.value.length ~/ 2 + 1,
+                          itemCount: state.value.applyList.length.isEven
+                              ? state.value.applyList.length ~/ 2
+                              : state.value.applyList.length ~/ 2 + 1,
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
@@ -140,26 +140,38 @@ class ApplyPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     MachineCard(
-                                        index: state.value[index * 2].deviceId,
+                                        index: state.value.applyList[index * 2]
+                                            .deviceId,
                                         isEnableNotification: false,
-                                        isWoman:
-                                            state.value[index * 2].deviceId > 31
-                                                ? true
-                                                : false,
-                                        machine: state.value[index * 2].machine,
+                                        isWoman: state
+                                                    .value
+                                                    .applyList[index * 2]
+                                                    .deviceId >
+                                                31
+                                            ? true
+                                            : false,
+                                        machine: state
+                                            .value.applyList[index * 2].machine,
                                         state: CurrentState.working),
-                                    index * 2 + 1 < state.value.length
+                                    index * 2 + 1 < state.value.applyList.length
                                         ? MachineCard(
                                             index: state
-                                                .value[index * 2 + 1].deviceId,
+                                                .value
+                                                .applyList[index * 2 + 1]
+                                                .deviceId,
                                             isEnableNotification: false,
-                                            isWoman: state.value[index * 2 + 1]
+                                            isWoman: state
+                                                        .value
+                                                        .applyList[
+                                                            index * 2 + 1]
                                                         .deviceId >
                                                     31
                                                 ? true
                                                 : false,
                                             machine: state
-                                                .value[index * 2 + 1].machine,
+                                                .value
+                                                .applyList[index * 2 + 1]
+                                                .machine,
                                             state: CurrentState.working)
                                         : SizedBox(
                                             width: 185.0.w,
