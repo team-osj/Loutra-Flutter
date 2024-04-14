@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:lotura/data/laundry/data_source/local/local_laundry_data_source.dart';
 import 'package:lotura/data/laundry/data_source/remote/remote_laundry_data_source.dart';
-import 'package:lotura/domain/entity/laundry_entity.dart';
-import 'package:lotura/domain/repository/laundry_repository.dart';
+import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
+import 'package:lotura/domain/laundry/repository/laundry_repository.dart';
 
 class LaundryRepositoryImpl implements LaundryRepository {
   final LocalLaundryDataSource _localLaundryDataSource;

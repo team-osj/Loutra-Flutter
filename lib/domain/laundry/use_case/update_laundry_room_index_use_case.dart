@@ -1,4 +1,4 @@
-import 'package:lotura/domain/repository/laundry_repository.dart';
+import 'package:lotura/domain/laundry/repository/laundry_repository.dart';
 
 class UpdateLaundryRoomIndexUseCase {
   final LaundryRepository _laundryRepository;

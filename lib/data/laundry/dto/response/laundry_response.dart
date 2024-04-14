@@ -1,4 +1,4 @@
-import 'package:lotura/domain/entity/laundry_entity.dart';
+import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
 
 class LaundryResponse {
   final int id;

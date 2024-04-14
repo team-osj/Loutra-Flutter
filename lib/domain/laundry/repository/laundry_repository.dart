@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:lotura/domain/entity/laundry_entity.dart';
+import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
 
 abstract class LaundryRepository {
   Stream<LaundryEntity> get laundryList;

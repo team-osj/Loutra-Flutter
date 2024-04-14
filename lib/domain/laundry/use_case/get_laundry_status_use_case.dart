@@ -1,5 +1,5 @@
-import 'package:lotura/domain/entity/laundry_entity.dart';
-import 'package:lotura/domain/repository/laundry_repository.dart';
+import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
+import 'package:lotura/domain/laundry/repository/laundry_repository.dart';
 
 class GetLaundryStatusUseCase {
   final LaundryRepository _laundryRepository;
