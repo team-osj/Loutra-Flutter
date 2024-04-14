@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:lotura/data/data_source/laundry/local/local_laundry_data_source.dart';
-import 'package:lotura/data/data_source/laundry/remote/remote_laundry_data_source.dart';
+import 'package:lotura/data/laundry/data_source/local/local_laundry_data_source.dart';
+import 'package:lotura/data/laundry/data_source/remote/remote_laundry_data_source.dart';
 import 'package:lotura/domain/entity/laundry_entity.dart';
 import 'package:lotura/domain/repository/laundry_repository.dart';
 

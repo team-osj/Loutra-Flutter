@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:lotura/data/data_source/apply/remote/remote_apply_data_source.dart';
-import 'package:lotura/data/dto/request/apply_cancel_request.dart';
-import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
-import 'package:lotura/domain/entity/apply_entity.dart';
-import 'package:lotura/domain/repository/apply_repository.dart';
+import 'package:lotura/data/apply/data_source/remote/remote_apply_data_source.dart';
+import 'package:lotura/data/apply/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/apply/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/domain/apply/entity/apply_entity.dart';
+import 'package:lotura/domain/apply/repository/apply_repository.dart';
 
 class ApplyRepositoryImpl implements ApplyRepository {
   final RemoteApplyDataSource _remoteApplyDataSource;

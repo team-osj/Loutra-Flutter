@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
-import 'package:lotura/data/dto/request/apply_cancel_request.dart';
-import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
-import 'package:lotura/data/dto/response/apply_response.dart';
-import 'package:lotura/domain/entity/apply_entity.dart';
+import 'package:lotura/data/apply/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/apply/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/data/apply/dto/response/apply_response.dart';
+import 'package:lotura/domain/apply/entity/apply_entity.dart';
 import 'package:lotura/secret.dart';
 
 class RemoteApplyDataSource {

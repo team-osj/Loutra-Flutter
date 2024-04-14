@@ -3,7 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/data/apply/dto/request/get_apply_list_request.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 

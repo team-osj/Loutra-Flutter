@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/domain/use_case/apply_cancel_use_case.dart';
-import 'package:lotura/domain/use_case/get_apply_list_use_case.dart';
-import 'package:lotura/domain/use_case/send_fcm_info_use_case.dart';
+import 'package:lotura/domain/apply/use_case/apply_cancel_use_case.dart';
+import 'package:lotura/domain/apply/use_case/get_apply_list_use_case.dart';
+import 'package:lotura/domain/apply/use_case/send_fcm_info_use_case.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_model.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/data/apply/dto/request/get_apply_list_request.dart';
 import 'package:lotura/presentation/app_update_page/ui/app_update_page.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';

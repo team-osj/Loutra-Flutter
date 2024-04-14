@@ -1,4 +1,4 @@
-import 'package:lotura/domain/entity/apply_entity.dart';
+import 'package:lotura/domain/apply/entity/apply_entity.dart';
 
 class ApplyResponse {
   final int deviceId;
