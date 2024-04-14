@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
@@ -22,7 +22,7 @@ class OSJBottomSheet extends StatefulWidget {
   final int deviceId;
   final bool isEnableNotification, isWoman;
   final CurrentState state;
-  final Machine machine;
+  final DeviceType machine;
 
   @override
   State<OSJBottomSheet> createState() => _OSJBottomSheetState();

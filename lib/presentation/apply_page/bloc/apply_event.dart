@@ -19,7 +19,7 @@ class ApplyCancelEvent extends ApplyEvent {
 
 class SendFCMEvent extends ApplyEvent {
   final int deviceId;
-  final Machine deviceType;
+  final DeviceType deviceType;
 
   SendFCMEvent({
     required this.deviceId,

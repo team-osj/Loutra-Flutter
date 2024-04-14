@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as m;
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 
@@ -10,15 +10,14 @@ abstract class MachineWidget extends StatelessWidget {
     required this.isEnableNotification,
     required this.isWoman,
     required this.state,
-    required this.machine,
+    required this.deviceType,
   });
 
   final int deviceId;
   final bool isEnableNotification, isWoman;
 
   final CurrentState state;
-
-  final Machine machine;
+  final DeviceType deviceType;
 
   bool get isEmptyContainer =>
       (!isWoman && deviceId == 32) || (isWoman && deviceId == -1);
@@ -36,7 +35,7 @@ abstract class MachineWidget extends StatelessWidget {
           isEnableNotification: isEnableNotification,
           isWoman: isWoman,
           state: state,
-          machine: machine,
+          machine: deviceType,
         ),
       );
 }

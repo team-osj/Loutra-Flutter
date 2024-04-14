@@ -47,9 +47,8 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<ApplyModel>> {
       await _sendFCMInfoUseCase.execute(
           sendFCMInfoRequest:
               SendFCMInfoRequest(deviceId: event.deviceId, expectState: 1));
-      newApplyList.add(ApplyEntity(
-          deviceId: event.deviceId,
-          deviceType: event.deviceType.text == "세탁기" ? "WASH" : "DRY"));
+      newApplyList.add(
+          ApplyEntity(deviceId: event.deviceId, deviceType: event.deviceType));
       newApplyList.sort((a, b) => a.deviceId.compareTo(b.deviceId));
       final applyModel = ApplyModel(applyList: newApplyList);
       emit(Loaded(data: applyModel));

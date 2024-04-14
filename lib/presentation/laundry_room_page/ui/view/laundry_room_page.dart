@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
 import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
@@ -257,20 +257,20 @@ class LaundryList extends StatelessWidget {
           {required LaundryRoomModel roomState,
           required int deviceId,
           required CurrentState state,
-          required Machine machine}) =>
+          required DeviceType deviceType}) =>
       roomState.buttonView == ButtonView.image
           ? MachineCard(
               deviceId: deviceId,
               isEnableNotification: true,
               isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               state: state,
-              machine: machine)
+              deviceType: deviceType)
           : MachineButton(
               deviceId: deviceId,
               isEnableNotification: true,
               isWoman: roomState.roomLocation == RoomLocation.womanRoom,
               state: state,
-              machine: machine);
+              deviceType: deviceType);
 
   @override
   Widget build(BuildContext context) {
@@ -317,7 +317,7 @@ class LaundryList extends StatelessWidget {
                               placeIndex[laundryRoomModel.roomLocation.index]! +
                                   index]
                           .id,
-                      machine: list[
+                      deviceType: list[
                               placeIndex[laundryRoomModel.roomLocation.index]! +
                                   index]
                           .deviceType,
@@ -344,22 +344,23 @@ class LaundryList extends StatelessWidget {
                                     : 8)]
                             .id
                         : -1,
-                    machine: placeIndex[laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8) <
-                            44
-                        ? list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8)]
-                            .deviceType
-                        : Machine.dry,
+                    deviceType:
+                        placeIndex[laundryRoomModel.roomLocation.index]! +
+                                    index +
+                                    (laundryRoomModel.roomLocation ==
+                                            RoomLocation.womanRoom
+                                        ? 10
+                                        : 8) <
+                                44
+                            ? list[placeIndex[
+                                        laundryRoomModel.roomLocation.index]! +
+                                    index +
+                                    (laundryRoomModel.roomLocation ==
+                                            RoomLocation.womanRoom
+                                        ? 10
+                                        : 8)]
+                                .deviceType
+                            : DeviceType.dry,
                     state: placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
                                 (laundryRoomModel.roomLocation ==

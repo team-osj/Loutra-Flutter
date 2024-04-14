@@ -1,4 +1,5 @@
 import 'package:lotura/domain/apply/entity/apply_entity.dart';
+import 'package:lotura/main.dart';
 
 class ApplyResponse {
   final int deviceId;
@@ -13,6 +14,7 @@ class ApplyResponse {
     );
   }
 
-  ApplyEntity toEntity() =>
-      ApplyEntity(deviceId: deviceId, deviceType: deviceType);
+  ApplyEntity toEntity() => ApplyEntity(
+      deviceId: deviceId,
+      deviceType: deviceType == "WASH" ? DeviceType.wash : DeviceType.dry);
 }
