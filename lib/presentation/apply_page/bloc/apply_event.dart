@@ -1,6 +1,6 @@
-import 'package:lotura/data/dto/request/apply_cancel_request.dart';
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
-import 'package:lotura/data/dto/request/send_fcm_info_request.dart';
+import 'package:lotura/data/apply/dto/request/apply_cancel_request.dart';
+import 'package:lotura/data/apply/dto/request/get_apply_list_request.dart';
+import 'package:lotura/data/apply/dto/request/send_fcm_info_request.dart';
 
 abstract class ApplyEvent {}
 

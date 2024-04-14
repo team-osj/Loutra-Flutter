@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/domain/use_case/get_laundry_room_index_use_case.dart';
-import 'package:lotura/domain/use_case/update_laundry_room_index_use_case.dart';
+import 'package:lotura/domain/laundry/use_case/get_laundry_room_index_use_case.dart';
+import 'package:lotura/domain/laundry/use_case/update_laundry_room_index_use_case.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/setting_page/bloc/laundry_room_model.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
