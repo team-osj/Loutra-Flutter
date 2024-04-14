@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/main.dart';
+import 'package:lotura/presentation/setting_page/bloc/laundry_room_model.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -15,7 +15,7 @@ class SettingPageBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomBloc, RoomState<LaundryRoomEntity>>(
+    return BlocBuilder<RoomBloc, RoomState<LaundryRoomModel>>(
         builder: (context, state) {
       if (state is Initial) {
         context.read<RoomBloc>().add(GetRoomIndexEvent());

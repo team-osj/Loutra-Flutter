@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/domain/entity/laundry_entity.dart';
-import 'package:lotura/domain/entity/room_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
@@ -11,6 +10,7 @@ import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_state.dart' as n;
 import 'package:lotura/presentation/notice_page/ui/view/notice_page.dart';
+import 'package:lotura/presentation/setting_page/bloc/laundry_room_model.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_bloc.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_event.dart';
 import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
@@ -38,7 +38,7 @@ class LaundryRoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RoomBloc, RoomState<LaundryRoomEntity>>(
+    return BlocBuilder<RoomBloc, RoomState<LaundryRoomModel>>(
       builder: (context, roomBlocState) {
         if (roomBlocState is Changed) {
           return Scaffold(
@@ -220,7 +220,7 @@ class LaundryRoomPage extends StatelessWidget {
                             const Center(child: Text("인터넷 연결을 확인해주세요")),
                           Loaded() => LaundryList(
                               list: state.data,
-                              roomEntity: roomBlocState.value,
+                              laundryRoomModel: roomBlocState.value,
                               nfcData: nfcTagData,
                             ),
                         };
@@ -243,18 +243,18 @@ class LaundryList extends StatelessWidget {
   LaundryList({
     super.key,
     required this.list,
-    required this.roomEntity,
+    required this.laundryRoomModel,
     required this.nfcData,
   });
 
   final List<LaundryEntity> list;
-  final LaundryRoomEntity roomEntity;
+  final LaundryRoomModel laundryRoomModel;
   final int nfcData;
 
   final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
 
   MachineWidget machineWidget(
-          {required LaundryRoomEntity roomState,
+          {required LaundryRoomModel roomState,
           required int index,
           required CurrentState state,
           required Machine machine}) =>
@@ -276,8 +276,8 @@ class LaundryList extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
-        if (nfcData != -1 && roomEntity.isNFCShowBottomSheet == false) {
-          if (roomEntity.showingBottomSheet == true) {
+        if (nfcData != -1 && laundryRoomModel.isNFCShowBottomSheet == false) {
+          if (laundryRoomModel.showingBottomSheet == true) {
             Navigator.of(context).pop();
           }
           context.read<RoomBloc>().add(ShowBottomSheetEvent());
@@ -303,7 +303,8 @@ class LaundryList extends StatelessWidget {
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(overscroll: false),
       child: ListView.builder(
-        itemCount: roomEntity.roomLocation == RoomLocation.womanRoom ? 10 : 8,
+        itemCount:
+            laundryRoomModel.roomLocation == RoomLocation.womanRoom ? 10 : 8,
         itemBuilder: (context, index) {
           return Column(
             children: [
@@ -311,59 +312,65 @@ class LaundryList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   machineWidget(
-                      roomState: roomEntity,
-                      index: list[placeIndex[roomEntity.roomLocation.index]! +
-                              index]
+                      roomState: laundryRoomModel,
+                      index: list[
+                              placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index]
                           .id,
-                      machine: list[placeIndex[roomEntity.roomLocation.index]! +
-                              index]
+                      machine: list[
+                              placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index]
                           .deviceType,
-                      state: list[placeIndex[roomEntity.roomLocation.index]! +
-                              index]
+                      state: list[
+                              placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index]
                           .state),
-                  roomEntity.buttonView.triangle,
+                  laundryRoomModel.buttonView.triangle,
                   machineWidget(
-                    roomState: roomEntity,
-                    index: placeIndex[roomEntity.roomLocation.index]! +
+                    roomState: laundryRoomModel,
+                    index: placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomLocation ==
+                                (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8) <
                             44
-                        ? list[placeIndex[roomEntity.roomLocation.index]! +
+                        ? list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomLocation ==
+                                (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8)]
                             .id
                         : -1,
-                    machine: placeIndex[roomEntity.roomLocation.index]! +
+                    machine: placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomLocation ==
+                                (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8) <
                             44
-                        ? list[placeIndex[roomEntity.roomLocation.index]! +
+                        ? list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomLocation ==
+                                (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8)]
                             .deviceType
                         : Machine.dry,
-                    state: placeIndex[roomEntity.roomLocation.index]! +
+                    state: placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomLocation ==
+                                (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8) <
                             44
-                        ? list[placeIndex[roomEntity.roomLocation.index]! +
+                        ? list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (roomEntity.roomLocation ==
+                                (laundryRoomModel.roomLocation ==
                                         RoomLocation.womanRoom
                                     ? 10
                                     : 8)]
