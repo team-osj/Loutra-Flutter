@@ -18,6 +18,7 @@ class NoticePage extends StatelessWidget {
         backgroundColor: LoturaColors.gray100,
         elevation: 0.0,
         leadingWidth: 300.0.r,
+        toolbarHeight: 90.0.r,
         leading: Row(
           children: [
             IconButton(
@@ -41,32 +42,24 @@ class NoticePage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(
-          left: 24.0.w,
-          right: 24.0.w,
-          top: 12.0.h,
-          bottom: 12.0.h,
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(12.0.r),
-          child: BlocBuilder<NoticeBloc, NoticeState<NoticeModel>>(
-            builder: (context, state) => switch (state) {
-              Empty() => const Center(child: Text("비어있음")),
-              Loading() => const Center(child: CircularProgressIndicator()),
-              Error() => const Center(child: Text("인터넷 연결을 확인해주세요")),
-              Loaded(data: final data) => SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: ListView.builder(
-                    itemCount: data.noticeList.length,
-                    itemBuilder: (context, index) {
-                      return NoticeListTile(
-                          noticeEntity: data.noticeList[index]);
-                    },
-                  ),
+        padding: EdgeInsets.symmetric(horizontal: 24.0.r),
+        child: BlocBuilder<NoticeBloc, NoticeState<NoticeModel>>(
+          builder: (context, state) => switch (state) {
+            Empty() => const Center(child: Text("비어있음")),
+            Loading() => const Center(child: CircularProgressIndicator()),
+            Error() => const Center(child: Text("인터넷 연결을 확인해주세요")),
+            Loaded(data: final data) => SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: ListView.builder(
+                  padding: EdgeInsets.only(top: 12.0.r),
+                  itemCount: data.noticeList.length,
+                  itemBuilder: (context, index) {
+                    return NoticeListTile(noticeEntity: data.noticeList[index]);
+                  },
                 ),
-            },
-          ),
+              ),
+          },
         ),
       ),
     );
