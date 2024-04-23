@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lotura/domain/entity/laundry_entity.dart';
-import 'package:lotura/domain/use_case/get_all_laundry_list_use_case.dart';
-import 'package:lotura/domain/use_case/get_laundry_status_use_case.dart';
+import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
+import 'package:lotura/domain/laundry/use_case/get_all_laundry_list_use_case.dart';
+import 'package:lotura/domain/laundry/use_case/get_laundry_status_use_case.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
+import 'package:lotura/presentation/laundry_room_page/bloc/laundry_model.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
 
-class LaundryBloc
-    extends Bloc<LaundryEvent, LaundryState<List<LaundryEntity>>> {
+class LaundryBloc extends Bloc<LaundryEvent, LaundryState<LaundryModel>> {
   final GetLaundryStatusUseCase _getLaundryStatusUseCase;
   final GetAllLaundryListUseCase _getAllLaundryListEventUseCase;
 
@@ -20,21 +20,21 @@ class LaundryBloc
     on<GetAllLaundryListEvent>(_getAllLaundryListEventHandler);
   }
 
-  void _getLaundryEventHandler(GetLaundryEvent event,
-      Emitter<LaundryState<List<LaundryEntity>>> emit) async {
+  void _getLaundryEventHandler(
+      GetLaundryEvent event, Emitter<LaundryState<LaundryModel>> emit) async {
     try {
       _getLaundryStatusUseCase.execute();
       await for (var data in _getLaundryStatusUseCase.laundryList) {
-        final newState = Loaded(
-            data: state.value
+        final newLaundryModel = LaundryModel(
+            laundryList: state.value.laundryList
                 .map((e) => e.id == data.id
                     ? LaundryEntity(
-                        id: data.id,
-                        state: data.state.index,
-                        deviceType: data.deviceType.name.toUpperCase())
+                        id: e.id,
+                        state: data.state,
+                        deviceType: data.deviceType)
                     : e)
                 .toList());
-        emit(newState);
+        emit(Loaded(data: newLaundryModel));
       }
     } catch (e) {
       emit(Error(error: e));
@@ -42,12 +42,12 @@ class LaundryBloc
   }
 
   void _getAllLaundryListEventHandler(GetAllLaundryListEvent event,
-      Emitter<LaundryState<List<LaundryEntity>>> emit) async {
+      Emitter<LaundryState<LaundryModel>> emit) async {
     try {
       emit(Loading());
-      final newState =
-          Loaded(data: await _getAllLaundryListEventUseCase.execute());
-      emit(newState);
+      final newState = await _getAllLaundryListEventUseCase.execute();
+      final newLaundryModel = LaundryModel(laundryList: newState);
+      emit(Loaded(data: newLaundryModel));
     } catch (e) {
       emit(Error(error: e));
     }

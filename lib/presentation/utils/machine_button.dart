@@ -6,11 +6,11 @@ import 'package:lotura/presentation/utils/machine_widget.dart';
 class MachineButton extends MachineWidget {
   const MachineButton({
     super.key,
-    required super.index,
+    required super.deviceId,
     required super.isEnableNotification,
     required super.isWoman,
     required super.state,
-    required super.machine,
+    required super.deviceType,
   });
 
   @override
@@ -33,17 +33,18 @@ class MachineButton extends MachineWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(machine.icon,
+                    Icon(deviceType.icon,
                         size: 24.0.r, color: LoturaColors.gray300),
                     Row(
                       children: [
-                        Text("${isWoman ? index - 31 : index}번",
+                        Text("${isWoman ? deviceId - 31 : deviceId}번",
                             style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(
-                            width: (isWoman ? index - 31 : index) < 10
+                            width: (isWoman ? deviceId - 31 : deviceId) < 10
                                 ? 10.2.w
                                 : 5.0.w),
-                        Text(machine.text, style: TextStyle(fontSize: 16.0.sp)),
+                        Text(deviceType.text,
+                            style: TextStyle(fontSize: 16.0.sp)),
                         SizedBox(width: 8.0.w),
                         Icon(
                           state.icon,

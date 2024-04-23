@@ -93,14 +93,26 @@ enum CurrentState {
   });
 }
 
-enum Machine {
-  wash(text: "세탁기", icon: LoturaIcons.laundry),
-  dry(text: "건조기", icon: LoturaIcons.dry);
+enum DeviceType {
+  wash(
+    text: "세탁기",
+    icon: LoturaIcons.laundry,
+    imagePath: "assets/laundry_image.jpeg",
+  ),
+  dry(
+    text: "건조기",
+    icon: LoturaIcons.dry,
+    imagePath: "assets/dry_image.jpeg",
+  );
 
-  final String text;
+  final String text, imagePath;
   final IconData icon;
 
-  const Machine({required this.text, required this.icon});
+  const DeviceType({
+    required this.text,
+    required this.icon,
+    required this.imagePath,
+  });
 }
 
 enum RoomLocation {

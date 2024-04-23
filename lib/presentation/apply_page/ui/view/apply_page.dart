@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lotura/domain/entity/apply_entity.dart';
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
+import 'package:lotura/presentation/apply_page/bloc/apply_model.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_state.dart' as n;
+import 'package:lotura/presentation/notice_page/ui/view/notice_page.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
+import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_card.dart';
 
 class ApplyPage extends StatelessWidget {
@@ -51,11 +57,45 @@ class ApplyPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
+            onPressed: () {
+              context.read<NoticeBloc>().add(UpdateLastNoticeIdEvent());
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const NoticePage()));
+            },
+            icon: BlocBuilder<NoticeBloc, n.NoticeState<NoticeModel>>(
+              builder: (context, state) => state.value.isNewNotice
+                  ? Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        Icon(
+                          LoturaIcons.notice,
+                          color: LoturaColors.black,
+                          size: 24.0.r,
+                        ),
+                        Container(
+                          width: 10.0.r,
+                          height: 10.0.r,
+                          decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ],
+                    )
+                  : Icon(
+                      LoturaIcons.notice,
+                      color: LoturaColors.black,
+                      size: 24.0.r,
+                    ),
+            ),
+          ),
+          IconButton(
               onPressed: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const SettingPage())),
-              icon: const Icon(
+              icon: Icon(
                 Icons.settings,
                 color: LoturaColors.black,
+                size: 28.0.r,
               )),
           SizedBox(width: 24.0.w),
         ],
@@ -78,7 +118,7 @@ class ApplyPage extends StatelessWidget {
             ),
             SizedBox(height: 20.0.h),
             Expanded(
-              child: BlocBuilder<ApplyBloc, ApplyState<List<ApplyEntity>>>(
+              child: BlocBuilder<ApplyBloc, ApplyState<ApplyModel>>(
                 builder: (context, state) {
                   return switch (state) {
                     Empty() => const Center(child: Text("비어있음")),
@@ -89,9 +129,9 @@ class ApplyPage extends StatelessWidget {
                         behavior:
                             const ScrollBehavior().copyWith(overscroll: false),
                         child: ListView.builder(
-                          itemCount: state.value.length.isEven
-                              ? state.value.length ~/ 2
-                              : state.value.length ~/ 2 + 1,
+                          itemCount: state.value.applyList.length.isEven
+                              ? state.value.applyList.length ~/ 2
+                              : state.value.applyList.length ~/ 2 + 1,
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
@@ -100,26 +140,38 @@ class ApplyPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     MachineCard(
-                                        index: state.value[index * 2].deviceId,
+                                        deviceId: state.value
+                                            .applyList[index * 2].deviceId,
                                         isEnableNotification: false,
-                                        isWoman:
-                                            state.value[index * 2].deviceId > 31
-                                                ? true
-                                                : false,
-                                        machine: state.value[index * 2].machine,
+                                        isWoman: state
+                                                    .value
+                                                    .applyList[index * 2]
+                                                    .deviceId >
+                                                31
+                                            ? true
+                                            : false,
+                                        deviceType: state.value
+                                            .applyList[index * 2].deviceType,
                                         state: CurrentState.working),
-                                    index * 2 + 1 < state.value.length
+                                    index * 2 + 1 < state.value.applyList.length
                                         ? MachineCard(
-                                            index: state
-                                                .value[index * 2 + 1].deviceId,
+                                            deviceId: state
+                                                .value
+                                                .applyList[index * 2 + 1]
+                                                .deviceId,
                                             isEnableNotification: false,
-                                            isWoman: state.value[index * 2 + 1]
+                                            isWoman: state
+                                                        .value
+                                                        .applyList[
+                                                            index * 2 + 1]
                                                         .deviceId >
                                                     31
                                                 ? true
                                                 : false,
-                                            machine: state
-                                                .value[index * 2 + 1].machine,
+                                            deviceType: state
+                                                .value
+                                                .applyList[index * 2 + 1]
+                                                .deviceType,
                                             state: CurrentState.working)
                                         : SizedBox(
                                             width: 185.0.w,

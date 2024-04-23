@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
-import 'package:lotura/data/dto/request/get_apply_list_request.dart';
+import 'package:lotura/data/apply/dto/request/get_apply_list_request.dart';
 import 'package:lotura/presentation/app_update_page/ui/app_update_page.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_event.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_event.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
+import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/utils/bottom_navi.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/secret.dart';
@@ -61,11 +63,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     checkAppVersion();
+    context.read<NoticeBloc>().add(GetNoticeEvent());
     context.read<LaundryBloc>().add(GetAllLaundryListEvent());
-    context.read<LaundryBloc>().add(GetLaundryEvent());
     context
         .read<ApplyBloc>()
         .add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
+    context.read<LaundryBloc>().add(GetLaundryEvent());
   }
 
   @override
