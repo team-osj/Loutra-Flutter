@@ -76,9 +76,13 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
         context.read<RoomBloc>().add(ClosingBottomSheetEvent());
         return Future(() => true);
       },
-      child: SizedBox(
-        width: double.infinity,
+      child: Container(
         height: widget.state == CurrentState.working ? 220.0.h : 268.0.h,
+        decoration: const BoxDecoration(
+          color: LoturaColors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
+        ),
         child: Padding(
           padding: EdgeInsets.only(
             left: 24.0.w,
