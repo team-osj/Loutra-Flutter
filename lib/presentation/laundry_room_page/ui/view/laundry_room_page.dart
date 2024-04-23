@@ -126,8 +126,6 @@ class LaundryRoomPage extends StatelessWidget {
                           function: () => context.read<RoomBloc>().add(
                               ModifyRoomIndexEvent(
                                   roomLocation: RoomLocation.schoolSide)),
-                          width: 99.0.w,
-                          height: 32.0.h,
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.schoolSide
@@ -145,8 +143,6 @@ class LaundryRoomPage extends StatelessWidget {
                           function: () => context.read<RoomBloc>().add(
                               ModifyRoomIndexEvent(
                                   roomLocation: RoomLocation.dormitorySide)),
-                          width: 111.0.w,
-                          height: 32.0.h,
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.dormitorySide
@@ -164,8 +160,6 @@ class LaundryRoomPage extends StatelessWidget {
                           function: () => context.read<RoomBloc>().add(
                               ModifyRoomIndexEvent(
                                   roomLocation: RoomLocation.womanRoom)),
-                          width: 53.0.w,
-                          height: 32.0.h,
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.womanRoom
@@ -311,72 +305,80 @@ class LaundryList extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  machineWidget(
+                  Expanded(
+                    child: machineWidget(
+                        roomState: laundryRoomModel,
+                        deviceId: list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
+                                index]
+                            .id,
+                        deviceType: list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
+                                index]
+                            .deviceType,
+                        state: list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
+                                index]
+                            .state),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5.0.r),
+                    child: laundryRoomModel.buttonView.triangle,
+                  ),
+                  Expanded(
+                    child: machineWidget(
                       roomState: laundryRoomModel,
-                      deviceId: list[
-                              placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index]
-                          .id,
-                      deviceType: list[
-                              placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index]
-                          .deviceType,
-                      state: list[
-                              placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index]
-                          .state),
-                  laundryRoomModel.buttonView.triangle,
-                  machineWidget(
-                    roomState: laundryRoomModel,
-                    deviceId: placeIndex[laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8) <
-                            44
-                        ? list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8)]
-                            .id
-                        : -1,
-                    deviceType:
-                        placeIndex[laundryRoomModel.roomLocation.index]! +
-                                    index +
-                                    (laundryRoomModel.roomLocation ==
-                                            RoomLocation.womanRoom
-                                        ? 10
-                                        : 8) <
-                                44
-                            ? list[placeIndex[
-                                        laundryRoomModel.roomLocation.index]! +
-                                    index +
-                                    (laundryRoomModel.roomLocation ==
-                                            RoomLocation.womanRoom
-                                        ? 10
-                                        : 8)]
-                                .deviceType
-                            : DeviceType.dry,
-                    state: placeIndex[laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8) <
-                            44
-                        ? list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8)]
-                            .state
-                        : CurrentState.breakdown,
+                      deviceId:
+                          placeIndex[laundryRoomModel.roomLocation.index]! +
+                                      index +
+                                      (laundryRoomModel.roomLocation ==
+                                              RoomLocation.womanRoom
+                                          ? 10
+                                          : 8) <
+                                  44
+                              ? list[placeIndex[laundryRoomModel
+                                          .roomLocation.index]! +
+                                      index +
+                                      (laundryRoomModel.roomLocation ==
+                                              RoomLocation.womanRoom
+                                          ? 10
+                                          : 8)]
+                                  .id
+                              : -1,
+                      deviceType:
+                          placeIndex[laundryRoomModel.roomLocation.index]! +
+                                      index +
+                                      (laundryRoomModel.roomLocation ==
+                                              RoomLocation.womanRoom
+                                          ? 10
+                                          : 8) <
+                                  44
+                              ? list[placeIndex[laundryRoomModel
+                                          .roomLocation.index]! +
+                                      index +
+                                      (laundryRoomModel.roomLocation ==
+                                              RoomLocation.womanRoom
+                                          ? 10
+                                          : 8)]
+                                  .deviceType
+                              : DeviceType.dry,
+                      state: placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index +
+                                  (laundryRoomModel.roomLocation ==
+                                          RoomLocation.womanRoom
+                                      ? 10
+                                      : 8) <
+                              44
+                          ? list[placeIndex[
+                                      laundryRoomModel.roomLocation.index]! +
+                                  index +
+                                  (laundryRoomModel.roomLocation ==
+                                          RoomLocation.womanRoom
+                                      ? 10
+                                      : 8)]
+                              .state
+                          : CurrentState.breakdown,
+                    ),
                   ),
                 ],
               ),
