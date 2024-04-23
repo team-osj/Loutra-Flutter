@@ -126,8 +126,6 @@ class LaundryRoomPage extends StatelessWidget {
                           function: () => context.read<RoomBloc>().add(
                               ModifyRoomIndexEvent(
                                   roomLocation: RoomLocation.schoolSide)),
-                          width: 99.0.w,
-                          height: 32.0.h,
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.schoolSide
@@ -145,8 +143,6 @@ class LaundryRoomPage extends StatelessWidget {
                           function: () => context.read<RoomBloc>().add(
                               ModifyRoomIndexEvent(
                                   roomLocation: RoomLocation.dormitorySide)),
-                          width: 111.0.w,
-                          height: 32.0.h,
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.dormitorySide
@@ -164,8 +160,6 @@ class LaundryRoomPage extends StatelessWidget {
                           function: () => context.read<RoomBloc>().add(
                               ModifyRoomIndexEvent(
                                   roomLocation: RoomLocation.womanRoom)),
-                          width: 53.0.w,
-                          height: 32.0.h,
                           fontSize: 16.0.sp,
                           color: roomBlocState.value.roomLocation ==
                                   RoomLocation.womanRoom
