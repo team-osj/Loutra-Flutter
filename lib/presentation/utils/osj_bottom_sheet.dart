@@ -77,94 +77,94 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
         return Future(() => true);
       },
       child: Container(
-        height: widget.state == CurrentState.working ? 220.0.h : 268.0.h,
+        height: widget.state == CurrentState.working ? 260.0.h : 300.0.h,
+        padding: EdgeInsets.symmetric(vertical: 32.0.r, horizontal: 24.0.r),
         decoration: const BoxDecoration(
           color: LoturaColors.white,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
         ),
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: 24.0.w,
-            right: 24.0.w,
-            top: 32.0.h,
-            bottom: 12.0.h,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              widget.state == CurrentState.working
-                  ? const SizedBox.shrink()
-                  : Icon(
-                      widget.state.icon,
-                      size: 24.0.r,
-                      color: widget.state == CurrentState.available
-                          ? LoturaColors.green700
-                          : widget.state == CurrentState.disconnected
-                              ? LoturaColors.black
-                              : LoturaColors.red700,
-                    ),
-              Padding(
-                padding: widget.state == CurrentState.working
-                    ? EdgeInsets.only(bottom: 24.0.h)
-                    : EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    text(widget.isEnableNotification, widget.isWoman,
-                        widget.state),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22.0.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            widget.state == CurrentState.working
+                ? const SizedBox.shrink()
+                : Icon(
+                    widget.state.icon,
+                    size: 24.0.r,
+                    color: widget.state == CurrentState.available
+                        ? LoturaColors.green700
+                        : widget.state == CurrentState.disconnected
+                            ? LoturaColors.black
+                            : LoturaColors.red700,
+                  ),
+            Padding(
+              padding: widget.state == CurrentState.working
+                  ? EdgeInsets.only(bottom: 24.0.h)
+                  : EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  text(widget.isEnableNotification, widget.isWoman,
+                      widget.state),
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22.0.sp,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              widget.state == CurrentState.working
-                  ? Row(
+            ),
+            widget.state == CurrentState.working
+                ? Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        OSJTextButton(
-                            function: () {
-                              Navigator.of(context).pop();
-                              context
-                                  .read<RoomBloc>()
-                                  .add(ClosingBottomSheetEvent());
-                            },
-                            width: 185.0.w,
-                            height: 56.0.h,
-                            fontSize: 16.0.sp,
-                            color: LoturaColors.gray100,
-                            fontColor: LoturaColors.black,
-                            text: "취소"),
-                        SizedBox(width: 12.0.w),
-                        OSJTextButton(
-                            function: () {
-                              widget.isEnableNotification
-                                  ? context.read<ApplyBloc>().add(SendFCMEvent(
-                                      deviceId: widget.deviceId,
-                                      deviceType: widget.machine))
-                                  : context
-                                      .read<ApplyBloc>()
-                                      .add(ApplyCancelEvent(
-                                        deviceId: widget.deviceId,
-                                      ));
-                              context
-                                  .read<RoomBloc>()
-                                  .add(ClosingBottomSheetEvent());
-                              Navigator.pop(context);
-                            },
-                            width: 185.0.w,
-                            height: 56.0.h,
-                            fontSize: 16.0.sp,
-                            color: LoturaColors.primary700,
-                            fontColor: LoturaColors.white,
-                            text: widget.isEnableNotification
-                                ? "알림 설정"
-                                : "알림 해제"),
+                        Expanded(
+                          child: OSJTextButton(
+                              function: () {
+                                Navigator.of(context).pop();
+                                context
+                                    .read<RoomBloc>()
+                                    .add(ClosingBottomSheetEvent());
+                              },
+                              fontSize: 14.0.sp,
+                              color: LoturaColors.gray100,
+                              fontColor: LoturaColors.black,
+                              text: "취소"),
+                        ),
+                        SizedBox(width: 16.0.r),
+                        Expanded(
+                          child: OSJTextButton(
+                              function: () {
+                                widget.isEnableNotification
+                                    ? context.read<ApplyBloc>().add(
+                                        SendFCMEvent(
+                                            deviceId: widget.deviceId,
+                                            deviceType: widget.machine))
+                                    : context
+                                        .read<ApplyBloc>()
+                                        .add(ApplyCancelEvent(
+                                          deviceId: widget.deviceId,
+                                        ));
+                                context
+                                    .read<RoomBloc>()
+                                    .add(ClosingBottomSheetEvent());
+                                Navigator.pop(context);
+                              },
+                              fontSize: 14.0.sp,
+                              color: LoturaColors.primary700,
+                              fontColor: LoturaColors.white,
+                              text: widget.isEnableNotification
+                                  ? "알림 설정"
+                                  : "알림 해제"),
+                        ),
                       ],
-                    )
-                  : Center(
+                    ),
+                  )
+                : Expanded(
+                    child: Center(
                       child: OSJTextButton(
                           function: () {
                             context
@@ -172,15 +172,13 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                                 .add(ClosingBottomSheetEvent());
                             Navigator.of(context).pop();
                           },
-                          width: 382.0.w,
-                          height: 56.0.h,
                           fontSize: 16.0.sp,
                           color: LoturaColors.gray100,
                           fontColor: LoturaColors.black,
                           text: "확인"),
                     ),
-            ],
-          ),
+                  ),
+          ],
         ),
       ),
     );
