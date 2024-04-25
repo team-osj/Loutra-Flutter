@@ -16,39 +16,102 @@ class MachineButton extends MachineWidget {
   @override
   Widget build(BuildContext context) {
     return isEmptyContainer
-        ? SizedBox(width: 154.0.w, height: 84.0.h)
+        ? Container(
+            constraints: BoxConstraints(
+              maxWidth: 180.0.r,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(12.0.r),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 32.0.r,
+                        height: 32.0.r,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.transparent,
+                          border:
+                              Border.all(color: Colors.transparent, width: 2),
+                        ),
+                        child: Icon(Icons.ac_unit,
+                            size: 20.0.r, color: Colors.transparent),
+                      ),
+                      Text("12번",
+                          style: TextStyle(
+                              fontSize: 16.0.sp, color: Colors.transparent)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text("세탁기",
+                          style: TextStyle(
+                              fontSize: 15.0.sp, color: Colors.transparent)),
+                      SizedBox(width: 5.0.r),
+                      Icon(
+                        Icons.abc,
+                        size: 20.0.r,
+                        color: Colors.transparent,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )
         : GestureDetector(
             onTap: () => showModalOSJBottomSheet(context: context),
             child: Container(
-              width: 154.0.w,
-              height: 84.0.h,
-              decoration: BoxDecoration(
-                color: state.color,
-                borderRadius: BorderRadius.circular(16.0),
+              constraints: BoxConstraints(
+                maxWidth: 180.0.r,
               ),
+              decoration: BoxDecoration(
+                  color: state.color,
+                  borderRadius: BorderRadius.circular(16.0),
+                  border: Border.all(color: LoturaColors.gray200)),
               child: Padding(
-                padding:
-                    EdgeInsets.only(top: 12.0.h, bottom: 12.0.h, left: 24.0.w),
+                padding: EdgeInsets.all(12.0.r),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(deviceType.icon,
-                        size: 24.0.r, color: LoturaColors.gray300),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Container(
+                          width: 32.0.r,
+                          height: 32.0.r,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: state.color,
+                            border: Border.all(
+                                color: state.deviceIconColor, width: 2),
+                          ),
+                          child: Icon(deviceType.icon,
+                              size: 20.0.r, color: state.deviceIconColor),
+                        ),
                         Text("${isWoman ? deviceId - 31 : deviceId}번",
                             style: TextStyle(fontSize: 16.0.sp)),
-                        SizedBox(
-                            width: (isWoman ? deviceId - 31 : deviceId) < 10
-                                ? 10.2.w
-                                : 5.0.w),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
                         Text(deviceType.text,
-                            style: TextStyle(fontSize: 16.0.sp)),
-                        SizedBox(width: 8.0.w),
+                            style: TextStyle(fontSize: 15.0.sp)),
+                        SizedBox(width: 5.0.r),
                         Icon(
                           state.icon,
-                          size: 18.0.r,
+                          size: 20.0.r,
                           color: state.deepColor,
                         ),
                       ],
