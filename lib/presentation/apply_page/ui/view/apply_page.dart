@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_model.dart';
@@ -176,13 +176,16 @@ class ApplyPage extends StatelessWidget {
                                                 .applyList[index * 2 + 1]
                                                 .deviceType,
                                             state: CurrentState.working)
-                                        : SizedBox(
-                                            width: 185.0.w,
-                                            height: 256.0.h,
-                                          ),
+                                        : const MachineCard(
+                                            //리팩토링 꼭 하기
+                                            deviceId: -1,
+                                            isEnableNotification: false,
+                                            isWoman: true,
+                                            deviceType: DeviceType.dry,
+                                            state: CurrentState.working)
                                   ],
                                 ),
-                                SizedBox(height: 10.0.h),
+                                SizedBox(height: 10.0.r),
                               ],
                             );
                           },
