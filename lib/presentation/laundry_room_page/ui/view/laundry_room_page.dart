@@ -137,6 +137,7 @@ class LaundryRoomPage extends StatelessWidget {
                                 ? LoturaColors.primary700
                                 : LoturaColors.gray300,
                             text: "남자 학교측",
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
                             radius: 8.0,
                           ),
                           SizedBox(width: 8.0.w),
@@ -154,6 +155,7 @@ class LaundryRoomPage extends StatelessWidget {
                                 ? LoturaColors.primary700
                                 : LoturaColors.gray300,
                             text: "남자 기숙사측",
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
                             radius: 8.0,
                           ),
                           SizedBox(width: 8.0.w),
@@ -171,6 +173,7 @@ class LaundryRoomPage extends StatelessWidget {
                                 ? LoturaColors.primary700
                                 : LoturaColors.gray300,
                             text: "여자",
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
                             radius: 8.0,
                           ),
                         ],
