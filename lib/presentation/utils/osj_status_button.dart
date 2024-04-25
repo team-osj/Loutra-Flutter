@@ -4,14 +4,16 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 
 class OSJStatusButton extends StatelessWidget {
-  OSJStatusButton({
+  const OSJStatusButton({
     super.key,
     required this.state,
+    this.emptyStatus = false,
   });
 
+  final bool emptyStatus;
   final CurrentState state;
 
-  final Map<CurrentState, Color> stateColor = {
+  final Map<CurrentState, Color> stateColor = const {
     CurrentState.available: LoturaColors.green100,
     CurrentState.working: LoturaColors.primary100,
     CurrentState.disconnected: LoturaColors.gray300,
@@ -21,19 +23,19 @@ class OSJStatusButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80.0.w,
-      height: 32.0.h,
+      padding: EdgeInsets.all(8.0.r),
+      width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100.0),
-        color: stateColor[state],
+        borderRadius: BorderRadius.circular(8.0.r),
+        color: emptyStatus ? Colors.transparent : stateColor[state],
       ),
-      child: Center(
-        child: Text(
-          state.text,
-          style: TextStyle(
-            color: state.deepColor,
-            fontSize: 14.0.sp,
-          ),
+      child: Text(
+        state.text,
+        textAlign: TextAlign.center,
+        textScaler: TextScaler.noScaling,
+        style: TextStyle(
+          color: emptyStatus ? Colors.transparent : state.deepColor,
+          fontSize: 20.0.sp,
         ),
       ),
     );
