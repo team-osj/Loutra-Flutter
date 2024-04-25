@@ -16,42 +16,62 @@ class MachineCard extends MachineWidget {
   @override
   Widget build(BuildContext context) {
     return isEmptyContainer
-        ? SizedBox(width: 185.0.w, height: 256.0.h)
+        ? Container(
+            width: 170.0.r,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              color: Colors.transparent,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  deviceType.imagePath,
+                  width: 100.0.r,
+                  height: 100.0.r,
+                  color: Colors.transparent,
+                ),
+                Text(
+                  "12번 건조기",
+                  textScaler: TextScaler.noScaling,
+                  style: TextStyle(
+                      fontSize: 20.0.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.transparent),
+                ),
+                OSJStatusButton(
+                  state: state,
+                  emptyStatus: true,
+                ),
+              ],
+            ),
+          )
         : GestureDetector(
             onTap: () => showModalOSJBottomSheet(context: context),
             child: Container(
-              width: 185.0.w,
-              height: 256.0.h,
+              width: 170.0.r,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 color: Colors.white,
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 24.0.h),
                   Image.asset(
                     deviceType.imagePath,
-                    width: 120.0.r,
-                    height: 120.0.r,
+                    width: 100.0.r,
+                    height: 100.0.r,
                   ),
-                  SizedBox(height: 12.0.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "${isWoman ? deviceId - 31 : deviceId}번 ",
-                        style: TextStyle(
-                          fontSize: 16.0.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        deviceType.text,
-                        style: TextStyle(fontSize: 16.0.sp),
-                      ),
-                    ],
+                  Text(
+                    "${isWoman ? deviceId - 31 : deviceId}번 ${deviceType.text}",
+                    textScaler: TextScaler.noScaling,
+                    style: TextStyle(
+                      fontSize: 20.0.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  SizedBox(height: 12.0.h),
                   OSJStatusButton(
                     state: state,
                   ),
