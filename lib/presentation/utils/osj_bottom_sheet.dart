@@ -108,13 +108,16 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                 padding: widget.state == CurrentState.working
                     ? EdgeInsets.only(bottom: 24.0.h)
                     : EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
-                child: Text(
-                  text(widget.isEnableNotification, widget.isWoman,
-                      widget.state),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 22.0.sp,
-                    fontWeight: FontWeight.w600,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    text(widget.isEnableNotification, widget.isWoman,
+                        widget.state),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22.0.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
