@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OSJTextButton extends StatelessWidget {
   const OSJTextButton(
@@ -11,6 +11,7 @@ class OSJTextButton extends StatelessWidget {
       this.width,
       this.height,
       this.function,
+      this.padding = EdgeInsets.zero,
       this.radius = 16.0});
 
   final double? width, height;
@@ -18,6 +19,7 @@ class OSJTextButton extends StatelessWidget {
   final Color color, fontColor;
   final String text;
   final VoidCallback? function;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class OSJTextButton extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        padding: EdgeInsets.symmetric(horizontal: 5.0.r),
+        padding: padding,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(radius),
