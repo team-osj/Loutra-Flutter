@@ -9,160 +9,101 @@ import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 
 class SettingPageBottomSheet extends StatelessWidget {
-  final int initialIndex;
-
-  const SettingPageBottomSheet({super.key, required this.initialIndex});
+  const SettingPageBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RoomBloc, RoomState<LaundryRoomModel>>(
-        builder: (context, state) {
-      if (state is Initial) {
-        context.read<RoomBloc>().add(GetRoomIndexEvent());
-        return const SizedBox.shrink();
-      } else if (state is Changed) {
-        return Container(
-          padding: EdgeInsets.only(
-            top: 22.0.h,
-            left: 24.0.w,
-            right: 24.0.w,
-            bottom: 12.0.h,
-          ),
-          height: 310.h,
-          decoration: const BoxDecoration(
-            color: LoturaColors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.0),
-                topRight: Radius.circular(20.0)),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "메인 세탁실 설정",
-                style: TextStyle(
-                    color: LoturaColors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 20.0.sp),
+      builder: (context, state) {
+        return switch (state) {
+          Initial() => const SizedBox.shrink(),
+          Changed() => Container(
+              padding: EdgeInsets.all(24.0.r),
+              decoration: const BoxDecoration(
+                color: LoturaColors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0)),
               ),
-              SizedBox(height: 4.0.h),
-              Text(
-                "세탁실 탭에서 처음에 보여질 세탁실을 선택해보세요.",
-                style: TextStyle(fontSize: 16.0.sp, color: LoturaColors.black),
+              child: Wrap(
+                children: [
+                  Text(
+                    "메인 세탁실 설정",
+                    style: TextStyle(
+                        color: LoturaColors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 30.0.sp),
+                  ),
+                  SizedBox(height: 4.0.h),
+                  Text(
+                    "세탁실 탭에서 처음에 보여질 세탁실을 선택해보세요.",
+                    style:
+                        TextStyle(fontSize: 20.0.sp, color: LoturaColors.black),
+                  ),
+                  CheckButton(
+                    currentRoomLocation: state.value.roomLocation,
+                    roomLocation: RoomLocation.schoolSide,
+                  ),
+                  CheckButton(
+                    currentRoomLocation: state.value.roomLocation,
+                    roomLocation: RoomLocation.dormitorySide,
+                  ),
+                  CheckButton(
+                    currentRoomLocation: state.value.roomLocation,
+                    roomLocation: RoomLocation.womanRoom,
+                  ),
+                ],
               ),
-              SizedBox(height: 24.0.h),
-              GestureDetector(
-                onTap: () => context.read<RoomBloc>().add(UpdateRoomIndexEvent(
-                    roomLocation: RoomLocation.schoolSide)),
-                child: Container(
-                  width: 382.0.w,
-                  height: 48.0.h,
-                  decoration: BoxDecoration(
-                    color: state.value.roomLocation == RoomLocation.schoolSide
-                        ? LoturaColors.gray100
-                        : LoturaColors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  padding: EdgeInsets.all(12.0.r),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "남자 학교측",
-                        style: TextStyle(
-                          fontSize: 16.0.sp,
-                          color: LoturaColors.black,
-                        ),
-                      ),
-                      Icon(
-                        Icons.check,
-                        size: 24.0.r,
-                        color:
-                            state.value.roomLocation == RoomLocation.schoolSide
-                                ? LoturaColors.black
-                                : LoturaColors.white,
-                      ),
-                    ],
-                  ),
-                ),
+            ),
+        };
+      },
+    );
+  }
+}
+
+class CheckButton extends StatelessWidget {
+  const CheckButton({
+    super.key,
+    required this.currentRoomLocation,
+    required this.roomLocation,
+  });
+
+  final RoomLocation roomLocation, currentRoomLocation;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context
+          .read<RoomBloc>()
+          .add(UpdateRoomIndexEvent(roomLocation: roomLocation)),
+      child: Container(
+        decoration: BoxDecoration(
+          color: currentRoomLocation == roomLocation
+              ? LoturaColors.gray100
+              : LoturaColors.white,
+          borderRadius: BorderRadius.circular(8.0.r),
+        ),
+        padding: EdgeInsets.all(12.0.r),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              roomLocation.roomName,
+              style: TextStyle(
+                fontSize: 16.0.sp,
+                color: LoturaColors.black,
               ),
-              GestureDetector(
-                onTap: () => context.read<RoomBloc>().add(UpdateRoomIndexEvent(
-                    roomLocation: RoomLocation.dormitorySide)),
-                child: Container(
-                  width: 382.0.w,
-                  height: 48.0.h,
-                  decoration: BoxDecoration(
-                    color:
-                        state.value.roomLocation == RoomLocation.dormitorySide
-                            ? LoturaColors.gray100
-                            : LoturaColors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  padding: EdgeInsets.all(12.0.r),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "남자 기숙사측",
-                        style: TextStyle(
-                          fontSize: 16.0.sp,
-                          color: LoturaColors.black,
-                        ),
-                      ),
-                      Icon(
-                        Icons.check,
-                        size: 24.0.r,
-                        color: state.value.roomLocation ==
-                                RoomLocation.dormitorySide
-                            ? LoturaColors.black
-                            : LoturaColors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () => context.read<RoomBloc>().add(
-                    UpdateRoomIndexEvent(roomLocation: RoomLocation.womanRoom)),
-                child: Container(
-                  width: 382.0.w,
-                  height: 48.0.h,
-                  decoration: BoxDecoration(
-                    color: state.value.roomLocation == RoomLocation.womanRoom
-                        ? LoturaColors.gray100
-                        : LoturaColors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  padding: EdgeInsets.all(12.0.r),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "여자",
-                        style: TextStyle(
-                          fontSize: 16.0.sp,
-                          color: LoturaColors.black,
-                        ),
-                      ),
-                      Icon(
-                        Icons.check,
-                        size: 24.0.r,
-                        color:
-                            state.value.roomLocation == RoomLocation.womanRoom
-                                ? LoturaColors.black
-                                : LoturaColors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      } else {
-        return const SizedBox.shrink();
-      }
-    });
+            ),
+            Icon(
+              Icons.check,
+              size: 24.0.r,
+              color: currentRoomLocation == roomLocation
+                  ? LoturaColors.black
+                  : LoturaColors.white,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
