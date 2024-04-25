@@ -42,16 +42,26 @@ class ApplyBloc extends Bloc<ApplyEvent, ApplyState<ApplyModel>> {
   void _sendFCMEventHandler(
       SendFCMEvent event, Emitter<ApplyState<ApplyModel>> emit) async {
     try {
-      List<ApplyEntity> newApplyList = state.value.applyList;
-      emit(Loading());
-      await _sendFCMInfoUseCase.execute(
-          sendFCMInfoRequest:
-              SendFCMInfoRequest(deviceId: event.deviceId, expectState: 1));
-      newApplyList.add(
-          ApplyEntity(deviceId: event.deviceId, deviceType: event.deviceType));
-      newApplyList.sort((a, b) => a.deviceId.compareTo(b.deviceId));
-      final applyModel = ApplyModel(applyList: newApplyList);
-      emit(Loaded(data: applyModel));
+      bool isDeviceInApplyList =
+          state.value.applyList.any((e) => e.deviceId == event.deviceId);
+      switch (isDeviceInApplyList) {
+        case true:
+          break;
+        case false:
+          {
+            List<ApplyEntity> applyList = state.value.applyList;
+            emit(Loading());
+            await _sendFCMInfoUseCase.execute(
+                sendFCMInfoRequest: SendFCMInfoRequest(
+                    deviceId: event.deviceId, expectState: 1));
+            applyList.add(ApplyEntity(
+                deviceId: event.deviceId, deviceType: event.deviceType));
+            applyList.sort((a, b) => a.deviceId.compareTo(b.deviceId));
+            final applyModel = ApplyModel(applyList: applyList);
+            emit(Loaded(data: applyModel));
+            break;
+          }
+      }
     } catch (e) {
       emit(Error(errorMessage: e));
     }
