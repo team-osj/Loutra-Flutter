@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
 import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_model.dart';
@@ -19,7 +19,7 @@ class ApplyPage extends StatelessWidget {
   ApplyPage({super.key});
 
   final TextStyle bigStyle = TextStyle(
-    fontSize: 40.0.sp,
+    fontSize: 30.0.sp,
     color: LoturaColors.black,
     fontWeight: FontWeight.bold,
   );
@@ -36,24 +36,26 @@ class ApplyPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: LoturaColors.gray100,
         elevation: 0.0,
-        leadingWidth: 200.0.w,
-        leading: Row(
-          children: [
-            SizedBox(width: 24.0.w),
-            Image.asset(
-              "assets/applogo.jpeg",
-              width: 24.0.w,
-              height: 24.0.h,
-            ),
-            SizedBox(width: 8.0.w),
-            Text(
-              "OSJ",
-              style: TextStyle(
-                  fontSize: 20.0.sp,
-                  color: LoturaColors.primary700,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
+        leadingWidth: MediaQuery.of(context).size.width,
+        title: Padding(
+          padding: EdgeInsets.only(left: 10.0.r),
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/applogo.jpeg",
+                width: 24.0.w,
+                height: 24.0.h,
+              ),
+              SizedBox(width: 8.0.w),
+              Text(
+                "OSJ",
+                style: TextStyle(
+                    fontSize: 20.0.sp,
+                    color: LoturaColors.primary700,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
         ),
         actions: [
           IconButton(
@@ -105,16 +107,17 @@ class ApplyPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("알림 설정한", style: bigStyle),
-                Text("세탁기와 건조기", style: bigStyle),
-                SizedBox(height: 24.0.h),
-                Text("알림을 설정하여 세탁기와 건조기를", style: smallStyle),
-                SizedBox(height: 5.0.h),
-                Text("누구보다 빠르게 사용해보세요.", style: smallStyle),
-              ],
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("알림 설정한\n세탁기와 건조기", style: bigStyle),
+                  SizedBox(height: 24.0.h),
+                  Text("알림을 설정하여 세탁기와 건조기를\n누구보다 빠르게 사용해보세요.",
+                      style: smallStyle),
+                ],
+              ),
             ),
             SizedBox(height: 20.0.h),
             Expanded(
@@ -173,13 +176,16 @@ class ApplyPage extends StatelessWidget {
                                                 .applyList[index * 2 + 1]
                                                 .deviceType,
                                             state: CurrentState.working)
-                                        : SizedBox(
-                                            width: 185.0.w,
-                                            height: 256.0.h,
-                                          ),
+                                        : const MachineCard(
+                                            //리팩토링 꼭 하기
+                                            deviceId: -1,
+                                            isEnableNotification: false,
+                                            isWoman: true,
+                                            deviceType: DeviceType.dry,
+                                            state: CurrentState.working)
                                   ],
                                 ),
-                                SizedBox(height: 10.0.h),
+                                SizedBox(height: 10.0.r),
                               ],
                             );
                           },

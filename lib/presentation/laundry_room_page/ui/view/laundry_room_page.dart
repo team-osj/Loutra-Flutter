@@ -41,194 +41,207 @@ class LaundryRoomPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RoomBloc, RoomState<LaundryRoomModel>>(
       builder: (context, roomBlocState) {
-        if (roomBlocState is Changed) {
-          return Scaffold(
-            backgroundColor: LoturaColors.gray100,
-            appBar: AppBar(
+        return switch (roomBlocState) {
+          Initial() => const Center(child: CircularProgressIndicator()),
+          Changed() => Scaffold(
               backgroundColor: LoturaColors.gray100,
-              elevation: 0.0,
-              leadingWidth: 300.0.w,
-              leading: Row(
-                children: [
-                  SizedBox(width: 24.0.w),
-                  Text(
+              appBar: AppBar(
+                backgroundColor: LoturaColors.gray100,
+                elevation: 0.0,
+                leadingWidth: MediaQuery.of(context).size.width,
+                title: Padding(
+                  padding: EdgeInsets.only(left: 10.r),
+                  child: Text(
                     roomBlocState.value.roomLocation.roomName,
                     style: TextStyle(
                       color: LoturaColors.black,
-                      fontSize: 24.0.sp,
+                      fontSize: 22.0.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                ],
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    context.read<NoticeBloc>().add(UpdateLastNoticeIdEvent());
-                    Navigator.push(
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      context.read<NoticeBloc>().add(UpdateLastNoticeIdEvent());
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NoticePage()));
+                    },
+                    icon: BlocBuilder<NoticeBloc, n.NoticeState<NoticeModel>>(
+                      builder: (context, state) => state.value.isNewNotice
+                          ? Stack(
+                              alignment: Alignment.topRight,
+                              children: [
+                                Icon(
+                                  LoturaIcons.notice,
+                                  color: LoturaColors.black,
+                                  size: 24.0.r,
+                                ),
+                                Container(
+                                  width: 10.0.r,
+                                  height: 10.0.r,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.blue,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Icon(
+                              LoturaIcons.notice,
+                              color: LoturaColors.black,
+                              size: 24.0.r,
+                            ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NoticePage()));
-                  },
-                  icon: BlocBuilder<NoticeBloc, n.NoticeState<NoticeModel>>(
-                    builder: (context, state) => state.value.isNewNotice
-                        ? Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Icon(
-                                LoturaIcons.notice,
-                                color: LoturaColors.black,
-                                size: 24.0.r,
-                              ),
-                              Container(
-                                width: 10.0.r,
-                                height: 10.0.r,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blue,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ],
-                          )
-                        : Icon(
-                            LoturaIcons.notice,
-                            color: LoturaColors.black,
-                            size: 24.0.r,
-                          ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SettingPage())),
-                  icon: Icon(
-                    Icons.settings,
-                    color: LoturaColors.black,
-                    size: 28.0.r,
-                  ),
-                ),
-                SizedBox(width: 24.0.w),
-              ],
-            ),
-            body: Padding(
-              padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 12.0.h,
-                      bottom: 12.0.h,
-                    ),
-                    child: Row(
-                      children: [
-                        OSJTextButton(
-                          function: () => context.read<RoomBloc>().add(
-                              ModifyRoomIndexEvent(
-                                  roomLocation: RoomLocation.schoolSide)),
-                          fontSize: 16.0.sp,
-                          color: roomBlocState.value.roomLocation ==
-                                  RoomLocation.schoolSide
-                              ? LoturaColors.white
-                              : LoturaColors.gray100,
-                          fontColor: roomBlocState.value.roomLocation ==
-                                  RoomLocation.schoolSide
-                              ? LoturaColors.primary700
-                              : LoturaColors.gray300,
-                          text: "남자 학교측",
-                          radius: 8.0,
-                        ),
-                        SizedBox(width: 8.0.w),
-                        OSJTextButton(
-                          function: () => context.read<RoomBloc>().add(
-                              ModifyRoomIndexEvent(
-                                  roomLocation: RoomLocation.dormitorySide)),
-                          fontSize: 16.0.sp,
-                          color: roomBlocState.value.roomLocation ==
-                                  RoomLocation.dormitorySide
-                              ? LoturaColors.white
-                              : LoturaColors.gray100,
-                          fontColor: roomBlocState.value.roomLocation ==
-                                  RoomLocation.dormitorySide
-                              ? LoturaColors.primary700
-                              : LoturaColors.gray300,
-                          text: "남자 기숙사측",
-                          radius: 8.0,
-                        ),
-                        SizedBox(width: 8.0.w),
-                        OSJTextButton(
-                          function: () => context.read<RoomBloc>().add(
-                              ModifyRoomIndexEvent(
-                                  roomLocation: RoomLocation.womanRoom)),
-                          fontSize: 16.0.sp,
-                          color: roomBlocState.value.roomLocation ==
-                                  RoomLocation.womanRoom
-                              ? LoturaColors.white
-                              : LoturaColors.gray100,
-                          fontColor: roomBlocState.value.roomLocation ==
-                                  RoomLocation.womanRoom
-                              ? LoturaColors.primary700
-                              : LoturaColors.gray300,
-                          text: "여자",
-                          radius: 8.0,
-                        ),
-                      ],
+                            builder: (context) => const SettingPage())),
+                    icon: Icon(
+                      Icons.settings,
+                      color: LoturaColors.black,
+                      size: 28.0.r,
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        onPressed: () => context.read<RoomBloc>().add(
-                            ModifyButtonViewEvent(
-                                buttonView: ButtonView.image)),
-                        icon: Icon(LoturaIcons.grid,
-                            size: 18.0.r,
-                            color: roomBlocState.value.buttonView ==
-                                    ButtonView.image
-                                ? LoturaColors.black
-                                : LoturaColors.gray300),
-                      ),
-                      IconButton(
-                          onPressed: () => context.read<RoomBloc>().add(
-                              ModifyButtonViewEvent(
-                                  buttonView: ButtonView.icon)),
-                          icon: Icon(
-                            LoturaIcons.list,
-                            size: 18.0.r,
-                            color: roomBlocState.value.buttonView ==
-                                    ButtonView.icon
-                                ? LoturaColors.black
-                                : LoturaColors.gray300,
-                          )),
-                    ],
-                  ),
-                  Expanded(
-                    child: BlocBuilder<LaundryBloc, LaundryState<LaundryModel>>(
-                      builder: (context, state) {
-                        return switch (state) {
-                          Empty() => const Center(child: Text("비어있음")),
-                          Loading() =>
-                            const Center(child: CircularProgressIndicator()),
-                          Error() =>
-                            const Center(child: Text("인터넷 연결을 확인해주세요")),
-                          Loaded() => LaundryList(
-                              list: state.data.laundryList,
-                              laundryRoomModel: roomBlocState.value,
-                              nfcData: nfcTagData,
-                            ),
-                        };
-                      },
-                    ),
-                  ),
+                  SizedBox(width: 24.0.w),
                 ],
               ),
+              body: Padding(
+                padding: EdgeInsets.only(
+                  left: 24.0.w,
+                  right: 24.0.w,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.symmetric(vertical: 12.0.h),
+                      child: Row(
+                        children: [
+                          OSJTextButton(
+                            function: () => context.read<RoomBloc>().add(
+                                ModifyRoomIndexEvent(
+                                    roomLocation: RoomLocation.schoolSide)),
+                            fontSize: 18.0.sp,
+                            color: roomBlocState.value.roomLocation ==
+                                    RoomLocation.schoolSide
+                                ? LoturaColors.white
+                                : LoturaColors.gray100,
+                            fontColor: roomBlocState.value.roomLocation ==
+                                    RoomLocation.schoolSide
+                                ? LoturaColors.primary700
+                                : LoturaColors.gray300,
+                            text: "남자 학교측",
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
+                            radius: 8.0,
+                          ),
+                          SizedBox(width: 8.0.w),
+                          OSJTextButton(
+                            function: () => context.read<RoomBloc>().add(
+                                ModifyRoomIndexEvent(
+                                    roomLocation: RoomLocation.dormitorySide)),
+                            fontSize: 18.0.sp,
+                            color: roomBlocState.value.roomLocation ==
+                                    RoomLocation.dormitorySide
+                                ? LoturaColors.white
+                                : LoturaColors.gray100,
+                            fontColor: roomBlocState.value.roomLocation ==
+                                    RoomLocation.dormitorySide
+                                ? LoturaColors.primary700
+                                : LoturaColors.gray300,
+                            text: "남자 기숙사측",
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
+                            radius: 8.0,
+                          ),
+                          SizedBox(width: 8.0.w),
+                          OSJTextButton(
+                            function: () => context.read<RoomBloc>().add(
+                                ModifyRoomIndexEvent(
+                                    roomLocation: RoomLocation.womanRoom)),
+                            fontSize: 18.0.sp,
+                            color: roomBlocState.value.roomLocation ==
+                                    RoomLocation.womanRoom
+                                ? LoturaColors.white
+                                : LoturaColors.gray100,
+                            fontColor: roomBlocState.value.roomLocation ==
+                                    RoomLocation.womanRoom
+                                ? LoturaColors.primary700
+                                : LoturaColors.gray300,
+                            text: "여자",
+                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
+                            radius: 8.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                    ViewTypeFilter(buttonView: roomBlocState.value.buttonView),
+                    Expanded(
+                      child:
+                          BlocBuilder<LaundryBloc, LaundryState<LaundryModel>>(
+                        builder: (context, state) {
+                          return switch (state) {
+                            Empty() => const Center(child: Text("비어있음")),
+                            Loading() =>
+                              const Center(child: CircularProgressIndicator()),
+                            Error() =>
+                              const Center(child: Text("인터넷 연결을 확인해주세요")),
+                            Loaded() => LaundryList(
+                                list: state.data.laundryList,
+                                laundryRoomModel: roomBlocState.value,
+                                nfcData: nfcTagData,
+                              ),
+                          };
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          );
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
+        };
       },
+    );
+  }
+}
+
+class ViewTypeFilter extends StatelessWidget {
+  const ViewTypeFilter({super.key, required this.buttonView});
+
+  final ButtonView buttonView;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        IconButton(
+          onPressed: () => context
+              .read<RoomBloc>()
+              .add(ModifyButtonViewEvent(buttonView: ButtonView.image)),
+          icon: Icon(LoturaIcons.grid,
+              size: 18.0.r,
+              color: buttonView == ButtonView.image
+                  ? LoturaColors.black
+                  : LoturaColors.gray300),
+        ),
+        IconButton(
+          onPressed: () => context
+              .read<RoomBloc>()
+              .add(ModifyButtonViewEvent(buttonView: ButtonView.icon)),
+          icon: Icon(
+            LoturaIcons.list,
+            size: 18.0.r,
+            color: buttonView == ButtonView.icon
+                ? LoturaColors.black
+                : LoturaColors.gray300,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -305,80 +318,72 @@ class LaundryList extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: machineWidget(
-                        roomState: laundryRoomModel,
-                        deviceId: list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index]
-                            .id,
-                        deviceType: list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index]
-                            .deviceType,
-                        state: list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index]
-                            .state),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5.0.r),
-                    child: laundryRoomModel.buttonView.triangle,
-                  ),
-                  Expanded(
-                    child: machineWidget(
+                  machineWidget(
                       roomState: laundryRoomModel,
-                      deviceId:
-                          placeIndex[laundryRoomModel.roomLocation.index]! +
-                                      index +
-                                      (laundryRoomModel.roomLocation ==
-                                              RoomLocation.womanRoom
-                                          ? 10
-                                          : 8) <
-                                  44
-                              ? list[placeIndex[laundryRoomModel
-                                          .roomLocation.index]! +
-                                      index +
-                                      (laundryRoomModel.roomLocation ==
-                                              RoomLocation.womanRoom
-                                          ? 10
-                                          : 8)]
-                                  .id
-                              : -1,
-                      deviceType:
-                          placeIndex[laundryRoomModel.roomLocation.index]! +
-                                      index +
-                                      (laundryRoomModel.roomLocation ==
-                                              RoomLocation.womanRoom
-                                          ? 10
-                                          : 8) <
-                                  44
-                              ? list[placeIndex[laundryRoomModel
-                                          .roomLocation.index]! +
-                                      index +
-                                      (laundryRoomModel.roomLocation ==
-                                              RoomLocation.womanRoom
-                                          ? 10
-                                          : 8)]
-                                  .deviceType
-                              : DeviceType.dry,
-                      state: placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index +
-                                  (laundryRoomModel.roomLocation ==
-                                          RoomLocation.womanRoom
-                                      ? 10
-                                      : 8) <
-                              44
-                          ? list[placeIndex[
-                                      laundryRoomModel.roomLocation.index]! +
-                                  index +
-                                  (laundryRoomModel.roomLocation ==
-                                          RoomLocation.womanRoom
-                                      ? 10
-                                      : 8)]
-                              .state
-                          : CurrentState.breakdown,
-                    ),
+                      deviceId: list[
+                              placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index]
+                          .id,
+                      deviceType: list[
+                              placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index]
+                          .deviceType,
+                      state: list[
+                              placeIndex[laundryRoomModel.roomLocation.index]! +
+                                  index]
+                          .state),
+                  laundryRoomModel.buttonView.triangle,
+                  machineWidget(
+                    roomState: laundryRoomModel,
+                    deviceId: placeIndex[laundryRoomModel.roomLocation.index]! +
+                                index +
+                                (laundryRoomModel.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8) <
+                            44
+                        ? list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
+                                index +
+                                (laundryRoomModel.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8)]
+                            .id
+                        : -1,
+                    deviceType:
+                        placeIndex[laundryRoomModel.roomLocation.index]! +
+                                    index +
+                                    (laundryRoomModel.roomLocation ==
+                                            RoomLocation.womanRoom
+                                        ? 10
+                                        : 8) <
+                                44
+                            ? list[placeIndex[
+                                        laundryRoomModel.roomLocation.index]! +
+                                    index +
+                                    (laundryRoomModel.roomLocation ==
+                                            RoomLocation.womanRoom
+                                        ? 10
+                                        : 8)]
+                                .deviceType
+                            : DeviceType.dry,
+                    state: placeIndex[laundryRoomModel.roomLocation.index]! +
+                                index +
+                                (laundryRoomModel.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8) <
+                            44
+                        ? list[placeIndex[
+                                    laundryRoomModel.roomLocation.index]! +
+                                index +
+                                (laundryRoomModel.roomLocation ==
+                                        RoomLocation.womanRoom
+                                    ? 10
+                                    : 8)]
+                            .state
+                        : CurrentState.breakdown,
                   ),
                 ],
               ),

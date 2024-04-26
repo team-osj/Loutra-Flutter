@@ -17,28 +17,23 @@ class NoticePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: LoturaColors.gray100,
         elevation: 0.0,
-        leadingWidth: 300.0.r,
         toolbarHeight: 90.0.r,
-        leading: Row(
-          children: [
-            IconButton(
-              padding: EdgeInsets.only(left: 24.0.r, right: 12.0.r),
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(
-                Icons.keyboard_arrow_left,
-                color: LoturaColors.black,
-                size: 30.0.r,
-              ),
-            ),
-            Text(
-              "공지",
-              style: TextStyle(
-                fontSize: 24.0.sp,
-                color: LoturaColors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        leading: IconButton(
+          padding: EdgeInsets.only(left: 24.0.r),
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            color: LoturaColors.black,
+            size: 30.0.r,
+          ),
+        ),
+        title: Text(
+          "공지",
+          style: TextStyle(
+            fontSize: 24.0.sp,
+            color: LoturaColors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Padding(
