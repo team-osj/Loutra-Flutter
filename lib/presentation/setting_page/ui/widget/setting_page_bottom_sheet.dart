@@ -27,18 +27,24 @@ class SettingPageBottomSheet extends StatelessWidget {
               ),
               child: Wrap(
                 children: [
-                  Text(
-                    "메인 세탁실 설정",
-                    style: TextStyle(
-                        color: LoturaColors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 30.0.sp),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "메인 세탁실 설정",
+                      style: TextStyle(
+                          color: LoturaColors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 30.0.sp),
+                    ),
                   ),
                   SizedBox(height: 4.0.h),
-                  Text(
-                    "세탁실 탭에서 처음에 보여질 세탁실을 선택해보세요.",
-                    style:
-                        TextStyle(fontSize: 20.0.sp, color: LoturaColors.black),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "세탁실 탭에서 처음에 보여질 세탁실을 선택해보세요.",
+                      style: TextStyle(
+                          fontSize: 25.0.sp, color: LoturaColors.black),
+                    ),
                   ),
                   CheckButton(
                     currentRoomLocation: state.value.roomLocation,
@@ -87,11 +93,14 @@ class CheckButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              roomLocation.roomName,
-              style: TextStyle(
-                fontSize: 16.0.sp,
-                color: LoturaColors.black,
+            Flexible(
+              child: Text(
+                roomLocation.roomName,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 16.0.sp,
+                  color: LoturaColors.black,
+                ),
               ),
             ),
             Icon(
