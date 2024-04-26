@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
-import 'package:lotura/presentation/utils/osj_status_button.dart';
 
 class MachineCard extends MachineWidget {
   const MachineCard({
@@ -18,6 +17,7 @@ class MachineCard extends MachineWidget {
     return isEmptyContainer
         ? Container(
             width: 170.0.r,
+            padding: EdgeInsets.only(top: 10.0.r),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               color: Colors.transparent,
@@ -40,9 +40,17 @@ class MachineCard extends MachineWidget {
                       fontWeight: FontWeight.w500,
                       color: Colors.transparent),
                 ),
-                OSJStatusButton(
-                  state: state,
-                  emptyStatus: true,
+                Container(
+                  padding: EdgeInsets.all(8.0.r),
+                  child: Text(
+                    "고장",
+                    textAlign: TextAlign.center,
+                    textScaler: TextScaler.noScaling,
+                    style: TextStyle(
+                      color: Colors.transparent,
+                      fontSize: 20.0.sp,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -51,6 +59,7 @@ class MachineCard extends MachineWidget {
             onTap: () => showModalOSJBottomSheet(context: context),
             child: Container(
               width: 170.0.r,
+              padding: EdgeInsets.only(top: 10.0.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 color: Colors.white,
@@ -72,8 +81,17 @@ class MachineCard extends MachineWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  OSJStatusButton(
-                    state: state,
+                  Container(
+                    padding: EdgeInsets.all(8.0.r),
+                    child: Text(
+                      state.text,
+                      textAlign: TextAlign.center,
+                      textScaler: TextScaler.noScaling,
+                      style: TextStyle(
+                        color: state.deepColor,
+                        fontSize: 20.0.sp,
+                      ),
+                    ),
                   ),
                 ],
               ),
