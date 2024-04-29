@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:laundry_room_presentation/bloc/laundry_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initLocator();
+  await initLocator();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: LoturaColors.gray100),
   );
@@ -22,8 +23,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ApplyBloc>(
-      create: (context) => locator<ApplyBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ApplyBloc>(create: (context) => locator<ApplyBloc>()),
+        BlocProvider<LaundryBloc>(create: (context) => locator<LaundryBloc>()),
+      ],
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
         builder: (context, child) => MaterialApp(
