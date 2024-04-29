@@ -1,7 +1,10 @@
+import 'package:apply_presentation/bloc/apply_bloc.dart';
+import 'package:apply_presentation/bloc/apply_event.dart';
 import 'package:core/current_state.dart';
 import 'package:core/device_type.dart';
 import 'package:core/lotura_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
 import 'package:utils/osj_text_button.dart';
 
@@ -124,6 +127,15 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                     Expanded(
                       child: OSJTextButton(
                           function: () {
+                            widget.isEnableNotification
+                                ? context.read<ApplyBloc>().add(SendFCMEvent(
+                                    deviceId: widget.deviceId,
+                                    deviceType: widget.machine))
+                                : context
+                                    .read<ApplyBloc>()
+                                    .add(ApplyCancelEvent(
+                                      deviceId: widget.deviceId,
+                                    ));
                             Navigator.pop(context);
                           },
                           fontSize: 14.0.sp,
