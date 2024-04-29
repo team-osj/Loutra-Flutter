@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:apply_data/dto/response/apply_response.dart';
+import 'package:apply_domain/entity/apply_entity.dart';
 
 abstract interface class ApplyRepository {
-  Future<List<ApplyResponse>> getApplyList();
+  Future<List<ApplyEntity>> getApplyList();
 
   Future<void> sendFCMInfo({required int deviceId, required int expectState});
 
