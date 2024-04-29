@@ -1,5 +1,6 @@
 import 'package:app/di/locator.dart';
 import 'package:apply_presentation/bloc/apply_bloc.dart';
+import 'package:apply_presentation/bloc/apply_event.dart';
 import 'package:core/lotura_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ApplyBloc>(create: (context) => locator<ApplyBloc>()),
+        BlocProvider<ApplyBloc>(
+            create: (context) =>
+                locator<ApplyBloc>()..add(GetApplyListEvent())),
         BlocProvider<LaundryBloc>(
             create: (context) =>
                 locator<LaundryBloc>()..add(GetAllLaundryListEvent())),
