@@ -11,8 +11,6 @@ dependencies:
   # path: ^1.8.0
   core:
     path: ../../core
-  apply_data:
-    path: ../../data/apply
 
 dev_dependencies:
   flutter_test:
