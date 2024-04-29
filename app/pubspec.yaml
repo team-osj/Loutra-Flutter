@@ -44,16 +44,22 @@ dependencies:
     path: ../data/apply
   laundry_data:
     path: ../data/laundry
+  notice_data:
+    path: ../data/notice
 
   apply_domain:
     path: ../domain/apply
   laundry_domain:
     path: ../domain/laundry
+  notice_domain:
+    path: ../domain/notice
 
   apply_presentation:
     path: ../presentation/apply
   laundry_room_presentation:
     path: ../presentation/laundry_room
+  notice_presentation:
+    path: ../presentation/notice
 
   utils:
     path: ../presentation/utils

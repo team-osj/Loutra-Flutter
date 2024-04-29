@@ -268,6 +268,27 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  notice_data:
+    dependency: "direct main"
+    description:
+      path: "../data/notice"
+      relative: true
+    source: path
+    version: "1.0.0"
+  notice_domain:
+    dependency: "direct main"
+    description:
+      path: "../domain/notice"
+      relative: true
+    source: path
+    version: "1.0.0"
+  notice_presentation:
+    dependency: "direct main"
+    description:
+      path: "../presentation/notice"
+      relative: true
+    source: path
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
