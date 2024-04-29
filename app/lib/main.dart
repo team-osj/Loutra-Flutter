@@ -1,12 +1,13 @@
 import 'package:app/di/locator.dart';
 import 'package:apply_presentation/bloc/apply_bloc.dart';
-import 'package:apply_presentation/ui/view/apply_page.dart';
 import 'package:core/lotura_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laundry_room_presentation/bloc/laundry_bloc.dart';
+import 'package:laundry_room_presentation/bloc/laundry_event.dart';
+import 'package:utils/bottom_navi.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,13 +27,15 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ApplyBloc>(create: (context) => locator<ApplyBloc>()),
-        BlocProvider<LaundryBloc>(create: (context) => locator<LaundryBloc>()),
+        BlocProvider<LaundryBloc>(
+            create: (context) =>
+                locator<LaundryBloc>()..add(GetAllLaundryListEvent())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
-        builder: (context, child) => MaterialApp(
+        builder: (context, child) => const MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: ApplyPage(),
+          home: BottomNavi(),
         ),
       ),
     );

@@ -34,18 +34,29 @@ dependencies:
   get_it: ^7.6.7
   flutter_bloc: ^8.1.3
   flutter_screenutil: ^5.6.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
   core:
     path: ../core
 
   apply_data:
     path: ../data/apply
+  laundry_data:
+    path: ../data/laundry
 
   apply_domain:
     path: ../domain/apply
+  laundry_domain:
+    path: ../domain/laundry
 
   apply_presentation:
     path: ../presentation/apply
+  laundry_room_presentation:
+    path: ../presentation/laundry_room
+
+  utils:
+    path: ../presentation/utils
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
