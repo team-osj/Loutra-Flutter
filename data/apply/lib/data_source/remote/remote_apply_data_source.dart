@@ -9,13 +9,11 @@ import 'package:core/secret.dart';
 import 'package:http/http.dart' as http;
 
 class RemoteApplyDataSource {
-  // Future<String> _getToken() async =>
-  //     await FirebaseMessaging.instance.getToken() ?? "whatThe";
-
   Future<List<ApplyResponse>> getApplyList() async {
     GetApplyListRequest getApplyListRequest =
         GetApplyListRequest(token: "asdf");
     final response = await http.post(Uri.parse("$baseurl/push_list"),
+        headers: {"Content-Type": "application/json"},
         body: json.encode(getApplyListRequest.toJson()));
     if (response.statusCode != 200) throw Exception(response.body);
     return (jsonDecode(response.body) as List<dynamic>)
