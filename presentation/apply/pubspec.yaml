@@ -20,6 +20,9 @@ dependencies:
   core:
     path: ../../core
 
+  notice_presentation:
+    path: ../notice
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
