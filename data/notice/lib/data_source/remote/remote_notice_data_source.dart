@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:core/secret.dart';
 import 'package:http/http.dart' as http;
-import 'package:notice/dto/response/notice_response.dart';
+import 'package:notice_data/dto/response/notice_response.dart';
 
 class RemoteNoticeDataSource {
   Future<List<NoticeResponse>> getNotice() async {

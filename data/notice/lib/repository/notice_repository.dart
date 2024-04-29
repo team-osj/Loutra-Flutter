@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:notice/dto/response/notice_response.dart';
+import 'package:notice_data/dto/response/notice_response.dart';
 
 abstract class NoticeRepository {
   Future<List<NoticeResponse>> getNotice();
