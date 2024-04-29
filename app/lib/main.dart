@@ -33,8 +33,9 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 locator<ApplyBloc>()..add(GetApplyListEvent())),
         BlocProvider<LaundryBloc>(
-            create: (context) =>
-                locator<LaundryBloc>()..add(GetAllLaundryListEvent())),
+            create: (context) => locator<LaundryBloc>()
+              ..add(GetAllLaundryListEvent())
+              ..add(GetLaundryEvent())),
         BlocProvider<NoticeBloc>(
             create: (context) => locator<NoticeBloc>()..add(GetNoticeEvent())),
       ],
