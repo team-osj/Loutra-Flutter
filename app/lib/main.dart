@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:laundry_room_presentation/bloc/laundry_bloc.dart';
 import 'package:laundry_room_presentation/bloc/laundry_event.dart';
+import 'package:notice_presentation/bloc/notice_bloc.dart';
+import 'package:notice_presentation/bloc/notice_event.dart';
 import 'package:utils/bottom_navi.dart';
 
 Future<void> main() async {
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
         BlocProvider<LaundryBloc>(
             create: (context) =>
                 locator<LaundryBloc>()..add(GetAllLaundryListEvent())),
+        BlocProvider<NoticeBloc>(
+            create: (context) => locator<NoticeBloc>()..add(GetNoticeEvent())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
