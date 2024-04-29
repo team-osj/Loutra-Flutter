@@ -1,6 +1,8 @@
 import 'package:apply_presentation/bloc/apply_bloc.dart';
 import 'package:apply_presentation/bloc/apply_model.dart';
 import 'package:apply_presentation/bloc/apply_state.dart';
+import 'package:core/current_state.dart';
+import 'package:core/device_type.dart';
 import 'package:core/lotura_colors.dart';
 import 'package:core/lotura_icons.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
 import 'package:notice_presentation/bloc/notice_bloc.dart';
 import 'package:notice_presentation/bloc/notice_event.dart';
 import 'package:notice_presentation/ui/view/notice_page.dart';
+import 'package:utils/machine_card.dart';
 
 class ApplyPage extends StatelessWidget {
   ApplyPage({super.key});
@@ -104,16 +107,47 @@ class ApplyPage extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      color: Colors.red,
-                                    ),
-                                    Container(
-                                      width: 100,
-                                      height: 100,
-                                      color: Colors.blue,
-                                    ),
+                                    MachineCard(
+                                        deviceId: state.value
+                                            .applyList[index * 2].deviceId,
+                                        isEnableNotification: false,
+                                        isWoman: state
+                                                    .value
+                                                    .applyList[index * 2]
+                                                    .deviceId >
+                                                31
+                                            ? true
+                                            : false,
+                                        deviceType: state.value
+                                            .applyList[index * 2].deviceType,
+                                        state: CurrentState.working),
+                                    index * 2 + 1 < state.value.applyList.length
+                                        ? MachineCard(
+                                            deviceId: state
+                                                .value
+                                                .applyList[index * 2 + 1]
+                                                .deviceId,
+                                            isEnableNotification: false,
+                                            isWoman: state
+                                                        .value
+                                                        .applyList[
+                                                            index * 2 + 1]
+                                                        .deviceId >
+                                                    31
+                                                ? true
+                                                : false,
+                                            deviceType: state
+                                                .value
+                                                .applyList[index * 2 + 1]
+                                                .deviceType,
+                                            state: CurrentState.working)
+                                        : const MachineCard(
+                                            //리팩토링 꼭 하기
+                                            deviceId: -1,
+                                            isEnableNotification: false,
+                                            isWoman: true,
+                                            deviceType: DeviceType.dry,
+                                            state: CurrentState.working),
                                   ],
                                 ),
                                 SizedBox(height: 20.0.r),
