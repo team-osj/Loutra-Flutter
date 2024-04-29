@@ -23,6 +23,9 @@ dependencies:
   notice_presentation:
     path: ../notice
 
+  utils:
+    path: ../utils
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
