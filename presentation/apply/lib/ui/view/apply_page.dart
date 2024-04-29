@@ -2,9 +2,13 @@ import 'package:apply_presentation/bloc/apply_bloc.dart';
 import 'package:apply_presentation/bloc/apply_model.dart';
 import 'package:apply_presentation/bloc/apply_state.dart';
 import 'package:core/lotura_colors.dart';
+import 'package:core/lotura_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
+import 'package:notice_presentation/bloc/notice_bloc.dart';
+import 'package:notice_presentation/bloc/notice_event.dart';
+import 'package:notice_presentation/ui/view/notice_page.dart';
 
 class ApplyPage extends StatelessWidget {
   ApplyPage({super.key});
@@ -48,6 +52,17 @@ class ApplyPage extends StatelessWidget {
             ],
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<NoticeBloc>().add(UpdateLastNoticeIdEvent());
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const NoticePage()));
+            },
+            icon: const Icon(LoturaIcons.notice),
+          ),
+          SizedBox(width: 24.0.w),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 36.0.h),
