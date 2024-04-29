@@ -8,9 +8,7 @@ import 'package:laundry_room_presentation/bloc/laundry_model.dart';
 import 'package:laundry_room_presentation/bloc/laundry_state.dart';
 
 class LaundryRoomPage extends StatelessWidget {
-  LaundryRoomPage({super.key, required this.nfcTagData});
-
-  final int nfcTagData;
+  LaundryRoomPage({super.key});
 
   final Map place = <int, String>{
     0: "남자 학교측 세탁실",
@@ -58,7 +56,6 @@ class LaundryRoomPage extends StatelessWidget {
                     Error() => const Center(child: Text("인터넷 연결을 확인해주세요")),
                     Loaded() => LaundryList(
                         list: state.data.laundryList,
-                        nfcData: nfcTagData,
                       ),
                   };
                 },
@@ -75,11 +72,9 @@ class LaundryList extends StatelessWidget {
   LaundryList({
     super.key,
     required this.list,
-    required this.nfcData,
   });
 
   final List<LaundryEntity> list;
-  final int nfcData;
 
   final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
 
