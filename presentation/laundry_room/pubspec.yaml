@@ -17,6 +17,12 @@ dependencies:
   laundry_domain:
     path: ../../domain/laundry
 
+  notice_presentation:
+    path: ../notice
+
+  utils:
+    path: ../utils
+
   core:
     path: ../../core
 
