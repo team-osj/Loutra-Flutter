@@ -1,4 +1,4 @@
-import 'package:apply_data/repository/apply_repository.dart';
+import 'package:apply_domain/repository/apply_repository.dart';
 
 class SendFCMInfoUseCase {
   final ApplyRepository _applyRepository;

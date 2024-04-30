@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:apply_data/data_source/remote/remote_apply_data_source.dart';
-import 'package:apply_data/repository/apply_repository.dart';
 import 'package:apply_data/repository/apply_repository_impl.dart';
+import 'package:apply_domain/repository/apply_repository.dart';
 import 'package:apply_domain/use_case/apply_cancel_use_case.dart';
 import 'package:apply_domain/use_case/get_apply_list_use_case.dart';
 import 'package:apply_domain/use_case/send_fcm_info_use_case.dart';
