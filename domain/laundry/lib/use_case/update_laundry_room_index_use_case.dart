@@ -1,4 +1,4 @@
-import 'package:laundry_data/repository/laundry_repository.dart';
+import 'package:laundry_domain/repository/laundry_repository.dart';
 
 class UpdateLaundryRoomIndexUseCase {
   final LaundryRepository _laundryRepository;

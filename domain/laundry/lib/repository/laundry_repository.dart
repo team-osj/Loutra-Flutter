@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:laundry_data/dto/response/laundry_response.dart';
+import 'package:laundry_domain/entity/laundry_entity.dart';
 
 abstract interface class LaundryRepository {
-  Stream<LaundryResponse> get laundryList;
+  Stream<LaundryEntity> get laundryList;
 
   void webSocketInit();
 
-  Future<List<LaundryResponse>> getAllLaundryList();
+  Future<List<LaundryEntity>> getAllLaundryList();
 
   Future<void> setValue({required String key, required int value});
 

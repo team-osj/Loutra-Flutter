@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:laundry_data/data_source/local/local_laundry_data_source.dart';
 import 'package:laundry_data/data_source/remote/remote_laundry_data_source.dart';
-import 'package:laundry_data/dto/response/laundry_response.dart';
-import 'package:laundry_data/repository/laundry_repository.dart';
+import 'package:laundry_data/mapper/laundry_mapper.dart';
+import 'package:laundry_domain/entity/laundry_entity.dart';
+import 'package:laundry_domain/repository/laundry_repository.dart';
 
 class LaundryRepositoryImpl implements LaundryRepository {
   final LocalLaundryDataSource _localLaundryDataSource;
@@ -16,8 +17,9 @@ class LaundryRepositoryImpl implements LaundryRepository {
         _remoteLaundryDataSource = remoteLaundryDataSource;
 
   @override
-  Stream<LaundryResponse> get laundryList =>
-      _remoteLaundryDataSource.laundryList.asBroadcastStream();
+  Stream<LaundryEntity> get laundryList => _remoteLaundryDataSource.laundryList
+      .asBroadcastStream()
+      .map((event) => LaundryMapper.toEntity(laundryResponse: event));
 
   @override
   void webSocketInit() => _remoteLaundryDataSource.webSocketInit();
@@ -31,6 +33,11 @@ class LaundryRepositoryImpl implements LaundryRepository {
       _localLaundryDataSource.setValue(key: key, value: value);
 
   @override
-  Future<List<LaundryResponse>> getAllLaundryList() =>
-      _remoteLaundryDataSource.getAllLaundryList();
+  Future<List<LaundryEntity>> getAllLaundryList() async {
+    final laundryResponseList =
+        await _remoteLaundryDataSource.getAllLaundryList();
+    return laundryResponseList
+        .map((e) => LaundryMapper.toEntity(laundryResponse: e))
+        .toList();
+  }
 }
