@@ -16,6 +16,9 @@ dependencies:
   core:
     path: ../../core
 
+  laundry_domain:
+    path: ../../domain/laundry
+
 
 dev_dependencies:
   lints: ^3.0.0
