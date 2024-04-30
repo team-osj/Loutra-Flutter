@@ -16,6 +16,9 @@ dependencies:
   core:
     path: ../../core
 
+  notice_domain:
+    path: ../../domain/notice
+
 
 dev_dependencies:
   lints: ^3.0.0
