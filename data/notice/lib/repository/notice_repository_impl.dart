@@ -1,7 +1,8 @@
 import 'package:notice_data/data_source/local/local_notice_data_source.dart';
 import 'package:notice_data/data_source/remote/remote_notice_data_source.dart';
-import 'package:notice_data/dto/response/notice_response.dart';
-import 'package:notice_data/repository/notice_repository.dart';
+import 'package:notice_data/mapper/notice_mapper.dart';
+import 'package:notice_domain/entity/notice_entity.dart';
+import 'package:notice_domain/repository/notice_repository.dart';
 
 class NoticeRepositoryImpl implements NoticeRepository {
   final RemoteNoticeDataSource _remoteNoticeDataSource;
@@ -14,8 +15,12 @@ class NoticeRepositoryImpl implements NoticeRepository {
         _localNoticeDataSource = localNoticeDataSource;
 
   @override
-  Future<List<NoticeResponse>> getNotice() =>
-      _remoteNoticeDataSource.getNotice();
+  Future<List<NoticeEntity>> getNotice() async {
+    final noticeResponseList = await _remoteNoticeDataSource.getNotice();
+    return noticeResponseList
+        .map((e) => NoticeMapper.toEntity(noticeResponse: e))
+        .toList();
+  }
 
   @override
   int? getLastNoticeId({required String key}) =>

@@ -21,8 +21,8 @@ import 'package:laundry_domain/use_case/update_laundry_room_index_use_case.dart'
 import 'package:laundry_room_presentation/bloc/laundry_bloc.dart';
 import 'package:notice_data/data_source/local/local_notice_data_source.dart';
 import 'package:notice_data/data_source/remote/remote_notice_data_source.dart';
-import 'package:notice_data/repository/notice_repository.dart';
 import 'package:notice_data/repository/notice_repository_impl.dart';
+import 'package:notice_domain/repository/notice_repository.dart';
 import 'package:notice_domain/use_case/get_last_notice_id_use_case.dart';
 import 'package:notice_domain/use_case/get_notice_use_case.dart';
 import 'package:notice_domain/use_case/update_last_notice_id_use_case.dart';

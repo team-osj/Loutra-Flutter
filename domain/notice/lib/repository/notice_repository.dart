@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:notice_data/dto/response/notice_response.dart';
+import 'package:notice_domain/entity/notice_entity.dart';
 
 abstract class NoticeRepository {
-  Future<List<NoticeResponse>> getNotice();
+  Future<List<NoticeEntity>> getNotice();
 
   Future<void> setLastNoticeId({required String key, required int value});
 

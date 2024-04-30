@@ -1,5 +1,5 @@
-import 'package:notice_data/repository/notice_repository.dart';
 import 'package:notice_domain/entity/notice_entity.dart';
+import 'package:notice_domain/repository/notice_repository.dart';
 
 class GetLastNoticeIdUseCase {
   final NoticeRepository _noticeRepository;
