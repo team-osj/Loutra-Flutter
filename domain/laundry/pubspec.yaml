@@ -10,8 +10,7 @@ environment:
 dependencies:
   core:
     path: ../../core
-  laundry_data:
-    path: ../../data/laundry
+
 
 dev_dependencies:
   lints: ^3.0.0
