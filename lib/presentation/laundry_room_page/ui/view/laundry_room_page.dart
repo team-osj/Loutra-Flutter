@@ -6,6 +6,7 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_model.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
+import 'package:lotura/presentation/laundry_room_page/ui/widget/machine_button.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
@@ -18,7 +19,6 @@ import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
-import 'package:lotura/presentation/utils/machine_button.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
