@@ -8,7 +8,6 @@ class MachineCard extends MachineWidget {
     super.key,
     required super.deviceId,
     required super.isEnableNotification,
-    required super.isWoman,
     required super.deviceType,
     required super.state,
   });
@@ -75,7 +74,7 @@ class MachineCard extends MachineWidget {
                     height: 100.0.r,
                   ),
                   Text(
-                    "${isWoman ? deviceId - 31 : deviceId}번 ${deviceType.text}",
+                    "$deviceId번 ${deviceType.text}",
                     textScaler: TextScaler.noScaling,
                     style: TextStyle(
                       fontSize: 20.0.sp,
