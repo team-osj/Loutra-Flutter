@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/domain/notice/entity/notice_entity.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NoticeListTile extends StatefulWidget {
   final NoticeEntity noticeEntity;
@@ -47,16 +49,18 @@ class _NoticeListTileState extends State<NoticeListTile> {
               ],
             ),
             _tap
-                ? ListView(
+                ? Markdown(
                     padding: EdgeInsets.only(top: 10.0.r),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      Text(
-                        widget.noticeEntity.contents,
-                        style: TextStyle(fontSize: 16.0.sp),
-                      ),
-                    ],
+                    data: widget.noticeEntity.contents,
+                    onTapLink: (text, href, title) async {
+                      await launchUrl(Uri.parse(href!),
+                          mode: LaunchMode.externalApplication);
+                    },
+                    styleSheet: MarkdownStyleSheet(
+                      a: const TextStyle(color: Colors.blue),
+                    ),
                   )
                 : const SizedBox.shrink(),
           ],
