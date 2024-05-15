@@ -14,13 +14,9 @@ abstract class MachineWidget extends StatelessWidget {
   });
 
   final int deviceId;
-  final bool isEnableNotification, isWoman;
-
-  final CurrentState state;
   final DeviceType deviceType;
-
-  bool get isEmptyContainer =>
-      (!isWoman && deviceId == 32) || (isWoman && deviceId == -1);
+  final CurrentState state;
+  final bool isEnableNotification, isWoman;
 
   void showModalOSJBottomSheet({required BuildContext context}) =>
       showModalBottomSheet(
