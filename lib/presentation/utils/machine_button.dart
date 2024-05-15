@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
+import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
+import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 
 class MachineButton extends MachineWidget {
-  const MachineButton({
+  MachineButton({
     super.key,
-    required super.deviceId,
+    required this.laundryEntity,
     required super.isEnableNotification,
-    required super.isWoman,
-    required super.state,
-    required super.deviceType,
-  });
+  }) : super(
+          deviceId: laundryEntity.id,
+          deviceType: laundryEntity.deviceType,
+          state: laundryEntity.state,
+        );
+
+  final LaundryEntity laundryEntity;
 
   @override
   Widget build(BuildContext context) {
-    return isEmptyContainer
+    return laundryEntity.deviceType == DeviceType.empty
         ? Container(
             padding: EdgeInsets.all(12.0.r),
             constraints: BoxConstraints(
@@ -71,7 +76,7 @@ class MachineButton extends MachineWidget {
                 maxWidth: 185.0.w,
               ),
               decoration: BoxDecoration(
-                  color: state.color,
+                  color: laundryEntity.state.color,
                   borderRadius: BorderRadius.circular(16.0),
                   border: Border.all(color: LoturaColors.gray200)),
               child: Row(
@@ -84,23 +89,24 @@ class MachineButton extends MachineWidget {
                     height: 32.0.r,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: state.color,
-                      border:
-                          Border.all(color: state.deviceIconColor, width: 2),
+                      color: laundryEntity.state.color,
+                      border: Border.all(
+                          color: laundryEntity.state.deviceIconColor, width: 2),
                     ),
-                    child: Icon(deviceType.icon,
-                        size: 20.0.r, color: state.deviceIconColor),
+                    child: Icon(laundryEntity.deviceType.icon,
+                        size: 20.0.r,
+                        color: laundryEntity.state.deviceIconColor),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text("${isWoman ? deviceId - 31 : deviceId}번",
+                      Text("${laundryEntity.viewId}번",
                           style: TextStyle(
                               fontSize: 15.0.sp, fontWeight: FontWeight.w500)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(deviceType.text,
+                          Text(laundryEntity.deviceType.text,
                               style: TextStyle(fontSize: 14.0.sp)),
                         ],
                       ),
