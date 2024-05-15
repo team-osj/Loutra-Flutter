@@ -108,6 +108,11 @@ enum DeviceType {
     text: "건조기",
     icon: LoturaIcons.dry,
     imagePath: "assets/dry_image.jpeg",
+  ),
+  empty(
+    text: "",
+    icon: Icons.abc,
+    imagePath: "",
   );
 
   final String text, imagePath;
