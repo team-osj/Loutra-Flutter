@@ -18,14 +18,14 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<LaundryRoomModel>> {
         super(Initial(
             data: const LaundryRoomModel(
                 roomLocation: RoomLocation.schoolSide,
-                buttonView: ButtonView.icon,
+                laundryRoomLayer: LaundryRoomLayer.first,
                 isClick: false,
                 isNFCShowBottomSheet: false,
                 showingBottomSheet: false))) {
     on<UpdateRoomIndexEvent>(_updateRoomIndexEventHandler);
     on<GetRoomIndexEvent>(_getRoomIndexEventHandler);
     on<ModifyRoomIndexEvent>(_modifyRoomIndexEventHandler);
-    on<ModifyButtonViewEvent>(_modifyPlaceIconIndexEventHandler);
+    on<ModifyLaundryRoomLayerEvent>(_modifyPlaceIconIndexEventHandler);
     on<ShowBottomSheetEvent>(_showBottomSheetEventHandler);
     on<InitialShowBottomSheetEvent>(_initialShowBottomSheetEventHandler);
     on<ShowingBottomSheetEvent>(_showingBottomSheetEventHandler);
@@ -51,9 +51,10 @@ class RoomBloc extends Bloc<RoomEvent, RoomState<LaundryRoomModel>> {
     emit(Changed(data: state.value.copyWith(roomLocation: event.roomLocation)));
   }
 
-  void _modifyPlaceIconIndexEventHandler(
-      ModifyButtonViewEvent event, Emitter<RoomState<LaundryRoomModel>> emit) {
-    emit(Changed(data: state.value.copyWith(buttonView: event.buttonView)));
+  void _modifyPlaceIconIndexEventHandler(ModifyLaundryRoomLayerEvent event,
+      Emitter<RoomState<LaundryRoomModel>> emit) {
+    emit(Changed(
+        data: state.value.copyWith(laundryRoomLayer: event.laundryRoomLayer)));
   }
 
   void _showBottomSheetEventHandler(
