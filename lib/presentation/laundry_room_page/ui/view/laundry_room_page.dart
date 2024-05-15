@@ -167,7 +167,8 @@ class LaundryRoomPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    ViewTypeFilter(buttonView: roomBlocState.value.buttonView),
+                    LaundryRoomLayerFilter(
+                        laundryRoomLayer: roomBlocState.value.laundryRoomLayer),
                     Expanded(
                       child:
                           BlocBuilder<LaundryBloc, LaundryState<LaundryModel>>(
@@ -197,10 +198,10 @@ class LaundryRoomPage extends StatelessWidget {
   }
 }
 
-class ViewTypeFilter extends StatelessWidget {
-  const ViewTypeFilter({super.key, required this.buttonView});
+class LaundryRoomLayerFilter extends StatelessWidget {
+  const LaundryRoomLayerFilter({super.key, required this.laundryRoomLayer});
 
-  final ButtonView buttonView;
+  final LaundryRoomLayer laundryRoomLayer;
 
   @override
   Widget build(BuildContext context) {
@@ -208,23 +209,23 @@ class ViewTypeFilter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         IconButton(
-          onPressed: () => context
-              .read<RoomBloc>()
-              .add(ModifyButtonViewEvent(buttonView: ButtonView.image)),
-          icon: Icon(LoturaIcons.grid,
-              size: 18.0.r,
-              color: buttonView == ButtonView.image
+          onPressed: () => context.read<RoomBloc>().add(
+              ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.first)),
+          icon: Icon(LaundryRoomLayer.first.icon,
+              size: 24.0.r,
+              color: laundryRoomLayer == LaundryRoomLayer.first
                   ? LoturaColors.black
                   : LoturaColors.gray300),
         ),
         IconButton(
-          onPressed: () => context
-              .read<RoomBloc>()
-              .add(ModifyButtonViewEvent(buttonView: ButtonView.icon)),
+          onPressed: () => context.read<RoomBloc>().add(
+              ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.second)),
           icon: Icon(
-            LoturaIcons.list,
-            size: 18.0.r,
-            color: buttonView == ButtonView.icon
+            Icons.looks_two_outlined,
+            size: 24.0.r,
+            color: laundryRoomLayer == LaundryRoomLayer.second
                 ? LoturaColors.black
                 : LoturaColors.gray300,
           ),
@@ -287,8 +288,8 @@ class LaundryList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MachineButton(
-                    laundryEntity: laundryRoomModel.buttonView ==
-                            ButtonView.image
+                    laundryEntity: laundryRoomModel.laundryRoomLayer ==
+                            LaundryRoomLayer.first
                         ? list[
                             placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index]
@@ -298,10 +299,10 @@ class LaundryList extends StatelessWidget {
                                 32],
                     isEnableNotification: true,
                   ),
-                  laundryRoomModel.buttonView.triangle,
+                  const Icon(LoturaIcons.triangleUp, color: Colors.grey),
                   MachineButton(
-                    laundryEntity: laundryRoomModel.buttonView ==
-                            ButtonView.image
+                    laundryEntity: laundryRoomModel.laundryRoomLayer ==
+                            LaundryRoomLayer.first
                         ? list[
                             placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +

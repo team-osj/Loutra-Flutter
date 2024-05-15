@@ -134,11 +134,11 @@ enum RoomLocation {
   final String roomName;
 }
 
-enum ButtonView {
-  image,
-  icon;
+enum LaundryRoomLayer {
+  first(icon: Icons.looks_one_outlined),
+  second(icon: Icons.looks_two_outlined);
 
-  Widget get triangle => this == ButtonView.image
-      ? const SizedBox.shrink()
-      : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
+  const LaundryRoomLayer({required this.icon});
+
+  final IconData icon;
 }

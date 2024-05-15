@@ -16,10 +16,10 @@ class ModifyRoomIndexEvent extends RoomEvent {
   ModifyRoomIndexEvent({required this.roomLocation});
 }
 
-class ModifyButtonViewEvent extends RoomEvent {
-  final ButtonView buttonView;
+class ModifyLaundryRoomLayerEvent extends RoomEvent {
+  final LaundryRoomLayer laundryRoomLayer;
 
-  ModifyButtonViewEvent({required this.buttonView});
+  ModifyLaundryRoomLayerEvent({required this.laundryRoomLayer});
 }
 
 class ShowBottomSheetEvent extends RoomEvent {}
