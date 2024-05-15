@@ -100,7 +100,7 @@ class MachineButton extends MachineWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text("${laundryEntity.viewId}번",
+                      Text("${laundryEntity.id}번",
                           style: TextStyle(
                               fontSize: 15.0.sp, fontWeight: FontWeight.w500)),
                       Row(

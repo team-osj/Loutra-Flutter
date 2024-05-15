@@ -30,7 +30,6 @@ class LaundryBloc extends Bloc<LaundryEvent, LaundryState<LaundryModel>> {
                 .map((e) => e.id == data.id
                     ? LaundryEntity(
                         id: e.id,
-                        viewId: e.viewId,
                         state: data.state,
                         deviceType: data.deviceType)
                     : e)
