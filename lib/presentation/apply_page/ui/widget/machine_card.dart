@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
+import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 
 class MachineCard extends MachineWidget {
@@ -14,7 +15,7 @@ class MachineCard extends MachineWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isEmptyContainer
+    return deviceType == DeviceType.empty
         ? Container(
             width: 170.0.r,
             padding: EdgeInsets.only(top: 10.0.r),
@@ -27,7 +28,7 @@ class MachineCard extends MachineWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  deviceType.imagePath,
+                  "assets/dry_image.jpeg",
                   width: 100.0.r,
                   height: 100.0.r,
                   color: Colors.transparent,

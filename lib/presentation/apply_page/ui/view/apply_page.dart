@@ -5,6 +5,7 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_bloc.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_model.dart';
 import 'package:lotura/presentation/apply_page/bloc/apply_state.dart';
+import 'package:lotura/presentation/apply_page/ui/widget/machine_card.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
@@ -13,7 +14,6 @@ import 'package:lotura/presentation/notice_page/ui/view/notice_page.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
-import 'package:lotura/presentation/utils/machine_card.dart';
 
 class ApplyPage extends StatelessWidget {
   ApplyPage({super.key});
@@ -150,7 +150,7 @@ class ApplyPage extends StatelessWidget {
                                                     .value
                                                     .applyList[index * 2]
                                                     .deviceId >
-                                                31
+                                                64
                                             ? true
                                             : false,
                                         deviceType: state.value
@@ -168,7 +168,7 @@ class ApplyPage extends StatelessWidget {
                                                         .applyList[
                                                             index * 2 + 1]
                                                         .deviceId >
-                                                    31
+                                                    64
                                                 ? true
                                                 : false,
                                             deviceType: state
@@ -181,7 +181,7 @@ class ApplyPage extends StatelessWidget {
                                             deviceId: -1,
                                             isEnableNotification: false,
                                             isWoman: true,
-                                            deviceType: DeviceType.dry,
+                                            deviceType: DeviceType.empty,
                                             state: CurrentState.working)
                                   ],
                                 ),
