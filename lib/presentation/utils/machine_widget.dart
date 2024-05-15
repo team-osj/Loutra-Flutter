@@ -8,7 +8,6 @@ abstract class MachineWidget extends StatelessWidget {
     super.key,
     required this.deviceId,
     required this.isEnableNotification,
-    required this.isWoman,
     required this.state,
     required this.deviceType,
   });
@@ -16,7 +15,7 @@ abstract class MachineWidget extends StatelessWidget {
   final int deviceId;
   final DeviceType deviceType;
   final CurrentState state;
-  final bool isEnableNotification, isWoman;
+  final bool isEnableNotification;
 
   void showModalOSJBottomSheet({required BuildContext context}) =>
       showModalBottomSheet(
@@ -29,7 +28,6 @@ abstract class MachineWidget extends StatelessWidget {
         builder: (context) => OSJBottomSheet(
           deviceId: deviceId,
           isEnableNotification: isEnableNotification,
-          isWoman: isWoman,
           state: state,
           machine: deviceType,
         ),

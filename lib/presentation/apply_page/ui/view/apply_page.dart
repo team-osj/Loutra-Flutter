@@ -146,13 +146,6 @@ class ApplyPage extends StatelessWidget {
                                         deviceId: state.value
                                             .applyList[index * 2].deviceId,
                                         isEnableNotification: false,
-                                        isWoman: state
-                                                    .value
-                                                    .applyList[index * 2]
-                                                    .deviceId >
-                                                64
-                                            ? true
-                                            : false,
                                         deviceType: state.value
                                             .applyList[index * 2].deviceType,
                                         state: CurrentState.working),
@@ -163,14 +156,6 @@ class ApplyPage extends StatelessWidget {
                                                 .applyList[index * 2 + 1]
                                                 .deviceId,
                                             isEnableNotification: false,
-                                            isWoman: state
-                                                        .value
-                                                        .applyList[
-                                                            index * 2 + 1]
-                                                        .deviceId >
-                                                    64
-                                                ? true
-                                                : false,
                                             deviceType: state
                                                 .value
                                                 .applyList[index * 2 + 1]
@@ -180,7 +165,6 @@ class ApplyPage extends StatelessWidget {
                                             //리팩토링 꼭 하기
                                             deviceId: -1,
                                             isEnableNotification: false,
-                                            isWoman: true,
                                             deviceType: DeviceType.empty,
                                             state: CurrentState.working)
                                   ],

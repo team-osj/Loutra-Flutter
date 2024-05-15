@@ -164,24 +164,6 @@ class LaundryRoomPage extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 5.0.r),
                             radius: 8.0,
                           ),
-                          SizedBox(width: 8.0.w),
-                          OSJTextButton(
-                            function: () => context.read<RoomBloc>().add(
-                                ModifyRoomIndexEvent(
-                                    roomLocation: RoomLocation.womanRoom)),
-                            fontSize: 18.0.sp,
-                            color: roomBlocState.value.roomLocation ==
-                                    RoomLocation.womanRoom
-                                ? LoturaColors.white
-                                : LoturaColors.gray100,
-                            fontColor: roomBlocState.value.roomLocation ==
-                                    RoomLocation.womanRoom
-                                ? LoturaColors.primary700
-                                : LoturaColors.gray300,
-                            text: "여자",
-                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
-                            radius: 8.0,
-                          ),
                         ],
                       ),
                     ),
@@ -286,7 +268,6 @@ class LaundryList extends StatelessWidget {
             builder: (context) => OSJBottomSheet(
               deviceId: nfcData,
               isEnableNotification: true,
-              isWoman: nfcData > 31 ? true : false,
               state: list[nfcData - 1].state,
               machine: list[nfcData - 1].deviceType,
             ),
@@ -316,8 +297,6 @@ class LaundryList extends StatelessWidget {
                                 index +
                                 32],
                     isEnableNotification: true,
-                    isWoman:
-                        laundryRoomModel.roomLocation == RoomLocation.womanRoom,
                   ),
                   laundryRoomModel.buttonView.triangle,
                   MachineButton(
@@ -332,8 +311,6 @@ class LaundryList extends StatelessWidget {
                                 index +
                                 40],
                     isEnableNotification: true,
-                    isWoman:
-                        laundryRoomModel.roomLocation == RoomLocation.womanRoom,
                   ),
                 ],
               ),
