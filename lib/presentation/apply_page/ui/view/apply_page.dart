@@ -19,13 +19,13 @@ class ApplyPage extends StatelessWidget {
   ApplyPage({super.key});
 
   final TextStyle bigStyle = TextStyle(
-    fontSize: 30.0.sp,
+    fontSize: 32.0.sp,
     color: LoturaColors.black,
     fontWeight: FontWeight.bold,
   );
 
   final TextStyle smallStyle = TextStyle(
-    fontSize: 16.0.sp,
+    fontSize: 18.0.sp,
     color: LoturaColors.gray500,
   );
 
@@ -140,7 +140,7 @@ class ApplyPage extends StatelessWidget {
                               children: [
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     MachineCard(
                                         deviceId: state.value
@@ -185,7 +185,7 @@ class ApplyPage extends StatelessWidget {
                                             state: CurrentState.working)
                                   ],
                                 ),
-                                SizedBox(height: 10.0.r),
+                                SizedBox(height: 20.0.r),
                               ],
                             );
                           },
