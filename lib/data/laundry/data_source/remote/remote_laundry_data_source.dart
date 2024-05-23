@@ -28,7 +28,7 @@ class RemoteLaundryDataSource {
   }
 
   Future<List<LaundryEntity>> getAllLaundryList() async {
-    final response = await http.get(Uri.parse("$baseurl/device_list"));
+    final response = await http.get(Uri.parse("$baseurl/device_list_boy"));
     if (response.statusCode != 200) {
       throw Exception(response.body);
     }

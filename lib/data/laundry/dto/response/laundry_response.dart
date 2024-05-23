@@ -24,7 +24,11 @@ class LaundryResponse {
     return LaundryEntity(
       id: id,
       state: CurrentState.values.elementAt(state),
-      deviceType: deviceType == "WASH" ? DeviceType.wash : DeviceType.dry,
+      deviceType: deviceType == "WASH"
+          ? DeviceType.wash
+          : deviceType == "DRY"
+              ? DeviceType.dry
+              : DeviceType.empty,
     );
   }
 }

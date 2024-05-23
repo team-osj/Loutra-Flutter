@@ -6,6 +6,7 @@ import 'package:lotura/main.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_bloc.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_model.dart';
 import 'package:lotura/presentation/laundry_room_page/bloc/laundry_state.dart';
+import 'package:lotura/presentation/laundry_room_page/ui/widget/machine_button.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_bloc.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_event.dart';
 import 'package:lotura/presentation/notice_page/bloc/notice_model.dart';
@@ -18,9 +19,6 @@ import 'package:lotura/presentation/setting_page/bloc/room_state.dart';
 import 'package:lotura/presentation/setting_page/ui/view/setting_page.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
-import 'package:lotura/presentation/utils/machine_button.dart';
-import 'package:lotura/presentation/utils/machine_card.dart';
-import 'package:lotura/presentation/utils/machine_widget.dart';
 import 'package:lotura/presentation/utils/osj_bottom_sheet.dart';
 import 'package:lotura/presentation/utils/osj_text_button.dart';
 
@@ -30,12 +28,20 @@ class LaundryRoomPage extends StatelessWidget {
   final int nfcTagData;
 
   final Map place = <int, String>{
-    0: "남자 학교측 세탁실",
-    1: "남자 기숙사측 세탁실",
-    2: "여자 세탁실",
+    0: "남자 학교측 세탁실 1층",
+    1: "남자 학교측 세탁실 2층",
+    2: "남자 기숙사측 세탁실 1층",
+    3: "남자 기숙사측 세탁실 2층",
+    4: "여자 세탁실 1층",
   };
 
-  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
+  final Map<int, int> placeIndex = {
+    0: 0,
+    1: 16,
+    2: 31,
+    3: 47,
+    4: 63,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -158,28 +164,11 @@ class LaundryRoomPage extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 5.0.r),
                             radius: 8.0,
                           ),
-                          SizedBox(width: 8.0.w),
-                          OSJTextButton(
-                            function: () => context.read<RoomBloc>().add(
-                                ModifyRoomIndexEvent(
-                                    roomLocation: RoomLocation.womanRoom)),
-                            fontSize: 18.0.sp,
-                            color: roomBlocState.value.roomLocation ==
-                                    RoomLocation.womanRoom
-                                ? LoturaColors.white
-                                : LoturaColors.gray100,
-                            fontColor: roomBlocState.value.roomLocation ==
-                                    RoomLocation.womanRoom
-                                ? LoturaColors.primary700
-                                : LoturaColors.gray300,
-                            text: "여자",
-                            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
-                            radius: 8.0,
-                          ),
                         ],
                       ),
                     ),
-                    ViewTypeFilter(buttonView: roomBlocState.value.buttonView),
+                    LaundryRoomLayerFilter(
+                        laundryRoomLayer: roomBlocState.value.laundryRoomLayer),
                     Expanded(
                       child:
                           BlocBuilder<LaundryBloc, LaundryState<LaundryModel>>(
@@ -209,36 +198,42 @@ class LaundryRoomPage extends StatelessWidget {
   }
 }
 
-class ViewTypeFilter extends StatelessWidget {
-  const ViewTypeFilter({super.key, required this.buttonView});
+class LaundryRoomLayerFilter extends StatelessWidget {
+  const LaundryRoomLayerFilter({super.key, required this.laundryRoomLayer});
 
-  final ButtonView buttonView;
+  final LaundryRoomLayer laundryRoomLayer;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(
-          onPressed: () => context
-              .read<RoomBloc>()
-              .add(ModifyButtonViewEvent(buttonView: ButtonView.image)),
-          icon: Icon(LoturaIcons.grid,
-              size: 18.0.r,
-              color: buttonView == ButtonView.image
+        TextButton(
+          onPressed: () => context.read<RoomBloc>().add(
+              ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.first)),
+          child: Text(
+            "1층",
+            style: TextStyle(
+              fontSize: 18.0.sp,
+              color: laundryRoomLayer == LaundryRoomLayer.first
                   ? LoturaColors.black
-                  : LoturaColors.gray300),
+                  : LoturaColors.gray300,
+            ),
+          ),
         ),
-        IconButton(
-          onPressed: () => context
-              .read<RoomBloc>()
-              .add(ModifyButtonViewEvent(buttonView: ButtonView.icon)),
-          icon: Icon(
-            LoturaIcons.list,
-            size: 18.0.r,
-            color: buttonView == ButtonView.icon
-                ? LoturaColors.black
-                : LoturaColors.gray300,
+        TextButton(
+          onPressed: () => context.read<RoomBloc>().add(
+              ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.second)),
+          child: Text(
+            "2층",
+            style: TextStyle(
+              fontSize: 18.0.sp,
+              color: laundryRoomLayer == LaundryRoomLayer.second
+                  ? LoturaColors.black
+                  : LoturaColors.gray300,
+            ),
           ),
         ),
       ],
@@ -258,26 +253,7 @@ class LaundryList extends StatelessWidget {
   final LaundryRoomModel laundryRoomModel;
   final int nfcData;
 
-  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31};
-
-  MachineWidget machineWidget(
-          {required LaundryRoomModel roomState,
-          required int deviceId,
-          required CurrentState state,
-          required DeviceType deviceType}) =>
-      roomState.buttonView == ButtonView.image
-          ? MachineCard(
-              deviceId: deviceId,
-              isEnableNotification: true,
-              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
-              state: state,
-              deviceType: deviceType)
-          : MachineButton(
-              deviceId: deviceId,
-              isEnableNotification: true,
-              isWoman: roomState.roomLocation == RoomLocation.womanRoom,
-              state: state,
-              deviceType: deviceType);
+  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31, 3: 47, 4: 63};
 
   @override
   Widget build(BuildContext context) {
@@ -299,7 +275,6 @@ class LaundryList extends StatelessWidget {
             builder: (context) => OSJBottomSheet(
               deviceId: nfcData,
               isEnableNotification: true,
-              isWoman: nfcData > 31 ? true : false,
               state: list[nfcData - 1].state,
               machine: list[nfcData - 1].deviceType,
             ),
@@ -310,80 +285,39 @@ class LaundryList extends StatelessWidget {
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(overscroll: false),
       child: ListView.builder(
-        itemCount:
-            laundryRoomModel.roomLocation == RoomLocation.womanRoom ? 10 : 8,
+        itemCount: 8,
+        // laundryRoomModel.roomLocation == RoomLocation.womanRoom ? 10 : 8,
         itemBuilder: (context, index) {
           return Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  machineWidget(
-                      roomState: laundryRoomModel,
-                      deviceId: list[
-                              placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index]
-                          .id,
-                      deviceType: list[
-                              placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index]
-                          .deviceType,
-                      state: list[
-                              placeIndex[laundryRoomModel.roomLocation.index]! +
-                                  index]
-                          .state),
-                  laundryRoomModel.buttonView.triangle,
-                  machineWidget(
-                    roomState: laundryRoomModel,
-                    deviceId: placeIndex[laundryRoomModel.roomLocation.index]! +
+                  MachineButton(
+                    laundryEntity: laundryRoomModel.laundryRoomLayer ==
+                            LaundryRoomLayer.first
+                        ? list[
+                            placeIndex[laundryRoomModel.roomLocation.index]! +
+                                index]
+                        : list[
+                            placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8) <
-                            44
-                        ? list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
+                                32],
+                    isEnableNotification: true,
+                  ),
+                  const Icon(LoturaIcons.triangleUp, color: Colors.grey),
+                  MachineButton(
+                    laundryEntity: laundryRoomModel.laundryRoomLayer ==
+                            LaundryRoomLayer.first
+                        ? list[
+                            placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8)]
-                            .id
-                        : -1,
-                    deviceType:
-                        placeIndex[laundryRoomModel.roomLocation.index]! +
-                                    index +
-                                    (laundryRoomModel.roomLocation ==
-                                            RoomLocation.womanRoom
-                                        ? 10
-                                        : 8) <
-                                44
-                            ? list[placeIndex[
-                                        laundryRoomModel.roomLocation.index]! +
-                                    index +
-                                    (laundryRoomModel.roomLocation ==
-                                            RoomLocation.womanRoom
-                                        ? 10
-                                        : 8)]
-                                .deviceType
-                            : DeviceType.dry,
-                    state: placeIndex[laundryRoomModel.roomLocation.index]! +
+                                8]
+                        : list[
+                            placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8) <
-                            44
-                        ? list[placeIndex[
-                                    laundryRoomModel.roomLocation.index]! +
-                                index +
-                                (laundryRoomModel.roomLocation ==
-                                        RoomLocation.womanRoom
-                                    ? 10
-                                    : 8)]
-                            .state
-                        : CurrentState.breakdown,
+                                40],
+                    isEnableNotification: true,
                   ),
                 ],
               ),
