@@ -208,26 +208,32 @@ class LaundryRoomLayerFilter extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(
+        TextButton(
           onPressed: () => context.read<RoomBloc>().add(
               ModifyLaundryRoomLayerEvent(
                   laundryRoomLayer: LaundryRoomLayer.first)),
-          icon: Icon(LaundryRoomLayer.first.icon,
-              size: 24.0.r,
+          child: Text(
+            "1층",
+            style: TextStyle(
+              fontSize: 18.0.sp,
               color: laundryRoomLayer == LaundryRoomLayer.first
                   ? LoturaColors.black
-                  : LoturaColors.gray300),
+                  : LoturaColors.gray300,
+            ),
+          ),
         ),
-        IconButton(
+        TextButton(
           onPressed: () => context.read<RoomBloc>().add(
               ModifyLaundryRoomLayerEvent(
                   laundryRoomLayer: LaundryRoomLayer.second)),
-          icon: Icon(
-            Icons.looks_two_outlined,
-            size: 24.0.r,
-            color: laundryRoomLayer == LaundryRoomLayer.second
-                ? LoturaColors.black
-                : LoturaColors.gray300,
+          child: Text(
+            "2층",
+            style: TextStyle(
+              fontSize: 18.0.sp,
+              color: laundryRoomLayer == LaundryRoomLayer.second
+                  ? LoturaColors.black
+                  : LoturaColors.gray300,
+            ),
           ),
         ),
       ],
