@@ -46,6 +46,7 @@ class SettingPageBottomSheet extends StatelessWidget {
                           fontSize: 25.0.sp, color: LoturaColors.black),
                     ),
                   ),
+                  SizedBox(height: 30.0.r),
                   CheckButton(
                     gender: Gender.boy,
                     roomLocation: RoomLocation.schoolSide,
