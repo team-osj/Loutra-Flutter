@@ -125,9 +125,19 @@ enum DeviceType {
   });
 }
 
+enum Gender {
+  boy(text: "남자 세탁실"),
+  girl(text: "여자 세탁실");
+
+  const Gender({required this.text});
+
+  final String text;
+}
+
 enum RoomLocation {
   schoolSide(roomName: "남자 학교측 세탁실"),
-  dormitorySide(roomName: "남자 기숙사측 세탁실");
+  dormitorySide(roomName: "남자 기숙사측 세탁실"),
+  schoolGirlSide(roomName: "여자 기숙사측 세탁실");
 
   const RoomLocation({required this.roomName});
 

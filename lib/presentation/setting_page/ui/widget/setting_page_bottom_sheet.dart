@@ -46,13 +46,16 @@ class SettingPageBottomSheet extends StatelessWidget {
                           fontSize: 25.0.sp, color: LoturaColors.black),
                     ),
                   ),
+                  SizedBox(height: 30.0.r),
                   CheckButton(
-                    currentRoomLocation: state.value.roomLocation,
+                    gender: Gender.boy,
                     roomLocation: RoomLocation.schoolSide,
+                    currentRoomLocation: state.data.roomLocation,
                   ),
                   CheckButton(
-                    currentRoomLocation: state.value.roomLocation,
-                    roomLocation: RoomLocation.dormitorySide,
+                    gender: Gender.girl,
+                    roomLocation: RoomLocation.schoolGirlSide,
+                    currentRoomLocation: state.data.roomLocation,
                   ),
                 ],
               ),
@@ -66,10 +69,12 @@ class SettingPageBottomSheet extends StatelessWidget {
 class CheckButton extends StatelessWidget {
   const CheckButton({
     super.key,
-    required this.currentRoomLocation,
+    required this.gender,
     required this.roomLocation,
+    required this.currentRoomLocation,
   });
 
+  final Gender gender;
   final RoomLocation roomLocation, currentRoomLocation;
 
   @override
@@ -91,7 +96,7 @@ class CheckButton extends StatelessWidget {
           children: [
             Flexible(
               child: Text(
-                roomLocation.roomName,
+                gender.text,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 16.0.sp,
