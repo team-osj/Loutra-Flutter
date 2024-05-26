@@ -243,7 +243,7 @@ class LaundryRoomLayerFilter extends StatelessWidget {
             "1층",
             style: TextStyle(
               fontSize: 18.0.sp,
-              color: laundryRoomLayer == LaundryRoomLayer.first
+              color: laundryRoomLayer.isFirst
                   ? LoturaColors.black
                   : LoturaColors.gray300,
             ),
@@ -258,7 +258,7 @@ class LaundryRoomLayerFilter extends StatelessWidget {
               "2층",
               style: TextStyle(
                 fontSize: 18.0.sp,
-                color: laundryRoomLayer == LaundryRoomLayer.second
+                color: laundryRoomLayer.isSecond
                     ? LoturaColors.black
                     : LoturaColors.gray300,
               ),
@@ -322,8 +322,7 @@ class LaundryList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   MachineButton(
-                    laundryEntity: laundryRoomModel.laundryRoomLayer ==
-                            LaundryRoomLayer.first
+                    laundryEntity: laundryRoomModel.laundryRoomLayer.isFirst
                         ? list[
                             placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index]
@@ -335,8 +334,7 @@ class LaundryList extends StatelessWidget {
                   ),
                   const Icon(LoturaIcons.triangleUp, color: Colors.grey),
                   MachineButton(
-                    laundryEntity: laundryRoomModel.laundryRoomLayer ==
-                            LaundryRoomLayer.first
+                    laundryEntity: laundryRoomModel.laundryRoomLayer.isFirst
                         ? list[
                             placeIndex[laundryRoomModel.roomLocation.index]! +
                                 index +
