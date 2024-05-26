@@ -86,6 +86,7 @@ enum CurrentState {
       text: "고장");
 
   bool get isWorking => this == CurrentState.working;
+  bool get isNotWorking => this != CurrentState.working;
 
   bool get isAvailable => this == CurrentState.available;
 
