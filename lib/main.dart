@@ -85,6 +85,14 @@ enum CurrentState {
       deviceIconColor: LoturaColors.red400,
       text: "고장");
 
+  bool get isWorking => this == CurrentState.working;
+
+  bool get isAvailable => this == CurrentState.available;
+
+  bool get isDisconnected => this == CurrentState.disconnected;
+
+  bool get isBreakdown => this == CurrentState.breakdown;
+
   final IconData icon;
   final Color color, deepColor, deviceIconColor;
   final String text;
@@ -115,6 +123,12 @@ enum DeviceType {
     imagePath: "",
   );
 
+  bool get isWash => this == DeviceType.wash;
+
+  bool get isDry => this == DeviceType.dry;
+
+  bool get isEmpty => this == DeviceType.empty;
+
   final String text, imagePath;
   final IconData icon;
 
@@ -129,6 +143,10 @@ enum Gender {
   boy(text: "남자 세탁실"),
   girl(text: "여자 세탁실");
 
+  bool get isBoy => this == Gender.boy;
+
+  bool get isGirl => this == Gender.girl;
+
   const Gender({required this.text});
 
   final String text;
@@ -139,6 +157,14 @@ enum RoomLocation {
   dormitorySide(roomName: "남자 기숙사측 세탁실"),
   schoolGirlSide(roomName: "여자 기숙사측 세탁실");
 
+  bool get isSchoolSide => this == RoomLocation.schoolSide;
+
+  bool get isDormitorySide => this == RoomLocation.dormitorySide;
+
+  bool get isSchoolGirlSide => this == RoomLocation.schoolGirlSide;
+
+  bool get isNotSchoolGirlSide => this != RoomLocation.schoolGirlSide;
+
   const RoomLocation({required this.roomName});
 
   final String roomName;
@@ -147,6 +173,10 @@ enum RoomLocation {
 enum LaundryRoomLayer {
   first(icon: Icons.looks_one_outlined),
   second(icon: Icons.looks_two_outlined);
+
+  bool get isFirst => this == LaundryRoomLayer.first;
+
+  bool get isSecond => this == LaundryRoomLayer.second;
 
   const LaundryRoomLayer({required this.icon});
 
