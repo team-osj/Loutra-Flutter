@@ -127,8 +127,7 @@ class LaundryRoomPage extends StatelessWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       padding: EdgeInsets.symmetric(vertical: 12.0.h),
-                      child: roomBlocState.data.roomLocation !=
-                              RoomLocation.schoolGirlSide
+                      child: roomBlocState.data.roomLocation.isNotSchoolGirlSide
                           ? Row(
                               children: [
                                 OSJTextButton(
@@ -137,12 +136,12 @@ class LaundryRoomPage extends StatelessWidget {
                                           roomLocation:
                                               RoomLocation.schoolSide)),
                                   fontSize: 18.0.sp,
-                                  color: roomBlocState.value.roomLocation ==
-                                          RoomLocation.schoolSide
+                                  color: roomBlocState
+                                          .value.roomLocation.isSchoolSide
                                       ? LoturaColors.white
                                       : LoturaColors.gray100,
-                                  fontColor: roomBlocState.value.roomLocation ==
-                                          RoomLocation.schoolSide
+                                  fontColor: roomBlocState
+                                          .value.roomLocation.isSchoolSide
                                       ? LoturaColors.primary700
                                       : LoturaColors.gray300,
                                   text: "남자 학교측",
@@ -157,12 +156,12 @@ class LaundryRoomPage extends StatelessWidget {
                                           roomLocation:
                                               RoomLocation.dormitorySide)),
                                   fontSize: 18.0.sp,
-                                  color: roomBlocState.value.roomLocation ==
-                                          RoomLocation.dormitorySide
+                                  color: roomBlocState
+                                          .value.roomLocation.isDormitorySide
                                       ? LoturaColors.white
                                       : LoturaColors.gray100,
-                                  fontColor: roomBlocState.value.roomLocation ==
-                                          RoomLocation.dormitorySide
+                                  fontColor: roomBlocState
+                                          .value.roomLocation.isDormitorySide
                                       ? LoturaColors.primary700
                                       : LoturaColors.gray300,
                                   text: "남자 기숙사측",
@@ -199,8 +198,8 @@ class LaundryRoomPage extends StatelessWidget {
                               const Center(child: CircularProgressIndicator()),
                             Error() =>
                               const Center(child: Text("인터넷 연결을 확인해주세요")),
-                            Loaded() => roomBlocState.data.roomLocation !=
-                                    RoomLocation.schoolGirlSide
+                            Loaded() => roomBlocState
+                                    .data.roomLocation.isNotSchoolGirlSide
                                 ? LaundryList(
                                     list: state.data.laundryList,
                                     laundryRoomModel: roomBlocState.value,
@@ -250,7 +249,7 @@ class LaundryRoomLayerFilter extends StatelessWidget {
             ),
           ),
         ),
-        if (currentRoomLocation != RoomLocation.schoolGirlSide)
+        if (currentRoomLocation.isNotSchoolGirlSide)
           TextButton(
             onPressed: () => context.read<RoomBloc>().add(
                 ModifyLaundryRoomLayerEvent(
