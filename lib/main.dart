@@ -108,6 +108,11 @@ enum DeviceType {
     text: "건조기",
     icon: LoturaIcons.dry,
     imagePath: "assets/dry_image.jpeg",
+  ),
+  empty(
+    text: "",
+    icon: Icons.abc,
+    imagePath: "",
   );
 
   final String text, imagePath;
@@ -120,21 +125,30 @@ enum DeviceType {
   });
 }
 
+enum Gender {
+  boy(text: "남자 세탁실"),
+  girl(text: "여자 세탁실");
+
+  const Gender({required this.text});
+
+  final String text;
+}
+
 enum RoomLocation {
   schoolSide(roomName: "남자 학교측 세탁실"),
   dormitorySide(roomName: "남자 기숙사측 세탁실"),
-  womanRoom(roomName: "여자 세탁실");
+  schoolGirlSide(roomName: "여자 기숙사측 세탁실");
 
   const RoomLocation({required this.roomName});
 
   final String roomName;
 }
 
-enum ButtonView {
-  image,
-  icon;
+enum LaundryRoomLayer {
+  first(icon: Icons.looks_one_outlined),
+  second(icon: Icons.looks_two_outlined);
 
-  Widget get triangle => this == ButtonView.image
-      ? const SizedBox.shrink()
-      : const Icon(LoturaIcons.triangleUp, color: Colors.grey);
+  const LaundryRoomLayer({required this.icon});
+
+  final IconData icon;
 }

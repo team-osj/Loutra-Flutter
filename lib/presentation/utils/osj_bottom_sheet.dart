@@ -14,13 +14,12 @@ class OSJBottomSheet extends StatefulWidget {
     super.key,
     required this.deviceId,
     required this.isEnableNotification,
-    required this.isWoman,
     required this.state,
     required this.machine,
   });
 
   final int deviceId;
-  final bool isEnableNotification, isWoman;
+  final bool isEnableNotification;
   final CurrentState state;
   final DeviceType machine;
 
@@ -29,37 +28,20 @@ class OSJBottomSheet extends StatefulWidget {
 }
 
 class _OSJBottomSheetState extends State<OSJBottomSheet> {
-  String text(bool isEnableNotification, isWoman, CurrentState state) {
+  String text(bool isEnableNotification, CurrentState state) {
     if (isEnableNotification) {
-      if (isWoman) {
-        switch (state) {
-          case CurrentState.working:
-            return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
-          case CurrentState.available:
-            return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
-          case CurrentState.disconnected:
-            return "여자층 ${widget.deviceId - 31}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
-          case CurrentState.breakdown:
-            return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
-        }
-      } else {
-        switch (state) {
-          case CurrentState.working:
-            return "${widget.deviceId}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
-          case CurrentState.available:
-            return "${widget.deviceId}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
-          case CurrentState.disconnected:
-            return "${widget.deviceId}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
-          case CurrentState.breakdown:
-            return "${widget.deviceId}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
-        }
+      switch (state) {
+        case CurrentState.working:
+          return "${widget.deviceId}번 ${widget.machine.text}를\n알림 설정 하실건가요?";
+        case CurrentState.available:
+          return "${widget.deviceId}번 ${widget.machine.text}는\n현재 사용 가능한 상태에요.";
+        case CurrentState.disconnected:
+          return "${widget.deviceId}번 ${widget.machine.text}의 연결이 끊겨서\n상태를 확인할 수 없어요.";
+        case CurrentState.breakdown:
+          return "${widget.deviceId}번 ${widget.machine.text}는\n고장으로 인해 사용이 불가능해요.";
       }
     } else {
-      if (isWoman) {
-        return "여자 세탁실 ${widget.deviceId - 31}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
-      } else {
-        return "${widget.deviceId}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
-      }
+      return "${widget.deviceId}번 ${widget.machine.text}의\n알림 설정을 해제하실건가요?";
     }
   }
 
@@ -104,8 +86,7 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                       ),
                     SizedBox(height: 10.0.r),
                     Text(
-                      text(widget.isEnableNotification, widget.isWoman,
-                          widget.state),
+                      text(widget.isEnableNotification, widget.state),
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 22.0.sp,

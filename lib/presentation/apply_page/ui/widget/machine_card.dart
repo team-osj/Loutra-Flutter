@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
+import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 
 class MachineCard extends MachineWidget {
@@ -7,14 +8,13 @@ class MachineCard extends MachineWidget {
     super.key,
     required super.deviceId,
     required super.isEnableNotification,
-    required super.isWoman,
     required super.deviceType,
     required super.state,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isEmptyContainer
+    return deviceType == DeviceType.empty
         ? Container(
             width: 170.0.r,
             padding: EdgeInsets.only(top: 10.0.r),
@@ -27,7 +27,7 @@ class MachineCard extends MachineWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  deviceType.imagePath,
+                  "assets/dry_image.jpeg",
                   width: 100.0.r,
                   height: 100.0.r,
                   color: Colors.transparent,
@@ -74,7 +74,7 @@ class MachineCard extends MachineWidget {
                     height: 100.0.r,
                   ),
                   Text(
-                    "${isWoman ? deviceId - 31 : deviceId}번 ${deviceType.text}",
+                    "$deviceId번 ${deviceType.text}",
                     textScaler: TextScaler.noScaling,
                     style: TextStyle(
                       fontSize: 20.0.sp,
