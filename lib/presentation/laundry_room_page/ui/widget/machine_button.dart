@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/domain/laundry/entity/laundry_entity.dart';
-import 'package:lotura/main.dart';
 import 'package:lotura/presentation/utils/lotura_colors.dart';
 import 'package:lotura/presentation/utils/lotura_icons.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
@@ -21,7 +20,7 @@ class MachineButton extends MachineWidget {
 
   @override
   Widget build(BuildContext context) {
-    return laundryEntity.deviceType == DeviceType.empty
+    return laundryEntity.deviceType.isEmpty
         ? Container(
             padding: EdgeInsets.all(12.0.r),
             constraints: BoxConstraints(
