@@ -37,8 +37,6 @@ class _BottomNaviState extends State<BottomNavi>
   int selectedIndex = 1;
   bool isChange = false;
 
-  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31, 3: 44};
-
   @override
   void initState() {
     super.initState();
