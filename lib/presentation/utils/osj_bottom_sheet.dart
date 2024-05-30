@@ -74,13 +74,13 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (widget.state != CurrentState.working)
+                    if (widget.state.isNotWorking)
                       Icon(
                         widget.state.icon,
                         size: 24.0.r,
-                        color: widget.state == CurrentState.available
+                        color: widget.state.isAvailable
                             ? LoturaColors.green700
-                            : widget.state == CurrentState.disconnected
+                            : widget.state.isDisconnected
                                 ? LoturaColors.black
                                 : LoturaColors.red700,
                       ),
@@ -97,7 +97,7 @@ class _OSJBottomSheetState extends State<OSJBottomSheet> {
                 ),
               ),
             ),
-            widget.state == CurrentState.working
+            widget.state.isWorking
                 ? Row(
                     children: [
                       Expanded(

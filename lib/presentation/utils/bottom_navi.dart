@@ -37,8 +37,6 @@ class _BottomNaviState extends State<BottomNavi>
   int selectedIndex = 1;
   bool isChange = false;
 
-  final Map<int, int> placeIndex = {0: 0, 1: 16, 2: 31, 3: 44};
-
   @override
   void initState() {
     super.initState();
@@ -96,12 +94,29 @@ class _BottomNaviState extends State<BottomNavi>
       );
     }
     if (widget.nfcTagData != -1) {
-      for (var i in placeIndex.entries) {
-        if (i.value > widget.nfcTagData - 1) {
-          context.read<RoomBloc>().add(ModifyRoomIndexEvent(
-              roomLocation: RoomLocation.values.elementAt(i.key - 1)));
-          break;
-        }
+      int d = widget.nfcTagData;
+      if (d <= 16) {
+        context
+            .read<RoomBloc>()
+            .add(ModifyRoomIndexEvent(roomLocation: RoomLocation.schoolSide));
+        context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+            laundryRoomLayer: LaundryRoomLayer.first));
+      } else if (d <= 32) {
+        context.read<RoomBloc>().add(
+            ModifyRoomIndexEvent(roomLocation: RoomLocation.dormitorySide));
+        context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+            laundryRoomLayer: LaundryRoomLayer.first));
+      } else if (d <= 48) {
+        context
+            .read<RoomBloc>()
+            .add(ModifyRoomIndexEvent(roomLocation: RoomLocation.schoolSide));
+        context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+            laundryRoomLayer: LaundryRoomLayer.second));
+      } else if (d <= 64) {
+        context.read<RoomBloc>().add(
+            ModifyRoomIndexEvent(roomLocation: RoomLocation.dormitorySide));
+        context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+            laundryRoomLayer: LaundryRoomLayer.second));
       }
     } else {
       context.read<RoomBloc>().add(GetRoomIndexEvent());
@@ -159,12 +174,27 @@ class _BottomNaviState extends State<BottomNavi>
           if (widget.nfcTagData != -1) {
             selectedIndex = 1;
             controller.index = 1;
-            for (var i in placeIndex.entries) {
-              if (i.value > widget.nfcTagData - 1) {
-                context.read<RoomBloc>().add(ModifyRoomIndexEvent(
-                    roomLocation: RoomLocation.values.elementAt(i.key - 1)));
-                break;
-              }
+            int d = widget.nfcTagData;
+            if (d <= 16) {
+              context.read<RoomBloc>().add(
+                  ModifyRoomIndexEvent(roomLocation: RoomLocation.schoolSide));
+              context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.first));
+            } else if (d <= 32) {
+              context.read<RoomBloc>().add(ModifyRoomIndexEvent(
+                  roomLocation: RoomLocation.dormitorySide));
+              context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.first));
+            } else if (d <= 48) {
+              context.read<RoomBloc>().add(
+                  ModifyRoomIndexEvent(roomLocation: RoomLocation.schoolSide));
+              context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.second));
+            } else if (d <= 64) {
+              context.read<RoomBloc>().add(ModifyRoomIndexEvent(
+                  roomLocation: RoomLocation.dormitorySide));
+              context.read<RoomBloc>().add(ModifyLaundryRoomLayerEvent(
+                  laundryRoomLayer: LaundryRoomLayer.second));
             }
             BlocProvider.of<RoomBloc>(context)
                 .add(InitialShowBottomSheetEvent());

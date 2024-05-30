@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart' as s;
-import 'package:lotura/main.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lotura/presentation/utils/machine_widget.dart';
 
 class MachineCard extends MachineWidget {
@@ -14,7 +13,7 @@ class MachineCard extends MachineWidget {
 
   @override
   Widget build(BuildContext context) {
-    return deviceType == DeviceType.empty
+    return deviceType.isEmpty
         ? Container(
             width: 170.0.r,
             padding: EdgeInsets.only(top: 10.0.r),
